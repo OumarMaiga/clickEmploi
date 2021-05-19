@@ -1,0 +1,24 @@
+.btn-custom {
+    background-color: #8B2FC8;
+    color: #FFFFFF;
+}
+
+.btn-custom:hover {
+    background-color: #8129BB;
+    border-color: #5E168E;
+    color: #FFFFFF;
+}
+
+.auth-title {
+    text-align: center;
+    font-size:xx-large;
+    margin-top: 70px;
+    margin-bottom: 40px;
+    color: #707070;
+}
+
+.form-control {
+    border: 0px;
+    border-bottom: 1px solid #707070;
+}
+

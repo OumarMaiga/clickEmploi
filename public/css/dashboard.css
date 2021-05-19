@@ -1,0 +1,35 @@
+.sidebar {
+    background-color: #7023A2;
+    height: 100vh;
+    padding: 10px 20px;
+    position: absolute;
+    width: 100%;
+}
+
+.sidebar-title {
+    font-size: 1.8rem;
+    font-weight: 200;
+    color: #FFFFFF;
+    margin-left: 30px;
+}
+
+.sidebar-list {
+    margin-top: 40px;
+    list-style: none;
+    margin-left: 30px;
+    line-height: 24px;
+}
+
+.sidebar-item {
+    margin-top: 50px;
+    font-size: 1.4rem;
+}
+
+.sidebar-link {
+    color: #FFFFFF
+}
+
+.sidebar-title:hover, .sidebar-link:hover {
+    font-weight: bold;
+    color: white;
+}
