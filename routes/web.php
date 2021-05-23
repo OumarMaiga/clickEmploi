@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PartenaireController;
 
 /*
@@ -25,8 +24,4 @@ Route::get('/home', [HomeController::class, 'index'])->middleware(['auth'])->nam
 
 require __DIR__.'/auth.php';
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
-
-//Partenaire
-Route::get('/dashboard/partenaire', [PartenaireController::class, 'index'])->middleware(['auth'])->name('partenaire');
-
+require __DIR__.'/dashboard.php';

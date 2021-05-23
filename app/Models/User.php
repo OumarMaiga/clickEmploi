@@ -19,11 +19,13 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'telephone',
+        'adresse',
         'email',
         'password',
         'nom', 
         'prenom', 
         'date_naissance',
+        'type',
     ];
 
     /**
@@ -44,4 +46,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function opportunites() 
+    {
+        return $this->hasMany('App\Opportunite');
+    }
+    
+    public function diplome() 
+    {
+        return $this->hasMany('App\Diplome');
+    }
 }
