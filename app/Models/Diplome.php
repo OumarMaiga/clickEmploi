@@ -12,12 +12,12 @@ class Diplome extends Model
     
     public function user() 
     {
-        return $this->belognsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function users() 
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\Models\User');
     }
 
     /**
@@ -28,5 +28,6 @@ class Diplome extends Model
     protected $fillable = [
         'libelle',
         'user_id',
+        'slug',
     ];
 }

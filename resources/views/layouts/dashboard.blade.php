@@ -53,12 +53,12 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="{{ route('emploi') }}" class="sidebar-link">
+                                    <a href="{{ route('formation') }}" class="sidebar-link">
                                         FORMATION
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="{{ route('emploi') }}" class="sidebar-link">
+                                    <a href="{{ route('stage') }}" class="sidebar-link">
                                         STAGE
                                     </a>
                                 </li>
@@ -74,7 +74,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('diplome') }}" class="sidebar-link">
+                            <a href="{{ route('abonnee') }}" class="sidebar-link">
                                 ABONNES
                             </a>
                         </li>

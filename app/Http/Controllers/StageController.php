@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use App\Repositories\OpportuniteRepository;
 use Illuminate\Support\Facades\Auth;
 
-class EmploiController extends Controller
+class StageController extends Controller
 {
     protected $opportuniteRepository;
 
@@ -16,12 +16,12 @@ class EmploiController extends Controller
     }
 
     public function index() {
-        $emplois = $this->opportuniteRepository->getByType('emploi');
-        return view('emplois.index', compact('emplois'));
+        $stages = $this->opportuniteRepository->getByType('stage');
+        return view('stages.index', compact('stages'));
     }
     
     public function create() {
-        return view('emplois.create');
+        return view('stages.create');
     }
 
     public function store(Request $request) {
@@ -32,29 +32,29 @@ class EmploiController extends Controller
         ]);
 
         $request->merge([
-            'type' => 'emploi',
+            'type' => 'stage',
             'slug' => Str::slug($request->get('title')),
             'user_id' => Auth::user()->id,
         ]);
         
         $this->opportuniteRepository->store($request->all());
 
-        return redirect('/dashboard/emploi')->withStatus("Nouveau emploi publié");
+        return redirect('/dashboard/stage')->withStatus("Nouveau stage publié");
     }
 
     public function edit($slug) {
-        $emploi = $this->opportuniteRepository->getBySlug($slug);
-        return view('emplois.edit', compact('emploi'));
+        $stage = $this->opportuniteRepository->getBySlug($slug);
+        return view('stages.edit', compact('stage'));
     }
 
     public function update(Request $request, $id) {
         $this->opportuniteRepository->update($id, $request->all());
-        return redirect('/dashboard/emploi')->withStatus("Emploi a bien été mise à jour");
+        return redirect('/dashboard/stage')->withStatus("Stage a bien été mise à jour");
     }
 
     public function show($slug) {
-        $emploi = $this->opportuniteRepository->getBySlug($slug);
-        return view('emplois.show', compact('emploi'));
+        $stage = $this->opportuniteRepository->getBySlug($slug);
+        return view('stages.show', compact('stage'));
     }
 
     public function destroy($id) {

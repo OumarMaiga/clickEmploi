@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\SecteurRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class SecteurController extends Controller
 {
@@ -31,6 +32,7 @@ class SecteurController extends Controller
 
         $request->merge([
             'user_id' => Auth::user()->id,
+            'slug' => Str::slug($request->get('title')),
         ]);
             
         $secteur = $this->secteurRepository->store($request->all());

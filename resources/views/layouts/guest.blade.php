@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" >
         <link href="{{ asset('css/auth.css') }}" rel="stylesheet" type="text/css" >
+        <link href="{{ asset('css/home.css') }}" rel="stylesheet" type="text/css" >
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>

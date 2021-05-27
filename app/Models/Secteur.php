@@ -11,7 +11,7 @@ class Secteur extends Model
     
     public function user() 
     {
-        return $this->belognsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
     
     /**
@@ -23,5 +23,6 @@ class Secteur extends Model
         'libelle',
         'user_id',
         'categorie',
+        'slug',
     ];
 }

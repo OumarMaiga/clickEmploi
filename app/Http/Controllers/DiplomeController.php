@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\DiplomeRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class DiplomeController extends Controller
 {
@@ -30,6 +31,7 @@ class DiplomeController extends Controller
         ]);
 
         $request->merge([
+            'slug' => Str::slug($request->get('libelle')),
             'user_id' => Auth::user()->id,
         ]);
             

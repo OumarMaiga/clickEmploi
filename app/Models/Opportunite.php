@@ -17,6 +17,7 @@ class Opportunite extends Model
      */
     protected $fillable = [
         'title',
+        'poste',
         'slug',
         'content',
         'structure',
@@ -33,12 +34,12 @@ class Opportunite extends Model
 
     public function user() 
     {
-        return $this->belognsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
     
     public function users() 
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\Models\User');
     }
     
 }

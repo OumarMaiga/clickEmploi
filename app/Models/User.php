@@ -49,11 +49,16 @@ class User extends Authenticatable
     
     public function opportunites() 
     {
-        return $this->hasMany('App\Opportunite');
+        return $this->hasMany('App\Models\Opportunite');
     }
     
     public function diplome() 
     {
-        return $this->hasMany('App\Diplome');
+        return $this->hasMany('App\Models\Diplome');
+    }
+
+    public function abonnee()
+    {
+        return $this->hasOne('App\Models\Abonnee');
     }
 }

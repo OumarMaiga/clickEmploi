@@ -13,11 +13,6 @@ class HomeController extends Controller
     
     public function index()
     {
-        /*User::create([
-            'email' => 'hasseye@gmail.com',
-            'telephone' => '71316544',
-            'password' => Hash::make('hasseyemg'),
-        ])->save();
-        return view('home');*/
+        return view('pages/home');
     }
 }

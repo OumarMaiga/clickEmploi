@@ -3,6 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PartenaireController;
 use App\Http\Controllers\EmploiController;
+use App\Http\Controllers\StageController;
+use App\Http\Controllers\FormationController;
 use App\Http\Controllers\DiplomeController;
 use App\Http\Controllers\SecteurController;
 
@@ -25,6 +27,24 @@ Route::get('/dashboard/emploi/create', [EmploiController::class, 'create'])->mid
 Route::put('/dashboard/emploi/update/{slug}', [EmploiController::class, 'update'])->middleware(['auth'])->name('emploi.update');
 Route::post('/dashboard/emploi/store', [EmploiController::class, 'store'])->middleware(['auth'])->name('emploi.store');
 Route::delete('/dashboard/emploi/destroy/{id}', [EmploiController::class, 'destroy'])->middleware(['auth'])->name('emploi.destroy');
+
+//STAGE
+Route::get('/dashboard/stage', [StageController::class, 'index'])->middleware(['auth'])->name('stage');
+Route::get('/dashboard/stage/show/{slug}', [StageController::class, 'show'])->middleware(['auth'])->name('stage.show');
+Route::get('/dashboard/stage/edit/{slug}', [StageController::class, 'edit'])->middleware(['auth'])->name('stage.edit');
+Route::get('/dashboard/stage/create', [StageController::class, 'create'])->middleware(['auth'])->name('stage.create');
+Route::put('/dashboard/stage/update/{slug}', [StageController::class, 'update'])->middleware(['auth'])->name('stage.update');
+Route::post('/dashboard/stage/store', [StageController::class, 'store'])->middleware(['auth'])->name('stage.store');
+Route::delete('/dashboard/stage/destroy/{id}', [StageController::class, 'destroy'])->middleware(['auth'])->name('stage.destroy');
+
+//FORMATION
+Route::get('/dashboard/formation', [FormationController::class, 'index'])->middleware(['auth'])->name('formation');
+Route::get('/dashboard/formation/show/{slug}', [FormationController::class, 'show'])->middleware(['auth'])->name('formation.show');
+Route::get('/dashboard/formation/edit/{slug}', [FormationController::class, 'edit'])->middleware(['auth'])->name('formation.edit');
+Route::get('/dashboard/formation/create', [FormationController::class, 'create'])->middleware(['auth'])->name('formation.create');
+Route::put('/dashboard/formation/update/{slug}', [FormationController::class, 'update'])->middleware(['auth'])->name('formation.update');
+Route::post('/dashboard/formation/store', [FormationController::class, 'store'])->middleware(['auth'])->name('formation.store');
+Route::delete('/dashboard/formation/destroy/{id}', [FormationController::class, 'destroy'])->middleware(['auth'])->name('formation.destroy');
 
 //DIPLOME
 Route::get('/dashboard/diplome', [DiplomeController::class, 'index'])->middleware(['auth'])->name('diplome');

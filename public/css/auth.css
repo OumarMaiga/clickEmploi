@@ -13,6 +13,22 @@
     color: #FFFFFF;
 }
 
+.btn-outline-custom {
+    background-color: #FFFFFF;
+    color: #8B2FC8;
+    border: 1px solid #8B2FC8;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+
+.btn-outline-custom:hover {
+    background-color: #8129BB;
+    border-color: #5E168E;
+    color: #FFFFFF;
+}
+
 .auth-title {
     text-align: center;
     font-size:xx-large;
