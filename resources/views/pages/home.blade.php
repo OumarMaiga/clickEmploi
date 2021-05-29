@@ -2,8 +2,9 @@
     <div class="home-container">
         <div class="row">
             <div class="col-sm-3">
-                <h3 class="filtre-title">FILTRE</h3>
                 <div class="filtre-container">
+                <h3 class="filtre-title">FILTRE</h3>
+                <div class="filtre-content">
                     <h5 class="filtre-subtitle">POSTE</h5>
                     <div class="filtre-list">
                         <div class="filtre-item-list">
@@ -81,25 +82,40 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
                 </div>
             </div>
             <div class="col-sm-9">
-                <div class="offre-item row">
+                @foreach ($opportunites as $opportunite)
+                    <div class="offre-item row">
                     <div class="col-2 px-0">
                         <img src="" alt="Image" class="image-offre">
                     </div>
                     <div class="col-10">
-                        <h3 class="offre-title">Developpeur front-end (Angular React ou VueJS)</h3>
+                        <h3 class="offre-title">{{ $opportunite->title }}</h3>
                         <div class="offre-subtitle">
-                            Société des TIC du Mali (STM) | <span class="fas fa-map-marker-alt"></span> Sotuba ACI 
+                            {{ $opportunite->structure }} | <span class="fas fa-map-marker-alt"></span> {{ $opportunite->lieu }}
                         </div>
                         <div class="row offre-footer">
-                            <i class="mt-auto">Aujourd'hui</i>
-                            <button class="btn btn-outline-custom ml-auto mt-auto">DETAIL</button>
+                            <i class="mt-auto">{{ $opportunite->created_at }}</i>
+                            @switch($opportunite->type)
+                                @case('emploi')
+                                    <a href="{{ route('emploi.detail', $opportunite->slug) }}" class="btn btn-outline-custom ml-auto mt-auto">DETAIL</a>
+                                    @break
+                                @case('stage')
+                                    <a href="{{ route('stage.show', $opportunite->slug) }}" class="btn btn-outline-custom ml-auto mt-auto">DETAIL</a>
+                                    @break
+                                @case('formation')
+                                    <a href="{{ route('formation.show', $opportunite->slug) }}" class="btn btn-outline-custom ml-auto mt-auto">DETAIL</a>
+                                    @break
+                                @default
+                                    <a href="{{ route('emploi.detail', $opportunite->slug) }}" class="btn btn-outline-custom ml-auto mt-auto">DETAIL</a>
+                            @endswitch
+                            
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

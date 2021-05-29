@@ -56,6 +56,11 @@ class EmploiController extends Controller
         $emploi = $this->opportuniteRepository->getBySlug($slug);
         return view('emplois.show', compact('emploi'));
     }
+    
+    public function detail($slug) {
+        $emploi = $this->opportuniteRepository->getBySlug($slug);
+        return view('emplois.detail', compact('emploi'));
+    }
 
     public function destroy($id) {
 		$this->opportuniteRepository->destroy($id);

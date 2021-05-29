@@ -11,55 +11,20 @@ use App\Http\Controllers\SecteurController;
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 //Partenaire
-Route::get('/dashboard/partenaire', [PartenaireController::class, 'index'])->middleware(['auth'])->name('partenaire');
-Route::get('/dashboard/partenaire/show/{email}', [PartenaireController::class, 'show'])->middleware(['auth'])->name('partenaire.show');
-Route::get('/dashboard/partenaire/edit/{email}', [PartenaireController::class, 'edit'])->middleware(['auth'])->name('partenaire.edit');
-Route::get('/dashboard/partenaire/create', [PartenaireController::class, 'create'])->middleware(['auth'])->name('partenaire.create');
-Route::put('/dashboard/partenaire/update/{email}', [PartenaireController::class, 'update'])->middleware(['auth'])->name('partenaire.update');
-Route::post('/dashboard/partenaire/store', [PartenaireController::class, 'store'])->middleware(['auth'])->name('partenaire.store');
-Route::delete('/dashboard/partenaire/destroy/{id}', [PartenaireController::class, 'destroy'])->middleware(['auth'])->name('partenaire.destroy');
+Route::resource('/dashboard/partenaire', PartenaireController::class)->middleware(['auth']);
 
 //EMPLOI
-Route::get('/dashboard/emploi', [EmploiController::class, 'index'])->middleware(['auth'])->name('emploi');
-Route::get('/dashboard/emploi/show/{slug}', [EmploiController::class, 'show'])->middleware(['auth'])->name('emploi.show');
-Route::get('/dashboard/emploi/edit/{slug}', [EmploiController::class, 'edit'])->middleware(['auth'])->name('emploi.edit');
-Route::get('/dashboard/emploi/create', [EmploiController::class, 'create'])->middleware(['auth'])->name('emploi.create');
-Route::put('/dashboard/emploi/update/{slug}', [EmploiController::class, 'update'])->middleware(['auth'])->name('emploi.update');
-Route::post('/dashboard/emploi/store', [EmploiController::class, 'store'])->middleware(['auth'])->name('emploi.store');
-Route::delete('/dashboard/emploi/destroy/{id}', [EmploiController::class, 'destroy'])->middleware(['auth'])->name('emploi.destroy');
+Route::resource('/dashboard/emploi', EmploiController::class)->middleware(['auth']);
+Route::get('/emploi/show/{slug}', [EmploiController::class, 'detail'])->middleware(['auth'])->name('emploi.detail');
 
 //STAGE
-Route::get('/dashboard/stage', [StageController::class, 'index'])->middleware(['auth'])->name('stage');
-Route::get('/dashboard/stage/show/{slug}', [StageController::class, 'show'])->middleware(['auth'])->name('stage.show');
-Route::get('/dashboard/stage/edit/{slug}', [StageController::class, 'edit'])->middleware(['auth'])->name('stage.edit');
-Route::get('/dashboard/stage/create', [StageController::class, 'create'])->middleware(['auth'])->name('stage.create');
-Route::put('/dashboard/stage/update/{slug}', [StageController::class, 'update'])->middleware(['auth'])->name('stage.update');
-Route::post('/dashboard/stage/store', [StageController::class, 'store'])->middleware(['auth'])->name('stage.store');
-Route::delete('/dashboard/stage/destroy/{id}', [StageController::class, 'destroy'])->middleware(['auth'])->name('stage.destroy');
+Route::resource('/dashboard/stage', StageController::class)->middleware(['auth']);
 
 //FORMATION
-Route::get('/dashboard/formation', [FormationController::class, 'index'])->middleware(['auth'])->name('formation');
-Route::get('/dashboard/formation/show/{slug}', [FormationController::class, 'show'])->middleware(['auth'])->name('formation.show');
-Route::get('/dashboard/formation/edit/{slug}', [FormationController::class, 'edit'])->middleware(['auth'])->name('formation.edit');
-Route::get('/dashboard/formation/create', [FormationController::class, 'create'])->middleware(['auth'])->name('formation.create');
-Route::put('/dashboard/formation/update/{slug}', [FormationController::class, 'update'])->middleware(['auth'])->name('formation.update');
-Route::post('/dashboard/formation/store', [FormationController::class, 'store'])->middleware(['auth'])->name('formation.store');
-Route::delete('/dashboard/formation/destroy/{id}', [FormationController::class, 'destroy'])->middleware(['auth'])->name('formation.destroy');
+Route::resource('/dashboard/formation', FormationController::class)->middleware(['auth']);
 
 //DIPLOME
-Route::get('/dashboard/diplome', [DiplomeController::class, 'index'])->middleware(['auth'])->name('diplome');
-Route::get('/dashboard/diplome/show/{slug}', [DiplomeController::class, 'show'])->middleware(['auth'])->name('diplome.show');
-Route::get('/dashboard/diplome/edit/{slug}', [DiplomeController::class, 'edit'])->middleware(['auth'])->name('diplome.edit');
-Route::get('/dashboard/diplome/create', [DiplomeController::class, 'create'])->middleware(['auth'])->name('diplome.create');
-Route::put('/dashboard/diplome/update/{id}', [DiplomeController::class, 'update'])->middleware(['auth'])->name('diplome.update');
-Route::post('/dashboard/diplome/store', [DiplomeController::class, 'store'])->middleware(['auth'])->name('diplome.store');
-Route::delete('/dashboard/diplome/destroy/{id}', [DiplomeController::class, 'destroy'])->middleware(['auth'])->name('diplome.destroy');
+Route::resource('/dashboard/diplome', DiplomeController::class)->middleware(['auth']);
 
 //SECTEUR
-Route::get('/dashboard/secteur', [SecteurController::class, 'index'])->middleware(['auth'])->name('secteur');
-Route::get('/dashboard/secteur/show/{slug}', [SecteurController::class, 'show'])->middleware(['auth'])->name('secteur.show');
-Route::get('/dashboard/secteur/edit/{slug}', [SecteurController::class, 'edit'])->middleware(['auth'])->name('secteur.edit');
-Route::get('/dashboard/secteur/create', [SecteurController::class, 'create'])->middleware(['auth'])->name('secteur.create');
-Route::put('/dashboard/secteur/update/{id}', [SecteurController::class, 'update'])->middleware(['auth'])->name('secteur.update');
-Route::post('/dashboard/secteur/store', [SecteurController::class, 'store'])->middleware(['auth'])->name('secteur.store');
-Route::delete('/dashboard/secteur/destroy/{id}', [SecteurController::class, 'destroy'])->middleware(['auth'])->name('secteur.destroy');
+Route::resource('/dashboard/secteur', SecteurController::class)->middleware(['auth']);

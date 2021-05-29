@@ -36,7 +36,7 @@
                     </div>
                     <ul class="sidebar-list">
                         <li class="sidebar-item">
-                            <a href="{{ route('partenaire') }}" class="sidebar-link">
+                            <a href="{{ route('partenaire.index') }}" class="sidebar-link">
                                 PARTENAIRE
                             </a>
                         </li>
@@ -48,28 +48,28 @@
                         </li>
                             <div class="dropdown-container">
                                 <li class="sidebar-item">
-                                    <a href="{{ route('emploi') }}" class="sidebar-link">
+                                    <a href="{{ route('emploi.index') }}" class="sidebar-link">
                                         EMPLOI
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="{{ route('formation') }}" class="sidebar-link">
+                                    <a href="{{ route('formation.index') }}" class="sidebar-link">
                                         FORMATION
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="{{ route('stage') }}" class="sidebar-link">
+                                    <a href="{{ route('stage.index') }}" class="sidebar-link">
                                         STAGE
                                     </a>
                                 </li>
                             </div>
                         <li class="sidebar-item">
-                            <a href="{{ route('diplome') }}" class="sidebar-link">
+                            <a href="{{ route('diplome.index') }}" class="sidebar-link">
                                 DIPLOME
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('secteur') }}" class="sidebar-link">
+                            <a href="{{ route('secteur.index') }}" class="sidebar-link">
                                 SECTEUR D'ACTIVITE
                             </a>
                         </li>
