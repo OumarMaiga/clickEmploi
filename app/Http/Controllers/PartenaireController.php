@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\PartenaireRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 
 class PartenaireController extends Controller
 {
     
-    protected $partenaireRepository;
+    protected $userRepository;
 
-    public function __construct(PartenaireRepository $partenaireRepository) {
-        $this->partenaireRepository = $partenaireRepository;
+    public function __construct(UserRepository $userRepository) {
+        $this->userRepository = $userRepository;
     }
 
     public function index() {
-        $partenaires = $this->partenaireRepository->getByType('partenaire');
+        $partenaires = $this->userRepository->getByType('partenaire');
         return view('partenaires.index', compact('partenaires'));
     }
 
@@ -37,27 +37,27 @@ class PartenaireController extends Controller
             'password' => Hash::make($request->get('password')),
             ]);
             
-        $partenaire = $this->partenaireRepository->store($request->all());
+        $partenaire = $this->userRepository->store($request->all());
         return redirect('/dashboard/partenaire')->withStatus("Nouveau partenaire (".$partenaire->prenom." ".$partenaire->nom.") vient d'être ajouté");
     }
 
     public function edit($email) {
-        $partenaire = $this->partenaireRepository->getByEmail($email);
+        $partenaire = $this->userRepository->getByEmail($email);
         return view('partenaires.edit', compact('partenaire'));
     }
 
     public function update(Request $request, $id) {
-        $this->partenaireRepository->update($id, $request->all());
+        $this->userRepository->update($id, $request->all());
         return redirect('/dashboard/partenaire')->withStatus("Partenaire ".$request->input('prenom')." ".$request->input('nom')." a bien été modifier");
     }
 
     public function show($email) {
-        $partenaire = $this->partenaireRepository->getByEmail($email);
+        $partenaire = $this->userRepository->getByEmail($email);
         return view('partenaires.show', compact('partenaire'));
     }
 
     public function destroy($id) {
-		$this->partenaireRepository->destroy($id);
+		$this->userRepository->destroy($id);
         return redirect()->back();
     } 
 }

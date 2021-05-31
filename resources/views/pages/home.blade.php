@@ -103,13 +103,13 @@
                                     <a href="{{ route('emploi.detail', $opportunite->slug) }}" class="btn btn-outline-custom ml-auto mt-auto">DETAIL</a>
                                     @break
                                 @case('stage')
-                                    <a href="{{ route('stage.show', $opportunite->slug) }}" class="btn btn-outline-custom ml-auto mt-auto">DETAIL</a>
+                                    <a href="{{ route('stage.detail', $opportunite->slug) }}" class="btn btn-outline-custom ml-auto mt-auto">DETAIL</a>
                                     @break
                                 @case('formation')
-                                    <a href="{{ route('formation.show', $opportunite->slug) }}" class="btn btn-outline-custom ml-auto mt-auto">DETAIL</a>
+                                    <a href="{{ route('formation.detail', $opportunite->slug) }}" class="btn btn-outline-custom ml-auto mt-auto">DETAIL</a>
                                     @break
                                 @default
-                                    <a href="{{ route('emploi.detail', $opportunite->slug) }}" class="btn btn-outline-custom ml-auto mt-auto">DETAIL</a>
+                                
                             @endswitch
                             
                         </div>

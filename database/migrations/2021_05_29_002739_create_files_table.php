@@ -16,8 +16,10 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
-            $table->foreignId('user_id');
-            $table->foreignId('opportunite_id')->nullable();
+            $table->string('file_path');
+            $table->string('type');
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('postule_id')->nullable();
             $table->timestamps();
         });
     }

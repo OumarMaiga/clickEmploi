@@ -14,3 +14,47 @@ body {
     text-decoration: underline;
     color: white;
 }
+
+.content {
+    margin-top: 20px
+}
+
+.content-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+
+.profil-img {
+    width: 100%;
+    border-radius: 50%;
+    height: 300px;
+    background-color: #D8D8D8;
+}
+
+.profil-name {
+    font-family: 'Rockwell';
+    font-size: 2.4rem;
+    font-weight: 600
+}
+
+.profil-email {
+    font-family: 'Sylfaen';
+    margin-top: -10px;
+    font-size: 1.25rem;
+    color: #5BA8E4;
+    margin-bottom: 20px
+}
+
+.profil-description {
+    font-size: 1rem;
+    color: #5D5D5D
+}
+
+.number {
+    font-size: 1.75rem
+}
+
+.subtitle {
+    color: #5D5D5D;
+}

@@ -8,7 +8,7 @@
                 <!-- Validation Errors -->
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
         
-                <form method="POST" action="{{ route('emploi.store') }}">
+                <form method="POST" action="{{ route('emploi.store') }}" enctype="multipart/form-data">
                     @csrf
         
                     <!-- Email Address -->
@@ -27,14 +27,15 @@
                             <input id="structure" class="form-control" type="text" name="structure" value="{{ old('structure') }}" placeholder="ENTREPRISE" />
                         </div>
                         <div class="col-md-6">
-                            <input id="lieu" class="form-control" type="text" name="lieu" value="{{ old('lieu') }}" placeholder="ADRESSE" />
+                            <label for="image" class="pl-3">Image de l'entreprise</label>
+                            <input id="image" class="form-control" type="file" name="image" value="{{ old('lieu') }}" placeholder="Image"/>
                         </div>
                     </div>
 
                     <!-- Email Address -->
                     <div class="row mt-4">
                         <div class="col-md-6">
-                            <input id="duree" class="form-control" type="text" name="duree" value="{{ old('duree') }}" placeholder="DUREE" />
+                            <textarea id="lieu" class="form-control" type="text" name="lieu" value="{{ old('lieu') }}" placeholder="ADRESSE"></textarea>
                         </div>
                         <div class="col-md-6">
                             <select class="form-control" id="exampleFormControlSelect1" name="type_contrat">
@@ -49,15 +50,18 @@
                     <!-- Email Address -->
                     <div class="row mt-4">
                         <div class="col-md-6">
-                            <input id="montant" class="form-control" type="text" name="montant" value="{{ old('montant') }}" placeholder="SALAIRE (250.000F - 375.000F)" />
+                            <input id="duree" class="form-control" type="text" name="duree" value="{{ old('duree') }}" placeholder="DUREE" />
                         </div>
                         <div class="col-md-6">
-                            <input id="niveau" class="form-control" type="text" name="niveau" value="{{ old('niveau') }}" placeholder="NIVEAU D'ETUDE REQUIS" />
+                            <input id="montant" class="form-control" type="text" name="montant" value="{{ old('montant') }}" placeholder="SALAIRE (250.000F - 375.000F)" />
                         </div>
                     </div>
 
                     <!-- Email Address -->
                     <div class="row mt-4">
+                        <div class="col-md-6">
+                            <input id="niveau" class="form-control" type="text" name="niveau" value="{{ old('niveau') }}" placeholder="NIVEAU D'ETUDE REQUIS" />
+                        </div>
                         <div class="col-md-6">
                             <input id="annee_experience" class="form-control" type="text" name="annee_experience" value="{{ old('annee_experience') }}" placeholder="DUREE D'EXPERIENCE REQUIS (2 ans ou 9 mois ...)" />
                         </div>

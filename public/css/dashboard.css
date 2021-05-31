@@ -1,7 +1,7 @@
 .sidebar {
     background-color: #7023A2;
     height: 100vh;
-    padding: 10px 20px;
+    padding: 10px 0px;
     position: absolute;
     width: 100%;
 }
@@ -20,12 +20,17 @@
 }
 
 .sidebar-item {
-    margin-top: 50px;
+    margin-top: 20px;
+    padding: 15px 0px;
     font-size: 1.1rem;
+}
+.sidebar-item:hover {
+    background-color: #8d38c2;
 }
 
 .sidebar-link {
-    color: #FFFFFF
+    color: #FFFFFF;
+    padding: 0px 20px;
 }
 
 .sidebar-title:hover, .sidebar-link:hover {
@@ -34,12 +39,12 @@
 
 .dropdown-container {
     display: none;
-    padding-left: 30px;
   }
 
   .dropdown-container .sidebar-item {
     margin-top: 20px;
     font-size: 1rem;
+    padding-left: 30px;
   }
 
   .dropdown-btn:hover {
@@ -59,50 +64,6 @@
 .dashboard-content {
     margin-left: 250px;
     width: 80%;
-}
-
-.content {
-    margin-top: 20px
-}
-
-.content-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-
-.profil-img {
-    width: 100%;
-    border-radius: 50%;
-    height: 300px;
-    background-color: #D8D8D8;
-}
-
-.profil-name {
-    font-family: 'Rockwell';
-    font-size: 2.4rem;
-    font-weight: 600
-}
-
-.profil-email {
-    font-family: 'Sylfaen';
-    margin-top: -10px;
-    font-size: 1.25rem;
-    color: #5BA8E4;
-    margin-bottom: 20px
-}
-
-.profil-description {
-    font-size: 1rem;
-    color: #5D5D5D
-}
-
-.number {
-    font-size: 1.75rem
-}
-
-.subtitle {
-    color: #5D5D5D;
 }
 
 .icon-edit:hover {

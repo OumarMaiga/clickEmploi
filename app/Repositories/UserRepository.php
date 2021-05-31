@@ -4,7 +4,7 @@
 
     use App\Models\User;
 
-    class PartenaireRepository extends ResourceRepository {
+    class UserRepository extends ResourceRepository {
 
         public function __construct(User $user) {
             $this->model = $user;

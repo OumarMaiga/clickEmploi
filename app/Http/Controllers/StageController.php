@@ -57,6 +57,11 @@ class StageController extends Controller
         return view('stages.show', compact('stage'));
     }
 
+    public function detail($slug) {
+        $opportunite = $this->opportuniteRepository->getBySlug($slug);
+        return view('pages.detail', compact('opportunite'));
+    }
+
     public function destroy($id) {
 		$this->opportuniteRepository->destroy($id);
         return redirect()->back();

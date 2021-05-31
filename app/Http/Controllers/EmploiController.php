@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Repositories\OpportuniteRepository;
 use Illuminate\Support\Facades\Auth;
+use App\Models\File;
 
 class EmploiController extends Controller
 {
@@ -37,7 +38,10 @@ class EmploiController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         
-        $this->opportuniteRepository->store($request->all());
+        $opportunite = $this->opportuniteRepository->store($request->all());
+        $id = $opportunite->id;
+        
+        $this->save_opportunite_image($id, $request);
 
         return redirect('/dashboard/emploi')->withStatus("Nouveau emploi publié");
     }
@@ -49,6 +53,9 @@ class EmploiController extends Controller
 
     public function update(Request $request, $id) {
         $this->opportuniteRepository->update($id, $request->all());
+
+        $this->save_opportunite_image($id, $request);
+
         return redirect('/dashboard/emploi')->withStatus("Emploi a bien été mise à jour");
     }
 
@@ -58,12 +65,32 @@ class EmploiController extends Controller
     }
     
     public function detail($slug) {
-        $emploi = $this->opportuniteRepository->getBySlug($slug);
-        return view('emplois.detail', compact('emploi'));
+        $opportunite = $this->opportuniteRepository->getBySlug($slug);
+        return view('pages.detail', compact('opportunite'));
     }
 
     public function destroy($id) {
 		$this->opportuniteRepository->destroy($id);
         return redirect()->back();
+    }
+
+    public function save_opportunite_image($id, $request) {
+        $fileModel = new File;
+
+        $request->validate([
+            'image' => 'file|mimes:png,jpg,gif,jpeg|max:5120',
+        ]);
+
+        if($request->hasFile('image')) {
+            
+            $fileName = time().'_'.$request->file('image')->getClientOriginalName();
+            $filePath = $request->file('image')->storeAs("uploads/images/opportunite/$id", $fileName, 'public');
+            $fileModel->libelle = $fileName;
+            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->type = 'photo_opportunite';
+            $fileModel->user_id = Auth::user()->id;
+
+            $fileModel->save();
+        }
     }
 }

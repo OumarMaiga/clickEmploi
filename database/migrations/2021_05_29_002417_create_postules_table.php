@@ -19,7 +19,8 @@ class CreatePostulesTable extends Migration
             $table->string('prenom')->nullable();
             $table->string('email')->nullable();
             $table->string('telephone')->nullable();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('opportunite_id');
             $table->timestamps();
         });
     }

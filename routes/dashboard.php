@@ -15,7 +15,6 @@ Route::resource('/dashboard/partenaire', PartenaireController::class)->middlewar
 
 //EMPLOI
 Route::resource('/dashboard/emploi', EmploiController::class)->middleware(['auth']);
-Route::get('/emploi/show/{slug}', [EmploiController::class, 'detail'])->middleware(['auth'])->name('emploi.detail');
 
 //STAGE
 Route::resource('/dashboard/stage', StageController::class)->middleware(['auth']);
