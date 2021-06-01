@@ -21,12 +21,5 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('hasseyemg'),
         ])->save();
         
-        \App\Models\Opportunite::create([
-            'title' => 'Titre',
-            'slug' => 'titre',
-            'content' => 'Somethin long text should be written here!!!',
-            'type' => 'emploi',
-            'user_id' => '1',
-        ])->save();
     }
 }

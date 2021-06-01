@@ -7,6 +7,7 @@ use App\Http\Controllers\StageController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\DiplomeController;
 use App\Http\Controllers\SecteurController;
+use App\Http\Controllers\EntrepriseController;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
@@ -27,3 +28,6 @@ Route::resource('/dashboard/diplome', DiplomeController::class)->middleware(['au
 
 //SECTEUR
 Route::resource('/dashboard/secteur', SecteurController::class)->middleware(['auth']);
+
+//ENTREPRISE
+Route::resource('/dashboard/entreprise', EntrepriseController::class)->middleware(['auth']);

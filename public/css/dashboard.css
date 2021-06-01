@@ -2,8 +2,7 @@
     background-color: #7023A2;
     height: 100vh;
     padding: 10px 0px;
-    position: absolute;
-    width: 100%;
+    position: fixed;
 }
 
 .sidebar-title {
@@ -84,4 +83,8 @@
 
 .icon-action .supp:hover {
     color: #dc3545;
+}
+.show-container {    
+    margin-left: 230px;
+    width: 85%;
 }

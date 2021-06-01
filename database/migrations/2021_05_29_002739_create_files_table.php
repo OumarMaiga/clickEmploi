@@ -20,6 +20,8 @@ class CreateFilesTable extends Migration
             $table->string('type');
             $table->foreignId('user_id')->nullable();
             $table->foreignId('postule_id')->nullable();
+            $table->foreignId('opportunite_id')->nullable();
+            $table->foreignId('entreprise_id')->nullable();
             $table->timestamps();
         });
     }

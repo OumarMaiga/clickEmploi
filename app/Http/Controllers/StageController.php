@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Repositories\OpportuniteRepository;
+use App\Repositories\EntrepriseRepository;
 use Illuminate\Support\Facades\Auth;
 
 class StageController extends Controller
 {
     protected $opportuniteRepository;
+    protected $entrepriseRepository;
 
-    public function __construct(OpportuniteRepository $opportuniteRepository) {
+    public function __construct(OpportuniteRepository $opportuniteRepository, EntrepriseRepository $entrepriseRepository) {
         $this->opportuniteRepository = $opportuniteRepository;
+        $this->entrepriseRepository = $entrepriseRepository;
     }
 
     public function index() {
@@ -21,7 +24,9 @@ class StageController extends Controller
     }
     
     public function create() {
-        return view('stages.create');
+        $user = Auth::user();
+        $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
+        return view('stages.create', compact('entreprises'));
     }
 
     public function store(Request $request) {
@@ -29,6 +34,7 @@ class StageController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'entreprise_id' => 'required',
         ]);
 
         $request->merge([
@@ -37,24 +43,34 @@ class StageController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         
-        $this->opportuniteRepository->store($request->all());
-
+        $opportunite = $this->opportuniteRepository->store($request->all());
+        $id = $opportunite->id;
+        
         return redirect('/dashboard/stage')->withStatus("Nouveau stage publié");
     }
 
     public function edit($slug) {
         $stage = $this->opportuniteRepository->getBySlug($slug);
-        return view('stages.edit', compact('stage'));
+        $user = Auth::user();
+        $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
+        return view('stages.edit', compact('stage', 'entreprises'));
     }
 
     public function update(Request $request, $id) {
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'entreprise_id' => 'required',
+        ]);
         $this->opportuniteRepository->update($id, $request->all());
+
         return redirect('/dashboard/stage')->withStatus("Stage a bien été mise à jour");
     }
 
     public function show($slug) {
-        $stage = $this->opportuniteRepository->getBySlug($slug);
-        return view('stages.show', compact('stage'));
+        $opportunite = $this->opportuniteRepository->getBySlug($slug);
+        $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
+        return view('stages.show', compact('opportunite', 'entreprise'));
     }
 
     public function detail($slug) {

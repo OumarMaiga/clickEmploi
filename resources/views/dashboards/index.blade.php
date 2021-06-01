@@ -1,3 +1,5 @@
 <x-dashboard-layout>
-    <h2>HELLO WORLD INDEX</h2>
+    <div class="dashboard-content">
+        <h2>HELLO WORLD INDEX</h2>
+    </div>
 </x-dashboard-layout>

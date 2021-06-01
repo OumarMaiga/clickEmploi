@@ -20,7 +20,7 @@ class Opportunite extends Model
         'poste',
         'slug',
         'content',
-        'structure',
+        'entreprise_id',
         'lieu',
         'duree',
         'niveau',

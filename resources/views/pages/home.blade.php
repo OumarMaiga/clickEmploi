@@ -89,7 +89,7 @@
                 @foreach ($opportunites as $opportunite)
                     <div class="offre-item row">
                     <div class="col-2 px-0">
-                        <img src="" alt="Image" class="image-offre">
+                        <img src="{{ photo_entreprise($opportunite->entreprise_id) }}" alt="Image" class="image-offre">
                     </div>
                     <div class="col-10">
                         <h3 class="offre-title">{{ $opportunite->title }}</h3>

@@ -74,6 +74,11 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a href="{{ route('entreprise.index') }}" class="sidebar-link">
+                                ENTREPRISE
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a href="{{ route('abonnee') }}" class="sidebar-link">
                                 ABONNES
                             </a>
@@ -82,16 +87,21 @@
                 </div>
             </div>
             <div class="col-md-10 offset-md-2">
-                @include('layouts.navigation')
+                <div class="row">
+                    <div class="col-md-12">
+                        @include('layouts.navigation')
+                    </div>
+                    
+                </div>
+                
             </div>
         </div>
+        
 
-            <div class="dashboard-content">
                 <!-- Page Content -->
                 <main>
                     {{ $slot }}
                 </main>
-            </div>
 
         <!-- BOOTSTRAP JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

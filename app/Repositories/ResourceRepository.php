@@ -13,6 +13,9 @@
             return $this->model->where('slug', $slug)->first();
         }
         
+        public function getByForeignId($name, $id) {
+            return $this->model->where($name, $id)->get();
+        }
 
         public function getByType($type) {
             return $this->model->where('type', $type)->get();

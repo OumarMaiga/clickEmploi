@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Repositories\OpportuniteRepository;
+use App\Repositories\EntrepriseRepository;
 use Illuminate\Support\Facades\Auth;
 
 class FormationController extends Controller
 {
     protected $opportuniteRepository;
+    protected $entrepriseRepository;
 
-    public function __construct(OpportuniteRepository $opportuniteRepository) {
+    public function __construct(OpportuniteRepository $opportuniteRepository, EntrepriseRepository $entrepriseRepository) {
         $this->opportuniteRepository = $opportuniteRepository;
+        $this->entrepriseRepository = $entrepriseRepository;
     }
 
     public function index() {
@@ -21,7 +24,9 @@ class FormationController extends Controller
     }
     
     public function create() {
-        return view('formations.create');
+        $user = Auth::user();
+        $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
+        return view('formations.create', compact('entreprises'));
     }
 
     public function store(Request $request) {
@@ -29,6 +34,7 @@ class FormationController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'entreprise_id' => 'required',
         ]);
 
         $request->merge([
@@ -37,24 +43,33 @@ class FormationController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         
-        $this->opportuniteRepository->store($request->all());
-
+        $opportunite = $this->opportuniteRepository->store($request->all());
+       
         return redirect('/dashboard/formation')->withStatus("Nouveau formation publié");
     }
 
     public function edit($slug) {
         $formation = $this->opportuniteRepository->getBySlug($slug);
-        return view('formations.edit', compact('formation'));
+        $user = Auth::user();
+        $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
+        return view('formations.edit', compact('formation', 'entreprises'));
     }
 
     public function update(Request $request, $id) {
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'entreprise_id' => 'required',
+        ]);
         $this->opportuniteRepository->update($id, $request->all());
+
         return redirect('/dashboard/formation')->withStatus("Formation a bien été mise à jour");
     }
 
     public function show($slug) {
-        $formation = $this->opportuniteRepository->getBySlug($slug);
-        return view('formations.show', compact('formation'));
+        $opportunite = $this->opportuniteRepository->getBySlug($slug);
+        $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
+        return view('formations.show', compact('opportunite'));
     }
     
     public function detail($slug) {

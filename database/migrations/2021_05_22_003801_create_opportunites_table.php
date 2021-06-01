@@ -20,7 +20,7 @@ class CreateOpportunitesTable extends Migration
             $table->string('slug')->unique();
             $table->foreignId('user_id');
             $table->text('content')->nullable();
-            $table->string('structure')->nullable();
+            $table->foreignId('entreprise_id')->nullable();
             $table->string('lieu')->nullable();
             $table->string('duree')->nullable();
             $table->string('niveau')->nullable();
