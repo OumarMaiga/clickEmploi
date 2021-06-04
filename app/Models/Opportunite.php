@@ -42,4 +42,9 @@ class Opportunite extends Model
         return $this->hasMany('App\Models\User');
     }
     
+    public function entreprise() 
+    {
+        return $this->belongsTo('App\Models\Entreprise');
+    }
+    
 }

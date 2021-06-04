@@ -73,3 +73,40 @@ hr {
     margin-bottom: 1rem;
 }
 
+.offre-simulaire {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.offre-card {
+    height: 160px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0px 0px 1.7px 1px #00000018;
+    margin: 0px 15px;
+    position: relative;
+    border: 0.5px solid #00000023;
+    flex: 0 0 20%;
+    flex-basis: 20%;
+    max-width: 20%;
+}
+.offre-card:hover {
+    box-shadow: 0px 0px 1.7px 1.3px #00000025;
+}
+.offre-simulaire-title {
+    font-size: 1.25rem;
+    font-family: 'Rockwell';
+    color: #292828;
+    text-transform: lowercase;
+}
+.offre-simulaire-title::first-letter {
+    text-transform: uppercase;
+}
+.offre-simulaire-footer {
+    margin-top: auto;
+    color: #333333;
+    position: absolute;
+    bottom: 3px;
+}
+.offre-simulaire-link {
+
+}

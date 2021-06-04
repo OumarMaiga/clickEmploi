@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('dernier_diplome')->nullable();
             $table->text('experience_professionnel')->nullable();
             $table->string('type')->nullable();
+            $table->boolean('etat')->default(true);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

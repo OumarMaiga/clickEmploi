@@ -14,5 +14,8 @@ class File extends Model
         'file_path',
         'opportunite_id',
         'user_id',
+        'entreprise_id',
+        'postule_id',
+        'profil_id',
     ];
 }

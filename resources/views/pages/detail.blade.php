@@ -5,7 +5,7 @@
                 {{ $opportunite->title }}
             </div>
             <div class="show-subtitle">
-                {{ $opportunite->structure }} &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite->lieu }}
+                {{ $entreprise->libelle }} &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite->lieu }}
             </div>
             <div class="mt-4">
                 <a href="#postuler" class="btn btn-custom btn-postule">Je postule</a>
@@ -52,7 +52,7 @@
                     ENTREPRISE
                 </div>
                 <div class="col-md-9 description">
-                    {{ $opportunite->structure }}
+                    {{ $entreprise->libelle }}
                 </div>
             </div>
             <div class="row">
@@ -171,6 +171,35 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+        
+        <div class="container offre-simulaire">
+            <div class="row justify-content-center">
+                @foreach($opportunite_similaires as $opportunite_similaire)
+                    <?php $entreprise = $opportunite_similaire->entreprise()->associate($opportunite_similaire->entreprise_id)->entreprise ?>
+                        <div class="col-md-3 offre-card">
+                            <div class="offre-simulaire-title">
+                                @switch($opportunite_similaire->type)
+                                    @case('emploi')
+                                        <a href="{{ route('emploi.detail', $opportunite_similaire->slug) }}">{{ $opportunite_similaire->title }}</a>
+                                        @break
+                                    @case('stage')
+                                        <a href="{{ route('stage.detail', $opportunite_similaire->slug) }}">{{ $opportunite_similaire->title }}</a>
+                                        @break
+                                    @case('formation')
+                                        <a href="{{ route('formation.detail', $opportunite_similaire->slug) }}">{{ $opportunite_similaire->title }}</a>
+                                        @break
+                                    @default
+                                    
+                                @endswitch
+                            </div>
+                            <div class="offre-simulaire-footer">
+                                <a href="#" class="offre-simulaire-link">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite_similaire->lieu }}
+                            </div>
+                        </div>
+                    
+                @endforeach
             </div>
         </div>
     </div>

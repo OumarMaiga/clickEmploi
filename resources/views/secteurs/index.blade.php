@@ -28,11 +28,11 @@
                             <td>{{ $secteur->categorie }}</td>
                             <td>{{ $secteur->libelle }}</td>
                             <td class="justify-content-between icon-content">
-                                <a href="{{ route('secteur.show', $secteur->libelle) }}" class="col icon-action detail">
+                                <a href="{{ route('secteur.show', $secteur->slug) }}" class="col icon-action detail">
                                     <span class="fas fa-info">
                                     </span>
                                 </a>
-                                <a href="{{ route('secteur.edit', $secteur->libelle) }}" class="col icon-action icon-edit">
+                                <a href="{{ route('secteur.edit', $secteur->slug) }}" class="col icon-action icon-edit">
                                     <span class="fas fa-user-edit edit">
                                     </span>
                                 </a>

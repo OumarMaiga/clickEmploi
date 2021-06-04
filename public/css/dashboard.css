@@ -87,4 +87,14 @@
 .show-container {    
     margin-left: 230px;
     width: 85%;
+    margin-bottom: 30px;
+}
+.list-container {
+    margin-top: 1.4rem;
+    line-height: 1.5;
+}
+.qui {
+    font-size:1.4rem; 
+    text-decoration: underline;
+    font-family: 'Rockwell';
 }

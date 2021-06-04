@@ -22,6 +22,7 @@ class CreateFilesTable extends Migration
             $table->foreignId('postule_id')->nullable();
             $table->foreignId('opportunite_id')->nullable();
             $table->foreignId('entreprise_id')->nullable();
+            $table->integer('profil_id')->nullable();
             $table->timestamps();
         });
     }

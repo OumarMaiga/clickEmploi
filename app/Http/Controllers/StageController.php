@@ -6,17 +6,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Repositories\OpportuniteRepository;
 use App\Repositories\EntrepriseRepository;
+use App\Repositories\PostuleRepository;
 use Illuminate\Support\Facades\Auth;
+use App\Models\File;
 
 class StageController extends Controller
 {
     protected $opportuniteRepository;
     protected $entrepriseRepository;
+    protected $postuleRepository;
 
-    public function __construct(OpportuniteRepository $opportuniteRepository, EntrepriseRepository $entrepriseRepository) {
+    public function __construct(OpportuniteRepository $opportuniteRepository, EntrepriseRepository $entrepriseRepository, PostuleRepository $postuleRepository) {
         $this->opportuniteRepository = $opportuniteRepository;
         $this->entrepriseRepository = $entrepriseRepository;
+        $this->postuleRepository = $postuleRepository;
     }
+
 
     public function index() {
         $stages = $this->opportuniteRepository->getByType('stage');
@@ -70,12 +75,14 @@ class StageController extends Controller
     public function show($slug) {
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
-        return view('stages.show', compact('opportunite', 'entreprise'));
+        $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
+        return view('stages.show', compact('opportunite', 'entreprise', 'postulants'));
     }
 
     public function detail($slug) {
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
-        return view('pages.detail', compact('opportunite'));
+        $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
+        return view('pages.detail', compact('opportunite', 'entreprise'));
     }
 
     public function destroy($id) {

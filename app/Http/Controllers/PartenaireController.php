@@ -12,6 +12,7 @@ class PartenaireController extends Controller
     protected $userRepository;
 
     public function __construct(UserRepository $userRepository) {
+        $this->middleware('onlyAdmin', ['only' => ['index', 'create', 'store', 'destroy']]);
         $this->userRepository = $userRepository;
     }
 

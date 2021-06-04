@@ -11,7 +11,11 @@
 
                 <div class="profil-name">
                     {{ $user->prenom." ".$user->nom }}
-                    <a href="{{ route('edit_profil', $user->email) }}" class="align-items-center"> <button class="float-right btn btn-outline-warning">Modifier le profil</button></a>
+                    @if ($user->email == Auth::user()->email)
+                        <a href="{{ route('edit_profil', $user->email) }}" class="align-items-center"> 
+                            <button class="float-right btn btn-outline-warning">Modifier le profil</button>
+                        </a>   
+                    @endif
                 </div>
                 <div class="profil-email">
                     {{ $user->email }}
@@ -25,6 +29,16 @@
                 <div class="profil-description">
                     Secteur d'activité: Design, Economie, Football
                 </div>
+                <div class="profil-description">
+                    Curiculium Vitea: 
+                    @if (voir_cv_profil($user->id) == false)
+                        CV non uploader
+                    @else
+                        <a target="_blank" href="{{ voir_cv_profil($user->id) }}" class="btn-link">
+                            <u>Voir le CV</u>
+                        </a> 
+                    @endif 
+                </div>  
                 <br/>
                 <hr/>
                 <br/>

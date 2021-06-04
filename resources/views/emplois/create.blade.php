@@ -65,7 +65,7 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <textarea id="content" class="form-control" name="content" value="{{ old('content') }}" placeholder="DESCRIPTION ..."></textarea>
+                        <textarea id="content" class="form-control" name="content" value="" placeholder="DESCRIPTION ...">{{ old('content') }}</textarea>
                     </div>
                     <div class="col-md-6">
                         <input id="annee_experience" class="form-control" type="text" name="annee_experience" value="{{ old('annee_experience') }}" placeholder="DUREE D'EXPERIENCE REQUIS (2 ans ou 9 mois ...)" />

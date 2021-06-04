@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'hasseye@gmail.com',
             'telephone' => '71316544',
             'password' => Hash::make('hasseyemg'),
+            'etat' => true,
+            'type' => 'admin'
         ])->save();
         
     }

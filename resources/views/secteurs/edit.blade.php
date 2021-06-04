@@ -9,8 +9,9 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-            {!! Form::model($secteur, ['route' => ['secteur.update', $secteur->id], 'method' => 'put']) !!}
-    
+            <form action="{{ route('secteur.update', $secteur->id) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('put')
                 
                 <!-- Email Address -->
                 <div class="row">

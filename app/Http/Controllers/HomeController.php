@@ -46,30 +46,32 @@ class HomeController extends Controller
 
         $this->userRepository->update($id, $request->all());
 
-        $fileModel = new File;
+        $ImageModel = new File;
 
         if($request->hasFile('photo')) {
             
             $fileName = time().'_'.$request->file('photo')->getClientOriginalName();
             $filePath = $request->file('photo')->storeAs("uploads/images/profil/$user->id", $fileName, 'public');
-            $fileModel->libelle = $fileName;
-            $fileModel->file_path = '/storage/' . $filePath;
-            $fileModel->type = 'photo_profil';
-            $fileModel->user_id = $user->id;
+            $ImageModel->libelle = $fileName;
+            $ImageModel->file_path = '/storage/' . $filePath;
+            $ImageModel->type = 'photo_profil';
+            $ImageModel->user_id = $user->id;
 
-            $fileModel->save();
+            $ImageModel->save();
         }
 
         if($request->hasFile('cv')) {
+            $CvModel = new File;
             
             $fileName = time().'_'.$request->file('cv')->getClientOriginalName();
-            $filePath = $request->file('cv')->storeAs('uploads/cv/profil', $fileName, 'public');
-            $fileModel->libelle = $fileName;
-            $fileModel->file_path = '/storage/' . $filePath;
-            $fileModel->type = 'cv_profil';
-            $fileModel->user_id = $user->id;
+            $filePath = $request->file('cv')->storeAs("uploads/cv/profil/$user->id", $fileName, 'public');
+            $CvModel->libelle = $fileName;
+            $CvModel->file_path = '/storage/' . $filePath;
+            $CvModel->type = 'cv_profil';
+            $CvModel->user_id = $user->id;
+            $CvModel->profil_id = $user->id;
 
-            $fileModel->save();
+            $CvModel->save();
         }
 
         return redirect("/$user->email")->withStatus('Profil mise à jour');
@@ -85,8 +87,8 @@ class HomeController extends Controller
             return false;
         }
         $file = new File;
-        $file = $file->where('user_id', $user->id)->where('type', 'photo_profil')->first();
-
+        $file = $file->where('user_id', $user->id)->where('type', 'photo_profil')->orderBy('id', 'desc')->first();
+        
         if ($file == null) {
             $file = false;
         } else {

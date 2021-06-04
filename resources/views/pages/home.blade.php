@@ -87,6 +87,7 @@
             </div>
             <div class="col-sm-9">
                 @foreach ($opportunites as $opportunite)
+                <?php $entreprise = $opportunite->entreprise()->associate($opportunite->entreprise_id)->entreprise; ?>
                     <div class="offre-item row">
                     <div class="col-2 px-0">
                         <img src="{{ photo_entreprise($opportunite->entreprise_id) }}" alt="Image" class="image-offre">
@@ -94,7 +95,7 @@
                     <div class="col-10">
                         <h3 class="offre-title">{{ $opportunite->title }}</h3>
                         <div class="offre-subtitle">
-                            {{ $opportunite->structure }} | <span class="fas fa-map-marker-alt"></span> {{ $opportunite->lieu }}
+                            {{ $entreprise->libelle }} | <span class="fas fa-map-marker-alt"></span> {{ $opportunite->lieu }}
                         </div>
                         <div class="row offre-footer">
                             <i class="mt-auto">{{ $opportunite->created_at }}</i>

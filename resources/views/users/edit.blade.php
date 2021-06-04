@@ -1,30 +1,27 @@
 <x-dashboard-layout>
     <div class="dashboard-content">
         <div class="container content">
-            <div class="content-title">{{ __('AJOUT DE SECTEUR D\'ACTIVITE') }}</div>
+            <div class="ajout-title">{{ __('MODIFICATION DE PARTENAIRE') }}</div>
     
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
     
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+            {!! Form::model($diplome, ['route' => ['diplome.update', $diplome->id], 'method' => 'put']) !!}
     
-            <form method="POST" action="{{ route('secteur.store') }}" enctype="multipart/form-data">
-                @csrf
-    
+                
                 <!-- Email Address -->
                 <div class="row">
                     <div class="col-md-6">
-                        <input id="categorie" class="form-control" type="text" name="categorie" value="{{ old('categorie') }}" placeholder="DOMAINE D'ACTIVITE" required />
-                    </div>
-                    <div class="col-md-6">
-                        <input id="libelle" class="form-control" type="text" name="libelle" value="{{ old('libelle') }}" placeholder="ACTIVITE SPECIFIQUE" />
+                        <input id="libelle" class="form-control" type="text" name="libelle" value="{{ $diplome->libelle }}" placeholder="DIPLOME" required />
                     </div>
                 </div>
-    
+
                 <div class="mt-4">
                     <button type="submit" class="btn btn-custom">
-                        {{ __('AJOUTER') }}
+                        {{ __('MODIFIER') }}
                     </button>
                 </div>
             </form>

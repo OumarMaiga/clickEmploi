@@ -24,7 +24,10 @@
                 <tbody>
                     <?php $n = 0 ?>
                     @foreach ($emplois as $emploi)
-                    <?php $n = $n + 1 ?>
+                    <?php 
+                        $n = $n + 1
+                        
+                    ?>
                         <tr>
                             <th scope="row">{{ $n }}</th>
                             <td>{{ $emploi->title }} </td>

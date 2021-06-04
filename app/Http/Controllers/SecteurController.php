@@ -12,6 +12,7 @@ class SecteurController extends Controller
     protected $secteurRepository;
 
     public function __construct(SecteurRepository $secteurRepository) {
+        $this->middleware('onlyAdmin', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
         $this->secteurRepository = $secteurRepository;
     }
 
@@ -32,7 +33,7 @@ class SecteurController extends Controller
 
         $request->merge([
             'user_id' => Auth::user()->id,
-            'slug' => Str::slug($request->get('title')),
+            'slug' => Str::slug($request->get('libelle')),
         ]);
             
         $secteur = $this->secteurRepository->store($request->all());

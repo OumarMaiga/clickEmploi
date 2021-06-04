@@ -71,11 +71,12 @@ class EntrepriseController extends Controller
     public function save_entreprise_image($id, $request) {
         $fileModel = new File;
 
-        $request->validate([
-            'image' => 'file|mimes:png,jpg,gif,jpeg|max:5120',
-        ]);
 
         if($request->hasFile('image')) {
+                
+            $request->validate([
+                'image' => 'file|mimes:png,jpg,gif,jpeg|max:5120',
+            ]);
             
             $fileName = time().'_'.$request->file('image')->getClientOriginalName();
             $filePath = $request->file('image')->storeAs("uploads/images/entreprise/$id", $fileName, 'public');

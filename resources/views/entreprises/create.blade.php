@@ -35,7 +35,7 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <textarea id="description" class="form-control" type="text" name="description" value="{{ old('description') }}" placeholder="QUI SOMMES NOUS ?"></textarea>
+                        <textarea id="description" class="form-control" type="text" name="description" value="" placeholder="QUI SOMMES NOUS ?">{{ old('description') }}</textarea>
                     </div>
                     <div class="col-md-6">
                         <label for="image">Image de l'entreprise</label>
@@ -50,7 +50,7 @@
                         <input id="date_creation" class="form-control" type="date" name="date_creation" value="{{ old('date_creation') }}" placeholder="DATE DE CREATION"/>
                     </div>
                     <div class="col-md-6">
-                        <textarea id="adresse" class="form-control" type="text" name="adresse" value="{{ old('adresse') }}" placeholder="Ville, Commune, Quartier"></textarea>
+                        <textarea id="adresse" class="form-control" type="text" name="adresse" value="" placeholder="Ville, Commune, Quartier" required>{{ old('adresse') }}</textarea>
                     </div>
                 </div>
             

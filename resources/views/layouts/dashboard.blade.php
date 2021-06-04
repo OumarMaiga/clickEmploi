@@ -80,7 +80,12 @@
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('abonnee') }}" class="sidebar-link">
-                                ABONNES
+                                ABONNEE
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('user.index') }}" class="sidebar-link">
+                                UTILISATEUR
                             </a>
                         </li>
                     </ul>

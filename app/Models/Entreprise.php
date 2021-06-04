@@ -20,4 +20,9 @@ class Entreprise extends Model
         'adresse',
         'user_id',
     ];
+    
+    public function opportunite()
+    {
+        return $this->hasMany('App\Models\Opportunite');
+    }
 }
