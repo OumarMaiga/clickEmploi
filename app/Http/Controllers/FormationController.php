@@ -87,4 +87,10 @@ class FormationController extends Controller
 		$this->opportuniteRepository->destroy($id);
         return redirect()->back();
     }
+    
+    public function list()
+    {
+        $opportunites = $this->opportuniteRepository->getByType('formation');
+        return view('pages/home', compact('opportunites'));
+    }
 }

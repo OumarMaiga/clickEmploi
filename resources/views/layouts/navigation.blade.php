@@ -9,13 +9,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">{{ __('Emploi') }}</a>
+                <a class="nav-link" href="{{ route('emploi.list') }}">{{ __('Emploi') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">{{ __('Stage') }}</a>
+                <a class="nav-link" href="{{ route('stage.list') }}">{{ __('Stage') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">{{ __('Formation') }}</a>
+                <a class="nav-link" href="{{ route('formation.list') }}">{{ __('Formation') }}</a>
             </li>
         </ul>
 
@@ -38,6 +38,9 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        @if(Auth::user()->type == "admin" || Auth::user()->type == "partenaire")
+                            <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                        @endif
                         <a class="dropdown-item" href="{{ route('profil', Auth::user()->email) }}">Profil</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"

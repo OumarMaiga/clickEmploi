@@ -32,6 +32,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
+                            <label for="date_naissance">Date de naissance</label>
                             <input id="date_naissance" type="date" class="form-control @error('date_naissance') is-invalid @enderror" name="date_naissance" value="{{ old('date_naissance') }}" placeholder="DATE DE NAISSANCE" required autocomplete="">
 
                             @error('date_naissance')
@@ -40,11 +41,17 @@
                                 </span>
                             @enderror
                         </div>
-
+                        
                         <div class="form-group col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-MAIL" required autocomplete="email">
+                            <label for="diplome">Dernier diplôme</label>
+                            <select name="dernier_diplome" class="form-control">
+                                <option value="">-- SELECTIONNER ICI --</option>
+                                @foreach($diplomes as $diplome)
+                                    <option value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
+                                @endforeach
+                            </select>
 
-                            @error('email')
+                            @error('date_naissance')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -62,6 +69,18 @@
                                 </span>
                             @enderror
                         </div>
+                        <div class="form-group col-md-6">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-MAIL" required autocomplete="email">
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-row">
                         <div class="from-group col-md-6">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="MOT DE PASSE" required autocomplete="new-password">
 
@@ -71,10 +90,26 @@
                                 </span>
                             @enderror
                         </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="CONFIRMATION MOT DE PASSE" required autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="diplome">Secteur d'activité</label>
+                        <div class="form-group col-md-12">
+                            @foreach ($domaines as $domaine)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="{{ $domaine->slug }}" name="secteur[]" value="{{ $domaine->id }}">
+                                    <label class="form-check-label" for="{{ $domaine->slug }}">{{ $domaine->libelle }}</label>
+                                </div>
+                            @endforeach                            
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
 

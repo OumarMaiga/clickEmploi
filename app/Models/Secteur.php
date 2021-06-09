@@ -25,4 +25,8 @@ class Secteur extends Model
         'categorie',
         'slug',
     ];
+
+    public function users() {
+        return $this->belongsToMany('App\Models\User');
+    }
 }

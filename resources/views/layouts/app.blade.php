@@ -34,6 +34,9 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <!-- Footer -->
+            @include('layouts.footer')
         </div>
 
         <!-- BOOTSTRAP JS -->

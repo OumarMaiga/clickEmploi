@@ -23,6 +23,11 @@ class HomeController extends Controller
         $opportunites = $this->opportuniteRepository->get();
         return view('pages/home', compact('opportunites'));
     }
+    
+    public function accueil()
+    {
+        return view('pages/accueil');
+    }
  
     public function profil($email) {
         $user = $this->userRepository->getByEmail($email);

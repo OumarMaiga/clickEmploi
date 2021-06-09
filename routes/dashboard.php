@@ -9,6 +9,7 @@ use App\Http\Controllers\DiplomeController;
 use App\Http\Controllers\SecteurController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AbonneeController;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
@@ -36,3 +37,9 @@ Route::resource('/dashboard/entreprise', EntrepriseController::class)->middlewar
 //UTILISATEUR
 Route::resource('/dashboard/user', UserController::class)->middleware(['auth']);
 Route::put('/dashboard/user/{email}/changeState', [UserController::class, 'changeState'])->name('user.changeState')->middleware(['auth']);
+
+Route::get('/dashboard/abonnee', [AbonneeController::class, 'index'])->middleware(['auth'])->name('abonnee');
+
+Route::get('/dashboard/{email}/abonnee', [AbonneeController::class, 'show'])->middleware(['auth'])->name('abonnee.show');
+
+Route::delete('/dashboard/destroy/{id}', [AbonneeController::class, 'destroy'])->middleware(['auth'])->name('abonnee.destroy');

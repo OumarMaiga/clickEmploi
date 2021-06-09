@@ -88,5 +88,11 @@ class EmploiController extends Controller
 		$this->opportuniteRepository->destroy($id);
         return redirect()->back();
     }
+    
+    public function list()
+    {
+        $opportunites = $this->opportuniteRepository->getByType('emploi');
+        return view('pages/home', compact('opportunites'));
+    }
 
 }

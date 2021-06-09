@@ -26,7 +26,12 @@ class User extends Authenticatable
         'prenom', 
         'date_naissance',
         'type',
+        'dernier_diplome',
     ];
+
+    public function secteurs() {
+        return $this->belongsToMany('App\Models\Secteur');
+    }
 
     /**
      * The attributes that should be hidden for arrays.
