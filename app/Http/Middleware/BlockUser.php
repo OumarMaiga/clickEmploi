@@ -22,7 +22,7 @@ class BlockUser
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
-                return redirect('login')->withDenied('Votre compte a été suspendu, veuillez contacter l\'administrateur pour plus de detail');
+                return redirect('login')->withDenied('Votre compte a été suspendu');
             }
         }
         return $next($request);

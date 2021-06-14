@@ -63,3 +63,49 @@ use App\Models\Postule;
 
         return $file;
     }
+    
+    //Personnalisation du format de la date
+    function custom_date($date) {
+        $today = date('Y-m-d');
+        $this_year = date('Y');
+        $this_month = date('m');
+        $hier = date('d') - 1;
+        $aujoudhui = date('d');
+        $demain = date('d') + 1;
+        $mois = ['', 'Jan', 'Fev', 'Mars', 'Avr', 'Mai', 'Juin', 'Juillet', 'Août', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+        if ($today == $date->format('Y-m-d')) {
+            $result = "Aujourd'hui ".$date->format('H:i');
+        } elseif($this_year == $date->format('Y')) {
+            if ($date->format('d') == $hier && $date->format('m') == $this_month) {
+                $result = "Hier";
+            }elseif($date->format('d') == $demain && $date->format('m') == $this_month){
+                $result = "Demain";
+            }else{
+                $result = $date->format('d')." ".$mois[$date->format('n')];
+            }
+        }else {
+            $result = $date->format('d')." ".$mois[$date->format('n')]." ".$date->format('Y');
+        }
+        return $result;
+        
+    }
+
+    function photo_profil($email) {
+        
+        $user = User::where('email', $email)->first();
+        
+        if($user == null){
+            return false;
+        }
+        $file = new File;
+        $file = $file->where('user_id', $user->id)->where('type', 'photo_profil')->orderBy('id', 'desc')->first();
+        
+        if ($file == null) {
+            $file = false;
+        } else {
+            $file = $file->file_path;
+        }
+
+        return $file;
+    }

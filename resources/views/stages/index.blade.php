@@ -24,13 +24,16 @@
                 <tbody>
                     <?php $n = 0 ?>
                     @foreach ($stages as $stage)
-                    <?php $n = $n + 1 ?>
+                    <?php 
+                        $n = $n + 1;
+                        $entreprise = App\Models\Entreprise::where('id', $stage->entreprise_id)->first(); 
+                    ?>
                         <tr>
                             <th scope="row">{{ $n }}</th>
                             <td>{{ $stage->title }} </td>
                             <td>{{ $stage->duree }}</td>
                             <td>{{ $stage->montant }}</td>
-                            <td><i>{{ $stage->structure }}</i></td>
+                            <td><i>{{ $entreprise->libelle }}</i></td>
                             <td class="justify-content-between icon-content">
                                 <a href="{{ route('stage.show', $stage->slug) }}" class="col icon-action detail">
                                     <span class="fas fa-info">

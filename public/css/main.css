@@ -110,3 +110,27 @@ body {
     font-size: 1.8rem;
     font-weight: 400;
 }
+
+/* FOOTER */
+footer {
+    line-height: 2;
+    color: #FCFCFC;
+}
+.footer-haut {
+    padding: 2rem 4rem;
+    background-color: #858585;
+}
+.footer-bas {
+    background-color: #4B4B4B;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.img-social-media {
+    width: 25px;
+    height: 25px;
+    display: inline;
+}
+.media-link {
+    margin-left: .4rem;
+}

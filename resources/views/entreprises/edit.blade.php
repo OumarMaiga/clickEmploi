@@ -36,7 +36,7 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <textarea id="description" class="form-control" type="text" name="description" value="{{ $entreprise->description }}" placeholder="QUI SOMMES NOUS ?"></textarea>
+                        <textarea id="description" class="form-control" type="text" name="description" value="" placeholder="QUI SOMMES NOUS ?">{{ $entreprise->description }}</textarea>
                     </div>
                     <div class="col-md-6">
                         <label for="image">Image de l'entreprise</label>

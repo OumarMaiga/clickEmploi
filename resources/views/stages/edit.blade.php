@@ -41,8 +41,17 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
+                        <label for="echeance">Date d'echéance</label>
+                        <input id="echeance" class="form-control" type="date" name="echeance" value="{{ $stage->echeance }}" placeholder="" />
+                    </div>
+                    <div class="col-md-6">
                         <input id="montant" class="form-control" type="text" name="montant" value="{{ $stage->montant }}" placeholder="SALAIRE (250.000F - 375.000F)" />
                     </div>
+                </div>
+
+
+                <!-- Email Address -->
+                <div class="row mt-4">
                     <div class="col-md-6">
                         <select class="form-control" id="exampleFormControlSelect1" name="type_contrat">
                             <option value="">-- TYPE DE CONTRAT --</option>
@@ -50,23 +59,17 @@
                             <option <?= ($stage->type_contrat == "cdi") ? "selected=selected" : "" ?> value="cdi">CDI</option>
                             <option <?= ($stage->type_contrat == "alternance") ? "selected=selected" : "" ?> value="alternance">Alternance</option>
                         </select>
-                        </select>
                     </div>
-                </div>
-
-
-                <!-- Email Address -->
-                <div class="row mt-4">
                     <div class="col-md-6">
                         <input id="duree" class="form-control" type="text" name="duree" value="{{ $stage->duree }}" placeholder="DUREE" />
-                    </div>
-                    <div class="col-md-6">
-                        <input id="niveau" class="form-control" type="text" name="niveau" value="{{ $stage->niveau }}" placeholder="NIVEAU D'ETUDE REQUIS" />
                     </div>
                 </div>
     
                 <!-- Email Address -->
                 <div class="row mt-4">
+                    <div class="col-md-6">
+                        <input id="niveau" class="form-control" type="text" name="niveau" value="{{ $stage->niveau }}" placeholder="NIVEAU D'ETUDE REQUIS" />
+                    </div>
                     <div class="col-md-6">
                         <textarea id="content" class="form-control" name="content" value="{{ $stage->content }}" placeholder="DESCRIPTION ...">{{ $stage->content }}</textarea>
                     </div>

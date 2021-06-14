@@ -67,6 +67,10 @@
     height: 65px;
     padding-left: 15px;
 }
+.offre-date {
+    font-style: italic;
+    color: #8D8D8D;
+}
 
 hr {
     margin-top: 1rem;
@@ -157,6 +161,17 @@ hr {
     padding: 2rem 4rem;
     background-color: #EEEEEE;
 }
+.entreprise-item {
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #f5f5f5;
+    width: 100%;
+}
+.entreprise-item:hover {
+    box-shadow: 0px 0px 6px 4px #00000049;
+}
 .entreprise-title {
     font-size: 2.4rem;
     font-family: 'Bw Modelica Hairline';
@@ -165,36 +180,18 @@ hr {
     margin-bottom: 2rem;
 }
 .orange {
-    position: relative;
     background-image: url('/image/orange.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #f5f5f5;
     height: 550px;
-    width: 100%;
 }
 .huawei {
-    position: relative;
     background-image: url('/image/huawei.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #f5f5f5;
     margin-bottom: 10px;
     height: 270px;
-    width: 100%;
 }
 .azalai {
-    position: relative;
     background-image: url('/image/azalai.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #f5f5f5;
     margin-top: 10px;
     height: 270px;
-    width: 100%;
 }
 .entreprise-offre {
     position: absolute;
@@ -205,8 +202,7 @@ hr {
     font-size: 1.8rem;
     background-color: #7023A2;
     padding: 5px 0px;
-    color: #FFFFFF;
-    
+    color: #FFFFFF;    
 }
 
 .zone {
@@ -225,4 +221,52 @@ hr {
     font-size: 2rem;
     margin-bottom: 1rem;
     color: #1D1D1D;
+}
+
+/* ENTREPRISE DETAIL*/
+.entreprise-detail-head {
+    height: 90vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.entreprise-detail-libelle {
+    position: absolute;
+    padding: 1rem 3rem;
+    bottom: 2rem;
+    left: 0;
+    background-color: #FFFFFF;
+    font-size: 2.6rem;
+    font-family: 'Bw Modelica';
+    font-weight: 600;
+}
+.entreprise-detail-offres-container {
+    margin: 2rem;
+}
+.entreprise-detail-offres-title {
+    font-size: 1.6rem;
+}
+.a-propos {
+    padding: 1rem;
+    border-radius: 7px;
+    box-shadow: 0 0 1.9px 1px #00000028;
+    border: 1px solid #70707079;
+    margin-bottom: 2rem;
+    background-color: #FFFFFF;
+}
+.a-propos .title {
+    font-size: 1rem;
+    color: #484848;
+    line-height: 2;
+}
+.a-propos .item {
+    font-size: .85rem;
+    color: #484848;
+    
+}
+.a-propos .item .value {
+    font-size: .85rem;
+    color: #8D8D8D;
 }

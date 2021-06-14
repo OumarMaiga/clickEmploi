@@ -55,7 +55,8 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <input id="niveau" class="form-control" type="text" name="niveau" value="{{ $emploi->niveau }}" placeholder="NIVEAU D'ETUDE REQUIS" />
+                        <label for="echeance">Date d'echéance</label>
+                        <input id="echeance" class="form-control" type="date" name="echeance" value="{{ $emploi->echeance }}" placeholder="" />
                     </div>
                     <div class="col-md-6">
                         <input id="montant" class="form-control" type="text" name="montant" value="{{ $emploi->montant }}" placeholder="SALAIRE (250.000F - 375.000F)" />
@@ -65,14 +66,18 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <textarea id="content" class="form-control" name="content" value="{{ $emploi->content }}" placeholder="DESCRIPTION ..."></textarea>
+                        <input id="annee_experience" class="form-control" type="text" name="annee_experience" value="{{ $emploi->annee_experience }}" placeholder="DUREE D'EXPERIENCE REQUIS (2 ans ou 9 mois ...)" />
                     </div>
                     <div class="col-md-6">
-                        <input id="annee_experience" class="form-control" type="text" name="annee_experience" value="{{ $emploi->annee_experience }}" placeholder="DUREE D'EXPERIENCE REQUIS (2 ans ou 9 mois ...)" />
+                        <input id="niveau" class="form-control" type="text" name="niveau" value="{{ $emploi->niveau }}" placeholder="NIVEAU D'ETUDE REQUIS" />
                     </div>
                 </div>
     
-    
+                <div class="row mt-4">    
+                    <div class="col-md-12">
+                        <textarea id="content" class="form-control" name="content" value="{{ $emploi->content }}" placeholder="DESCRIPTION ..."></textarea>
+                    </div>
+                </div>
                 <div class="mt-4">
                     <button type="submit" class="btn btn-custom">
                         {{ __('MODIFIER') }}

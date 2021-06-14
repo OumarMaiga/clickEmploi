@@ -7,6 +7,8 @@ use App\Repositories\OpportuniteRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Models\File;
+use App\Models\Opportunite;
+
 
 class HomeController extends Controller
 {
@@ -31,13 +33,15 @@ class HomeController extends Controller
  
     public function profil($email) {
         $user = $this->userRepository->getByEmail($email);
-        $photo = $this->photo_profil($user->email);
-        return view('pages.profil', compact('user', 'photo'));
+        $photo = photo_profil($user->email);
+        $secteurs = $user->secteurs->pluck('libelle');
+        
+        return view('pages.profil', compact('user', 'photo', 'secteurs'));
     }
 
     public function edit_profil() {
         $user = Auth::user();
-        $photo = $this->photo_profil($user->email);
+        $photo = photo_profil($user->email);
         return view('pages.edit_profil', compact('user', 'photo'));
     }
 
@@ -83,24 +87,21 @@ class HomeController extends Controller
 
     }
 
-    
-    public function photo_profil($email) {
-        
-        $user = $this->userRepository->getByEmail($email);
-        
-        if($user == null){
-            return false;
-        }
-        $file = new File;
-        $file = $file->where('user_id', $user->id)->where('type', 'photo_profil')->orderBy('id', 'desc')->first();
-        
-        if ($file == null) {
-            $file = false;
-        } else {
-            $file = $file->file_path;
-        }
 
-        return $file;
+    public function filtre(Request $request) {
+        $poste = $request->poste;
+        $adresse = $request->adresse;
+        if($poste != null && $adresse == null) {
+            $opportunites = Opportunite::where('poste', $poste)->get();
+        }elseif($poste == null && $adresse != null) {
+            $opportunites = Opportunite::where('lieu', $adresse)->get();
+        } elseif($poste != null && $adresse != null) {
+            $opportunites = Opportunite::where('poste', $poste)->where('lieu', $adresse)->get();
+        }else{
+            $opportunites = Opportunite::where('id', 0)->get();
+        }
+        //$opportunites = Opportunite::WhereRaw("MATCH(poste) AGAINST('informatique')")->get();
+        return view('pages.filtre', compact('opportunites'));
     }
 
 }

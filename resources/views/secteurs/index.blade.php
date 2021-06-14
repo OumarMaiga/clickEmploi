@@ -28,10 +28,6 @@
                             <td>{{ $secteur->categorie }}</td>
                             <td>{{ $secteur->libelle }}</td>
                             <td class="justify-content-between icon-content">
-                                <a href="{{ route('secteur.show', $secteur->slug) }}" class="col icon-action detail">
-                                    <span class="fas fa-info">
-                                    </span>
-                                </a>
                                 <a href="{{ route('secteur.edit', $secteur->slug) }}" class="col icon-action icon-edit">
                                     <span class="fas fa-user-edit edit">
                                     </span>
@@ -41,7 +37,7 @@
                                             <button class="" type="submit" onclick="confirm('Vraiment supprimer cet utilisateur ?')">
                                                 <span class="fas fa-user-times supp"></span>
                                             </button>
-                                            {!! Form::submit('', ['class' => '', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
+                                            {!! Form::submit('', ['class' => '', 'onclick' => 'return confirm(\'Vraiment supprimer cet domaine ?\')']) !!}
                                         
                                     {!! Form::close() !!}
                                 </span>

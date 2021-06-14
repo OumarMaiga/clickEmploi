@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\EntrepriseRepository;
+use App\Repositories\OpportuniteRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\File;
+use App\Models\Entreprise;
 
 class EntrepriseController extends Controller
 {
     protected $entrepriseRepository;
+    protected $opportuniteRepository;
 
-    public function __construct(EntrepriseRepository $entrepriseRepository) {
+    public function __construct(EntrepriseRepository $entrepriseRepository, OpportuniteRepository $opportuniteRepository) {
         $this->entrepriseRepository = $entrepriseRepository;
+        $this->opportuniteRepository = $opportuniteRepository;
     }
 
     public function index() {
@@ -32,8 +36,18 @@ class EntrepriseController extends Controller
             'libelle' => 'required|max:255',
         ]);
 
+
+        $nbreLibelle = Entreprise::where('libelle', $request->libelle)->count();
+        
+        if ($nbreLibelle != '0') {
+            $slug = Str::slug($request->get('libelle'))."-".$nbreLibelle;
+        }
+        else {
+            $slug = Str::slug($request->get('libelle'));
+        }
+
         $request->merge([
-            'slug' => Str::slug($request->get('libelle')),
+            'slug' => $slug,
             'user_id' => Auth::user()->id,
         ]);
             
@@ -60,7 +74,17 @@ class EntrepriseController extends Controller
 
     public function show($slug) {
         $entreprise = $this->entrepriseRepository->getBySlug($slug);
-        return view('entreprises.show', compact('entreprise'));
+        $image_entreprise = File::where('entreprise_id', $entreprise->id)->orderBy('id', 'desc')->first()->get('file_path');
+        return view('entreprises.show', compact('entreprise', 'image_entreprise'));
+    }
+
+    public function detail($slug) {
+        $entreprise = $this->entrepriseRepository->getBySlug($slug);
+        $image_entreprise = File::where('entreprise_id', $entreprise->id)->select('file_path')->orderBy('id', 'desc')->first();
+        $opportunites = $this->opportuniteRepository->getByForeignId('entreprise_id', $entreprise->id);
+        $nbre_offres = $opportunites->count();
+        
+        return view('entreprises.detail', compact('entreprise', 'image_entreprise', 'nbre_offres', 'opportunites'));
     }
 
     public function destroy($id) {

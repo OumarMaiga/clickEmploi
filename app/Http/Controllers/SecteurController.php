@@ -50,7 +50,7 @@ class SecteurController extends Controller
 
     public function update(Request $request, $id) {
         $this->secteurRepository->update($id, $request->all());
-        return redirect('/dashboard/secteur')->withStatus("Diplome a bien été modifier");
+        return redirect('/dashboard/secteur')->withStatus("Secteur d'activité a bien été modifier");
     }
 
     public function show($slug) {
@@ -60,6 +60,6 @@ class SecteurController extends Controller
 
     public function destroy($id) {
 		$this->secteurRepository->destroy($id);
-        return redirect()->back()->withError("Diplome a bien été supprimer");;
+        return redirect()->back()->withError("Secteur a bien été supprimer");;
     }
 }

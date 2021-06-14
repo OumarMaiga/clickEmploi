@@ -23,7 +23,9 @@ class UserController extends Controller
 
     public function show($email) {
         $user = $this->userRepository->getByEmail($email);
-        return view('users.show', compact('user'));
+        $photo = photo_profil($user->email);
+        $secteurs = $user->secteurs->pluck('libelle');
+        return view('pages.profil', compact('user', 'photo', 'secteurs'));
     }
 
     public function destroy($id) {
@@ -34,17 +36,16 @@ class UserController extends Controller
     public function changeState($id, Request $request) {
 
         $user = $this->userRepository->getById($id);
-
         if($user->etat == true)
         {
-            $request->merge([
-                'etat' => false,
-            ]);
+            $etat = false;
         } else {
-            $request->merge([
-                'etat' => true,
-            ]);
+            $etat = true;
         }
+        
+        $request->merge([
+            'etat' => $etat
+        ]);
 
         $this->userRepository->update($id, $request->all());
         

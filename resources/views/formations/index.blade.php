@@ -24,13 +24,16 @@
                 <tbody>
                     <?php $n = 0 ?>
                     @foreach ($formations as $formation)
-                    <?php $n = $n + 1 ?>
+                    <?php 
+                        $n = $n + 1;
+                        $entreprise = App\Models\Entreprise::where('id', $formation->entreprise_id)->first(); 
+                    ?>
                         <tr>
                             <th scope="row">{{ $n }}</th>
                             <td>{{ $formation->title }} </td>
                             <td>{{ $formation->duree }}</td>
                             <td>{{ $formation->montant }}</td>
-                            <td><i>{{ $formation->structure }}</i></td>
+                            <td><i>{{ $entreprise->libelle }}</i></td>
                             <td class="justify-content-between icon-content">
                                 <a href="{{ route('formation.show', $formation->slug) }}" class="col icon-action detail">
                                     <span class="fas fa-info">

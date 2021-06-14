@@ -3,7 +3,23 @@
         <div class="row">
             <div class="col-md-4">
                 <img alt="profil" src="{{$photo}}" class="profil-img" style="height:350px;"/>
-            
+                @if (Auth::user()->type == "admin")
+                    <div class="mt-4 row">
+                        <form  method="POST" action="{{ route('user.changeState', $user->id) }}">
+                            @csrf
+                            @method('PUT')
+                            @if($user->etat==true)
+                            <button type="submit" class="mr-4 btn btn-outline-danger" onclick="return confirm('Voulez-vous bloquer l\'utilisateur ?')">
+                                BLOQUER
+                            </button>
+                            @else
+                            <button type="submit" class="mr-4 btn btn-outline-success" onclick="return confirm('Voulez-vous debloquer l\'utilisateur ?')">
+                                DEBLOQUER
+                            </button>
+                            @endif
+                        </form>
+                    </div>
+                @endif
             </div>
             <div class="col-md-8">
                 <!-- Session Status -->
@@ -26,9 +42,14 @@
                 <div class="profil-description">
                     Adresse: {{ $user->adresse }}
                 </div>
-                <div class="profil-description">
-                    Secteur d'activité: Design, Economie, Football
-                </div>
+                @if ($user->type == "user")
+                    <div class="profil-description">
+                        Secteur d'activité:
+                            @foreach ($secteurs as $secteur)
+                                {{ " - ".$secteur }}    
+                            @endforeach 
+                    </div>
+                @endif
                 <div class="profil-description">
                     Curiculium Vitea: 
                     @if (voir_cv_profil($user->id) == false)

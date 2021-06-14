@@ -9,6 +9,7 @@ use App\Repositories\EntrepriseRepository;
 use App\Repositories\PostuleRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Models\File;
+use App\Models\Opportunite;
 
 class FormationController extends Controller
 {
@@ -41,9 +42,18 @@ class FormationController extends Controller
             'entreprise_id' => 'required',
         ]);
 
+        $nbreLibelle = Opportunite::where('title', $request->title)->count();
+        
+        if ($nbreLibelle != '0') {
+            $slug = Str::slug($request->get('title'))."-".$nbreLibelle;
+        }
+        else {
+            $slug = Str::slug($request->get('title'));
+        }
+
         $request->merge([
             'type' => 'formation',
-            'slug' => Str::slug($request->get('title')),
+            'slug' => $slug,
             'user_id' => Auth::user()->id,
         ]);
         
@@ -80,7 +90,8 @@ class FormationController extends Controller
     public function detail($slug) {
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
-        return view('pages.detail', compact('opportunite', 'entreprise'));
+        $opportunite_similaires = Opportunite::where('title', $opportunite->title)->limit(4)->get();
+        return view('pages.detail', compact('opportunite', 'entreprise', 'opportunite_similaires'));
     }
 
     public function destroy($id) {

@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('telephone')->unique()->nullable();
             $table->text('adresse')->nullable();
             $table->string('dernier_diplome')->nullable();
-            $table->text('experience_professionnel')->nullable();
+            $table->string('experience_professionnel')->nullable();
             $table->string('type')->nullable();
             $table->boolean('etat')->default(true);
             $table->string('email')->unique();

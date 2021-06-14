@@ -26,10 +26,17 @@ class Opportunite extends Model
         'niveau',
         'montant',
         'type_contrat',
+        'echeance',
         'annee_experience',
         'prerequis',
         'user_id',
         'type',
+    ];
+    
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'echeance',
     ];
 
     public function user() 

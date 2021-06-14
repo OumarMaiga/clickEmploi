@@ -5,7 +5,7 @@
                 {{ $opportunite->title }}
             </div>
             <div class="show-subtitle">
-                {{ $entreprise->libelle }} &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite->lieu }}
+                <a href="{{ route('entreprise.detail', $entreprise->slug) }}">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite->lieu }}
             </div>
             <div class="mt-4">
                 <a href="#postuler" class="btn btn-custom btn-postule">Je postule</a>
@@ -15,7 +15,7 @@
         <div class="container description description-content">
             <div class="lil-title">Description</div>
             <p>
-                {{ $opportunite->description }}
+                {{ $opportunite->content }}
             </p>
         </div>
         <div class="container resume">
@@ -113,7 +113,12 @@
 
             <div class="row">
                 <div class="col-md-3 resume-title">
-                    <i>Publié le 12 Avr 2021</i>
+                    <i>Publié {{ custom_date($opportunite->created_at) }}</i>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 resume-title">
+                    <i>Delais de depôt {{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i>
                 </div>
             </div>
         </div>
@@ -135,11 +140,11 @@
                     <div class="row">
                         <div class="form-group col-md-6 ">
                             <label for="nom">Nom</label>
-                            <input id="nom" class="form-control" type="text" name="nom" value="{{ old('nom') }}" placeholder="NOM" />
+                            <input id="nom" class="form-control" type="text" name="nom" value="{{ (Auth::check()) ? Auth::user()->nom : old('nom') }}" placeholder="NOM" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="prenom">Prenom</label>
-                            <input id="prenom" class="form-control" type="text" name="prenom" value="{{ old('prenom') }}" placeholder="PRENOM" />
+                            <input id="prenom" class="form-control" type="text" name="prenom" value="{{ (Auth::check()) ? Auth::user()->prenom : old('prenom') }}" placeholder="PRENOM" />
                         </div>
                     </div>
 
@@ -147,20 +152,29 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="email">Email</label>
-                            <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
+                            <input id="email" class="form-control" type="email" name="email" value="{{ (Auth::check()) ? Auth::user()->email : old('email') }}" placeholder="Email" />
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="telephone">Telephone</label>
-                            <input id="telephone" class="form-control" type="text" name="telephone" value="{{ old('telephone') }}" placeholder="N° TELEPHONE" />
+                            <input id="telephone" class="form-control" type="text" name="telephone" value="{{ (Auth::check()) ? Auth::user()->telephone : old('telephone') }}" placeholder="N° TELEPHONE" />
                         </div>
                     </div>
-                    @if ($opportunite != "formation")
-                        <!-- Email Address -->
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="motivation">Lettre de motivation</label>
+                            <textarea id="motivation" class="form-control" type="text" name="motivation" value="" placeholder="Pourquoi devrons-nous vous engagé ?" >{{ old('motivation') }}</textarea>
+                        </div>
+                    </div>
+                    @if ($opportunite->type != "formation")
                         <div class="row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
+                                <input id="cv_profil" class="form-control mr-2" type="checkbox" name="cv_profil" value="" placeholder="Pourquoi devrons-nous vous engagé ?" />
+                                <label for="cv_profil">Utilisé le CV de votre profil</label>
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="cv">Ajouter votre CV</label>
-                                <input id="cv" class="form-control" type="file" name="cv" value="" placeholder="Email" />
+                                <input id="cv" class="form-control" type="file" name="cv" value="" placeholder="" />
                             </div>
                         </div>
                     @endif
@@ -177,28 +191,29 @@
         <div class="container offre-simulaire">
             <div class="row justify-content-center">
                 @foreach($opportunite_similaires as $opportunite_similaire)
-                    <?php $entreprise = $opportunite_similaire->entreprise()->associate($opportunite_similaire->entreprise_id)->entreprise ?>
-                        <div class="col-md-3 offre-card">
-                            <div class="offre-simulaire-title">
-                                @switch($opportunite_similaire->type)
-                                    @case('emploi')
-                                        <a href="{{ route('emploi.detail', $opportunite_similaire->slug) }}">{{ $opportunite_similaire->title }}</a>
-                                        @break
-                                    @case('stage')
-                                        <a href="{{ route('stage.detail', $opportunite_similaire->slug) }}">{{ $opportunite_similaire->title }}</a>
-                                        @break
-                                    @case('formation')
-                                        <a href="{{ route('formation.detail', $opportunite_similaire->slug) }}">{{ $opportunite_similaire->title }}</a>
-                                        @break
-                                    @default
-                                    
-                                @endswitch
+                    @if ($opportunite->id != $opportunite_similaire->id)
+                        <?php $entreprise = $opportunite_similaire->entreprise()->associate($opportunite_similaire->entreprise_id)->entreprise ?>
+                            <div class="col-md-3 offre-card">
+                                <div class="offre-simulaire-title">
+                                    @switch($opportunite_similaire->type)
+                                        @case('emploi')
+                                            <a href="{{ route('emploi.detail', $opportunite_similaire->slug) }}">{{ $opportunite_similaire->title }}</a>
+                                            @break
+                                        @case('stage')
+                                            <a href="{{ route('stage.detail', $opportunite_similaire->slug) }}">{{ $opportunite_similaire->title }}</a>
+                                            @break
+                                        @case('formation')
+                                            <a href="{{ route('formation.detail', $opportunite_similaire->slug) }}">{{ $opportunite_similaire->title }}</a>
+                                            @break
+                                        @default
+                                        
+                                    @endswitch
+                                </div>
+                                <div class="offre-simulaire-footer">
+                                    <a href="{{ route('entreprise.detail', $entreprise->slug) }}" class="offre-simulaire-link">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite_similaire->lieu }}
+                                </div>
                             </div>
-                            <div class="offre-simulaire-footer">
-                                <a href="#" class="offre-simulaire-link">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite_similaire->lieu }}
-                            </div>
-                        </div>
-                    
+                    @endif
                 @endforeach
             </div>
         </div>

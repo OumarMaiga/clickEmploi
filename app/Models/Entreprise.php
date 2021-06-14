@@ -21,8 +21,13 @@ class Entreprise extends Model
         'user_id',
     ];
     
-    public function opportunite()
+    public function opportunites()
     {
         return $this->hasMany('App\Models\Opportunite');
+    }
+
+    public function files()
+    {
+        return $this->hasMany('App\Models\File');
     }
 }

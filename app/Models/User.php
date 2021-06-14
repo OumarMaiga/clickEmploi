@@ -26,7 +26,9 @@ class User extends Authenticatable
         'prenom', 
         'date_naissance',
         'type',
+        'etat',
         'dernier_diplome',
+        'experience_professionnel',
     ];
 
     public function secteurs() {

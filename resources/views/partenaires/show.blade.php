@@ -24,9 +24,6 @@
                     <div class="profil-description">
                         Adresse: {{ $partenaire->adresse }}
                     </div>
-                    <div class="profil-description">
-                        Secteur d'activité: Design, Economie, Football
-                    </div>
                     <br/>
                     <hr/>
                     <br/>

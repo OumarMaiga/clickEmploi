@@ -40,7 +40,8 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <input id="montant" class="form-control" type="text" name="montant" value="{{ old('montant') }}" placeholder="PRIX" />
+                        <label for="echeance">Date d'echéance</label>
+                        <input id="echeance" class="form-control" type="date" name="echeance" value="{{ old('echeance') }}" placeholder="" />
                     </div>
                     <div class="col-md-6">
                         <input id="duree" class="form-control" type="text" name="duree" value="{{ old('duree') }}" placeholder="DUREE" />
@@ -49,13 +50,18 @@
 
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <textarea id="content" class="form-control" name="content" value="{{ old('content') }}" placeholder="DESCRIPTION ..."></textarea>
+                        <input id="montant" class="form-control" type="text" name="montant" value="{{ old('montant') }}" placeholder="PRIX" />
                     </div>
                     <div class="col-md-6">
                         <input id="prerequis" class="form-control" type="text" name="prerequis" value="{{ old('prerequis') }}" placeholder="PREREQUIS" />
                     </div>
                 </div>
                     
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <textarea id="content" class="form-control" name="content" value="" placeholder="DESCRIPTION ...">{{ old('content') }}</textarea>
+                    </div>
+                </div>
                 <div class="mt-4">
                     <button type="submit" class="btn btn-custom">
                         {{ __('AJOUTER') }}

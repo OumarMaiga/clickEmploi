@@ -25,6 +25,7 @@ class CreateOpportunitesTable extends Migration
             $table->string('duree')->nullable();
             $table->string('niveau')->nullable();
             $table->string('montant')->nullable();
+            $table->dateTime('echeance')->nullable();
             $table->string('type_contrat')->nullable();
             $table->string('annee_experience')->nullable();
             $table->string('prerequis')->nullable();

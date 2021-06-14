@@ -34,9 +34,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-12 ">
+                        <div class="form-group col-md-6">
                             <label for="adresse">Adresse</label>
                             <textarea id="adresse" class="form-control" type="text" name="adresse" placeholder="ADRESSE">{{ $user->adresse }}</textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="experience_professionnel">Durée d'experience professionnel</label>
+                            <input id="experience_professionnel" class="form-control" type="text" name="experience_professionnel" value="{{ $user->experience_professionnel }}" placeholder="Ex: 2 ans, 6 mois ..." />
                         </div>
                     </div>
                     <div class="row">

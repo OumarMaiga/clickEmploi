@@ -14,6 +14,7 @@ class Postule extends Model
         'prenom',
         'email',
         'telephone',
+        'motivation',
         'user_id',
         'opportunite_id',
     ];

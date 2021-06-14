@@ -1,10 +1,13 @@
 <x-guest-layout>
     <div class="container">
         <div class="row justify-content-center">
+        
 
             <div class="col-md-4">
                 <div class="auth-title">{{ __('CONNEXION') }}</div>
     
+            <x-auth-access-denied class="mb-4" :denied="session('denied')" />
+            
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-4" :status="session('status')" />
         

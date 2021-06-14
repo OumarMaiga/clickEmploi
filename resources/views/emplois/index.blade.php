@@ -25,15 +25,15 @@
                     <?php $n = 0 ?>
                     @foreach ($emplois as $emploi)
                     <?php 
-                        $n = $n + 1
-                        
+                        $n = $n + 1;
+                        $entreprise = App\Models\Entreprise::where('id', $emploi->entreprise_id)->first(); 
                     ?>
                         <tr>
                             <th scope="row">{{ $n }}</th>
                             <td>{{ $emploi->title }} </td>
                             <td>{{ $emploi->duree }}</td>
                             <td>{{ $emploi->montant }}</td>
-                            <td><i>{{ $emploi->structure }}</i></td>
+                            <td><i>{{ $entreprise->libelle }}</i></td>
                             <td class="justify-content-between icon-content">
                                 <a href="{{ route('emploi.show', $emploi->slug) }}" class="col icon-action detail">
                                     <span class="fas fa-info">

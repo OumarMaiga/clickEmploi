@@ -9,6 +9,7 @@ use App\Repositories\EntrepriseRepository;
 use App\Repositories\PostuleRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Models\File;
+use App\Models\Opportunite;
 
 class EmploiController extends Controller
 {
@@ -41,9 +42,17 @@ class EmploiController extends Controller
             'entreprise_id' => 'required',
         ]);
 
+        $nbreLibelle = Opportunite::where('title', $request->title)->count();
+        
+        if ($nbreLibelle != '0') {
+            $slug = Str::slug($request->get('title'))."-".$nbreLibelle;
+        }
+        else {
+            $slug = Str::slug($request->get('title'));
+        }
         $request->merge([
             'type' => 'emploi',
-            'slug' => Str::slug($request->get('title')),
+            'slug' => $slug,
             'user_id' => Auth::user()->id,
         ]);
         
@@ -80,7 +89,7 @@ class EmploiController extends Controller
     public function detail($slug) {
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
-        $opportunite_similaires = $this->opportuniteRepository->get();
+        $opportunite_similaires = Opportunite::where('poste', $opportunite->poste)->limit(4)->get();
         return view('pages.detail', compact('opportunite', 'entreprise', 'opportunite_similaires'));
     }
 
