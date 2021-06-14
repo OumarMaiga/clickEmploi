@@ -168,10 +168,15 @@
                     </div>
                     @if ($opportunite->type != "formation")
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <input id="cv_profil" class="form-control mr-2" type="checkbox" name="cv_profil" value="" placeholder="Pourquoi devrons-nous vous engagé ?" />
-                                <label for="cv_profil">Utilisé le CV de votre profil</label>
-                            </div>
+                            @if (voir_cv_profil(Auth::user()->id) == false)
+                                
+                            @else
+                                <div class="form-group col-md-6">
+                                    <input id="cv_profil" class="form-control mr-2" type="checkbox" name="cv_profil" value="" placeholder="Pourquoi devrons-nous vous engagé ?" />
+                                    <label for="cv_profil">Utilisé le CV de votre profil</label>
+                                </div>
+                            @endif 
+
                             <div class="form-group col-md-6">
                                 <label for="cv">Ajouter votre CV</label>
                                 <input id="cv" class="form-control" type="file" name="cv" value="" placeholder="" />

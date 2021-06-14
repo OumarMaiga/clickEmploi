@@ -26,6 +26,11 @@ class Secteur extends Model
         'slug',
     ];
 
+    public function opportunites() {
+        return $this->belongsToMany('App\Models\Opportunite');
+    }
+
+
     public function users() {
         return $this->belongsToMany('App\Models\User');
     }

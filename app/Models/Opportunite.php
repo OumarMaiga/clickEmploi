@@ -32,6 +32,11 @@ class Opportunite extends Model
         'user_id',
         'type',
     ];
+
+    public function secteurs() {
+        return $this->belongsToMany('App\Models\Secteur');
+    }
+
     
     protected $dates = [
         'created_at',

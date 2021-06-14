@@ -10,6 +10,7 @@ use App\Repositories\PostuleRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Models\File;
 use App\Models\Opportunite;
+use App\Models\Secteur;
 
 class StageController extends Controller
 {
@@ -31,8 +32,9 @@ class StageController extends Controller
     
     public function create() {
         $user = Auth::user();
+        $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        return view('stages.create', compact('entreprises'));
+        return view('stages.create', compact('entreprises', 'domaines'));
     }
 
     public function store(Request $request) {

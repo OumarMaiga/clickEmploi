@@ -33,6 +33,19 @@ class PostuleController extends Controller
         //Enregistrement de la postulation
         $postule = $this->postuleRepository->store($request->all());
         
+        $fileModel1 = new File;
+
+        if ($request->has('cv_profil')) {
+            $cv = voir_cv_profil(Auth::user()->id);
+
+            $fileModel1->libelle = $cv->libelle;
+            $fileModel1->file_path = $cv->file_path;
+            $fileModel1->user_id = Auth::user()->id;
+            $fileModel1->type = 'cv_opportunite';
+            $fileModel1->postule_id = $postule->id;
+            $fileModel1->save();
+        }
+
         $fileModel = new File;
 
         if($request->hasFile('cv')) {

@@ -55,7 +55,7 @@
                     @if (voir_cv_profil($user->id) == false)
                         CV non uploader
                     @else
-                        <a target="_blank" href="{{ voir_cv_profil($user->id) }}" class="btn-link">
+                        <a target="_blank" href="{{ voir_cv_profil($user->id)->file_path }}" class="btn-link">
                             <u>Voir le CV</u>
                         </a> 
                     @endif 

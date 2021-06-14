@@ -58,7 +58,7 @@ use App\Models\Postule;
         if ($file == null) {
             $file = false;
         } else {
-            $file = $file->file_path;
+            $file = $file;
         }
 
         return $file;

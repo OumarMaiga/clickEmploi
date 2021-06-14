@@ -10,6 +10,7 @@ use App\Repositories\PostuleRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Models\File;
 use App\Models\Opportunite;
+use App\Models\Secteur;
 
 class FormationController extends Controller
 {
@@ -30,8 +31,9 @@ class FormationController extends Controller
     
     public function create() {
         $user = Auth::user();
+        $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        return view('formations.create', compact('entreprises'));
+        return view('formations.create', compact('entreprises', 'domaines'));
     }
 
     public function store(Request $request) {

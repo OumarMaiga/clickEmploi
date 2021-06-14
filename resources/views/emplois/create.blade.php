@@ -79,6 +79,17 @@
                     </div>
                 </div>
 
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        @foreach ($domaines as $domaine)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="{{ $domaine->slug }}" name="secteur[]" value="{{ $domaine->id }}">
+                                <label class="form-check-label" for="{{ $domaine->slug }}">{{ $domaine->libelle }}</label>
+                            </div>
+                        @endforeach    
+                    </div>
+                </div>
+
                 <div class="mt-4">
                     <button type="submit" class="btn btn-custom">
                         {{ __('AJOUTER') }}
