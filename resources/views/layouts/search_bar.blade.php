@@ -1,4 +1,4 @@
-<form action="#" method="get">
+<form action="{{ route('filtre') }}" method="get">
     @csrf
     <div class="search-bar">
         <div class="row justify-content-center">

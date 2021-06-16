@@ -12,7 +12,7 @@ class DiplomeController extends Controller
     protected $diplomeRepository;
 
     public function __construct(DiplomeRepository $diplomeRepository) {
-        $this->middleware('onlyAdmin', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+        $this->middleware('adminOnly', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
         $this->diplomeRepository = $diplomeRepository;
     }
 

@@ -64,20 +64,6 @@
                     </div>
                 </div>
     
-                <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <select class="form-control" id="exampleFormControlSelect1" name="type_contrat">
-                            <option value="">-- TYPE DE CONTRAT --</option>
-                            <option value="cdd">CDD</option>
-                            <option value="cdi">CDI</option>
-                            <option value="alternance">Alternance</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <input id="duree" class="form-control" type="text" name="duree" value="{{ old('duree') }}" placeholder="DUREE" />
-                    </div>
-                </div>
 
                 <!-- Email Address -->
                 <div class="row mt-4">
@@ -89,6 +75,17 @@
                     </div>
                 </div>
                 
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        @foreach ($domaines as $domaine)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="{{ $domaine->slug }}" name="secteur[]" value="{{ $domaine->id }}">
+                                <label class="form-check-label" for="{{ $domaine->slug }}">{{ $domaine->libelle }}</label>
+                            </div>
+                        @endforeach    
+                    </div>
+                </div>
+
                 <div class="mt-4">
                     <button type="submit" class="btn btn-custom">
                         {{ __('AJOUTER') }}

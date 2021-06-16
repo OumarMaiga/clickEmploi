@@ -19,6 +19,7 @@ class StageController extends Controller
     protected $postuleRepository;
 
     public function __construct(OpportuniteRepository $opportuniteRepository, EntrepriseRepository $entrepriseRepository, PostuleRepository $postuleRepository) {
+        $this->middleware('adminAndPartenaireOnly', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
         $this->opportuniteRepository = $opportuniteRepository;
         $this->entrepriseRepository = $entrepriseRepository;
         $this->postuleRepository = $postuleRepository;
@@ -61,8 +62,12 @@ class StageController extends Controller
         ]);
         
         $opportunite = $this->opportuniteRepository->store($request->all());
-        $id = $opportunite->id;
         
+        if ($request->has('secteur')) {
+            $secteurs = $request->input('secteur');
+            $relation = $opportunite->secteurs()->sync($secteurs);
+        }
+
         return redirect('/dashboard/stage')->withStatus("Nouveau stage publié");
     }
 
@@ -88,14 +93,16 @@ class StageController extends Controller
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
-        return view('stages.show', compact('opportunite', 'entreprise', 'postulants'));
+        $secteurs = $opportunite->secteurs->pluck('libelle');
+        return view('stages.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs'));
     }
 
     public function detail($slug) {
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $opportunite_similaires = Opportunite::where('poste', $opportunite->poste)->limit(4)->get();
-        return view('pages.detail', compact('opportunite', 'entreprise', 'opportunite_similaires'));
+        $secteurs = $opportunite->secteurs->pluck('libelle');
+        return view('pages.detail', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs'));
     }
 
     public function destroy($id) {

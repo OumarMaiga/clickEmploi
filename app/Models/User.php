@@ -31,10 +31,6 @@ class User extends Authenticatable
         'experience_professionnel',
     ];
 
-    public function secteurs() {
-        return $this->belongsToMany('App\Models\Secteur');
-    }
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -53,6 +49,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function secteurs() {
+        return $this->belongsToMany('App\Models\Secteur');
+    }
+
+    public function domaines() {
+        return $this->belongsToMany('App\Models\Secteur');
+    } 
     
     public function opportunites() 
     {
@@ -61,7 +65,7 @@ class User extends Authenticatable
     
     public function diplome() 
     {
-        return $this->hasMany('App\Models\Diplome');
+        return $this->belongsTo('App\Models\Diplome');
     }
 
     public function abonnee()

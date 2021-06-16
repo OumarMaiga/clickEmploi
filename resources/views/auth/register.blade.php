@@ -61,6 +61,15 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
+                            <input id="experience_professionnel" type="text" class="form-control @error('experience_professionnel') is-invalid @enderror" name="experience_professionnel" value="{{ old('experience_professionnel') }}" placeholder="DUREE D'EXPERIENCE PROFESSIONNEL" required autocomplete="experience_professionnel">
+
+                            @error('experience_professionnel')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
                             <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" placeholder="TELEPHONE" required autocomplete="telephone">
 
                             @error('telephone')
@@ -69,6 +78,9 @@
                                 </span>
                             @enderror
                         </div>
+                    </div>
+
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-MAIL" required autocomplete="email">
 
@@ -78,9 +90,6 @@
                                 </span>
                             @enderror
                         </div>
-                    </div>
-
-                    <div class="form-row">
                         <div class="from-group col-md-6">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="MOT DE PASSE" required autocomplete="new-password">
 
@@ -90,6 +99,9 @@
                                 </span>
                             @enderror
                         </div>
+                    </div>
+                    
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="CONFIRMATION MOT DE PASSE" required autocomplete="new-password">
                         </div>

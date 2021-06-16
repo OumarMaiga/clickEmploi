@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    
+    public function __construct() {
+        $this->middleware('adminAndPartenaireOnly', ['only' => ['index']]);
+    }
     public function index()
     {
         return view('dashboards.index');

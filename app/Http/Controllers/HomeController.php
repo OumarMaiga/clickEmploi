@@ -93,15 +93,19 @@ class HomeController extends Controller
         $adresse = $request->adresse;
         if($poste != null && $adresse == null) {
             $opportunites = Opportunite::where('poste', $poste)->get();
+            $nbre_offres = $opportunites->count();
         }elseif($poste == null && $adresse != null) {
             $opportunites = Opportunite::where('lieu', $adresse)->get();
+            $nbre_offres = $opportunites->count();
         } elseif($poste != null && $adresse != null) {
             $opportunites = Opportunite::where('poste', $poste)->where('lieu', $adresse)->get();
+            $nbre_offres = $opportunites->count();
         }else{
             $opportunites = Opportunite::where('id', 0)->get();
+            $nbre_offres = $opportunites->count();
         }
         //$opportunites = Opportunite::WhereRaw("MATCH(poste) AGAINST('informatique')")->get();
-        return view('pages.filtre', compact('opportunites'));
+        return view('pages.filtre', compact('opportunites', 'nbre_offres'));
     }
 
 }

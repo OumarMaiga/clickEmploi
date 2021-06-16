@@ -10,6 +10,7 @@ class AbonneeController extends Controller
     protected $abonneeRepository;
 
     public function __construct(AbonneeRepository $abonneeRepository) {
+        $this->middleware('adminOnly', ['only' => ['index', 'show', 'destroy']]);
         $this->abonneeRepository = $abonneeRepository;
     }
 
@@ -26,6 +27,6 @@ class AbonneeController extends Controller
 
     public function destroy($id) {
 		$this->abonneeRepository->destroy($id);
-        return redirect()->back()->withError("Diplome a bien été supprimer");;
+        return redirect()->back()->withError("Abonnée a bien été supprimé");
     } 
 }

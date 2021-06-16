@@ -16,13 +16,13 @@ class EntrepriseController extends Controller
     protected $opportuniteRepository;
 
     public function __construct(EntrepriseRepository $entrepriseRepository, OpportuniteRepository $opportuniteRepository) {
+        $this->middleware('adminAndPartenaireOnly', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
         $this->entrepriseRepository = $entrepriseRepository;
         $this->opportuniteRepository = $opportuniteRepository;
     }
 
     public function index() {
-        $entreprises = $this->entrepriseRepository->get();
-        
+        $entreprises = $this->entrepriseRepository->getByForeignId('user_id', Auth::user()->id);        
         return view('entreprises.index', compact('entreprises'));
     }
 

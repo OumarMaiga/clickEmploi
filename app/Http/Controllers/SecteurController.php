@@ -12,7 +12,7 @@ class SecteurController extends Controller
     protected $secteurRepository;
 
     public function __construct(SecteurRepository $secteurRepository) {
-        $this->middleware('onlyAdmin', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+        $this->middleware('adminOnly', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
         $this->secteurRepository = $secteurRepository;
     }
 

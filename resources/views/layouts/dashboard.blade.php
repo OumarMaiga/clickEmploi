@@ -82,11 +82,13 @@
                                 ENTREPRISE
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="{{ route('abonnee') }}" class="sidebar-link">
-                                ABONNEE
-                            </a>
-                        </li>
+                        @if (Auth::user()->type == "admin")
+                            <li class="sidebar-item">
+                                <a href="{{ route('abonnee') }}" class="sidebar-link">
+                                    ABONNEE
+                                </a>
+                            </li>
+                        @endif
                         <li class="sidebar-item">
                             <a href="{{ route('user.index') }}" class="sidebar-link">
                                 UTILISATEUR

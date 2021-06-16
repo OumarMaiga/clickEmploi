@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class OnlyAdmin
+class AdminAndPartenaireOnly
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class OnlyAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->type != 'admin') {
+        if (Auth::user()->type != 'admin' && Auth::user()->type != 'partenaire') {
             return redirect()->back()->withErrors('Accès Interdit');
         }
         return $next($request);

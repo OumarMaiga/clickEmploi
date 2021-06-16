@@ -12,7 +12,8 @@ class UserController extends Controller
     protected $userRepository;
 
     public function __construct(UserRepository $userRepository) {
-        $this->middleware('onlyAdmin', ['only' => ['index', 'show', 'destroy', 'changeState']]);
+        $this->middleware('onlyAdmin', ['only' => ['destroy', 'changeState']]);
+        $this->middleware('adminAndPartenaireOnly', ['only' => ['index', 'show']]);
         $this->userRepository = $userRepository;
     }
 

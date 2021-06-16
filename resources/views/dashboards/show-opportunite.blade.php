@@ -106,9 +106,18 @@
                     </div>
                 </div>
             @endif
-
             <div class="row">
                 <div class="col-md-3 resume-title">
+                    Secteur d'activité:
+                </div>
+                <div class="col-md-9 description">
+                    @foreach ($secteurs as $secteur)
+                        {{ " - ".$secteur }}    
+                    @endforeach 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 resume-title">
                     <i>Publié le 12 Avr 2021</i>
                 </div>
             </div>

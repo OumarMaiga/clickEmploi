@@ -14,7 +14,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/accueil', [HomeController::class, 'accueil'])->name('accueil');
 
-Route::get('/filtre', [HomeController::class, 'filtre'])->middleware(['auth'])->name('filtre');
+Route::get('/filtre', [HomeController::class, 'filtre'])->name('filtre');
 
 Route::get('/emploi/{slug}', [EmploiController::class, 'detail'])->name('emploi.detail');
 Route::get('/emplois', [EmploiController::class, 'list'])->name('emploi.list');
