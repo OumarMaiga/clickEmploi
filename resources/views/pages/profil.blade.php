@@ -44,10 +44,7 @@
                 </div>
                 @if ($user->type == "user")
                     <div class="profil-description">
-                        Secteur d'activité:
-                            @foreach ($secteurs as $secteur)
-                                {{ " - ".$secteur }}    
-                            @endforeach 
+                        Secteur d'activité: {{ $secteurs->implode('libelle', ', ') }}
                     </div>
                 @endif
                 <div class="profil-description">

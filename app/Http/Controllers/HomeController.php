@@ -91,19 +91,15 @@ class HomeController extends Controller
     public function filtre(Request $request) {
         $poste = $request->poste;
         $adresse = $request->adresse;
-        if($poste != null && $adresse == null) {
-            $opportunites = Opportunite::where('poste', $poste)->get();
-            $nbre_offres = $opportunites->count();
-        }elseif($poste == null && $adresse != null) {
-            $opportunites = Opportunite::where('lieu', $adresse)->get();
-            $nbre_offres = $opportunites->count();
-        } elseif($poste != null && $adresse != null) {
-            $opportunites = Opportunite::where('poste', $poste)->where('lieu', $adresse)->get();
-            $nbre_offres = $opportunites->count();
-        }else{
-            $opportunites = Opportunite::where('id', 0)->get();
-            $nbre_offres = $opportunites->count();
+        $opportunites = Opportunite::where('id', '0');
+        if($poste != null) {
+            $opportunites = Opportunite::where('poste', $poste);
         }
+        if($adresse != null) {
+            $opportunites = Opportunite::where('lieu', $adresse);
+        } 
+        $opportunites = $opportunites->get();
+        $nbre_offres = $opportunites->count();
         //$opportunites = Opportunite::WhereRaw("MATCH(poste) AGAINST('informatique')")->get();
         return view('pages.filtre', compact('opportunites', 'nbre_offres'));
     }

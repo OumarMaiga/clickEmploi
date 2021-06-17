@@ -35,6 +35,7 @@ Route::resource('/dashboard/secteur', SecteurController::class)->middleware(['au
 Route::resource('/dashboard/entreprise', EntrepriseController::class)->middleware(['auth']);
 
 //UTILISATEUR
+Route::get('dashboard/user/filter', [UserController::class, 'filter'])->middleware(['auth'])->name('user.filter');
 Route::resource('/dashboard/user', UserController::class)->middleware(['auth']);
 Route::put('/dashboard/user/{email}/changeState', [UserController::class, 'changeState'])->name('user.changeState')->middleware(['auth']);
 
