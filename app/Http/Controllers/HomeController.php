@@ -87,21 +87,48 @@ class HomeController extends Controller
 
     }
 
-
     public function filtre(Request $request) {
+        $opportunites = new Opportunite;
+        if($request->has('poste')) {
+            $opportunites = $opportunites->whereIn('poste', $request->poste);
+        }
+        if($request->has('contrat')) {
+            $opportunites = $opportunites->whereIn('type_contrat', $request->contrat);
+        }
+        if($request->has('date')) {
+            if ($request->date == "24h") {
+                $hier = date('Y-m-d',strtotime("-1 days"));
+                $opportunites = $opportunites->whereDate('created_at', '>=', $hier);
+            } elseif($request->date == "7j") {
+                $semaine = date('Y-m-d',strtotime("-7 days"));
+                $opportunites = $opportunites->whereDate('created_at', '>=', $semaine);
+            } elseif($request->date == "1m") {
+                $mois = date('Y-m-d',strtotime("-1 months"));
+                $opportunites = $opportunites->whereDate('created_at', '>=', $mois);
+            } else {
+
+            }
+        }
+        $opportunites = $opportunites->get();
+        $nbre_offres = $opportunites->count();
+        return view('pages.filter', compact('opportunites', 'nbre_offres'));
+        
+    }
+
+        public function search(Request $request) {
         $poste = $request->poste;
         $adresse = $request->adresse;
-        $opportunites = Opportunite::where('id', '0');
+        $opportunites = new Opportunite;
         if($poste != null) {
-            $opportunites = Opportunite::where('poste', $poste);
+            $opportunites = $opportunites->where('poste', $poste);
         }
         if($adresse != null) {
-            $opportunites = Opportunite::where('lieu', $adresse);
+            $opportunites = $opportunites->where('lieu', $adresse);
         } 
         $opportunites = $opportunites->get();
         $nbre_offres = $opportunites->count();
         //$opportunites = Opportunite::WhereRaw("MATCH(poste) AGAINST('informatique')")->get();
-        return view('pages.filtre', compact('opportunites', 'nbre_offres'));
+        return view('pages.search', compact('opportunites', 'nbre_offres'));
     }
 
 }

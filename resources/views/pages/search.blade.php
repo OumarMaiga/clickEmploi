@@ -5,7 +5,7 @@
                 @include('layouts.filter')
             </div>
             <div class="col-sm-9">
-                <h3 class="entreprise-detail-offres-title">{!! "<b>".$nbre_offres. "</b>" !!} offre<?php ($nbre_offres > 1) ? "s " : "" ?> trouvés </h3>
+                <h3 class="entreprise-detail-offres-title">{!! "<b>".$nbre_offres. "</b>" !!} offre<?= ($nbre_offres > 1) ? "s " : "" ?> trouvés </h3>
                 @include('layouts.list_opportunite')
             </div>
         </div>
