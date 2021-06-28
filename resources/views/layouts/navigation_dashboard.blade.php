@@ -10,21 +10,6 @@
 
     <!-- Navigation Links -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('home') }}">{{ __('Accueil') }}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('emploi.list') }}">{{ __('Emploi') }}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('stage.list') }}">{{ __('Stage') }}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('formation.list') }}">{{ __('Formation') }}</a>
-            </li>
-        </ul>
-
         <div class="d-block d-sm-none">
             <hr>
         </div>
@@ -46,7 +31,6 @@
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->email }} <span class="caret"></span>
                     </a>
-
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         @if(Auth::user()->type == "admin" || Auth::user()->type == "partenaire")
                             <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>

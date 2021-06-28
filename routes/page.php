@@ -7,12 +7,15 @@ use App\Http\Controllers\PostuleController;
 use App\Http\Controllers\StageController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\EntrepriseController;
+use App\Http\Controllers\OpportuniteController;
 
 Route::get('/', [HomeController::class, 'accueil'])->name('accueil');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/accueil', [HomeController::class, 'accueil'])->name('accueil');
 Route::get('/filtre', [HomeController::class, 'filtre'])->name('filtre');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
+
+Route::get('/opportunite/adresse/{adresse}', [OpportuniteController::class, 'adresse'])->name('opportunite.adresse');
 
 Route::get('/emploi/{slug}', [EmploiController::class, 'detail'])->name('emploi.detail');
 Route::get('/emplois', [EmploiController::class, 'list'])->name('emploi.list');

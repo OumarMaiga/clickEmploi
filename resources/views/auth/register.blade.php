@@ -126,12 +126,12 @@
                     </div>
 
                     <div class="form-group row mb-0">
-                        <div class="col-md-6">
+                        <div class="col-md-6 d-flex justify-content-between">
                             <button type="submit" class="btn btn-custom">
                                 {{ __('INSCRIPTION') }}
                             </button>
                             
-                            <a class="btn-link float-right" href="{{ route('login') }}">
+                            <a class="btn-link mt-auto" href="{{ route('login') }}">
                                 {{ __('Connexion') }}
                             </a>
                         </div>

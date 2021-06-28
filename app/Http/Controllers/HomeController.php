@@ -28,7 +28,8 @@ class HomeController extends Controller
     
     public function accueil()
     {
-        return view('pages/accueil');
+        $adresses = Opportunite::distinct('adresse')->select('lieu')->limit(9)->get();
+        return view('pages/accueil', compact('adresses'));
     }
  
     public function profil($email) {
@@ -120,15 +121,14 @@ class HomeController extends Controller
         $adresse = $request->adresse;
         $opportunites = new Opportunite;
         if($poste != null) {
-            $opportunites = $opportunites->where('poste', $poste);
+            $opportunites = $opportunites->where('poste', 'like', "%$poste%");
         }
         if($adresse != null) {
-            $opportunites = $opportunites->where('lieu', $adresse);
+            $opportunites = $opportunites->where('lieu', 'like', "%$adresse%");
         } 
         $opportunites = $opportunites->get();
         $nbre_offres = $opportunites->count();
-        //$opportunites = Opportunite::WhereRaw("MATCH(poste) AGAINST('informatique')")->get();
-        return view('pages.search', compact('opportunites', 'nbre_offres'));
+        return view('pages.opportunites', compact('opportunites', 'nbre_offres'));
     }
 
 }

@@ -66,12 +66,6 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-2">
-                <button class="btn-outline-custom" id="btn-click">
-                    Click !
-                </button> 
-            </div>
-
         </form>
     </div>
 </div>

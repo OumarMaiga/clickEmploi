@@ -113,5 +113,4 @@ class EmploiController extends Controller
         $opportunites = $this->opportuniteRepository->getByType('emploi');
         return view('pages/home', compact('opportunites'));
     }
-
 }

@@ -44,12 +44,12 @@
                         </label>
                     </div>
         
-                    <div class="mt-4">
+                    <div class="mt-4 d-flex justify-content-between">
             
                             <button type="submit" class="btn btn-custom">
                                 {{ __('CONNEXION') }}
                             </button>
-                            <a class="btn-link float-right" href="{{ route('register') }}">
+                            <a class="btn-link mt-auto" href="{{ route('register') }}">
                                 {{ __('Inscription') }}
                             </a>
                     </div>

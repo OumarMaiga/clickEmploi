@@ -2,7 +2,7 @@ body {
     background-color: #F5F5F5;
 }
 #navigation {
-    background-color: #7023A2;
+    background-color: #cb6b13;
 }
 
 .navbar-brand, .nav-link  {
@@ -13,10 +13,6 @@ body {
 .navbar-brand:hover, .nav-link:hover {
     text-decoration: underline;
     color: white;
-}
-
-.content {
-    margin-top: 20px
 }
 
 .content-title {
@@ -115,6 +111,9 @@ body {
 footer {
     line-height: 2;
     color: #FCFCFC;
+}
+.footer-item{
+    margin: 0px 15px;
 }
 .footer-haut {
     padding: 2rem 4rem;

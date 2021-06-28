@@ -5,7 +5,7 @@
                 {{ $opportunite->title }}
             </div>
             <div class="show-subtitle">
-                <a href="{{ route('entreprise.detail', $entreprise->slug) }}">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite->lieu }}
+                <a href="{{ route('entreprise.detail', $entreprise->slug) }}">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> <a href="{{ route('opportunite.adresse', $opportunite->lieu) }}">{{ $opportunite->lieu }}</a>
             </div>
             <div class="mt-4">
                 <a href="#postuler" class="btn btn-custom btn-postule">Je postule</a>
@@ -22,109 +22,109 @@
             <div class="lil-title">Resumé ...</div>
             @if ($opportunite->type == "emploi" || $opportunite->type == "stage")
                 <div class="row">
-                    <div class="col-md-3 resume-title">
+                    <div class="col-lg-3 col-sm-5 resume-title">
                         POSTE
                     </div>
-                    <div class="col-md-9 description">
+                    <div class="col-lg-9 col-sm-7 description">
                         {{ $opportunite->poste }}
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-md-3 resume-title">
+                    <div class="col-lg-3 col-sm-5 resume-title">
                         TYPE DE CONTRAT
                     </div>
-                    <div class="col-md-9 description text-uppercase">
+                    <div class="col-lg-9 col-sm-7 description text-uppercase">
                         {{ $opportunite->type_contrat }}
                     </div>
                 </div>
             @else
                 <div class="row">
-                    <div class="col-md-3 resume-title">
+                    <div class="col-lg-3 col-sm-5 resume-title">
                         TITRE
                     </div>
-                    <div class="col-md-9 description">
+                    <div class="col-lg-9 col-sm-7 description">
                         {{ $opportunite->title }}
                     </div>
                 </div>
             @endif
             <div class="row">
-                <div class="col-md-3 resume-title">
+                <div class="col-lg-3 col-sm-5 resume-title">
                     ENTREPRISE
                 </div>
-                <div class="col-md-9 description">
+                <div class="col-lg-9 col-sm-7 description">
                     {{ $entreprise->libelle }}
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 resume-title">
+                <div class="col-lg-3 col-sm-5 resume-title">
                     LOCALITE
                 </div>
-                <div class="col-md-9 description">
+                <div class="col-lg-9 col-sm-7 description">
                     {{ $opportunite->lieu}}
                 </div>
             </div>
             @if ($opportunite->type == "emploi")
                 <div class="row">
-                    <div class="col-md-3 resume-title">
+                    <div class="col-lg-3 col-sm-5 resume-title">
                         EXPERIENCE
                     </div>
-                    <div class="col-md-9 description">
+                    <div class="col-lg-9 col-sm-7 description">
                         {{ $opportunite->annee_experience }}
                     </div>
                 </div>
             @endif
             
             <div class="row">
-                <div class="col-md-3 resume-title">
+                <div class="col-lg-3 col-sm-5 resume-title">
                     NIVEAU D'ETUDE
                 </div>
-                <div class="col-md-9 description">
+                <div class="col-lg-9 col-sm-7 description">
                     {{ $opportunite->niveau }}
                 </div>
             </div>
 
             @if ($opportunite->type == "formation")
                 <div class="row">
-                    <div class="col-md-3 resume-title">
+                    <div class="col-lg-3 col-sm-5 resume-title">
                         PREREQUIS
                     </div>
-                    <div class="col-md-9 description">
+                    <div class="col-lg-9 col-sm-7 description">
                         {{ $opportunite->prerequis }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 resume-title">
+                    <div class="col-lg-3 col-sm-5 resume-title">
                         Prix
                     </div>
-                    <div class="col-md-9 description">
+                    <div class="col-lg-9 col-sm-7 description">
                         {{ $opportunite->montant }}
                     </div>
                 </div>
             @else
                 <div class="row">
-                    <div class="col-md-3 resume-title">
+                    <div class="col-lg-3 col-sm-5 resume-title">
                         SALAIRE
                     </div>
-                    <div class="col-md-9 description">
+                    <div class="col-lg-9 col-sm-7 description">
                         {{ $opportunite->montant }}
                     </div>
                 </div>
             @endif
 
             <div class="row">
-                <div class="col-md-3 resume-title">
+                <div class="col-md-12 resume-title">
                     <i>Publié {{ custom_date($opportunite->created_at) }}</i>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 resume-title">
+                <div class="col-md-12 resume-title">
                     <i>Delais de depôt {{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center" id="postuler">
                 
-            <div class="postuler-container col-md-8">
+            <div class="postuler-container col-lg-8 col-md-10">
                 <h2 class="form-title mb-4">POSTULER</h2>
 
                 <!-- Session Status -->
@@ -215,7 +215,7 @@
                                     @endswitch
                                 </div>
                                 <div class="offre-simulaire-footer">
-                                    <a href="{{ route('entreprise.detail', $entreprise->slug) }}" class="offre-simulaire-link">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite_similaire->lieu }}
+                                    <a href="{{ route('entreprise.detail', $entreprise->slug) }}" class="offre-simulaire-link">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> <a href="{{ route('opportunite.adresse', $opportunite_similaire->lieu) }}">{{ $opportunite_similaire->lieu }}</a>
                                 </div>
                             </div>
                     @endif

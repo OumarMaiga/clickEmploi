@@ -1,13 +1,13 @@
 .sidebar {
-    background-color: #7023A2;
     height: 100vh;
-    padding: 10px 0px;
     position: fixed;
+    background-color: #cb6b13;
+    width: 16%;
 }
 
 .sidebar-title {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 800;
     color: #FFFFFF;
     margin-top: 10px;
 }
@@ -21,15 +21,19 @@
 .sidebar-item {
     margin-top: 20px;
     padding: 15px 0px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 .sidebar-item:hover {
-    background-color: #8d38c2;
+    background-color: #FF9000;
 }
 
 .sidebar-link {
     color: #FFFFFF;
     padding: 0px 20px;
+}
+
+.icon-sidebar {
+    margin-right: 5px;
 }
 
 .sidebar-title:hover, .sidebar-link:hover {
@@ -61,8 +65,7 @@
   }
 
 .dashboard-content {
-    margin-left: 250px;
-    width: 80%;
+    padding: 2rem;
 }
 
 .icon-edit:hover {
@@ -97,4 +100,20 @@
     font-size:1.4rem; 
     text-decoration: underline;
     font-family: 'Rockwell';
+}
+
+/* View Tablette -- Medium devices (tablets, 768px and up) */
+
+@media (max-width: 768px) { 
+
+    .sidebar {
+        width: auto;
+    }
+    .dashboard-content {
+        position: relative;
+        left: 4rem;
+    }
+    #navigation {
+        width: 100%;
+    }
 }

@@ -27,7 +27,6 @@
                     Telephone: <span class="value">{{ $entreprise->telephone }}</span>
                 </div>
             </div>
-            @include('layouts.filter')
         </div>
         <div class="col-md-9">
             <div class="entreprise-detail-offres">

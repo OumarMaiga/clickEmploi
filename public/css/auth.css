@@ -1,5 +1,5 @@
 .btn-custom {
-    background-color: #8B2FC8;
+    background-color: #FF9000;
     color: #FFFFFF;
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -8,15 +8,15 @@
 }
 
 .btn-custom:hover {
-    background-color: #8129BB;
-    border-color: #5E168E;
+    background-color: #F3A202;
+    border-color: #EE9F05;
     color: #FFFFFF;
 }
 
 .btn-outline-custom {
     background-color: #FFFFFF;
-    color: #8B2FC8;
-    border: 1px solid #8B2FC8;
+    color: #FF9000;
+    border: 1px solid #FF9000;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -24,13 +24,13 @@
 }
 
 .btn-outline-custom:hover {
-    background-color: #8129BB;
-    border-color: #5E168E;
+    background-color: #FF9000;
+    border-color: #FF9000;
     color: #FFFFFF;
 }
 
 .btn-outline-custom2 {
-    background-color: #8B2FC8;
+    background-color: #FF9000;
     color: #FFFFFF;
     border: 1px solid #FFFFFF;
     padding: .375rem .75rem;
@@ -42,7 +42,7 @@
 .btn-outline-custom2:hover {
     background-color: #FFFFFF;
     border-color: #FFFFFF;
-    color: #8B2FC8;
+    color: #FF9000;
 }
 
 .auth-title {

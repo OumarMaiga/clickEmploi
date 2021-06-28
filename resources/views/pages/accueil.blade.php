@@ -13,7 +13,7 @@
             </div> 
         </div>
     </div>
-    @include('layouts.search_bar');
+    @include('layouts.search_bar')
     <div class="entreprise">
         <h2 class="entreprise-title">Les entreprises qui recrutent le plus</h2>
         <div class="row">
@@ -39,39 +39,13 @@
         </div>
     </div>
     <div class="zone">
-        <h2 class="zone-title">Les offres d'emploi par zone</h2>
+        <h2 class="zone-title">Les opportunités par zone</h2>
         <div class="row">
-            <div class="col-md-4">
-                Yirimadjo
-            </div>
-            <div class="col-md-4">
-                Kalaban-coura
-            </div>
-            <div class="col-md-4">
-                Sokorodji
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                Magnabougou
-            </div>
-            <div class="col-md-4">
-                Sotuba
-            </div>
-            <div class="col-md-4">
-                Hamdallaye ACI 2000
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                Balabougou  
-            </div>
-            <div class="col-md-4">
-                Niamana
-            </div>
-            <div class="col-md-4">
-                Banconi
-            </div>
+            @foreach($adresses as $adresse)
+                <div class="col-md-4">
+                    <a href="{{ route('opportunite.adresse', $adresse->lieu) }}">{{ $adresse->lieu }}</a>
+                </div>
+            @endforeach
         </div>
     </div>
 </x-app-layout>
