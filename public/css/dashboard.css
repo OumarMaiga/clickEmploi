@@ -104,16 +104,24 @@
 
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
-@media (max-width: 768px) { 
+@media (max-width: 991px) { 
 
     .sidebar {
         width: auto;
     }
+    .md-decalle {
+        left: 5rem;
+        width: 90%;
+    }
     .dashboard-content {
-        position: relative;
-        left: 4rem;
+        padding: 1rem
     }
     #navigation {
         width: 100%;
     }
+    .show-container {
+        margin-left: 2px;
+        width: 100%;
+    }
+
 }

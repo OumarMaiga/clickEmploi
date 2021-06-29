@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container content">
+    <div class="main-content">
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 

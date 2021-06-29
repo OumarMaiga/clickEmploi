@@ -1,25 +1,8 @@
 <x-app-layout>
-    <div class="container content">
+    <div class="main-content">
         <div class="row">
             <div class="col-md-4">
-                <img alt="profil" src="{{$photo}}" class="profil-img" style="height:350px;"/>
-                @if (Auth::user()->type == "admin")
-                    <div class="mt-4 row">
-                        <form  method="POST" action="{{ route('user.changeState', $user->id) }}">
-                            @csrf
-                            @method('PUT')
-                            @if($user->etat==true)
-                            <button type="submit" class="mr-4 btn btn-outline-danger" onclick="return confirm('Voulez-vous bloquer l\'utilisateur ?')">
-                                BLOQUER
-                            </button>
-                            @else
-                            <button type="submit" class="mr-4 btn btn-outline-success" onclick="return confirm('Voulez-vous debloquer l\'utilisateur ?')">
-                                DEBLOQUER
-                            </button>
-                            @endif
-                        </form>
-                    </div>
-                @endif
+                <img alt="profil" src="{{$photo}}" class="profil-img"/>
             </div>
             <div class="col-md-8">
                 <!-- Session Status -->

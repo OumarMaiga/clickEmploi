@@ -11,7 +11,7 @@
 
             <form method="GET" action="{{ route('user.filter') }}">
                 <div class="form-row justify-content-end mb-4">
-                    <div class="col-sm-2">
+                    <div class="col-lg-2 col-md-3">
                         <select name="secteur" id="secteur" class="custom-select">
                             <option value="">-- Domaine --</option>
                             @foreach ($secteurs as $secteur)
@@ -25,7 +25,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-lg-2 col-md-3">
                         <select name="diplome" id="diplome" class="custom-select">
                             <option value="">-- Niveau d'étude --</option>
                             @foreach ($diplomes as $diplome)

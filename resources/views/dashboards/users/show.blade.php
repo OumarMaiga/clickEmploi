@@ -4,24 +4,37 @@
             <div class="col-md-4">
                 <img alt="profil" src="" class="profil-img"/>
                 <div class="mt-4 row">
-                    <a href="{{ route('partenaire.edit', $partenaire->email) }}"> <button class="ml-4 btn btn-outline-warning">MODIFIER</button></a>
-                    {!! Form::open(['method' => 'DELETE', 'route' => ['partenaire.destroy', $partenaire->id]]) !!}
-                        {!! Form::submit('RETIRER', ['class' => 'ml-2 btn btn-outline-danger', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
-                    {!! Form::close() !!}
+                    <form  method="POST" action="{{ route('user.changeState', $user->id) }}">
+                        @csrf
+                        @method('PUT')
+                        @if($user->etat==true)
+                        <button type="submit" class="mr-4 btn btn-outline-warning" onclick="return confirm('Voulez-vous bloquer l\'utilisateur ?')">
+                            BLOQUER
+                        </button>
+                        @else
+                        <button type="submit" class="mr-4 btn btn-outline-success" onclick="return confirm('Voulez-vous debloquer l\'utilisateur ?')">
+                            DEBLOQUER
+                        </button>
+                        @endif
+
+                    </form>
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="profil-name">
-                    {{ $partenaire->prenom." ".$partenaire->nom }}
+                    {{ $user->prenom." ".$user->nom }}
                 </div>
                 <div class="profil-email">
-                    {{ $partenaire->email }}
+                    {{ $user->email }}
                 </div>
                 <div class="profil-description">
-                    Tel: {{ $partenaire->telephone }}
+                    Tel: {{ $user->telephone }}
                 </div>
                 <div class="profil-description">
-                    Adresse: {{ $partenaire->adresse }}
+                    Adresse: {{ $user->adresse }}
+                </div>
+                <div class="profil-description">
+                    Secteur d'activité: Design, Economie, Football
                 </div>
                 <br/>
                 <hr/>

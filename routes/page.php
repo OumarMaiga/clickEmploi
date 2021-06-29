@@ -11,7 +11,6 @@ use App\Http\Controllers\OpportuniteController;
 
 Route::get('/', [HomeController::class, 'accueil'])->name('accueil');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/accueil', [HomeController::class, 'accueil'])->name('accueil');
 Route::get('/filtre', [HomeController::class, 'filtre'])->name('filtre');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 

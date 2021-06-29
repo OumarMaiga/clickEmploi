@@ -24,14 +24,14 @@ class UserController extends Controller
         $users = $this->userRepository->getByType('user');
         $secteurs = Secteur::orderBy('libelle', 'asc')->get();
         $diplomes = Diplome::orderBy('libelle', 'asc')->get();
-        return view('users.index', compact('users', 'secteurs', 'diplomes'));
+        return view('dashboards.users.index', compact('users', 'secteurs', 'diplomes'));
     }
 
     public function show($email) {
         $user = $this->userRepository->getByEmail($email);
         $photo = photo_profil($user->email);
         $secteurs = $user->secteurs->pluck('libelle');
-        return view('pages.profil', compact('user', 'photo', 'secteurs'));
+        return view('dashboards.users.show', compact('user', 'photo', 'secteurs'));
     }
 
     public function destroy($id) {

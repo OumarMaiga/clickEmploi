@@ -31,7 +31,7 @@
                 <div class="sidebar">
                     <div class="sidebar-title">
                         <a href="{{ route('dashboard') }}" class="sidebar-link">
-                            <i class="fas fa-bars icon-sidebar"></i><span class="d-none d-lg-inline-block">Tableau de bord</span>
+                            <i class="fas fa-home icon-sidebar"></i><span class="d-none d-lg-inline-block">Tableau de bord</span>
                         </a>
                     </div>
                     <ul class="sidebar-list">
@@ -97,9 +97,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-10 col-md-12">
-                        @include('layouts.navigation_dashboard')  
-
+            <div class="col-lg-10 md-decalle">
+                @include('layouts.navigation_dashboard')  
                 <!-- Page Content -->
                 <main>
                     {{ $slot }}
