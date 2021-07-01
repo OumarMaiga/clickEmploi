@@ -90,7 +90,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="from-group col-md-6">
+                        <div class="form-group col-md-6">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="MOT DE PASSE" required autocomplete="new-password">
 
                             @error('password')

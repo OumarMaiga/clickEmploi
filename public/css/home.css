@@ -121,7 +121,7 @@ hr {
 .head {
     height: 90vh;    
     position: relative; 
-    background-image: url("/image/head.jpg");
+    background-image: url("/image/accueil.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -133,22 +133,22 @@ hr {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    background-color: #f5f5f538;
+    background-color: #f5f5f536;
 }
 .head-word {
     position: relative;
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     text-align: right;
     font-family: 'Bell MT';
     line-height: 1.3;
-    color: #1D1D1D;
-    padding-top: 3rem;
-    padding-right: 6rem;
+    color: #000000;
+    padding-top: 6rem;
+    padding-right: 4rem;
     text-transform: uppercase;
     font-weight: bold;
 }
 .head-offre {
-    margin-top: 6rem;
+    margin-top: 9rem;
     position: absolute;
     text-align: center;
     background-color: #FFFFFF;
@@ -421,5 +421,17 @@ hr {
     }
     .postuler-container {
         padding: 35px;
+    }
+
+    /* Detail entreprise */
+    .entreprise-detail-head {
+        height:30vh;
+    }
+    .entreprise-detail-libelle{
+        font-size: 1.4rem;
+        padding: 5px;
+    }
+    .entreprise-detail-offres-container {
+        margin: 1rem;
     }
  }

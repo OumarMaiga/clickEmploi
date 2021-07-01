@@ -9,6 +9,10 @@ use App\Models\Secteur;
 use App\Models\Diplome;
 use App\Models\User;
 
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class UserController extends Controller
 {
     
@@ -78,7 +82,13 @@ class UserController extends Controller
         $secteurs = Secteur::orderBy('libelle', 'asc')->get();
         $diplomes = Diplome::orderBy('libelle', 'asc')->get();
 
-        return view('users.index', compact('users', 'secteurs', 'diplomes'));
+        return view('dashboards.users.index', compact('users', 'secteurs', 'diplomes'));
+    }
+
+    public function export() {
+
+        return Excel::download(new UsersExport, 'users.xlsx');
+
     }
 
 }
