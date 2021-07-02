@@ -49,6 +49,7 @@ class RegisteredUserController extends Controller
             'telephone' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::min(8)],
+            'annee_experience' => 'numeric|between:0,20',
         ]);
 
         $request->merge([

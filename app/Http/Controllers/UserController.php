@@ -10,7 +10,7 @@ use App\Models\Diplome;
 use App\Models\User;
 
 use App\Exports\UsersExport;
-use App\Imports\UsersImport;
+use App\Exports\UsersExportCustom;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -86,9 +86,33 @@ class UserController extends Controller
     }
 
     public function export() {
+        /*$data = User::where('type', 'user')->get();
+        $data_array[] = array('Prenom & Nom','Domaine d\'activité', 'Niveau d\'étude', 'Durée d\'experience');
 
-        return Excel::download(new UsersExport, 'users.xlsx');
-
+        foreach ($data as $value) {
+            $data_array[] = array(
+                'Prenom & Nom' => $value->prenom." ".$value->nom,
+                'Domaine d\'activité' => $value->prenom,
+                'Niveau d\'étude' => $value->dernier_diplome,
+                'Durée d\'experience' => $value->experience_professionnel,
+            );
+        }
+        Excel::create('Utilisateur', function($excel) use($data_array){
+            $excel->setTitle('Users');
+            $excel->sheet('Données user', function($sheet) use ($data_array){
+                $sheet->fromArray($data_array, null, 'A1', false, false);
+            });
+        })->download('xslx');*/
+    /*return [
+        (new UsersExport)->withFilename('users-' . time() . '.xlsx'),
+    ];*/
+    
+    $data = User::where('type', 'user')->get();
+        return Excel::download(new UsersExport($data), 'users.xlsx');
     }
 
+    public function exportCustom() {
+        $data = User::where('type', 'user')->get();
+        return Excel::download(new UsersExportCustom($data), 'users.xlsx')->only('nom', 'email');
+    }
 }

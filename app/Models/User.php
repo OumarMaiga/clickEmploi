@@ -28,7 +28,7 @@ class User extends Authenticatable
         'type',
         'etat',
         'dernier_diplome',
-        'experience_professionnel',
+        'annee_experience',
     ];
 
     /**

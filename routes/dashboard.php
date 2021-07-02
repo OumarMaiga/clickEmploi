@@ -41,6 +41,7 @@ Route::put('/dashboard/user/{email}/changeState', [UserController::class, 'chang
 //Route::get('importExportView', [MyController::class, 'importExportView']);
 Route::get('export', [UserController::class, 'export'])->name('export');
 //Route::post('import', 'MyController@import')->name('import');
+Route::get('exportCustom', [UserController::class, 'exportCustom'])->name('exportCustom');
 
 Route::get('/dashboard/abonnee', [AbonneeController::class, 'index'])->middleware(['auth'])->name('abonnee');
 

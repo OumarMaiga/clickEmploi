@@ -29,5 +29,6 @@ class Diplome extends Model
         'libelle',
         'user_id',
         'slug',
+        'annee_etude',
     ];
 }

@@ -17,6 +17,7 @@ class CreateDiplomesTable extends Migration
             $table->id();
             $table->string('libelle');
             $table->string('slug')->unique();
+            $table->integer('annee_etude');
             $table->foreignId('user_id');
             $table->timestamps();
         });

@@ -29,6 +29,7 @@ class DiplomeController extends Controller
 
         $request->validate([
             'libelle' => 'required|max:255|unique:diplomes',
+            'annee_etude' => 'required|numeric|min:6'
         ]);
 
         $request->merge([
