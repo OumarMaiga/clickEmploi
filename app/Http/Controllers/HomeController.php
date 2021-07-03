@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\OpportuniteRepository;
 use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Auth;
 use App\Models\File;
 use App\Models\Opportunite;
 
@@ -22,8 +22,29 @@ class HomeController extends Controller
     
     public function index()
     {
+        //Tous les offres
         $opportunites = $this->opportuniteRepository->get();
-        return view('pages/home', compact('opportunites'));
+        //Offres par profil
+        $domaine_par_profil = Auth::user()->secteurs()->pluck('id');
+        $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
+        $offre_par_domaine = Opportunite::whereHas('secteurs', function($q) use ($domaine_par_profil) {
+            $q->whereIn('secteurs.id', $domaine_par_profil);
+        })->join('diplomes', 'opportunites.niveau', 'diplomes.id')
+            ->where('annee_etude', '<=', $dernier_diplome_user->annee_etude)
+            ->get([
+                'opportunites.id as id',
+                'title',
+                'echeance',
+                'entreprise_id',
+                'lieu',
+                'type',
+                "opportunites.slug as slug",
+                "opportunites.created_at as created_at",
+            ]);
+
+        /*dd($offre_par_domaine);
+        die();*/
+        return view('pages/home', compact('opportunites', 'offre_par_domaine'));
     }
     
     public function accueil()

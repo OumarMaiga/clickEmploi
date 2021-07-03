@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\File;
 use App\Models\Opportunite;
 use App\Models\Secteur;
+use App\Models\Diplome;
 
 class EmploiController extends Controller
 {
@@ -34,7 +35,8 @@ class EmploiController extends Controller
         $user = Auth::user();
         $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        return view('emplois.create', compact('entreprises', 'domaines'));
+        $diplomes = Diplome::get();
+        return view('emplois.create', compact('entreprises', 'domaines', 'diplomes'));
     }
 
     public function store(Request $request) {
@@ -43,6 +45,7 @@ class EmploiController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'entreprise_id' => 'required',
+            'annee_experience' => 'numeric|between:0,20',
         ]);
 
         $nbreLibelle = Opportunite::where('title', $request->title)->count();
@@ -63,7 +66,7 @@ class EmploiController extends Controller
         
         if ($request->has('secteur')) {
             $secteurs = $request->input('secteur');
-            $relation = $opportunite->secteurs()->sync($secteurs);
+            $opportunite->secteurs()->sync($secteurs);
         }
 
         return redirect('/dashboard/emploi')->withStatus("Nouveau emploi publié");
@@ -71,9 +74,11 @@ class EmploiController extends Controller
 
     public function edit($slug) {
         $emploi = $this->opportuniteRepository->getBySlug($slug);
+        $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
         $user = Auth::user();
+        $diplomes = Diplome::get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        return view('emplois.edit', compact('emploi', 'entreprises'));
+        return view('emplois.edit', compact('emploi', 'entreprises', 'diplomes', 'domaines'));
     }
 
     public function update(Request $request, $id) {
@@ -81,9 +86,15 @@ class EmploiController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'entreprise_id' => 'required',
+            'annee_experience' => 'numeric|between:0,20',
         ]);
         $this->opportuniteRepository->update($id, $request->all());
 
+        if ($request->has('secteur')) {
+            $opportunite = $this->opportuniteRepository->getById($id);
+            $secteurs = $request->input('secteur');
+            $opportunite->secteurs()->sync($secteurs);
+        }
         return redirect('/dashboard/emploi')->withStatus("Emploi a bien été mise à jour");
     }
 
@@ -92,7 +103,25 @@ class EmploiController extends Controller
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
         $secteurs = $opportunite->secteurs->pluck('libelle');
-        return view('emplois.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs'));
+        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome->libelle;
+        $annee_experience = $opportunite->annee_experience;
+        if ($annee_experience == "0.5") {
+            $annee_experience = "6 mois";
+        } elseif($annee_experience == "1") {
+            $annee_experience = "1 an";
+        }elseif($annee_experience == "2") {
+            $annee_experience = "2 ans";
+        }elseif($annee_experience == "3") {
+            $annee_experience = "3 ans";
+        }elseif($annee_experience == "4") {
+            $annee_experience = "4 ans";
+        }elseif($annee_experience == "5") {
+            $annee_experience = "5 ans";
+        }else{
+            $annee_experience = "";
+        }
+                
+        return view('emplois.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs', 'niveau', 'annee_experience'));
     }
     
     public function detail($slug) {
@@ -100,7 +129,25 @@ class EmploiController extends Controller
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $opportunite_similaires = Opportunite::where('poste', $opportunite->poste)->limit(4)->get();
         $secteurs = $opportunite->secteurs->pluck('libelle');
-        return view('pages.detail', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs'));
+        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome->libelle;
+        $annee_experience = $opportunite->annee_experience;
+        if ($annee_experience == "0.5") {
+            $annee_experience = "6 mois";
+        } elseif($annee_experience == "1") {
+            $annee_experience = "1 an";
+        }elseif($annee_experience == "2") {
+            $annee_experience = "2 ans";
+        }elseif($annee_experience == "3") {
+            $annee_experience = "3 ans";
+        }elseif($annee_experience == "4") {
+            $annee_experience = "4 ans";
+        }elseif($annee_experience == "5") {
+            $annee_experience = "5 ans";
+        }else{
+            $annee_experience = "";
+        }
+                
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs', 'niveau', 'annee_experience'));
     }
 
     public function destroy($id) {

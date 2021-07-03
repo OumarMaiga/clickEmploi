@@ -70,7 +70,7 @@
                                 <option value="4">4 ans</option>
                                 <option value="5">5 ans</option>
                             </select>
-                            @error('experience_professionnel')
+                            @error('annee_experience')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

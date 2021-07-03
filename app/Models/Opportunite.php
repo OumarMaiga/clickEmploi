@@ -59,4 +59,9 @@ class Opportunite extends Model
         return $this->belongsTo('App\Models\Entreprise');
     }
     
+    public function diplome() 
+    {
+        return $this->belongsTo('App\Models\Diplome');
+    }
+    
 }

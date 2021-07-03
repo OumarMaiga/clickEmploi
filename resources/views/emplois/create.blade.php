@@ -66,10 +66,25 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <input id="annee_experience" class="form-control" type="text" name="annee_experience" value="{{ old('annee_experience') }}" placeholder="DUREE D'EXPERIENCE REQUIS (2 ans ou 9 mois ...)" />
+                        <label for="annee_experience">Année d'experience</label>
+                        <select name="annee_experience" class="form-control">
+                            <option value="">-- SELECTIONNER ICI --</option>
+                            <option value="0.5">6 mois</option>
+                            <option value="1">1 an</option>
+                            <option value="2">2 ans</option>
+                            <option value="3">3 ans</option>
+                            <option value="4">4 ans</option>
+                            <option value="5">5 ans</option>
+                        </select>
                     </div>
                     <div class="col-md-6">
-                        <input id="niveau" class="form-control" type="text" name="niveau" value="{{ old('niveau') }}" placeholder="NIVEAU D'ETUDE REQUIS" />
+                        <label for="niveau">Niveau</label>
+                        <select name="niveau" class="form-control">
+                            <option value="">-- SELECTIONNER ICI --</option>
+                            @foreach($diplomes as $diplome)
+                                <option value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 

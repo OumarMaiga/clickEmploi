@@ -68,7 +68,13 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <input id="niveau" class="form-control" type="text" name="niveau" value="{{ $stage->niveau }}" placeholder="NIVEAU D'ETUDE REQUIS" />
+                        <label for="niveau">Niveau</label>
+                        <select name="niveau" class="form-control">
+                            <option value="">-- SELECTIONNER ICI --</option>
+                            @foreach($diplomes as $diplome)
+                                <option <?= ($diplome->id == $emploi->niveau) ? "selected=selected" : "" ?> value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <textarea id="content" class="form-control" name="content" value="{{ $stage->content }}" placeholder="DESCRIPTION ...">{{ $stage->content }}</textarea>

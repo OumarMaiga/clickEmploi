@@ -66,16 +66,42 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <input id="annee_experience" class="form-control" type="text" name="annee_experience" value="{{ $emploi->annee_experience }}" placeholder="DUREE D'EXPERIENCE REQUIS (2 ans ou 9 mois ...)" />
+                        <label for="annee_experience">Année d'experience</label>
+                        <select name="annee_experience" class="form-control">
+                            <option value="">-- SELECTIONNER ICI --</option>
+                            <option <?= ($emploi->annee_experience == "0.5") ? "selected=selected" : "" ?> value="0.5">6 mois</option>
+                            <option <?= ($emploi->annee_experience == "1") ? "selected=selected" : "" ?> value="1">5 ans</option>
+                            <option <?= ($emploi->annee_experience == "2") ? "selected=selected" : "" ?> value="2">1 an</option>
+                            <option <?= ($emploi->annee_experience == "3") ? "selected=selected" : "" ?> value="3">2 ans</option>
+                            <option <?= ($emploi->annee_experience == "4") ? "selected=selected" : "" ?> value="4">3 ans</option>
+                            <option <?= ($emploi->annee_experience == "5") ? "selected=selected" : "" ?> value="5">4 ans</option>
+                        </select>
                     </div>
                     <div class="col-md-6">
-                        <input id="niveau" class="form-control" type="text" name="niveau" value="{{ $emploi->niveau }}" placeholder="NIVEAU D'ETUDE REQUIS" />
+                        <label for="niveau">Niveau</label>
+                        <select name="niveau" class="form-control">
+                            <option value="">-- SELECTIONNER ICI --</option>
+                            @foreach($diplomes as $diplome)
+                                <option <?= ($diplome->id == $emploi->niveau) ? "selected=selected" : "" ?> value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
     
                 <div class="row mt-4">    
                     <div class="col-md-12">
-                        <textarea id="content" class="form-control" name="content" value="{{ $emploi->content }}" placeholder="DESCRIPTION ..."></textarea>
+                        <textarea id="content" class="form-control" name="content" value="" placeholder="DESCRIPTION ...">{{ $emploi->content }}</textarea>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        @foreach ($domaines as $domaine)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="{{ $domaine->slug }}" name="secteur[]" value="{{ $domaine->id }}">
+                                <label class="form-check-label" for="{{ $domaine->slug }}">{{ $domaine->libelle }}</label>
+                            </div>
+                        @endforeach    
                     </div>
                 </div>
                 <div class="mt-4">

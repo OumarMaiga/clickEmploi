@@ -5,7 +5,7 @@ body {
     background-color: #cb6b13;
 }
 .logo {
-    width: 100px;
+    width: 70px;
 }
 
 .navbar-brand, .nav-link  {
@@ -17,7 +17,15 @@ body {
     text-decoration: underline;
     color: white;
 }
-
+.photo_profil_nav {
+    position:absolute;
+    width:32px;
+    height:32px;
+    border-radius:50%
+}
+.caret {
+    margin-left: 2rem;
+}
 .main-content {
     padding: 2rem
 }

@@ -65,7 +65,7 @@
                         EXPERIENCE
                     </div>
                     <div class="col-md-9 description">
-                        {{ $opportunite->annee_experience }}
+                        {{ $annee_experience }}
                     </div>
                 </div>
             @endif
@@ -75,7 +75,7 @@
                     NIVEAU D'ETUDE
                 </div>
                 <div class="col-md-9 description">
-                    {{ $opportunite->niveau }}
+                    {{ $niveau }}
                 </div>
             </div>
 
@@ -111,9 +111,7 @@
                     Secteur d'activité:
                 </div>
                 <div class="col-md-9 description">
-                    @foreach ($secteurs as $secteur)
-                        {{ " - ".$secteur }}    
-                    @endforeach 
+                    {{ $secteurs->implode(', ') }}
                 </div>
             </div>
             <div class="row">

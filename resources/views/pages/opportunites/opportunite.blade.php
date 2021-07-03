@@ -69,7 +69,7 @@
                         EXPERIENCE
                     </div>
                     <div class="col-lg-9 col-sm-7 description">
-                        {{ $opportunite->annee_experience }}
+                        {{ $annee_experience }}
                     </div>
                 </div>
             @endif
@@ -79,7 +79,7 @@
                     NIVEAU D'ETUDE
                 </div>
                 <div class="col-lg-9 col-sm-7 description">
-                    {{ $opportunite->niveau }}
+                    {{ $niveau }}
                 </div>
             </div>
 
@@ -110,6 +110,14 @@
                     </div>
                 </div>
             @endif
+            <div class="row">
+                <div class="col-md-3 resume-title">
+                    Secteur d'activité:
+                </div>
+                <div class="col-md-9 description">
+                    {{ $secteurs->implode(', ') }}
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-md-12 resume-title">

@@ -101,7 +101,7 @@ class FormationController extends Controller
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $opportunite_similaires = Opportunite::where('title', $opportunite->title)->limit(4)->get();
         $secteurs = $opportunite->secteurs->pluck('libelle');
-        return view('pages.detail', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs'));
     }
 
     public function destroy($id) {

@@ -10,6 +10,7 @@ use App\Repositories\PostuleRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Models\File;
 use App\Models\Opportunite;
+use App\Models\Diplome;
 use App\Models\Secteur;
 
 class StageController extends Controller
@@ -35,7 +36,8 @@ class StageController extends Controller
         $user = Auth::user();
         $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        return view('stages.create', compact('entreprises', 'domaines'));
+        $diplomes = Diplome::all();
+        return view('stages.create', compact('entreprises', 'domaines', 'diplomes'));
     }
 
     public function store(Request $request) {
@@ -94,7 +96,9 @@ class StageController extends Controller
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
         $secteurs = $opportunite->secteurs->pluck('libelle');
-        return view('stages.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs'));
+        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome->libelle;
+                
+        return view('stages.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs', 'niveau'));
     }
 
     public function detail($slug) {
@@ -102,7 +106,25 @@ class StageController extends Controller
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $opportunite_similaires = Opportunite::where('poste', $opportunite->poste)->limit(4)->get();
         $secteurs = $opportunite->secteurs->pluck('libelle');
-        return view('pages.detail', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs'));
+        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome->libelle;
+        $annee_experience = $opportunite->annee_experience;
+        if ($annee_experience == "0.5") {
+            $annee_experience = "6 mois";
+        } elseif($annee_experience == "1") {
+            $annee_experience = "1 an";
+        }elseif($annee_experience == "2") {
+            $annee_experience = "2 ans";
+        }elseif($annee_experience == "3") {
+            $annee_experience = "3 ans";
+        }elseif($annee_experience == "4") {
+            $annee_experience = "4 ans";
+        }elseif($annee_experience == "5") {
+            $annee_experience = "5 ans";
+        }else{
+            $annee_experience = "";
+        }
+                
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs', 'niveau'));
     }
 
     public function destroy($id) {
