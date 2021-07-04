@@ -158,6 +158,27 @@ class EmploiController extends Controller
     public function list()
     {
         $opportunites = $this->opportuniteRepository->getByType('emploi');
-        return view('pages/home', compact('opportunites'));
+        if (Auth::check()) {
+            //Offres par profil
+            $domaine_par_profil = Auth::user()->secteurs()->pluck('id');
+            $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
+            $offre_par_domaine = Opportunite::where('type', 'emploi')->whereHas('secteurs', function($q) use ($domaine_par_profil) {
+                $q->whereIn('secteurs.id', $domaine_par_profil);
+            })->join('diplomes', 'opportunites.niveau', 'diplomes.id')
+                ->where('annee_etude', '<=', $dernier_diplome_user->annee_etude)
+                ->get([
+                    'opportunites.id as id',
+                    'title',
+                    'echeance',
+                    'entreprise_id',
+                    'lieu',
+                    'type',
+                    "opportunites.slug as slug",
+                    "opportunites.created_at as created_at",
+                ]);
+            }else{
+                $offre_par_domaine = Opportunite::where('id', '0')->get();
+            }
+        return view('pages/opportunites/emplois', compact('opportunites', 'offre_par_domaine'));
     }
 }

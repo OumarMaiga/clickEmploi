@@ -62,7 +62,7 @@
                         <div class="form-group col-md-6">
                             <label for="diplome">Année d'experience</label>
                             <select name="annee_experience" class="form-control">
-                                <option value="">-- SELECTIONNER ICI --</option>
+                                <option value="0">-- SELECTIONNER ICI --</option>
                                 <option value="0.5">6 mois</option>
                                 <option value="1">1 an</option>
                                 <option value="2">2 ans</option>

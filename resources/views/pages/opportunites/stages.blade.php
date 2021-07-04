@@ -8,12 +8,13 @@
                 @if(Auth::check())
                     <div class="offre-block-number">
                         <div class="offre-block-number-up">
-                            <span class="fas fa-suitcase offre-block-number-icon"></span><span class="offre-block-number-word"> {{ $offre_par_domaine->count() }} Offre<?= ($offre_par_domaine->count() > 1) ? "s " : "" ?></span> 
+                            <span class="fas fa-suitcase offre-block-number-icon"></span><span class="offre-block-number-word"> {{ $offre_par_domaine->count() }} Offre<?= ($offre_par_domaine->count() > 1) ? "s " : "" ?> de stage</span> 
                         </div>
                         <div class="offre-block-number-down">
                             correspond à votre profil
                         </div>
                     </div>
+                @endif
                     @foreach ($offre_par_domaine as $opportunite )
                         <?php $entreprise = $opportunite->entreprise()->associate($opportunite->entreprise_id)->entreprise; ?>
                             <div class="offre-item row mx-0" style="background-color:#F5FFFF;">
@@ -49,7 +50,7 @@
                             </div>
                         </div> 
                     @endforeach
-                @endif
+                    
                 @include('layouts.list_opportunite')
             </div>
         </div>

@@ -112,6 +112,6 @@ class FormationController extends Controller
     public function list()
     {
         $opportunites = $this->opportuniteRepository->getByType('formation');
-        return view('pages/home', compact('opportunites'));
+        return view('pages/opportunites/formations', compact('opportunites'));
     }
 }

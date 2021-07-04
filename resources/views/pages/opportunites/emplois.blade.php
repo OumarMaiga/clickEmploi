@@ -8,7 +8,7 @@
                 @if(Auth::check())
                     <div class="offre-block-number">
                         <div class="offre-block-number-up">
-                            <span class="fas fa-suitcase offre-block-number-icon"></span><span class="offre-block-number-word"> {{ $offre_par_domaine->count() }} Offre<?= ($offre_par_domaine->count() > 1) ? "s " : "" ?></span> 
+                            <span class="fas fa-suitcase offre-block-number-icon"></span><span class="offre-block-number-word"> {{ $offre_par_domaine->count() }} Offre<?= ($offre_par_domaine->count() > 1) ? "s " : "" ?> d'emploi</span> 
                         </div>
                         <div class="offre-block-number-down">
                             correspond à votre profil
@@ -49,7 +49,7 @@
                             </div>
                         </div> 
                     @endforeach
-                @endif
+                @endif                    
                 @include('layouts.list_opportunite')
             </div>
         </div>
