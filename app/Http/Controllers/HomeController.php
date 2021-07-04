@@ -8,6 +8,7 @@ use App\Repositories\OpportuniteRepository;
 use App\Repositories\UserRepository;
 use App\Models\File;
 use App\Models\Opportunite;
+use App\Models\Secteur;
 
 
 class HomeController extends Controller
@@ -28,10 +29,16 @@ class HomeController extends Controller
             //Offres par profil
             $domaine_par_profil = Auth::user()->secteurs()->pluck('id');
             $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
+            //Verifier si le diplome existe
+            if($dernier_diplome_user) {
+                $annee_etude = $dernier_diplome_user->annee_etude;         
+            } else {
+                $annee_etude = 0;
+            }
             $offre_par_domaine = Opportunite::whereHas('secteurs', function($q) use ($domaine_par_profil) {
                 $q->whereIn('secteurs.id', $domaine_par_profil);
             })->join('diplomes', 'opportunites.niveau', 'diplomes.id')
-                ->where('annee_etude', '<=', $dernier_diplome_user->annee_etude)
+                ->where('annee_etude', '<=', $annee_etude)
                 ->get([
                     'opportunites.id as id',
                     'title',
@@ -42,6 +49,7 @@ class HomeController extends Controller
                     "opportunites.slug as slug",
                     "opportunites.created_at as created_at",
                 ]);
+                        
             }else{
                 $offre_par_domaine = Opportunite::where('id', '0')->get();
             }
@@ -64,8 +72,10 @@ class HomeController extends Controller
 
     public function edit_profil() {
         $user = Auth::user();
+        $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
+        $user_domaine = $user->secteurs()->pluck('id')->toArray();
         $photo = photo_profil($user->email);
-        return view('pages.edit_profil', compact('user', 'photo'));
+        return view('pages.edit_profil', compact('user', 'photo', 'domaines', 'user_domaine'));
     }
 
     public function update_profil($id, Request $request) {

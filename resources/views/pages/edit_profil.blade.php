@@ -39,8 +39,16 @@
                             <textarea id="adresse" class="form-control" type="text" name="adresse" placeholder="ADRESSE">{{ $user->adresse }}</textarea>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="experience_professionnel">Durée d'experience professionnel</label>
-                            <input id="experience_professionnel" class="form-control" type="text" name="experience_professionnel" value="{{ $user->experience_professionnel }}" placeholder="Ex: 2 ans, 6 mois ..." />
+                            <label for="diplome">Année d'experience</label>
+                            <select name="annee_experience" class="form-control">
+                                <option value="0">-- SELECTIONNER ICI --</option>
+                                <option value="0.5">6 mois</option>
+                                <option value="1">1 an</option>
+                                <option value="2">2 ans</option>
+                                <option value="3">3 ans</option>
+                                <option value="4">4 ans</option>
+                                <option value="5">5 ans</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -53,6 +61,24 @@
                         <div class="form-group col-md-6">
                             <label for="">Ajouter votre CV</label>
                             <input type="file" placeholder="Selection votre cv" name="cv" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label for="diplome">Secteur d'activité</label>
+                        <div class="form-group col-md-12">
+                            @foreach ($domaines as $domaine)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="{{ $domaine->slug }}" name="secteur[]" value="{{ $domaine->id }}" <?= (in_array($domaine->id, $user_domaine)) ? 'checked' : "" ?> >
+                                    <label class="form-check-label" for="{{ $domaine->slug }}">{{ $domaine->libelle }}</label>
+                                </div>
+                            @endforeach                            
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
 

@@ -53,10 +53,6 @@ class User extends Authenticatable
     public function secteurs() {
         return $this->belongsToMany('App\Models\Secteur');
     }
-
-    public function domaines() {
-        return $this->belongsToMany('App\Models\Secteur');
-    } 
     
     public function opportunites() 
     {

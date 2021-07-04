@@ -162,10 +162,15 @@ class EmploiController extends Controller
             //Offres par profil
             $domaine_par_profil = Auth::user()->secteurs()->pluck('id');
             $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
+            if($dernier_diplome_user) {
+                $annee_etude = $dernier_diplome_user->annee_etude;         
+            } else {
+                $annee_etude = 0;
+            }
             $offre_par_domaine = Opportunite::where('type', 'emploi')->whereHas('secteurs', function($q) use ($domaine_par_profil) {
                 $q->whereIn('secteurs.id', $domaine_par_profil);
             })->join('diplomes', 'opportunites.niveau', 'diplomes.id')
-                ->where('annee_etude', '<=', $dernier_diplome_user->annee_etude)
+                ->where('annee_etude', '<=', $annee_etude)
                 ->get([
                     'opportunites.id as id',
                     'title',
