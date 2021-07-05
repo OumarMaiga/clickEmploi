@@ -7,6 +7,7 @@ use App\Http\Controllers\StageController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\DiplomeController;
 use App\Http\Controllers\SecteurController;
+use App\Http\Controllers\ActiviteController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AbonneeController;
@@ -30,6 +31,9 @@ Route::resource('/dashboard/diplome', DiplomeController::class)->middleware(['au
 
 //SECTEUR
 Route::resource('/dashboard/secteur', SecteurController::class)->middleware(['auth']);
+
+//Activité
+Route::resource('/dashboard/activite', ActiviteController::class)->middleware(['auth']);
 
 //ENTREPRISE
 Route::resource('/dashboard/entreprise', EntrepriseController::class)->middleware(['auth']);

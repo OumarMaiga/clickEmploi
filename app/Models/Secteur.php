@@ -22,7 +22,6 @@ class Secteur extends Model
     protected $fillable = [
         'libelle',
         'user_id',
-        'categorie',
         'slug',
     ];
 

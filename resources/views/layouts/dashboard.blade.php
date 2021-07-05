@@ -76,6 +76,11 @@
                                     <i class="fas fa-award icon-sidebar"></i><span class="d-none d-lg-inline-block">DOMAINE</span>
                                 </a>
                             </li>
+                            <li class="sidebar-item">
+                                <a href="{{ route('activite.index') }}" class="sidebar-link">
+                                    <i class="fas fa-award icon-sidebar"></i><span class="d-none d-lg-inline-block">ACTIVITE</span>
+                                </a>
+                            </li>
                         @endif
                         <li class="sidebar-item">
                             <a href="{{ route('entreprise.index') }}" class="sidebar-link">

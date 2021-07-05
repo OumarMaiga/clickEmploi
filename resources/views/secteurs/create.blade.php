@@ -15,10 +15,7 @@
                 <!-- Email Address -->
                 <div class="row">
                     <div class="col-md-6">
-                        <input id="categorie" class="form-control" type="text" name="categorie" value="{{ old('categorie') }}" placeholder="DOMAINE D'ACTIVITE" required />
-                    </div>
-                    <div class="col-md-6">
-                        <input id="libelle" class="form-control" type="text" name="libelle" value="{{ old('libelle') }}" placeholder="ACTIVITE SPECIFIQUE" />
+                        <input id="libelle" class="form-control" type="text" name="libelle" value="{{ old('libelle') }}" placeholder="DOMAINE D'ACTIVITE" />
                     </div>
                 </div>
     

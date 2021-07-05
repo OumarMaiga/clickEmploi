@@ -45,23 +45,26 @@ class DatabaseSeeder extends Seeder
      ])->save();
 
      \App\Models\Secteur::create([
-        'libelle' => 'Developpement web',
-        'slug' => 'developpement-web',
-        'categorie' => 'Informatique',
+        'libelle' => 'Informatique',
+        'slug' => 'informatique',
         'user_id' => 1,
     ])->save();
 
     \App\Models\Secteur::create([
-       'libelle' => 'Design graphique',
-       'slug' => 'design-graphique',
-       'categorie' => 'Informatique',
+       'libelle' => 'Commerce',
+       'slug' => 'commerce',
        'user_id' => 1,
    ])->save();
 
+   \App\Models\Secteur::create([
+      'libelle' => 'Administration',
+      'slug' => 'administration',
+      'user_id' => 1,
+  ])->save();
+
     \App\Models\Secteur::create([
-       'libelle' => 'Cardiologie',
-       'slug' => 'cardiologie',
-       'categorie' => 'Medecine',
+       'libelle' => 'Sante',
+       'slug' => 'sante',
        'user_id' => 1,
    ])->save();
         
