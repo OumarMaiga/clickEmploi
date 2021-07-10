@@ -7,8 +7,10 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromArray;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class UsersExport implements FromCollection, WithMapping, WithHeadings, FromArray
+class UsersExport implements WithHeadings, FromCollection
 {
 
     private $data;
@@ -17,37 +19,51 @@ class UsersExport implements FromCollection, WithMapping, WithHeadings, FromArra
     {
         $this->data = $data;
     }
-    
-    /**
-    * @return \Illuminate\Support\Collection
-    */
     public function collection()
     {
-        return  User::where('type', 'user')->get();
+        if($this->data != null){
+            $users = $this->data;
+        } else {
+            $users = User::where('type', 'user')->get();
+        } 
+        return  $users->map(function($user){
+            $secteurs = $user->secteurs()->get();
+            $diplome = $user->diplome()->associate($user->dernier_diplome)->diplome;
+            return [
+                $user->nom,
+                $user->prenom,
+                $user->email,
+                $diplome != null ? $diplome->libelle : "",
+                $secteurs->implode('libelle', ', '),
+            ];
+        });
     }
     
-    public function map($user): array
-    {
-        return [
-            $user->nom,
-            $user->email,
-        ];
-    }
     
     public function headings(): array
     {
         return [
             'nom',
+            'prenom',
             'email',
+            'Niveau d\'étude',
+            'Domaine d\'activité'
         ];
     }
 
-    public function array(): array
+    /*public function map($data): array
     {
         return [
-            [1, 2, 3],
-            [4, 5, 6]
+            $data->nom,
+            $data->email,
         ];
     }
+    
+    public function view(): View
+    {
+        return view('dashboards.users.table', [
+            'users' => $this->data
+        ]);
+    }*/
 
 }

@@ -14,11 +14,8 @@
                 @method('put')
                 <!-- Email Address -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <input id="title" class="form-control" type="text" name="title" value="{{ $emploi->title }}" placeholder="TITRE" required autofocus />
-                    </div>
-                    <div class="col-md-6">
-                        <input id="poste" class="form-control" type="text" name="poste" value="{{ $emploi->poste }}" placeholder="POSTE" />
                     </div>
                 </div>
 

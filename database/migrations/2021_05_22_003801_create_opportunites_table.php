@@ -16,7 +16,6 @@ class CreateOpportunitesTable extends Migration
         Schema::create('opportunites', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('poste')->nullable();
             $table->string('slug')->unique();
             $table->foreignId('user_id');
             $table->text('content')->nullable();

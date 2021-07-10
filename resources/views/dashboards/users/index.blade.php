@@ -55,13 +55,13 @@
                         @foreach ($users as $user)
                             <?php 
                                 $n = $n + 1;
-                                $domaines = $user->domaines()->get();
+                                $secteurs = $user->secteurs()->get();
                                 $diplome = $user->diplome()->associate($user->dernier_diplome)->diplome;
                             ?>
                             <tr>
                                 <th scope="row">{{ $n }}</th>
                                 <td>{{ $user->nom." ".$user->prenom }}</td>
-                                <td>{{ $domaines->implode('libelle', ', ') }}</td>
+                                <td>{{ $secteurs->implode('libelle', ', ') }}</td>
                                 <td>{{ $diplome != null ? $diplome->libelle : "" }}</td>
                                 <td>{{ $user->experience_professionnel }}</td>
                                 <td class="justify-content-between icon-content">
@@ -74,9 +74,7 @@
                         @endforeach
                     </tbody>
                 </table>
-
-                <a class="btn btn-warning float-right" href="{{ route('exportCustom') }}">Export User Data Custom</a>
-                <a class="btn btn-warning float-right" href="{{ route('export') }}">Export User Data</a>
+                <a class="btn btn-warning float-right"href="{{ route('export') }}">Export User Data</a>
             </form>
         </div>
     </div>

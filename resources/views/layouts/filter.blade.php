@@ -1,18 +1,18 @@
 <?php
-    $postes = App\Models\Opportunite::select('id', 'slug', 'poste')->limit(5)->get();
+    $secteurs = App\Models\Secteur::select('id', 'slug', 'libelle')->limit(5)->get();
 ?>
 <div class="filtre-container">
     <h3 class="filtre-title">FILTRE</h3>
     <div class="filtre-content">
         <form action="{{ route('filtre') }}" method="GET">
-            <h5 class="filtre-subtitle">POSTE</h5>
+            <h5 class="filtre-subtitle">DOMAINE</h5>
             <div class="filtre-list">
                 <div class="filtre-item-list">
-                    @foreach ($postes as $poste)
+                    @foreach ($secteurs as $secteur)
                         <div class="form-check filtre-item">
-                            <input class="form-check-input" type="checkbox" name="poste[]" value="{{ $poste->poste }}" id="{{ $poste->slug }}">
-                            <label class="form-check-label" for="{{ $poste->slug }}">
-                                {{ $poste->poste }}
+                            <input class="form-check-input" type="checkbox" name="secteur[]" value="{{ $secteur->id }}" id="{{ $secteur->slug }}">
+                            <label class="form-check-label" for="{{ $secteur->slug }}">
+                                {{ $secteur->libelle }}
                             </label>
                         </div>
                     @endforeach
@@ -66,6 +66,9 @@
                     </div>
                 </div>
             </div>
+            <!--<div class="mt-4">
+                <input type="submit" class="btn btn-custom" value="Click !!!">
+            </div>-->
         </form>
     </div>
 </div>
@@ -73,9 +76,9 @@
     $(document).ready(function() {
         var contrat = [];
         var date = '';
-        var poste = [];
+        var secteur = [];
 
-        $('input[name="poste[]"]').on('change', function(e) {
+        $('input[name="secteur[]"]').on('change', function(e) {
             e.preventDefault();
             result();
         });
@@ -91,9 +94,9 @@
         });
 
         function result() {
-            poste = [];
-            $('input[name="poste[]"]:checked').each(function() {
-                poste.push($(this).val());
+            secteur = [];
+            $('input[name="secteur[]"]:checked').each(function() {
+                secteur.push($(this).val());
             });
 
             contrat = [];
@@ -106,7 +109,7 @@
                 date = $(this).val();
             });
 
-            $.get('/filtre', {poste: poste, contrat: contrat, date: date}, function(markup) {
+            $.get('/filtre', {secteur: secteur, contrat: contrat, date: date}, function(markup) {
                 $('.list').html(markup);
             }); 
         }

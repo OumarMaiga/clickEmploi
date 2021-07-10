@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
 use App\Repositories\OpportuniteRepository;
 use App\Repositories\EntrepriseRepository;
 use App\Repositories\PostuleRepository;
-use Illuminate\Support\Facades\Auth;
+
 use App\Models\File;
 use App\Models\Opportunite;
 use App\Models\Secteur;
+use App\Models\Diplome;
 
 class FormationController extends Controller
 {
@@ -33,8 +36,9 @@ class FormationController extends Controller
     public function create() {
         $user = Auth::user();
         $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
+        $diplomes = Diplome::get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        return view('formations.create', compact('entreprises', 'domaines'));
+        return view('formations.create', compact('entreprises', 'domaines', 'diplomes'));
     }
 
     public function store(Request $request) {
@@ -72,9 +76,10 @@ class FormationController extends Controller
 
     public function edit($slug) {
         $formation = $this->opportuniteRepository->getBySlug($slug);
+        $diplomes = Diplome::get();
         $user = Auth::user();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        return view('formations.edit', compact('formation', 'entreprises'));
+        return view('formations.edit', compact('formation', 'entreprises', 'diplomes'));
     }
 
     public function update(Request $request, $id) {
@@ -93,25 +98,31 @@ class FormationController extends Controller
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
         $secteurs = $opportunite->secteurs->pluck('libelle');
-        return view('formations.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs'));
+        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
+        return view('formations.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs', 'niveau'));
     }
-    
+
     public function detail($slug) {
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $opportunite_similaires = Opportunite::where('title', $opportunite->title)->limit(4)->get();
         $secteurs = $opportunite->secteurs->pluck('libelle');
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs'));
+        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs', 'niveau'));
     }
 
     public function destroy($id) {
 		$this->opportuniteRepository->destroy($id);
         return redirect()->back();
     }
-    
+
     public function list()
     {
         $opportunites = $this->opportuniteRepository->getByType('formation');
+        $offre_par_profil = $this->offre_par_profil();
+        return view('pages/opportunites/formations', compact('opportunites', 'offre_par_profil'));
+    }
+    public function offre_par_profil() {
         if (Auth::check()) {
             //Offres par profil
             $domaine_par_profil = Auth::user()->secteurs()->pluck('id');
@@ -121,7 +132,7 @@ class FormationController extends Controller
             } else {
                 $annee_etude = 0;
             }
-            $offre_par_domaine = Opportunite::where('type', 'formation')->whereHas('secteurs', function($q) use ($domaine_par_profil) {
+            $offre_par_profil = Opportunite::where('type', 'formation')->whereHas('secteurs', function($q) use ($domaine_par_profil) {
                 $q->whereIn('secteurs.id', $domaine_par_profil);
             })->get([
                     'opportunites.id as id',
@@ -133,9 +144,9 @@ class FormationController extends Controller
                     "opportunites.slug as slug",
                     "opportunites.created_at as created_at",
                 ]);
-            }else{
-                $offre_par_domaine = Opportunite::where('id', '0')->get();
-            }
-        return view('pages/opportunites/formations', compact('opportunites', 'offre_par_domaine'));
+        }else{
+            $offre_par_profil = Opportunite::where('id', '0')->get();
+        }
+        return $offre_par_profil;
     }
 }

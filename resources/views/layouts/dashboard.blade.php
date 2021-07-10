@@ -65,23 +65,6 @@
                                 </a>
                             </li>
                         </div>
-                        @if (Auth::user()->type == "admin")
-                            <li class="sidebar-item">
-                                <a href="{{ route('diplome.index') }}" class="sidebar-link">
-                                    <i class="fas fa-graduation-cap icon-sidebar"></i><span class="d-none d-lg-inline-block">DIPLOME</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="{{ route('secteur.index') }}" class="sidebar-link">
-                                    <i class="fas fa-award icon-sidebar"></i><span class="d-none d-lg-inline-block">DOMAINE</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="{{ route('activite.index') }}" class="sidebar-link">
-                                    <i class="fas fa-award icon-sidebar"></i><span class="d-none d-lg-inline-block">ACTIVITE</span>
-                                </a>
-                            </li>
-                        @endif
                         <li class="sidebar-item">
                             <a href="{{ route('entreprise.index') }}" class="sidebar-link">
                                 <i class="fas fa-building icon-sidebar"></i><span class="d-none d-lg-inline-block">ENTREPRISE</span>
@@ -99,6 +82,13 @@
                                 <i class="fas fa-users icon-sidebar"></i><span class="d-none d-lg-inline-block">UTILISATEUR</span>
                             </a>
                         </li>
+                        @if (Auth::user()->type == "admin")
+                            <li class="sidebar-item">
+                                <a href="{{ route('config') }}" class="sidebar-link">
+                                    <i class="fas fa-cog icon-sidebar"></i><span class="d-none d-lg-inline-block">CONFIGURATION</span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>

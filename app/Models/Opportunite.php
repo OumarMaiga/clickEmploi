@@ -17,7 +17,6 @@ class Opportunite extends Model
      */
     protected $fillable = [
         'title',
-        'poste',
         'slug',
         'content',
         'entreprise_id',

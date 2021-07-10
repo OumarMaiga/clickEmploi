@@ -52,3 +52,5 @@ Route::get('/dashboard/abonnee', [AbonneeController::class, 'index'])->middlewar
 Route::get('/dashboard/{email}/abonnee', [AbonneeController::class, 'show'])->middleware(['auth'])->name('abonnee.show');
 
 Route::delete('/dashboard/destroy/{id}', [AbonneeController::class, 'destroy'])->middleware(['auth'])->name('abonnee.destroy');
+
+Route::get('/dashboard/config', [HomeController::class, 'config'])->name('config');

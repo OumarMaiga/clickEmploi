@@ -1,12 +1,11 @@
-<table class="table table-hover">
+<table>
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Prenom & Nom</th>
-            <th scope="col">Domaine d'activité</th>
-            <th scope="col">Niveau d'étude</th>
-            <th scope="col">Durée d'experience</th>
-            <th scope="col">Action</th>
+            <th>#</th>
+            <th>Prenom & Nom</th>
+            <th>Domaine d'activité</th>
+            <th>Niveau d'étude</th>
+            <th>Durée d'experience</th>
         </tr>
     </thead>
     <tbody>
@@ -14,21 +13,15 @@
         @foreach ($users as $user)
             <?php 
                 $n = $n + 1;
-                $domaines = $user->domaines()->get();
+                $secteurs = $user->secteurs()->get();
                 $diplome = $user->diplome()->associate($user->dernier_diplome)->diplome;
             ?>
             <tr>
-                <th scope="row">{{ $n }}</th>
+                <th>{{ $n }}</th>
                 <td>{{ $user->nom." ".$user->prenom }}</td>
-                <td>{{ $domaines->implode('libelle', ', ') }}</td>
+                <td>{{ $secteurs->implode('libelle', ', ') }}</td>
                 <td>{{ $diplome != null ? $diplome->libelle : "" }}</td>
                 <td>{{ $user->experience_professionnel }}</td>
-                <td class="justify-content-between icon-content">
-                    <a href="{{ route('user.show', $user->email) }}" class="col icon-action detail">
-                        <span class="fas fa-info">
-                        </span>
-                    </a>                                
-                </td>
             </tr>
         @endforeach
     </tbody>

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Models\Secteur;
 use App\Models\Diplome;
 use App\Models\User;
+
+use App\Repositories\UserRepository;
 
 use App\Exports\UsersExport;
 use App\Exports\UsersExportCustom;
@@ -82,37 +84,15 @@ class UserController extends Controller
         $secteurs = Secteur::orderBy('libelle', 'asc')->get();
         $diplomes = Diplome::orderBy('libelle', 'asc')->get();
 
+        $request->session()->flash('filter_user', $users);
+
         return view('dashboards.users.index', compact('users', 'secteurs', 'diplomes'));
     }
 
     public function export() {
-        /*$data = User::where('type', 'user')->get();
-        $data_array[] = array('Prenom & Nom','Domaine d\'activité', 'Niveau d\'étude', 'Durée d\'experience');
-
-        foreach ($data as $value) {
-            $data_array[] = array(
-                'Prenom & Nom' => $value->prenom." ".$value->nom,
-                'Domaine d\'activité' => $value->prenom,
-                'Niveau d\'étude' => $value->dernier_diplome,
-                'Durée d\'experience' => $value->experience_professionnel,
-            );
-        }
-        Excel::create('Utilisateur', function($excel) use($data_array){
-            $excel->setTitle('Users');
-            $excel->sheet('Données user', function($sheet) use ($data_array){
-                $sheet->fromArray($data_array, null, 'A1', false, false);
-            });
-        })->download('xslx');*/
-    /*return [
-        (new UsersExport)->withFilename('users-' . time() . '.xlsx'),
-    ];*/
     
-    $data = User::where('type', 'user')->get();
+        $data = Session::get('filter_user');
         return Excel::download(new UsersExport($data), 'users.xlsx');
     }
 
-    public function exportCustom() {
-        $data = User::where('type', 'user')->get();
-        return Excel::download(new UsersExportCustom($data), 'users.xlsx')->only('nom', 'email');
-    }
 }

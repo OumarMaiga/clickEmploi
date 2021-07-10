@@ -1,6 +1,6 @@
 @foreach ($opportunites as $opportunite)
     <?php
-        if($offre_par_domaine->isEmpty() || !$offre_par_domaine->contains('id', $opportunite->id)) {
+        if($offre_par_profil->isEmpty() || !$offre_par_profil->contains('id', $opportunite->id)) {
         
             $entreprise = $opportunite->entreprise()->associate($opportunite->entreprise_id)->entreprise;
     ?>
@@ -36,5 +36,7 @@
 
             </div>
         </div>
-    <?php } ?>
+    <?php 
+        }
+    ?>
 @endforeach

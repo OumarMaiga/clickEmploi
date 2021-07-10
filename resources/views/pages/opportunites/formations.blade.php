@@ -8,13 +8,13 @@
                 @if(Auth::check())
                     <div class="offre-block-number">
                         <div class="offre-block-number-up">
-                            <span class="fas fa-suitcase offre-block-number-icon"></span><span class="offre-block-number-word"> {{ $offre_par_domaine->count() }} Formation<?= ($offre_par_domaine->count() > 1) ? "s " : "" ?></span> 
+                            <span class="fas fa-suitcase offre-block-number-icon"></span><span class="offre-block-number-word"> {{ $offre_par_profil->count() }} Formation<?= ($offre_par_profil->count() > 1) ? "s " : "" ?></span> 
                         </div>
                         <div class="offre-block-number-down">
                             correspond à votre profil
                         </div>
                     </div>
-                    @foreach ($offre_par_domaine as $opportunite )
+                    @foreach ($offre_par_profil as $opportunite )
                         <?php $entreprise = $opportunite->entreprise()->associate($opportunite->entreprise_id)->entreprise; ?>
                             <div class="offre-item row mx-0" style="background-color:#F5FFFF;">
                             <div class="col-lg-2 col-md-3 px-0 add-padding">

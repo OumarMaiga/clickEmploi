@@ -19,4 +19,8 @@ class Activite extends Model
     public function secteur() {
         return $this->belongsTo('App\Models\Secteur');
     }
+
+    public function users() {
+        return $this->belongsToMany('App\Models\User');
+    }
 }

@@ -103,7 +103,7 @@ class EmploiController extends Controller
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
         $secteurs = $opportunite->secteurs->pluck('libelle');
-        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome->libelle;
+        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
         $annee_experience = $opportunite->annee_experience;
         if ($annee_experience == "0.5") {
             $annee_experience = "6 mois";
@@ -129,7 +129,7 @@ class EmploiController extends Controller
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $opportunite_similaires = Opportunite::where('poste', $opportunite->poste)->limit(4)->get();
         $secteurs = $opportunite->secteurs->pluck('libelle');
-        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome->libelle;
+        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
         $annee_experience = $opportunite->annee_experience;
         if ($annee_experience == "0.5") {
             $annee_experience = "6 mois";
@@ -158,6 +158,10 @@ class EmploiController extends Controller
     public function list()
     {
         $opportunites = $this->opportuniteRepository->getByType('emploi');
+        $offre_par_profil = $this->offre_par_profil();
+        return view('pages/opportunites/emplois', compact('opportunites', 'offre_par_profil'));
+    }
+    public function offre_par_profil() {
         if (Auth::check()) {
             //Offres par profil
             $domaine_par_profil = Auth::user()->secteurs()->pluck('id');
@@ -167,7 +171,7 @@ class EmploiController extends Controller
             } else {
                 $annee_etude = 0;
             }
-            $offre_par_domaine = Opportunite::where('type', 'emploi')->whereHas('secteurs', function($q) use ($domaine_par_profil) {
+            $offre_par_profil = Opportunite::where('type', 'emploi')->whereHas('secteurs', function($q) use ($domaine_par_profil) {
                 $q->whereIn('secteurs.id', $domaine_par_profil);
             })->join('diplomes', 'opportunites.niveau', 'diplomes.id')
                 ->where('annee_etude', '<=', $annee_etude)
@@ -181,9 +185,9 @@ class EmploiController extends Controller
                     "opportunites.slug as slug",
                     "opportunites.created_at as created_at",
                 ]);
-            }else{
-                $offre_par_domaine = Opportunite::where('id', '0')->get();
-            }
-        return view('pages/opportunites/emplois', compact('opportunites', 'offre_par_domaine'));
+        }else{
+            $offre_par_profil = Opportunite::where('id', '0')->get();
+        }
+        return $offre_par_profil;
     }
 }

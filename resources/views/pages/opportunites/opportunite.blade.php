@@ -79,7 +79,7 @@
                     NIVEAU D'ETUDE
                 </div>
                 <div class="col-lg-9 col-sm-7 description">
-                    {{ $niveau }}
+                    {{ ($niveau != null) ? $niveau->libelle : "" }}
                 </div>
             </div>
 

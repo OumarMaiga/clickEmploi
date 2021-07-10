@@ -1,7 +1,7 @@
 <x-dashboard-layout>
     <div class="dashboard-content">
         <div class="container content">
-            <div class="content-title">{{ __('CREATION DE FORATION') }}</div>
+            <div class="content-title">{{ __('CREATION DE FORMATION') }}</div>
         
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -18,7 +18,13 @@
                         <input id="title" class="form-control" type="text" name="title" value="{{ old('title') }}" placeholder="TITRE" required autofocus />
                     </div>
                     <div class="col-md-6">
-                        <input id="niveau" class="form-control" type="text" name="niveau" value="{{ old('niveau') }}" placeholder="NIVEAU D'ETUDE REQUIS" />
+                        <label for="niveau">Niveau</label>
+                        <select name="niveau" class="form-control">
+                            <option value="">-- SELECTIONNER ICI --</option>
+                            @foreach($diplomes as $diplome)
+                                <option value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
