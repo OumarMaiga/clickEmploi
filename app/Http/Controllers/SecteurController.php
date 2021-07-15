@@ -17,7 +17,7 @@ class SecteurController extends Controller
     }
 
     public function index() {
-        $secteurs = $this->secteurRepository->get();
+        $secteurs = $this->secteurRepository->get()->sortBy('libelle');
         return view('secteurs.index', compact('secteurs'));
     }
 

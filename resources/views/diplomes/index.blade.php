@@ -15,6 +15,7 @@
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Diplome</th>
+                    <th scope="col">Année d'étude</th>
                     <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -25,6 +26,7 @@
                         <tr>
                             <th scope="row">{{ $n }}</th>
                             <td>{{ $diplome->libelle }}</td>
+                            <td>{{ $diplome->annee_etude }}ans</td>
                             <td class="justify-content-between icon-content">
                                 <a href="{{ route('diplome.edit', $diplome->libelle) }}" class="col icon-action icon-edit">
                                     <span class="fas fa-user-edit edit">

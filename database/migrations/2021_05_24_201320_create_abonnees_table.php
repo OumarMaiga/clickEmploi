@@ -16,7 +16,7 @@ class CreateAbonneesTable extends Migration
         Schema::create('abonnees', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->reference('id')->on('users');
             $table->boolean('etat')->default(true);
             $table->datetime('date_fin');
             $table->timestamps();

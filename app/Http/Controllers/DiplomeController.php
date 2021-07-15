@@ -17,7 +17,7 @@ class DiplomeController extends Controller
     }
 
     public function index() {
-        $diplomes = $this->diplomeRepository->get();
+        $diplomes = $this->diplomeRepository->get()->sortBy('annee_etude');
         return view('diplomes.index', compact('diplomes'));
     }
 

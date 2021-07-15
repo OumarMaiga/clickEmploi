@@ -23,7 +23,7 @@ class CreateEntreprisesTable extends Migration
             $table->string('email')->nullable();
             $table->date('date_creation')->nullable();
             $table->string('domaine')->nullable();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->reference('id')->on('users');
             $table->timestamps();
         });
     }

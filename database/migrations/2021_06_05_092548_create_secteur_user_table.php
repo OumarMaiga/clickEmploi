@@ -14,8 +14,8 @@ class CreateSecteurUserTable extends Migration
     public function up()
     {
         Schema::create('secteur_user', function (Blueprint $table) {
-            $table->foreignId('secteur_id');
-            $table->foreignId('user_id');
+            $table->foreignId('secteur_id')->reference('id')->on('secteurs');
+            $table->foreignId('user_id')->reference('id')->on('users');
         });
     }
 

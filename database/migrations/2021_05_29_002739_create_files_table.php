@@ -18,10 +18,10 @@ class CreateFilesTable extends Migration
             $table->string('libelle');
             $table->string('file_path');
             $table->string('type');
-            $table->foreignId('user_id')->nullable();
-            $table->foreignId('postule_id')->nullable();
-            $table->foreignId('opportunite_id')->nullable();
-            $table->foreignId('entreprise_id')->nullable();
+            $table->foreignId('user_id')->reference('id')->on('users')->nullable();
+            $table->foreignId('postule_id')->reference('id')->on('postules')->nullable();
+            $table->foreignId('opportunite_id')->reference('id')->on('opportunites')->nullable();
+            $table->foreignId('entreprise_id')->reference('id')->on('entreprises')->nullable();
             $table->integer('profil_id')->nullable();
             $table->timestamps();
         });

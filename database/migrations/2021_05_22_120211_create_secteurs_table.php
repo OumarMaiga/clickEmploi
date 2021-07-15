@@ -17,7 +17,7 @@ class CreateSecteursTable extends Migration
             $table->id();
             $table->string('libelle');
             $table->string('slug')->unique();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->reference('id')->on('users');
             $table->timestamps();
         });
     }

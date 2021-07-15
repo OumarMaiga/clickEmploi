@@ -51,17 +51,17 @@
                         <div class="dropdown-container">
                             <li class="sidebar-item">
                                 <a href="{{ route('emploi.index') }}" class="sidebar-link">
-                                    <i class="fas fa-bars icon-sidebar"></i><span class="d-none d-lg-inline-block">EMPLOI</span>
+                                    <i class="fas fa-suitcase icon-sidebar"></i><span class="d-none d-lg-inline-block">EMPLOI</span>
                                 </a>
                             </li>
                             <li class="sidebar-item">
                                 <a href="{{ route('formation.index') }}" class="sidebar-link">
-                                    <i class="fas fa-bars icon-sidebar"></i><span class="d-none d-lg-inline-block">FORMATION</span>
+                                    <i class="fas fa-graduation-cap icon-sidebar"></i><span class="d-none d-lg-inline-block">FORMATION</span>
                                 </a>
                             </li>
                             <li class="sidebar-item">
                                 <a href="{{ route('stage.index') }}" class="sidebar-link">
-                                    <i class="fas fa-bars icon-sidebar"></i><span class="d-none d-lg-inline-block">STAGE</span>
+                                    <i class="fas fa-suitcase icon-sidebar"></i><span class="d-none d-lg-inline-block">STAGE</span>
                                 </a>
                             </li>
                         </div>

@@ -14,8 +14,8 @@ class CreateOpportuniteSecteurTable extends Migration
     public function up()
     {
         Schema::create('opportunite_secteur', function (Blueprint $table) {
-            $table->foreignId('opportunite_id');
-            $table->foreignId('secteur_id');
+            $table->foreignId('opportunite_id')->reference('id')->on('opportunites');
+            $table->foreignId('secteur_id')->reference('id')->on('secteurs');
         });
     }
 

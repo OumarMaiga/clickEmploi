@@ -17,7 +17,7 @@ class CreateOpportunitesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->reference('id')->on('users');
             $table->text('content')->nullable();
             $table->foreignId('entreprise_id')->nullable();
             $table->string('lieu')->nullable();

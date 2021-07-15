@@ -9,6 +9,8 @@ use App\Repositories\UserRepository;
 use App\Models\File;
 use App\Models\Opportunite;
 use App\Models\Secteur;
+use App\Models\Diplome;
+use App\Models\Activite;
 
 
 class HomeController extends Controller
@@ -169,5 +171,12 @@ class HomeController extends Controller
                 $offre_par_profil = Opportunite::where('id', '0')->get();
             }
             return $offre_par_profil;
+        }
+
+        public function config() {
+            $nbre_diplome = Diplome::all()->count();
+            $nbre_secteur = Secteur::all()->count();
+            $nbre_activite = Activite::all()->count();
+            return view('dashboards.config', compact('nbre_diplome', 'nbre_secteur', 'nbre_activite'));
         }
 }

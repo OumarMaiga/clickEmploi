@@ -20,8 +20,8 @@ class CreatePostulesTable extends Migration
             $table->string('email')->nullable();
             $table->string('telephone')->nullable();
             $table->text('motivation')->nullable();
-            $table->foreignId('user_id')->nullable();
-            $table->foreignId('opportunite_id');
+            $table->foreignId('user_id')->reference('id')->on('users')->nullable();
+            $table->foreignId('opportunite_id')->reference('id')->on('opportunites');
             $table->timestamps();
         });
     }

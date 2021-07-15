@@ -100,6 +100,51 @@
     font-family: 'Rockwell';
 }
 
+/* Configuration */
+.config-card {
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 1.3px 1px #00000031;
+}
+.config-title {
+    font-size: 2rem;
+    font-family: 'Cambria Century';
+    text-align: center;
+}
+.config-content {
+}
+.config-number {
+    display: flex;
+    font-size: 8rem;
+    justify-content: center;
+    width: 100%;
+}
+.config-link {
+    margin-left: auto;
+    margin-top: auto;
+    background-color: #cb6b13;
+    color: #FFFFFF;
+    padding: .5rem;
+    border-radius: 50%;
+    width: 50px;    
+    height: 50px;
+    position: absolute;
+    bottom: 4rem;
+    right: 4rem;
+}
+.config-plus {
+    font-size: 4rem;
+    top: -25px;
+    position: absolute;
+    right: 5px;
+}
+.config-link:hover {
+    color: #FFFFFF
+}
+
+
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
 @media (max-width: 991px) { 

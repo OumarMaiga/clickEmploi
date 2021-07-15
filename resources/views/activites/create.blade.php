@@ -15,7 +15,8 @@
                 <!-- Email Address -->
                 <div class="row">
                     <div class="col-md-6">
-                        <input id="libelle" class="form-control" type="text" name="libelle" value="{{ old('libelle') }}" placeholder="ACTIVITE" />
+                        <label for="libelle">Activité</label>
+                        <input id="libelle" class="form-control" type="text" name="libelle" value="{{ old('libelle') }}" placeholder="LIBELLE" />
                     </div>
                     <div class="col-md-6">
                         <label for="secteur_id">Domaine</label>
