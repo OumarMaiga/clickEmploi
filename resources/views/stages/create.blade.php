@@ -15,6 +15,7 @@
                 <!-- Email Address -->
                 <div class="row">
                     <div class="col-md-12">
+                        <label for="title">Titre</label>
                         <input id="title" class="form-control" type="text" name="title" value="{{ old('title') }}" placeholder="TITRE" required autofocus />
                     </div>
                 </div>
@@ -22,6 +23,7 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
+                        <label for="structure">Entreprise</label>
                         <select id="structure" class="form-control" name="entreprise_id">
                             <option value="">-- CHOISIR L'ENTREPRISE ICI --</option>
                             @foreach ($entreprises as $entreprise)
@@ -30,6 +32,7 @@
                         </select>
                     </div>    
                     <div class="col-md-6">
+                        <label for="lieu">Adresse</label>
                         <input id="lieu" class="form-control" type="text" name="lieu" value="{{ old('lieu') }}" placeholder="ADRESSE" />
                     </div>
                 </div>
@@ -37,10 +40,12 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
+                        <label for="duree">Durée de stage</label>
                         <input id="duree" class="form-control" type="text" name="duree" value="{{ old('duree') }}" placeholder="DUREE" />
                     </div>
                     <div class="col-md-6">
-                        <select class="form-control" id="exampleFormControlSelect1" name="type_contrat">
+                        <label for="contrat">Contrat</label>
+                        <select class="form-control" id="contart" name="type_contrat">
                             <option value="">-- TYPE DE CONTRAT --</option>
                             <option value="cdd">CDD</option>
                             <option value="cdi">CDI</option>
@@ -79,13 +84,26 @@
                 </div>
                 
                 <div class="row mt-4">
+                    <div class="col-12">
+                        Categorie
+                    </div>
                     <div class="col-md-12">
-                        @foreach ($domaines as $domaine)
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="{{ $domaine->slug }}" name="secteur[]" value="{{ $domaine->id }}">
-                                <label class="form-check-label" for="{{ $domaine->slug }}">{{ $domaine->libelle }}</label>
-                            </div>
-                        @endforeach    
+                        <div class="row">
+                            @foreach ($domaines as $domaine)
+                                <div class="col-md-4 mt-2">
+                                    <div class="domaine-title">
+                                        {{ $domaine->libelle }}
+                                    </div>
+                                    <?php $activites = App\Models\Activite::where('secteur_id', $domaine->id)->get() ?>
+                                    @foreach ($activites as $activite)
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="{{ $activite->slug }}" name="activite[]" value="{{ $activite->id }}">
+                                            <label class="form-check-label" for="{{ $activite->slug }}">{{ $activite->libelle }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 

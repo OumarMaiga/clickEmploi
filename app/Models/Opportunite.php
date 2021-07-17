@@ -32,8 +32,8 @@ class Opportunite extends Model
         'type',
     ];
 
-    public function secteurs() {
-        return $this->belongsToMany('App\Models\Secteur');
+    public function activites() {
+        return $this->belongsToMany('App\Models\Activite');
     }
 
     

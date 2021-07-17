@@ -10,6 +10,7 @@ use \App\Models\User;
 use \App\Models\Diplome;
 use \App\Models\Secteur;
 use \App\Models\Activite;
+use \App\Models\Entreprise;
 
 class DatabaseSeeder extends Seeder
 {
@@ -176,6 +177,15 @@ class DatabaseSeeder extends Seeder
             'slug' => 'pharmacien',
             'user_id' => 1,
             'secteur_id' => 4,
+        ])->save();
+
+        Entreprise::create([
+            'libelle' => 'BIMUSSO',
+            'slug' => 'bimusso',
+            'user_id' => 1,
+            'domaine' => "E-commerce",
+            'description' => "Entreprise de promotion des produits made in Mali",
+            'Adresse' => "Garentibougou",
         ])->save();
 
         

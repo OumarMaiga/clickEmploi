@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOpportuniteSecteurTable extends Migration
+class CreateActiviteOpportuniteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateOpportuniteSecteurTable extends Migration
      */
     public function up()
     {
-        Schema::create('opportunite_secteur', function (Blueprint $table) {
+        Schema::create('activite_opportunite', function (Blueprint $table) {
+            $table->foreignId('activite_id')->reference('id')->on('activites');
             $table->foreignId('opportunite_id')->reference('id')->on('opportunites');
-            $table->foreignId('secteur_id')->reference('id')->on('secteurs');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateOpportuniteSecteurTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opportunite_secteur');
+        Schema::dropIfExists('opportunite_activite');
     }
 }

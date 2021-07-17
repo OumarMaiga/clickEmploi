@@ -57,6 +57,12 @@
   .dropdown-btn a:hover {
     text-decoration: none;
   }
+  
+  /* Form dashbord - Emploi */
+  .domaine-title {
+    font-weight: bold;
+    color: #cb6b13;
+  }
 
   /* Optional: Style the caret down icon */
   .fa-caret-down {
@@ -112,8 +118,6 @@
     font-size: 2rem;
     font-family: 'Cambria Century';
     text-align: center;
-}
-.config-content {
 }
 .config-number {
     display: flex;

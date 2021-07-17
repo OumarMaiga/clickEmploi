@@ -69,12 +69,35 @@
                         <select name="niveau" class="form-control">
                             <option value="">-- SELECTIONNER ICI --</option>
                             @foreach($diplomes as $diplome)
-                                <option <?= ($diplome->id == $emploi->niveau) ? "selected=selected" : "" ?> value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
+                                <option <?= ($diplome->id == $stage->niveau) ? "selected=selected" : "" ?> value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-md-6">
                         <textarea id="content" class="form-control" name="content" value="{{ $stage->content }}" placeholder="DESCRIPTION ...">{{ $stage->content }}</textarea>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        Categorie
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            @foreach ($domaines as $domaine)
+                                <div class="col-md-4 mt-2">
+                                    <div class="domaine-title">
+                                        {{ $domaine->libelle }}
+                                    </div>
+                                    <?php $activites = App\Models\Activite::where('secteur_id', $domaine->id)->get() ?>
+                                    @foreach ($activites as $activite)
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="{{ $activite->slug }}" name="activite[]" value="{{ $activite->id }}" <?= ($activite_checked->contains('slug', $activite->slug)) ? "checked" : "" ?>>
+                                            <label class="form-check-label" for="{{ $activite->slug }}">{{ $activite->libelle }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endforeach   
+                        </div>
                     </div>
                 </div>
     

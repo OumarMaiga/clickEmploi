@@ -65,9 +65,9 @@ class StageController extends Controller
         
         $opportunite = $this->opportuniteRepository->store($request->all());
         
-        if ($request->has('secteur')) {
-            $secteurs = $request->input('secteur');
-            $relation = $opportunite->secteurs()->sync($secteurs);
+        if ($request->has('activite')) {
+            $activites = $request->input('activite');
+            $relation = $opportunite->activites()->sync($activites);
         }
 
         return redirect('/dashboard/stage')->withStatus("Nouveau stage publié");
@@ -76,8 +76,11 @@ class StageController extends Controller
     public function edit($slug) {
         $stage = $this->opportuniteRepository->getBySlug($slug);
         $user = Auth::user();
+        $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        return view('stages.edit', compact('stage', 'entreprises'));
+        $activite_checked = $stage->activites()->get();
+        $diplomes = Diplome::get();
+        return view('stages.edit', compact('stage', 'entreprises', 'diplomes', 'domaines', 'activite_checked'));
     }
 
     public function update(Request $request, $id) {
@@ -88,6 +91,11 @@ class StageController extends Controller
         ]);
         $this->opportuniteRepository->update($id, $request->all());
 
+        if ($request->has('activite')) {
+            $opportunite = $this->opportuniteRepository->getById($id);
+            $activites = $request->input('activite');
+            $opportunite->activites()->sync($activites);
+        }
         return redirect('/dashboard/stage')->withStatus("Stage a bien été mise à jour");
     }
 
@@ -95,17 +103,17 @@ class StageController extends Controller
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
-        $secteurs = $opportunite->secteurs->pluck('libelle');
-        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome->libelle;
+        $activites = $opportunite->activites->pluck('libelle');
+        $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
                 
-        return view('stages.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs', 'niveau'));
+        return view('stages.show', compact('opportunite', 'entreprise', 'postulants', 'activites', 'niveau'));
     }
 
     public function detail($slug) {
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $opportunite_similaires = Opportunite::where('poste', $opportunite->poste)->limit(4)->get();
-        $secteurs = $opportunite->secteurs->pluck('libelle');
+        $activites = $opportunite->activites->pluck('libelle');
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
         $annee_experience = $opportunite->annee_experience;
         if ($annee_experience == "0.5") {
@@ -124,7 +132,7 @@ class StageController extends Controller
             $annee_experience = "";
         }
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs', 'niveau'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau'));
     }
 
     public function destroy($id) {

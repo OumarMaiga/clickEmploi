@@ -103,7 +103,7 @@
                     Secteur d'activité:
                 </div>
                 <div class="col-md-9 description">
-                    {{ $secteurs->implode(', ') }}
+                    {{ $activites->implode(', ') }}
                 </div>
             </div>
             <div class="row">

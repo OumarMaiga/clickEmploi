@@ -33,7 +33,7 @@ class EmploiController extends Controller
     
     public function create() {
         $user = Auth::user();
-        $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
+        $domaines = Secteur::select('id', 'libelle')->get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
         $diplomes = Diplome::get();
         return view('emplois.create', compact('entreprises', 'domaines', 'diplomes'));
@@ -64,9 +64,9 @@ class EmploiController extends Controller
         
         $opportunite = $this->opportuniteRepository->store($request->all());
         
-        if ($request->has('secteur')) {
-            $secteurs = $request->input('secteur');
-            $opportunite->secteurs()->sync($secteurs);
+        if ($request->has('activite')) {
+            $activites = $request->input('activite');
+            $opportunite->activites()->sync($activites);
         }
 
         return redirect('/dashboard/emploi')->withStatus("Nouveau emploi publié");
@@ -78,7 +78,8 @@ class EmploiController extends Controller
         $user = Auth::user();
         $diplomes = Diplome::get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        return view('emplois.edit', compact('emploi', 'entreprises', 'diplomes', 'domaines'));
+        $activite_checked = $emploi->activites()->get();
+        return view('emplois.edit', compact('emploi', 'entreprises', 'diplomes', 'domaines', 'activite_checked'));
     }
 
     public function update(Request $request, $id) {
@@ -90,10 +91,10 @@ class EmploiController extends Controller
         ]);
         $this->opportuniteRepository->update($id, $request->all());
 
-        if ($request->has('secteur')) {
+        if ($request->has('activite')) {
             $opportunite = $this->opportuniteRepository->getById($id);
-            $secteurs = $request->input('secteur');
-            $opportunite->secteurs()->sync($secteurs);
+            $activites = $request->input('activite');
+            $opportunite->activites()->sync($activites);
         }
         return redirect('/dashboard/emploi')->withStatus("Emploi a bien été mise à jour");
     }
@@ -102,7 +103,7 @@ class EmploiController extends Controller
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
-        $secteurs = $opportunite->secteurs->pluck('libelle');
+        $activites = $opportunite->activites->pluck('libelle');
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
         $annee_experience = $opportunite->annee_experience;
         if ($annee_experience == "0.5") {
@@ -121,14 +122,14 @@ class EmploiController extends Controller
             $annee_experience = "";
         }
                 
-        return view('emplois.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs', 'niveau', 'annee_experience'));
+        return view('emplois.show', compact('opportunite', 'entreprise', 'postulants', 'activites', 'niveau', 'annee_experience'));
     }
     
     public function detail($slug) {
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $opportunite_similaires = Opportunite::where('poste', $opportunite->poste)->limit(4)->get();
-        $secteurs = $opportunite->secteurs->pluck('libelle');
+        $activites = $opportunite->activites->pluck('libelle');
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
         $annee_experience = $opportunite->annee_experience;
         if ($annee_experience == "0.5") {
@@ -147,7 +148,7 @@ class EmploiController extends Controller
             $annee_experience = "";
         }
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs', 'niveau', 'annee_experience'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau', 'annee_experience'));
     }
 
     public function destroy($id) {

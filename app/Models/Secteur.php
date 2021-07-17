@@ -9,11 +9,6 @@ class Secteur extends Model
 {
     use HasFactory;
     
-    public function user() 
-    {
-        return $this->belongsTo('App\Models\User');
-    }
-    
     /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +19,11 @@ class Secteur extends Model
         'user_id',
         'slug',
     ];
+    
+    public function user() 
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 
     public function opportunites() {
         return $this->belongsToMany('App\Models\Opportunite');
@@ -32,5 +32,9 @@ class Secteur extends Model
 
     public function users() {
         return $this->belongsToMany('App\Models\User');
+    }
+
+    public function activites() {
+        return $this->belongsToMany('App\Models\Activite');
     }
 }
