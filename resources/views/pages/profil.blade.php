@@ -27,7 +27,7 @@
                 </div>
                 @if ($user->type == "user")
                     <div class="profil-description">
-                        Secteur d'activité: {{ $secteurs->implode(', ') }}
+                        Secteur d'activité: {{ $activites->implode(', ') }}
                     </div>
                 @endif
                 <div class="profil-description">

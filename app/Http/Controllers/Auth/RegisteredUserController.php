@@ -9,18 +9,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use App\Repositories\SecteurRepository;
+
 use App\Repositories\DiplomeRepository;
 use App\Models\User;
 use App\Models\Secteur;
 
 class RegisteredUserController extends Controller
 {    
-    protected $secteurRepository;
     protected $diplomeRepository;
 
-    public function __construct(SecteurRepository $secteurRepository, DiplomeRepository $diplomeRepository) {
-        $this->secteurRepository = $secteurRepository;
+    public function __construct(DiplomeRepository $diplomeRepository) {
         $this->diplomeRepository = $diplomeRepository;
     }
     /**
@@ -61,9 +59,9 @@ class RegisteredUserController extends Controller
 
         $user = User::create($inputs);
 
-        if ($request->has('secteur')) {
-            $secteurs = $request->input('secteur');
-            $relation = $user->secteurs()->sync($secteurs);
+        if ($request->has('activite')) {
+            $activites = $request->input('activite');
+            $relation = $user->activites()->sync($activites);
         }
 
         

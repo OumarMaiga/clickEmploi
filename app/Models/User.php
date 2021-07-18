@@ -50,10 +50,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function secteurs() {
-        return $this->belongsToMany('App\Models\Secteur');
-    }
-
     public function activites() {
         return $this->belongsToMany('App\Models\Activite');
     }

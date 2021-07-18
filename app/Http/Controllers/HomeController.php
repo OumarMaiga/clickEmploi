@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use App\Repositories\OpportuniteRepository;
 use App\Repositories\UserRepository;
+
 use App\Models\File;
 use App\Models\Opportunite;
 use App\Models\Secteur;
@@ -40,17 +43,17 @@ class HomeController extends Controller
     public function profil($email) {
         $user = $this->userRepository->getByEmail($email);
         $photo = photo_profil($user->email);
-        $secteurs = $user->secteurs->pluck('libelle');
+        $activites = $user->activites->pluck('libelle');
         
-        return view('pages.profil', compact('user', 'photo', 'secteurs'));
+        return view('pages.profil', compact('user', 'photo', 'activites'));
     }
 
     public function edit_profil() {
         $user = Auth::user();
         $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
-        $user_domaine = $user->secteurs()->pluck('id')->toArray();
         $photo = photo_profil($user->email);
-        return view('pages.edit_profil', compact('user', 'photo', 'domaines', 'user_domaine'));
+        $activite_checked = $user->activites()->get();
+        return view('pages.edit_profil', compact('user', 'photo', 'domaines', 'activite_checked'));
     }
 
     public function update_profil($id, Request $request) {
@@ -91,6 +94,10 @@ class HomeController extends Controller
             $CvModel->save();
         }
 
+        if ($request->has('activite')) {
+            $activites = $request->input('activite');
+            $relation = $user->activites()->sync($activites);
+        }
         return redirect("/$user->email")->withStatus('Profil mise à jour');
 
     }
@@ -143,17 +150,23 @@ class HomeController extends Controller
     //Offre par profil
     public function offre_par_profil() {
         if(Auth::check()){
-            //Offres par profil
-            $domaine_par_profil = Auth::user()->secteurs()->pluck('id');
+
+            //Recuperer tous les domaines du user
+            $domaine_par_profil = Auth::user()->activites()->distinct()->pluck('secteur_id')->toArray();
+
+            //Recuperer tous les activites de chaque domaine recuperé
+            $activite_par_profil = DB::table('activites')->whereIn('secteur_id', $domaine_par_profil)->pluck('id')->toArray();
             $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
+
             //Verifier si le diplome existe
             if($dernier_diplome_user) {
                 $annee_etude = $dernier_diplome_user->annee_etude;         
             } else {
                 $annee_etude = 0;
             }
-            $offre_par_profil = Opportunite::whereHas('secteurs', function($q) use ($domaine_par_profil) {
-                $q->whereIn('secteurs.id', $domaine_par_profil);
+
+            $offre_par_profil = Opportunite::whereHas('activites', function($q) use ($activite_par_profil) {
+                $q->whereIn('activites.id', $activite_par_profil);
             })->join('diplomes', 'opportunites.niveau', 'diplomes.id')
                 ->where('annee_etude', '<=', $annee_etude)
                 ->get([

@@ -121,6 +121,10 @@ body {
     font-size: 1.8rem;
     font-weight: 400;
 }
+.domaine-title {
+  font-weight: bold;
+  color: #cb6b13;
+}
 
 /* FOOTER */
 footer {

@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use App\Repositories\OpportuniteRepository;
 use App\Repositories\EntrepriseRepository;
 use App\Repositories\PostuleRepository;
-use Illuminate\Support\Facades\Auth;
+
 use App\Models\File;
 use App\Models\Opportunite;
 use App\Models\Secteur;
@@ -164,16 +167,20 @@ class EmploiController extends Controller
     }
     public function offre_par_profil() {
         if (Auth::check()) {
-            //Offres par profil
-            $domaine_par_profil = Auth::user()->secteurs()->pluck('id');
+            //Recuperer tous les domaines du user
+            $domaine_par_profil = Auth::user()->activites()->distinct()->pluck('secteur_id')->toArray();
+
+            //Recuperer tous les activites de chaque domaine recuperé
+            $activite_par_profil = DB::table('activites')->whereIn('secteur_id', $domaine_par_profil)->pluck('id')->toArray();
+
             $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
             if($dernier_diplome_user) {
                 $annee_etude = $dernier_diplome_user->annee_etude;         
             } else {
                 $annee_etude = 0;
             }
-            $offre_par_profil = Opportunite::where('type', 'emploi')->whereHas('secteurs', function($q) use ($domaine_par_profil) {
-                $q->whereIn('secteurs.id', $domaine_par_profil);
+            $offre_par_profil = Opportunite::where('type', 'emploi')->whereHas('activites', function($q) use ($activite_par_profil) {
+                $q->whereIn('activites.id', $activite_par_profil);
             })->join('diplomes', 'opportunites.niveau', 'diplomes.id')
                 ->where('annee_etude', '<=', $annee_etude)
                 ->get([

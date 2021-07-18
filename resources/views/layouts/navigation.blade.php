@@ -45,7 +45,7 @@
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         @if (photo_profil(Auth::user()->email))
-                            <img src="{{ photo_profil() }}" class="photo_profil_nav">
+                            <img src="{{ photo_profil(Auth::user()->email) }}" class="photo_profil_nav">
                         @else
                             <img src='/storage/profil_pictures/default.jpg' class="photo_profil_nav"/>
                         @endif
