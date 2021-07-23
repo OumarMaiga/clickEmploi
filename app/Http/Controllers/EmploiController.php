@@ -131,10 +131,19 @@ class EmploiController extends Controller
     public function detail($slug) {
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
-        $opportunite_similaires = Opportunite::where('poste', $opportunite->poste)->limit(4)->get();
+
+        $domaines_opportunite = $opportunite->activites()->distinct()->pluck('secteur_id')->toArray();
+        $activites_secteur = DB::table('activites')->whereIn('secteur_id', $domaines_opportunite)->pluck('id')->toArray();
+        
+        $opportunite_similaires =  Opportunite::where('type', 'emploi')->whereHas('activites', function($q) use ($activites_secteur) {
+            $q->whereIn('activites.id', $activites_secteur);
+        })->limit(4)->get();
+
         $activites = $opportunite->activites->pluck('libelle');
+
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
         $annee_experience = $opportunite->annee_experience;
+        
         if ($annee_experience == "0.5") {
             $annee_experience = "6 mois";
         } elseif($annee_experience == "1") {
