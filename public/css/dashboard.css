@@ -1,0 +1,169 @@
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    background-color: #cb6b13;
+    width: 16%;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-top: 10px;
+}
+
+.sidebar-list {
+    margin-top: 40px;
+    list-style: none;
+    line-height: 24px;
+}
+
+.sidebar-item {
+    margin-top: 20px;
+    padding: 15px 0px;
+    font-size: 1.05rem;
+}
+.sidebar-item:hover {
+    background-color: #FF9000;
+}
+
+.sidebar-link {
+    color: #FFFFFF;
+    padding: 0px 20px;
+}
+
+.icon-sidebar {
+    margin-right: 5px;
+}
+
+.sidebar-title:hover, .sidebar-link:hover {
+    color: white;
+}
+
+.dropdown-container {
+    display: none;
+  }
+
+  .dropdown-container .sidebar-item {
+    margin-top: 20px;
+    font-size: 1rem;
+    padding-left: 30px;
+  }
+
+  .dropdown-btn:hover {
+    cursor: pointer;
+  }
+  
+  .dropdown-btn a:hover {
+    text-decoration: none;
+  }
+
+
+  /* Optional: Style the caret down icon */
+  .fa-caret-down {
+    float: right;
+    padding-right: 8px;
+  }
+
+.dashboard-content {
+    padding: 2rem;
+}
+
+.icon-edit:hover {
+    color: #ffc107;
+}
+
+.icon-action {
+    font-size: 1.5rem
+}
+
+.icon-action .detail:hover {
+    color: #0056b3;
+}
+
+.icon-action .edit:hover {
+    color: #ffc107;
+}
+
+.icon-action .supp:hover {
+    color: #dc3545;
+}
+.show-container {
+    margin-bottom: 30px;
+}
+.list-container {
+    margin-top: 1.4rem;
+    line-height: 1.5;
+}
+.qui {
+    font-size:1.4rem; 
+    text-decoration: underline;
+    font-family: 'Rockwell';
+}
+
+/* Configuration */
+.config-card {
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 1.3px 1px #00000031;
+}
+.config-title {
+    font-size: 2rem;
+    font-family: 'Cambria Century';
+    text-align: center;
+}
+.config-number {
+    display: flex;
+    font-size: 8rem;
+    justify-content: center;
+    width: 100%;
+}
+.config-link {
+    margin-left: auto;
+    margin-top: auto;
+    background-color: #cb6b13;
+    color: #FFFFFF;
+    padding: .5rem;
+    border-radius: 50%;
+    width: 50px;    
+    height: 50px;
+    position: absolute;
+    bottom: 4rem;
+    right: 4rem;
+}
+.config-plus {
+    font-size: 4rem;
+    top: -25px;
+    position: absolute;
+    right: 5px;
+}
+.config-link:hover {
+    color: #FFFFFF
+}
+
+
+/* View Tablette -- Medium devices (tablets, 768px and up) */
+
+@media (max-width: 991px) { 
+
+    .sidebar {
+        width: auto;
+    }
+    .md-decalle {
+        left: 5rem;
+        width: 90%;
+    }
+    .dashboard-content {
+        padding: 1rem
+    }
+    #navigation {
+        width: 100%;
+    }
+    .show-container {
+        margin-left: 2px;
+        width: 100%;
+    }
+
+}
