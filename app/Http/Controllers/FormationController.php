@@ -128,7 +128,7 @@ class FormationController extends Controller
             //Recuperer tous les domaines du user
             $domaine_par_profil = Auth::user()->activites()->distinct()->pluck('secteur_id')->toArray();
 
-            //Recuperer tous les activites de chaque domaine recuperé
+            //Récupérer tous les activites de chaque domaine recuperé
             $activite_par_profil = DB::table('activites')->whereIn('secteur_id', $domaine_par_profil)->pluck('id')->toArray();
 
             $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
