@@ -1,15 +1,44 @@
 @foreach ($opportunites as $opportunite)
     <?php
         if($offre_par_profil->isEmpty() || !$offre_par_profil->contains('id', $opportunite->id)) {
-        
             $entreprise = $opportunite->entreprise()->associate($opportunite->entreprise_id)->entreprise;
+            if (Auth::check()) {
+                //Les data de l'offre pour les points
+                $domaine_par_offre = $opportunite->activites()->distinct()->pluck('secteur_id')->toArray();
+                $activite_par_offre = DB::table('activites')->whereIn('secteur_id', $domaine_par_offre)->pluck('id')->toArray();
+                $annee_experience_offre = $opportunite->annee_experience;
+                $annee_etude_offre = $opportunite->diplome()->associate($opportunite->niveau)->diplome->annee_etude;
+
+                //Les data du user pour les points
+                $domaine_par_profil = Auth::user()->activites()->distinct()->pluck('secteur_id')->toArray();
+                dd($domaine_par_profil);
+                $activite_par_profil = DB::table('activites')->whereIn('secteur_id', $domaine_par_offre)->pluck('id')->toArray();
+                dd($activite_par_profil);
+                $annee_experience_profil = Auth::user()->annee_experience;
+                dd($annee_experience_profil);
+                $annee_etude_profil = Auth::user()->diplome()->associate(Auth::user()->niveau)->diplome->annee_etude;
+                dd($annee_etude_profil);
+                die();
+                $pts = 4;
+            }
     ?>
             <div class="offre-item row mx-0">
             <div class="col-lg-2 col-md-3 px-0 add-padding">
                 <img src="{{ photo_entreprise($opportunite->entreprise_id) }}" alt="Image" class="image-offre">
             </div>
             <div class="col-lg-10 col-md-9">
-                <h3 class="offre-title">{{ $opportunite->title }}</h3>
+                <h3 class="offre-title">
+                    <span>{{ $opportunite->title }}</span>
+                    <?php if (Auth::check()) { ?>
+                        <span class="star">
+                            <span class="fas fa-star icon-star <?= ($pts > 0) ? "color-star" : "" ?>"></span>
+                            <span class="fas fa-star icon-star <?= ($pts > 2) ? "color-star" : "" ?>"></span>
+                            <span class="fas fa-star icon-star <?= ($pts > 3) ? "color-star" : "" ?>"></span>
+                            <span class="fas fa-star icon-star <?= ($pts > 4) ? "color-star" : "" ?>"></span>
+                            <span class="fas fa-star icon-star <?= ($pts > 6) ? "color-star" : "" ?>"></span>
+                        </span>
+                    <?php } ?>
+                </h3>
                 <div class="offre-subtitle">
                     <a href="{{ route('entreprise.detail', $entreprise->slug) }}">{{ $entreprise->libelle }}</a>  | <span class="fas fa-map-marker-alt"></span> <a href="{{ route('opportunite.adresse', $opportunite->lieu) }}">{{ $opportunite->lieu }}</a>
                 </div>
