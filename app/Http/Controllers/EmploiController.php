@@ -30,7 +30,11 @@ class EmploiController extends Controller
     }
 
     public function index() {
-        $emplois = $this->opportuniteRepository->getByType('emploi');
+        if (Auth::user()->type == "admin") {
+            $emplois = Opportunite::where('type', 'emploi')->get();
+        } else {
+            $emplois = Opportunite::where('user_id', Auth::user()->id)->where('type', 'emploi')->get();
+        }
         return view('emplois.index', compact('emplois'));
     }
     
@@ -176,11 +180,7 @@ class EmploiController extends Controller
     }
     public function offre_par_profil() {
         if (Auth::check()) {
-            //Recuperer tous les domaines du user
-            $domaine_par_profil = Auth::user()->activites()->distinct()->pluck('secteur_id')->toArray();
-
-            //Recuperer tous les activites de chaque domaine recuperé
-            $activite_par_profil = DB::table('activites')->whereIn('secteur_id', $domaine_par_profil)->pluck('id')->toArray();
+            $activite_par_profil = Auth::user()->activites()->pluck('id')->toArray();
 
             $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
             if($dernier_diplome_user) {
@@ -200,6 +200,7 @@ class EmploiController extends Controller
                     'lieu',
                     'type',
                     "opportunites.slug as slug",
+                    "opportunites.annee_experience as annee_experience",
                     "opportunites.created_at as created_at",
                 ]);
         }else{

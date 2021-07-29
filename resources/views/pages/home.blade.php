@@ -14,35 +14,53 @@
                             correspond à votre profil
                         </div>
                     </div>
+                    
                     @foreach ($offre_par_profil as $opportunite )
                         <?php 
                             $entreprise = $opportunite->entreprise()->associate($opportunite->entreprise_id)->entreprise;
                             
                             if (Auth::check()) {
+                                $pts = 0;
                                 //Les data de l'offre pour les points
                                 $domaine_par_offre = $opportunite->activites()->distinct()->pluck('secteur_id')->toArray();
-                                $activite_par_offre = DB::table('activites')->whereIn('secteur_id', $domaine_par_offre)->pluck('id')->toArray();
+                                $activite_par_offre = $opportunite->activites()->pluck('id')->toArray();
                                 $annee_experience_offre = $opportunite->annee_experience;
-                                $diplome = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
-                                if ($diplome) {
-                                    $annee_etude_profil = $diplome->annee_etude;
+                                $diplome_offre = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
+                                if ($diplome_offre) {
+                                    $annee_etude_offre = $diplome_offre->annee_etude;
                                 }else{
-                                    $annee_etude_profil = 0;
+                                    $annee_etude_offre = 0;
                                 }
 
                                 //Les data du user pour les points
                                 $domaine_par_profil = Auth::user()->activites()->distinct()->pluck('secteur_id')->toArray();
-                                $activite_par_profil = DB::table('activites')->whereIn('secteur_id', $domaine_par_offre)->pluck('id')->toArray();
+                                $activite_par_profil = Auth::user()->activites()->pluck('id')->toArray();
                                 $annee_experience_profil = Auth::user()->annee_experience;
-                                $diplome = Auth::user()->diplome()->associate(Auth::user()->niveau)->diplome;
-                                if ($diplome) {
-                                    $annee_etude_profil = $diplome->annee_etude;
+                                $diplome_profil = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
+                                if ($diplome_profil) {
+                                    $annee_etude_profil = $diplome_profil->annee_etude;
                                 }else{
                                     $annee_etude_profil = 0;
                                 }
-                                $pts = 0;
                                 
-                            }    
+                                //Attribution des points
+                                if ($annee_etude_profil >= $annee_etude_offre) {
+                                    $pts = $pts + 2;
+                                }
+                                $activite_intersect = array_intersect($activite_par_offre, $activite_par_profil);
+                                if(!empty($activite_intersect)){
+                                    $pts = $pts + 3;
+                                }
+                                $domaine_intersect = array_intersect($domaine_par_offre, $domaine_par_profil);
+                                if(!empty($domaine_intersect)){
+                                    $pts = $pts + 1;
+                                } else {
+                                    $pts = 0;
+                                }
+                                if ($annee_experience_profil >= $annee_experience_offre) {
+                                    $pts = $pts + 1;
+                                }
+                            } 
                         ?>
                             <div class="offre-item row mx-0" style="background-color:#F5FFFF;">
                             <div class="col-lg-2 col-md-3 px-0 add-padding">

@@ -30,7 +30,11 @@ class FormationController extends Controller
     }
 
     public function index() {
-        $formations = $this->opportuniteRepository->getByType('formation');
+        if (Auth::user()->type == "admin") {
+            $formations = Opportunite::where('type', 'formation')->get();
+        } else {
+            $formations = Opportunite::where('user_id', Auth::user()->id)->where('type', 'formation')->get();
+        }
         return view('formations.index', compact('formations'));
     }
     

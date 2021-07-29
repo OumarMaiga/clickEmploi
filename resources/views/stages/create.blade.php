@@ -62,6 +62,7 @@
                         <input id="echeance" class="form-control" type="date" name="echeance" value="{{ old('echeance') }}" placeholder="" />
                     </div>
                     <div class="col-md-6">
+                        <label for="montant">Salaire</label>
                         <input id="montant" class="form-control" type="text" name="montant" value="{{ old('montant') }}" placeholder="SALAIRE (250.000F - 375.000F)" />
                     </div>
                 </div>
@@ -79,6 +80,7 @@
                         </select>
                     </div>
                     <div class="col-md-6">
+                        <label for="content">Description</label>
                         <textarea id="content" class="form-control" name="content" value="" placeholder="DESCRIPTION ...">{{ old('content') }}</textarea>
                     </div>
                 </div>

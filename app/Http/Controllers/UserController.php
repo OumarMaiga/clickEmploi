@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\Secteur;
 use App\Models\Diplome;
+use App\Models\Activite;
 use App\Models\User;
 
 use App\Repositories\UserRepository;
 
 use App\Exports\UsersExport;
-use App\Exports\UsersExportCustom;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -30,14 +30,16 @@ class UserController extends Controller
         $users = $this->userRepository->getByType('user');
         $secteurs = Secteur::orderBy('libelle', 'asc')->get();
         $diplomes = Diplome::orderBy('libelle', 'asc')->get();
+        $annee_experience = Auth::user()->annee_experience;
+        
         return view('dashboards.users.index', compact('users', 'secteurs', 'diplomes'));
     }
 
     public function show($email) {
         $user = $this->userRepository->getByEmail($email);
         $photo = photo_profil($user->email);
-        $secteurs = $user->secteurs->pluck('libelle');
-        return view('dashboards.users.show', compact('user', 'photo', 'secteurs'));
+        $activites = $user->activites->pluck('libelle');
+        return view('dashboards.users.show', compact('user', 'photo', 'a$activites'));
     }
 
     public function destroy($id) {
@@ -69,9 +71,14 @@ class UserController extends Controller
         $users = User::where('etat', true)->where('type', 'user');
         $diplome = Diplome::where('slug', $request->diplome)->first();
         $secteur = Secteur::where('slug', $request->secteur)->first();
+        if ($secteur) {
+            $activite_ids = Activite::where('secteur_id', $secteur->id)->pluck('id')->toArray();
+        }else{
+            $activite_ids = [];
+        }
         if($request->has('secteur')){
             if ($secteur != null) {
-                $users = $secteur->users();
+                $users = User::join('activite_user', 'users.id', '=', 'activite_user.user_id')->whereIn('activite_user.activite_id', $activite_ids)->distinct('id');
             }
         }
         if($request->has('diplome')){
@@ -90,7 +97,6 @@ class UserController extends Controller
     }
 
     public function export() {
-    
         $data = Session::get('filter_user');
         return Excel::download(new UsersExport($data), 'users.xlsx');
     }

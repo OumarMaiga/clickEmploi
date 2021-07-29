@@ -55,15 +55,31 @@
                         @foreach ($users as $user)
                             <?php 
                                 $n = $n + 1;
-                                $secteurs = $user->secteurs()->get();
+                                $activites = $user->activites()->get();
                                 $diplome = $user->diplome()->associate($user->dernier_diplome)->diplome;
+                                $annee_experience = $user->annee_experience;
+                                if ($annee_experience == "0.5") {
+                                    $annee_experience = "6 mois";
+                                }elseif($annee_experience == "1") {
+                                    $annee_experience = "1 an";
+                                }elseif($annee_experience == "2") {
+                                    $annee_experience = "2 ans";
+                                }elseif($annee_experience == "3") {
+                                    $annee_experience = "3 ans";
+                                }elseif($annee_experience == "4") {
+                                    $annee_experience = "4 ans";
+                                }elseif($annee_experience == "5") {
+                                    $annee_experience = "5 ans";
+                                }else{
+                                    $annee_experience = "";
+                                }
                             ?>
                             <tr>
                                 <th scope="row">{{ $n }}</th>
                                 <td>{{ $user->nom." ".$user->prenom }}</td>
-                                <td>{{ $secteurs->implode('libelle', ', ') }}</td>
+                                <td>{{ $activites->implode('libelle', ', ') }}</td>
                                 <td>{{ $diplome != null ? $diplome->libelle : "" }}</td>
-                                <td>{{ $user->experience_professionnel }}</td>
+                                <td>{{ $annee_experience }}</td>
                                 <td class="justify-content-between icon-content">
                                     <a href="{{ route('user.show', $user->email) }}" class="col icon-action detail">
                                         <span class="fas fa-info">
@@ -74,7 +90,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a class="btn btn-warning float-right"href="{{ route('export') }}">Export User Data</a>
+                <a class="btn btn-warning float-right"href="{{ route('export') }}">Exporter les données en Excel</a>
             </form>
         </div>
     </div>
