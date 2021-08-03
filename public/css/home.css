@@ -299,7 +299,16 @@ hr {
     padding: 1rem 2rem;
     background-color: #FFF;
 }
-
+.star {
+    float: right;
+    font-size: 1rem;
+}
+.icon-star {
+    color: #656565;
+}
+.color-star {
+    color: #B34DF5;
+}
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
 @media (max-width: 768px) { 

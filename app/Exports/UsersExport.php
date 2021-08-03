@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\User;
+use App\Models\Secteur;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -27,7 +28,8 @@ class UsersExport implements WithHeadings, FromCollection
             $users = User::where('type', 'user')->get();
         } 
         return  $users->map(function($user){
-            $secteurs = $user->secteurs()->get();
+            $secteur_ids = $user->activites()->distinct()->pluck('secteur_id')->toArray();
+            $secteurs = Secteur::whereIn('id', $secteur_ids)->get();
             $diplome = $user->diplome()->associate($user->dernier_diplome)->diplome;
             return [
                 $user->nom,

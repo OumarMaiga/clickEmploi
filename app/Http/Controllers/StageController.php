@@ -31,7 +31,11 @@ class StageController extends Controller
 
 
     public function index() {
-        $stages = $this->opportuniteRepository->getByType('stage');
+        if (Auth::user()->type == "admin") {
+            $stages = Opportunite::where('type', 'stage')->get();
+        } else {
+            $stages = Opportunite::where('user_id', Auth::user()->id)->where('type', 'stage')->get();
+        }
         return view('stages.index', compact('stages'));
     }
     
@@ -160,11 +164,7 @@ class StageController extends Controller
     }
     public function offre_par_profil() {
         if (Auth::check()) {
-            //Recuperer tous les domaines du user
-            $domaine_par_profil = Auth::user()->activites()->distinct()->pluck('secteur_id')->toArray();
-
-            //Recuperer tous les activites de chaque domaine recuperé
-            $activite_par_profil = DB::table('activites')->whereIn('secteur_id', $domaine_par_profil)->pluck('id')->toArray();
+            $activite_par_profil = Auth::user()->activites()->pluck('id')->toArray();
 
             $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
             if($dernier_diplome_user) {
@@ -184,6 +184,7 @@ class StageController extends Controller
                     'lieu',
                     'type',
                     "opportunites.slug as slug",
+                    "opportunites.annee_experience as annee_experience",
                     "opportunites.created_at as created_at",
                 ]);
         }else{

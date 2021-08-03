@@ -105,8 +105,9 @@ class HomeController extends Controller
     public function filtre(Request $request) {
         $opportunites = new Opportunite;
         if($request->has('secteur')) {
-            $opportunites = Opportunite::join('opportunite_secteur', 'opportunites.id', '=', 'opportunite_secteur.opportunite_id')
-                                        ->whereIn('opportunite_secteur.secteur_id', $request->secteur);
+            $activites_secteur = Activite::whereIn('secteur_id', $request->secteur)->pluck('id');
+            $opportunites = Opportunite::join('activite_opportunite', 'opportunites.id', '=', 'activite_opportunite.opportunite_id')
+                                        ->whereIn('activite_opportunite.activite_id', $activites_secteur);
         }
         if($request->has('contrat')) {
             $opportunites = $opportunites->whereIn('type_contrat', $request->contrat);
@@ -133,42 +134,39 @@ class HomeController extends Controller
     }
 
         public function search(Request $request) {
-        $poste = $request->poste;
+        $title = $request->title;
         $adresse = $request->adresse;
         $opportunites = new Opportunite;
-        if($poste != null) {
-            $opportunites = $opportunites->where('poste', 'like', "%$poste%");
+        if($title != null) {
+            $opportunites = $opportunites->where('title', 'like', "%$title%");
         }
         if($adresse != null) {
             $opportunites = $opportunites->where('lieu', 'like', "%$adresse%");
         } 
         $opportunites = $opportunites->get();
         $nbre_offres = $opportunites->count();
-        return view('pages.opportunites', compact('opportunites', 'nbre_offres'));
+        $offre_par_profil = collect();
+        return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'offre_par_profil'));
     }
 
     //Offre par profil
     public function offre_par_profil() {
         if(Auth::check()){
+            $activite_par_profil = Auth::user()->activites()->pluck('id')->toArray();
 
-            //Recuperer tous les domaines du user
-            $domaine_par_profil = Auth::user()->activites()->distinct()->pluck('secteur_id')->toArray();
-
-            //Recuperer tous les activites de chaque domaine recuperé
-            $activite_par_profil = DB::table('activites')->whereIn('secteur_id', $domaine_par_profil)->pluck('id')->toArray();
             $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
 
             //Verifier si le diplome existe
             if($dernier_diplome_user) {
-                $annee_etude = $dernier_diplome_user->annee_etude;         
+                $annee_etude_user = $dernier_diplome_user->annee_etude;         
             } else {
-                $annee_etude = 0;
+                $annee_etude_user = 0;
             }
 
             $offre_par_profil = Opportunite::whereHas('activites', function($q) use ($activite_par_profil) {
                 $q->whereIn('activites.id', $activite_par_profil);
             })->join('diplomes', 'opportunites.niveau', 'diplomes.id')
-                ->where('annee_etude', '<=', $annee_etude)
+                ->where('annee_etude', '<=', $annee_etude_user)
                 ->get([
                     'opportunites.id as id',
                     'title',
@@ -177,6 +175,7 @@ class HomeController extends Controller
                     'lieu',
                     'type',
                     "opportunites.slug as slug",
+                    "opportunites.annee_experience as annee_experience",
                     "opportunites.created_at as created_at",
                 ]);
                         

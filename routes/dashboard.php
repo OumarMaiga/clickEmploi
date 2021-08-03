@@ -43,10 +43,8 @@ Route::resource('/dashboard/entreprise', EntrepriseController::class)->middlewar
 Route::get('dashboard/user/filter', [UserController::class, 'filter'])->middleware(['auth'])->name('user.filter');
 Route::resource('/dashboard/user', UserController::class)->middleware(['auth']);
 Route::put('/dashboard/user/{email}/changeState', [UserController::class, 'changeState'])->name('user.changeState')->middleware(['auth']);
-//Route::get('importExportView', [MyController::class, 'importExportView']);
 Route::get('export', [UserController::class, 'export'])->name('export');
-//Route::post('import', 'MyController@import')->name('import');
-Route::get('exportCustom', [UserController::class, 'exportCustom'])->name('exportCustom');
+//Route::get('exportCustom', [UserController::class, 'exportCustom'])->name('exportCustom');
 
 Route::get('/dashboard/abonnee', [AbonneeController::class, 'index'])->middleware(['auth'])->name('abonnee');
 

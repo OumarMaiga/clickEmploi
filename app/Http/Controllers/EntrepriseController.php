@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\EntrepriseRepository;
-use App\Repositories\OpportuniteRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+
+use App\Repositories\EntrepriseRepository;
+use App\Repositories\OpportuniteRepository;
+
 use App\Models\File;
 use App\Models\Entreprise;
+use App\Models\Opportunite;
 
 class EntrepriseController extends Controller
 {
@@ -75,7 +78,32 @@ class EntrepriseController extends Controller
     public function show($slug) {
         $entreprise = $this->entrepriseRepository->getBySlug($slug);
         $image_entreprise = File::where('entreprise_id', $entreprise->id)->orderBy('id', 'desc')->first()->get('file_path');
-        return view('entreprises.show', compact('entreprise', 'image_entreprise'));
+        
+        if (Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->pluck('id')->toArray();
+
+            $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
+            if($dernier_diplome_user) {
+                $annee_etude = $dernier_diplome_user->annee_etude;         
+            } else {
+                $annee_etude = 0;
+            }
+            $offre_par_profil = Opportunite::where('entreprise_id', $entreprise->id)->whereHas('activites', function($q) use ($activite_par_profil) {
+                $q->whereIn('activites.id', $activite_par_profil);
+            })->get([
+                    'opportunites.id as id',
+                    'title',
+                    'echeance',
+                    'entreprise_id',
+                    'lieu',
+                    'type',
+                    "opportunites.slug as slug",
+                    "opportunites.created_at as created_at",
+                ]);
+        }else{
+            $offre_par_profil = Opportunite::where('id', '0')->get();
+        }
+        return view('entreprises.show', compact('entreprise', 'image_entreprise', 'offre_par_profil'));
     }
 
     public function detail($slug) {
@@ -84,7 +112,31 @@ class EntrepriseController extends Controller
         $opportunites = $this->opportuniteRepository->getByForeignId('entreprise_id', $entreprise->id);
         $nbre_offres = $opportunites->count();
         
-        return view('entreprises.detail', compact('entreprise', 'image_entreprise', 'nbre_offres', 'opportunites'));
+        if (Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->pluck('id')->toArray();
+            
+            $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
+            if($dernier_diplome_user) {
+                $annee_etude = $dernier_diplome_user->annee_etude;         
+            } else {
+                $annee_etude = 0;
+            }
+            $offre_par_profil = Opportunite::where('entreprise_id', $entreprise->id)->whereHas('activites', function($q) use ($activite_par_profil) {
+                $q->whereIn('activites.id', $activite_par_profil);
+            })->get([
+                    'opportunites.id as id',
+                    'title',
+                    'echeance',
+                    'entreprise_id',
+                    'lieu',
+                    'type',
+                    "opportunites.slug as slug",
+                    "opportunites.created_at as created_at",
+                ]);
+        }else{
+            $offre_par_profil = Opportunite::where('id', '0')->get();
+        }
+        return view('entreprises.detail', compact('entreprise', 'image_entreprise', 'nbre_offres', 'opportunites', 'offre_par_profil'));
     }
 
     public function destroy($id) {
