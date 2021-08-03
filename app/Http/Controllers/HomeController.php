@@ -105,8 +105,9 @@ class HomeController extends Controller
     public function filtre(Request $request) {
         $opportunites = new Opportunite;
         if($request->has('secteur')) {
-            $opportunites = Opportunite::join('opportunite_secteur', 'opportunites.id', '=', 'opportunite_secteur.opportunite_id')
-                                        ->whereIn('opportunite_secteur.secteur_id', $request->secteur);
+            $activites_secteur = Activite::whereIn('secteur_id', $request->secteur)->pluck('id');
+            $opportunites = Opportunite::join('activite_opportunite', 'opportunites.id', '=', 'activite_opportunite.opportunite_id')
+                                        ->whereIn('activite_opportunite.activite_id', $activites_secteur);
         }
         if($request->has('contrat')) {
             $opportunites = $opportunites->whereIn('type_contrat', $request->contrat);
@@ -133,18 +134,19 @@ class HomeController extends Controller
     }
 
         public function search(Request $request) {
-        $poste = $request->poste;
+        $title = $request->title;
         $adresse = $request->adresse;
         $opportunites = new Opportunite;
-        if($poste != null) {
-            $opportunites = $opportunites->where('poste', 'like', "%$poste%");
+        if($title != null) {
+            $opportunites = $opportunites->where('title', 'like', "%$title%");
         }
         if($adresse != null) {
             $opportunites = $opportunites->where('lieu', 'like', "%$adresse%");
         } 
         $opportunites = $opportunites->get();
         $nbre_offres = $opportunites->count();
-        return view('pages.opportunites', compact('opportunites', 'nbre_offres'));
+        $offre_par_profil = collect();
+        return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'offre_par_profil'));
     }
 
     //Offre par profil
