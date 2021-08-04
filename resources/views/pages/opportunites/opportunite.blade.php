@@ -133,70 +133,87 @@
         <div class="row justify-content-center" id="postuler">
             <div class="postuler-container col-lg-8 col-md-10">
                 <h2 class="form-title mb-4">POSTULER</h2>
+                @if (Auth::check())
+                    
+                    <!-- Session Status -->
+                    <x-auth-session-status class="mb-4" :status="session('status')" />
+            
+                    <!-- Validation Errors -->
+                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                <!-- Session Status -->
-                <x-auth-session-status class="mb-4" :status="session('status')" />
-        
-                <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                        <form action="{{ route('postule.store', $opportunite->slug) }}" method="POST" enctype="multipart/form-data">
 
-                    <form action="{{ route('postule.store', $opportunite->slug) }}" method="POST" enctype="multipart/form-data">
-
-                    @csrf
-                    <!-- Email Address -->
-                    <div class="row">
-                        <div class="form-group col-md-6 ">
-                            <label for="nom">Nom</label>
-                            <input id="nom" class="form-control" type="text" name="nom" value="{{ (Auth::check()) ? Auth::user()->nom : old('nom') }}" placeholder="NOM" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="prenom">Prenom</label>
-                            <input id="prenom" class="form-control" type="text" name="prenom" value="{{ (Auth::check()) ? Auth::user()->prenom : old('prenom') }}" placeholder="PRENOM" />
-                        </div>
-                    </div>
-
-                    <!-- Email Address -->
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="email">Email</label>
-                            <input id="email" class="form-control" type="email" name="email" value="{{ (Auth::check()) ? Auth::user()->email : old('email') }}" placeholder="Email" />
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="telephone">Telephone</label>
-                            <input id="telephone" class="form-control" type="text" name="telephone" value="{{ (Auth::check()) ? Auth::user()->telephone : old('telephone') }}" placeholder="N° TELEPHONE" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="motivation">Lettre de motivation</label>
-                            <textarea id="motivation" class="form-control" type="text" name="motivation" value="" placeholder="Pourquoi devrons-nous vous engagé ?" >{{ old('motivation') }}</textarea>
-                        </div>
-                    </div>
-                    @if ($opportunite->type != "formation")
+                        @csrf
+                        <!-- Email Address -->
                         <div class="row">
-                            @if (Auth::check())
-                                @if (voir_cv_profil(Auth::user()->id) != false)
-                                    <div class="form-group col-md-6">
-                                        <input id="cv_profil" class="form-control mr-2" type="checkbox" name="cv_profil" value="" placeholder="Pourquoi devrons-nous vous engagé ?" />
-                                        <label for="cv_profil">Utilisé le CV de votre profil</label>
-                                    </div>
-                                @endif 
-                            @endif
-
+                            <div class="form-group col-md-6 ">
+                                <label for="nom">Nom</label>
+                                <input id="nom" class="form-control" type="text" name="nom" value="{{ (Auth::check()) ? Auth::user()->nom : old('nom') }}" placeholder="NOM" />
+                            </div>
                             <div class="form-group col-md-6">
-                                <label for="cv">Ajouter votre CV</label>
-                                <input id="cv" class="form-control" type="file" name="cv" value="" placeholder="" />
+                                <label for="prenom">Prenom</label>
+                                <input id="prenom" class="form-control" type="text" name="prenom" value="{{ (Auth::check()) ? Auth::user()->prenom : old('prenom') }}" placeholder="PRENOM" />
                             </div>
                         </div>
-                    @endif
 
-                    <div class="mt-4">
-                        <button type="submit" class="btn btn-custom">
-                            {{ __('POSTULER') }}
-                        </button>
+                        <!-- Email Address -->
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="email">Email</label>
+                                <input id="email" class="form-control" type="email" name="email" value="{{ (Auth::check()) ? Auth::user()->email : old('email') }}" placeholder="Email" />
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="telephone">Telephone</label>
+                                <input id="telephone" class="form-control" type="text" name="telephone" value="{{ (Auth::check()) ? Auth::user()->telephone : old('telephone') }}" placeholder="N° TELEPHONE" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="motivation">Lettre de motivation</label>
+                                <textarea id="motivation" class="form-control" type="text" name="motivation" value="" placeholder="Pourquoi devrons-nous vous engagé ?" >{{ old('motivation') }}</textarea>
+                            </div>
+                        </div>
+                        @if ($opportunite->type != "formation")
+                            <div class="row">
+                                @if (Auth::check())
+                                    @if (voir_cv_profil(Auth::user()->id) != false)
+                                        <div class="form-group col-md-6">
+                                            <input id="cv_profil" class="form-control mr-2" type="checkbox" name="cv_profil" value="" placeholder="Pourquoi devrons-nous vous engagé ?" />
+                                            <label for="cv_profil">Utilisé le CV de votre profil</label>
+                                        </div>
+                                    @endif 
+                                @endif
+
+                                <div class="form-group col-md-6">
+                                    <label for="cv">Ajouter votre CV</label>
+                                    <input id="cv" class="form-control" type="file" name="cv" value="" placeholder="" />
+                                </div>
+                            </div>
+                        @endif
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-custom">
+                                {{ __('POSTULER') }}
+                            </button>
+                        </div>
+                    </form>
+                @else
+                    <div class="identifier">
+                        <div class="identifier-word">
+                            Veuillez vous identifier pour postuler 
+                        </div>
+                        <div class="identifier-links">
+
+                            <a href="{{ route('login') }}" class="btn btn-custom mr-4">
+                                {{ __('CONNEXION') }}
+                            </a>
+                            <a class="btn-link mt-auto" href="{{ route('register') }}">
+                                {{ __('Inscription') }}
+                            </a>
+                        </div>
                     </div>
-                </form>
+                @endif
             </div>
         </div>
         

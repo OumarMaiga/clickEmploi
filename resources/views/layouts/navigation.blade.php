@@ -53,10 +53,12 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('profil', Auth::user()->email) }}">
+                            {{ (Auth::user()->prenom || Auth::user()->nom) ? Auth::user()->prenom." ".Auth::user()->nom : Auth::user()->email }}
+                        </a>
                         @if(Auth::user()->type == "admin" || Auth::user()->type == "partenaire")
                             <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                         @endif
-                        <a class="dropdown-item" href="{{ route('profil', Auth::user()->email) }}">Profil</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();

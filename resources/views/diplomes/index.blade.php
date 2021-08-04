@@ -28,7 +28,7 @@
                             <td>{{ $diplome->libelle }}</td>
                             <td>{{ $diplome->annee_etude }}ans</td>
                             <td class="justify-content-between icon-content">
-                                <a href="{{ route('diplome.edit', $diplome->libelle) }}" class="col icon-action icon-edit">
+                                <a href="{{ route('diplome.edit', $diplome->slug) }}" class="col icon-action icon-edit">
                                     <span class="fas fa-user-edit edit">
                                     </span>
                                 </a>

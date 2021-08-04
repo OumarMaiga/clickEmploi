@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\ActiviteRepository;
-use App\Repositories\SecteurRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Repositories\ActiviteRepository;
+use App\Repositories\SecteurRepository;
+use App\Models\Activite;
 
 class ActiviteController extends Controller
 {protected $activiteRepository;
@@ -18,7 +19,14 @@ class ActiviteController extends Controller
     }
 
     public function index() {
-        $activites = $this->activiteRepository->get();
+        $activites = Activite::join('secteurs', 'secteurs.id', 'activites.secteur_id')
+                                ->orderBy('secteurs.libelle')
+                                ->get([
+                                    'activites.id as id',
+                                    'secteurs.libelle as secteur_libelle',
+                                    'activites.libelle as activite_libelle',
+                                    'activites.slug as slug'
+                                ]);
         return view('activites.index', compact('activites'));
     }
 

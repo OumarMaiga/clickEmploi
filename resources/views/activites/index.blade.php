@@ -25,8 +25,8 @@
                     <?php $n = $n + 1 ?>
                         <tr>
                             <th scope="row">{{ $n }}</th>
-                            <td>{{ $activite->libelle }}</td>
-                            <td>{{ $activite->secteur()->associate($activite->secteur_id)->secteur->libelle }}</td>
+                            <td>{{ $activite->activite_libelle }}</td>
+                            <td>{{ $activite->secteur_libelle }}</td>
                             <td class="justify-content-between icon-content">
                                 <a href="{{ route('activite.edit', $activite->slug) }}" class="col icon-action icon-edit">
                                     <span class="fas fa-user-edit edit">

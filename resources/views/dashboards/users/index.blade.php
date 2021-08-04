@@ -76,7 +76,7 @@
                             ?>
                             <tr>
                                 <th scope="row">{{ $n }}</th>
-                                <td>{{ $user->nom." ".$user->prenom }}</td>
+                                <td>{{ "$user->prenom $user->nom" }}</td>
                                 <td>{{ $activites->implode('libelle', ', ') }}</td>
                                 <td>{{ $diplome != null ? $diplome->libelle : "" }}</td>
                                 <td>{{ $annee_experience }}</td>
@@ -90,7 +90,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a class="btn btn-warning float-right"href="{{ route('export') }}">Exporter les données en Excel</a>
+                <a class="btn btn-custom float-right"href="{{ route('export') }}">Exporter les données en Excel</a>
             </form>
         </div>
     </div>
