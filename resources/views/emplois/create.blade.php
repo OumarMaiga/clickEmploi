@@ -58,7 +58,14 @@
                 <div class="row mt-4">
                     <div class="col-md-6">
                         <label for="echeance">Date d'echéance</label>
-                        <input id="echeance" class="form-control" type="date" name="echeance" value="{{ old('echeance') }}" placeholder="" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input id="date_echeance" class="form-control" type="date" value="{{ old('date_echeance') }}" name="date_echeance" placeholder="" />
+                            </div>
+                            <div class="col-md-6">
+                                <input id="time_echeance" type="time" class="form-control" name="time_echeance" value="00:00">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <label for="montant">Salaire</label>
@@ -70,7 +77,7 @@
                 <div class="row mt-4">
                     <div class="col-md-6">
                         <label for="annee_experience">Année d'experience</label>
-                        <select name="annee_experience" class="form-control">
+                        <select name="annee_experience" class="form-control" value="{{ old('annee_experience') }}">
                             <option value="">-- SELECTIONNER ICI --</option>
                             <option value="0.5">6 mois</option>
                             <option value="1">1 an</option>

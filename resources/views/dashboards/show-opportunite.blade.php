@@ -108,7 +108,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12 resume-title">
-                    <i>Publié le 12 Avr 2021</i>
+                    <i>Publié {{ custom_date($opportunite->created_at) }}</i>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 resume-title">
+                    <i>Delais de depôt {{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i>
                 </div>
             </div>
         </div>

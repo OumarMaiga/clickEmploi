@@ -63,19 +63,20 @@ class EmploiController extends Controller
         else {
             $slug = Str::slug($request->get('title'));
         }
+        $echeance = $request->date_echeance."T".$request->time_echeance;
         $request->merge([
             'type' => 'emploi',
             'slug' => $slug,
             'user_id' => Auth::user()->id,
+            'echeance' => $echeance,
         ]);
-        
         $opportunite = $this->opportuniteRepository->store($request->all());
         
         if ($request->has('activite')) {
             $activites = $request->input('activite');
             $opportunite->activites()->sync($activites);
         }
-
+        
         return redirect('/dashboard/emploi')->withStatus("Nouveau emploi publié");
     }
 
