@@ -185,7 +185,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'domaine' => "E-commerce",
             'description' => "Entreprise de promotion des produits made in Mali",
-            'Adresse' => "Garentibougou",
+            'adresse' => "Garentibougou",
         ])->save();
 
         
