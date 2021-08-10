@@ -31,7 +31,6 @@ class UserController extends Controller
         $secteurs = Secteur::orderBy('libelle')->get();
         $diplomes = Diplome::orderBy('annee_etude')->get();
         $annee_experience = Auth::user()->annee_experience;
-        
         return view('dashboards.users.index', compact('users', 'secteurs', 'diplomes'));
     }
 
@@ -39,7 +38,7 @@ class UserController extends Controller
         $user = $this->userRepository->getByEmail($email);
         $photo = photo_profil($user->email);
         $activites = $user->activites->pluck('libelle');
-        return view('dashboards.users.show', compact('user', 'photo', 'a$activites'));
+        return view('dashboards.users.show', compact('user', 'photo', 'activites'));
     }
 
     public function destroy($id) {

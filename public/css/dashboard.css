@@ -143,6 +143,42 @@
     color: #FFFFFF
 }
 
+/* Index dashboard */
+.nbre-user {
+    padding: 2rem 4rem;
+    text-align: center;
+    border-radius: 1rem;
+    background-color: #FFC336;
+    box-shadow: 0px 0px 7px 1px #00000031;
+    color: #FFFFFF;
+}
+.nbre {
+    font-size: 4rem;
+}
+.user{
+    font-family: 'Palatino Linotype';
+    font-size: 1.4rem;
+    margin-top: -1rem;
+}
+.dashboard-index-lil-title {
+    color: #878787;
+    font-family: 'Palatino Linotype';
+    margin-left: 10px;
+}
+.dashboard-index-lil-nbre {
+    font-size: 3rem;
+    margin-left: 10px;
+}
+.left-bar {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: #C1C1C1;
+}
+.dashboard-index-subtitle {
+    font-size: 1.6rem;
+}
+
 
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
