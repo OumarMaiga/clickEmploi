@@ -92,7 +92,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-10 px-0 md-decalle">
+            <div class="col-lg-10 md-decalle">
                 @include('layouts.navigation_dashboard')  
                 <!-- Page Content -->
                 <main>

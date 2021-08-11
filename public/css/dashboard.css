@@ -64,9 +64,14 @@
     float: right;
     padding-right: 8px;
   }
-
+.nav-dashboard {
+    position: fixed;
+    width: 84%;
+    z-index: 1;
+}
 .dashboard-content {
     padding: 2rem;
+    margin-top: 3rem;
 }
 
 .icon-edit:hover {
@@ -154,6 +159,8 @@
 }
 .nbre {
     font-size: 4rem;
+    margin-top: -1rem;
+    font-weight: bold;
 }
 .user{
     font-family: 'Palatino Linotype';
@@ -178,7 +185,14 @@
 .dashboard-index-subtitle {
     font-size: 1.6rem;
 }
+.dashboard-index-welcome {
+    font-size: 1.4rem;
+    color: #FFFFFF;
+    background-color: #FFC336;
+}
+.dashboard-index-welcome-name {
 
+}
 
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
@@ -186,10 +200,6 @@
 
     .sidebar {
         width: auto;
-    }
-    .md-decalle {
-        left: 5rem;
-        width: 90%;
     }
     .dashboard-content {
         padding: 1rem
@@ -200,6 +210,10 @@
     .show-container {
         margin-left: 2px;
         width: 100%;
+    }   
+
+    .nav-dashboard {
+        margin-left: 5.1rem;
     }
 
 }

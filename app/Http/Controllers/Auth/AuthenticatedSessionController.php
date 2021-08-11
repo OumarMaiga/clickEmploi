@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
         if(Auth::user()->type === "admin" || Auth::user()->type === "partenaire") {
-            return redirect('/dashboard')->withWelcome("Bienvenue ".Auth::user()->prenom." ".Auth::user()->nom);
+            return redirect('/dashboard')->withWelcome("Bienvenue <strong>".Auth::user()->prenom." ".Auth::user()->nom."</strong>");
         } else {
             return redirect()->intended(RouteServiceProvider::HOME);
         }

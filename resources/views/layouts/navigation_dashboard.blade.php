@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm shadow-sm nav-custom" id="navigation">
+<nav class="row navbar navbar-expand-sm shadow-sm nav-dashboard" id="navigation">
     <!-- Primary Navigation Menu -->
     <!-- Logo -->
     <a class="navbar-brand" href="{{ route('accueil') }}">
@@ -52,8 +52,6 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                        
-
                     </div>
                 </li>
             @endguest

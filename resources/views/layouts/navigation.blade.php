@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm shadow-sm nav-custom" id="navigation">
+<nav class="navbar navbar-expand-sm shadow-sm" id="navigation">
     <!-- Primary Navigation Menu -->
     <!-- Logo -->
     <a class="navbar-brand" href="{{ route('accueil') }}">
