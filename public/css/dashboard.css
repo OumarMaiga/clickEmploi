@@ -67,7 +67,7 @@
 .nav-dashboard {
     position: fixed;
     width: 84%;
-    z-index: 1;
+    z-index: 3;
 }
 .dashboard-content {
     padding: 2rem;
@@ -190,30 +190,46 @@
     color: #FFFFFF;
     background-color: #FFC336;
 }
-.dashboard-index-welcome-name {
-
-}
 
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
-@media (max-width: 991px) { 
+@media (max-width: 991px) {
 
     .sidebar {
         width: auto;
+        height: 60vh;
     }
     .dashboard-content {
-        padding: 1rem
-    }
-    #navigation {
-        width: 100%;
+        position: absolute;
+        padding: 1rem;
+        left: 6rem;
+        width: 87%;
     }
     .show-container {
         margin-left: 2px;
         width: 100%;
-    }   
-
-    .nav-dashboard {
-        margin-left: 5.1rem;
     }
 
+    .nav-dashboard {
+        left: 6rem;
+        width: 90%;
+    }
+
+    .config-card {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    .config-number{
+        font-size: 6rem;
+    }
+    .config-plus {
+        font-size: 2rem;
+        top: -10px;
+    }
+    .config-link {
+        width: 30px;
+        height: 30px;
+        bottom: 2rem;
+        right: 2.4rem;
+    }
 }

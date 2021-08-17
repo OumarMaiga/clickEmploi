@@ -1,7 +1,7 @@
 <x-dashboard-layout>
     <div class="dashboard-content">
         <div class="container content">
-            <div class="ajout-title">{{ __('MODIFICATION DE L\'EMPLOI') }}</div>
+            <div class="content-title">{{ __('MODIFICATION DE L\'EMPLOI') }}</div>
         
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
