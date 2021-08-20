@@ -11022,10 +11022,6 @@ select {
   display: inline-flex;
 }
 
-.table {
-  display: table;
-}
-
 .inline-table {
   display: inline-table;
 }

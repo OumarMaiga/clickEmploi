@@ -91,12 +91,9 @@ hr {
     background-color: #FFFFFF;
     border-radius: 5px;
     box-shadow: 0px 0px 1.7px 1px #00000018;
-    margin: 0px 15px;
+    margin: 5px 15px;
     position: relative;
     border: 0.5px solid #00000023;
-    flex: 0 0 20%;
-    flex-basis: 20%;
-    max-width: 20%;
 }
 .offre-card:hover {
     box-shadow: 0px 0px 1.7px 1.3px #00000025;
@@ -311,7 +308,7 @@ hr {
 }
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
-@media (max-width: 768px) { 
+@media (max-width: 991px) { 
     .head {
         height: 40vh;
     }
@@ -366,6 +363,10 @@ hr {
     .offre-footer {
         font-size: .85rem;
     }
+    .offre-card {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 
     .postuler-container {
         padding: 1rem 1rem;
@@ -374,7 +375,7 @@ hr {
 
 /* View Phone -- Medium devices (tablets, 576px and up) */
 
-@media (max-width: 576px) { 
+@media (max-width: 767px) { 
     .head {
         height: 30vh;
     }
@@ -416,7 +417,6 @@ hr {
         font-size: 1.2rem;
         margin-bottom: .5rem;
     }
-        
     .break{
         display: block;
     }

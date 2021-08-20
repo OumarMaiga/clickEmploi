@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-3 col-sm-4 dashboard-index-item">
+                <div class="col-md-3 col-sm-4 col-xs-6 dashboard-index-item">
                     <span class="left-bar"></span>
                     <div class="dashboard-index-lil-title">
                         Abonnées
@@ -28,7 +28,7 @@
                         {{ $nbre_abonnees }}
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4 dashboard-index-item">
+                <div class="col-md-3 col-sm-4 col-xs-6 dashboard-index-item">
                     <span class="left-bar"></span>
                     <div class="dashboard-index-lil-title">
                         Offres en cours
@@ -37,7 +37,7 @@
                         {{ $nbre_offres_en_cours }}
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4 dashboard-index-item">
+                <div class="col-md-3 col-sm-4 col-xs-6 dashboard-index-item">
                     <span class="left-bar"></span>
                     <div class="dashboard-index-lil-title">
                         Partenaires
@@ -49,7 +49,7 @@
             </div>
         @else
             <div class="row mt-4">
-                <div class="col-md-3 col-sm-4 dashboard-index-item">
+                <div class="col-md-3 col-sm-4 col-xs-6 dashboard-index-item">
                     <span class="left-bar"></span>
                     <div class="dashboard-index-lil-title">
                         Mes offres
@@ -58,7 +58,7 @@
                         {{ $nbre_mes_offres }}
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4 dashboard-index-item">
+                <div class="col-md-3 col-sm-4 col-xs-6 dashboard-index-item">
                     <span class="left-bar"></span>
                     <div class="dashboard-index-lil-title">
                         Mes offres en cours
@@ -67,7 +67,7 @@
                         {{ $nbre_mes_offres_en_cours }}
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4 dashboard-index-item">
+                <div class="col-md-3 col-sm-4 col-xs-6 dashboard-index-item">
                     <span class="left-bar"></span>
                     <div class="dashboard-index-lil-title">
                         Postulants
@@ -80,7 +80,7 @@
         @endif
         <div class="mt-6">
             <h4 class="dashboard-index-subtitle">Mes offres</h4>
-            <table class="table table-hover">
+            <table class="table table-hover table-responsive">
                 <thead>
                     <th scope="col">#</th>
                     <th scope="col">Titre</th>

@@ -196,13 +196,12 @@
 @media (max-width: 991px) {
 
     .sidebar {
-        width: auto;
-        height: 60vh;
+        width: 12%;
     }
     .dashboard-content {
         position: absolute;
         padding: 1rem;
-        left: 6rem;
+        left: 13%;
         width: 87%;
     }
     .show-container {
@@ -211,8 +210,8 @@
     }
 
     .nav-dashboard {
-        left: 6rem;
-        width: 90%;
+        left: 13.9%;
+        width: 86%;
     }
 
     .config-card {
@@ -232,4 +231,38 @@
         bottom: 2rem;
         right: 2.4rem;
     }
+    .icon-action {
+        font-size: 1.1rem;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        display: none;
+    }
+    .nav-dashboard {
+        left: 0;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .dashboard-content {
+        position: absolute;
+        padding: 1rem;
+        left: 0;
+        width: 100%;
+    }
+    .sidebar-list {
+        margin-top: 15px;
+    }
+    .sidebar-item {
+        margin-top: 0;
+        padding: 15px 0px;
+    }
+    .sidebar-link {
+        padding-left: 0;
+    }
+
 }
