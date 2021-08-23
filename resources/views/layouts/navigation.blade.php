@@ -42,7 +42,7 @@
                     </li>
                 @endif
             @else
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown d-none d-md-block">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         @if (photo_profil(Auth::user()->email))
                             <img src="{{ photo_profil(Auth::user()->email) }}" class="photo_profil_nav">
@@ -60,18 +60,41 @@
                             <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                         @endif
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                                Deconnexion
+                            </a>
                         </form>
                         
 
                     </div>
                 </li>
+                <div class="d-block d-md-none">
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profil', Auth::user()->email) }}">
+                            {{ (Auth::user()->prenom || Auth::user()->nom) ? Auth::user()->prenom." ".Auth::user()->nom : Auth::user()->email }}
+                        </a>
+                    </li>
+                    @if(Auth::user()->type == "admin" || Auth::user()->type == "partenaire")
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                    @endif
+                    <li class="nav-item">
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="btn btn-red" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                                Deconnexion
+                            </a>
+                        </form>
+                    </li>
+                </div>
             @endguest
         </ul>
     </div>

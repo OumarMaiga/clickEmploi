@@ -1,4 +1,4 @@
-    <div class="show-container">
+    <div class="dashboard-content-detail-offre">
         <div class="show-head-container">
             <div class="show-title">
                 {{ $opportunite->title }}
@@ -119,7 +119,7 @@
         </div>
         <div class="container list-container">
             <div class="lil-title">LES POSTULANTS</div>
-            <table class="table table-hover">
+            <table class="table table-hover table-responsive-md">
                 <thead>
                     <tr>
                     <th scope="col">#</th>

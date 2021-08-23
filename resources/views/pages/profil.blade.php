@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="main-content">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 d-flex justify-content-center">
                 <img alt="profil" src="{{$photo}}" class="profil-img"/>
             </div>
             <div class="col-md-8">
@@ -12,7 +12,7 @@
                     {{ $user->prenom." ".$user->nom }}
                     @if ($user->email == Auth::user()->email)
                         <a href="{{ route('edit_profil', $user->email) }}" class="align-items-center"> 
-                            <button class="float-right btn btn-outline-warning">Modifier le profil</button>
+                            <button class="btn-modif-profil btn btn-outline-warning">Modifier le profil</button>
                         </a>   
                     @endif
                 </div>

@@ -438,24 +438,6 @@ hr {
         padding-right: 15px !important;
     }
 
-    /* Detail opportunite */
-    .show-head-container {
-        padding: 1.5rem .75rem;
-        height: 200px;
-    }
-    .show-title {
-        font-size: 1.4rem;
-    }
-    .lil-title {
-    font-size: 1.2rem;
-    }
-    .description-content, .resume {
-        margin-top: 1rem;
-    }
-    .postuler-container {
-        padding: 35px;
-    }
-
     /* Detail entreprise */
     .entreprise-detail-head {
         height:30vh;

@@ -36,6 +36,14 @@ body {
     line-height: 1.5;
     border-radius: .25rem;
 }
+.btn-red {
+    background-color: #FFFFFF;
+    color: #ff0000;
+    padding: .375rem .75rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
 .btn-custom:hover {
     background-color: #F3A202;
     border-color: #EE9F05;
@@ -193,7 +201,9 @@ body {
     font-weight: 200;
     margin-bottom: 1rem;
 }
-
+.btn-modif-profil {
+    float: right;
+}
 
 /* FOOTER */
 footer {
@@ -258,6 +268,15 @@ footer {
     .content-title {
         font-size: 1.6rem;
     }
+    .offre-block-number {
+        font-size: 2rem;
+    }
+    .offre-block-number-icon {
+        font-size: 3rem;
+    }
+    .offre-block-number-word {
+        padding: .5rem .5rem;
+    }
 }
 
 @media (max-width: 567px) {
@@ -280,6 +299,52 @@ footer {
         margin-right: auto;
     }
     .form-item {
+        margin-top: .5rem;
+    }
+    .entreprise-detail-offres-title {
+        font-size: 1.2rem;
+    }
+    .offre-title {
+        font-size: 1.2rem;
+    }
+    .offre-block-number {
+        font-size: 2rem;
+    }
+    .offre-block-number-icon {
+        font-size: 3rem;
+        padding: .5rem 1rem;
+    }
+    .offre-block-number-word {
+        padding: .5rem .5rem;
+    }
+    .offre-block-number {
+        font-size: 1.4rem;
+    }
+    .offre-block-number-down {
+        padding: .5rem 1rem;
+    }
+    /* Detail opportunite */
+    .show-head-container {
+        padding: 1.5rem .75rem;
+        height: 200px;
+    }
+    .show-title {
+        font-size: 1.4rem;
+    }
+    .lil-title {
+        font-size: 1.2rem;
+    }
+    .description-content, .resume {
+        margin-top: 1rem;
+    }
+    .postuler-container {
+        padding: 35px;
+    }
+    .profil-img {
+        width: 200px;
+    }
+    .btn-modif-profil {
+        float: left;
         margin-top: .5rem;
     }
 }

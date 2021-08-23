@@ -2,7 +2,7 @@
     <!-- Primary Navigation Menu -->
     <!-- Logo -->
     <a class="navbar-brand" href="{{ route('accueil') }}">
-        ClickEmploi
+        <img src="{{ url('/image/logo-white.jpeg')}}" alt="Logo" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="fas fa-bars" style="color: #FFFFFF"></span>
@@ -87,7 +87,7 @@
                     </li>
                 @endif
             @else
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown d-none d-md-block">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         @if (photo_profil(Auth::user()->email))
                             <img src="{{ photo_profil(Auth::user()->email) }}" class="photo_profil_nav">
@@ -114,6 +114,27 @@
                         </form>
                     </div>
                 </li>
+                <div class="d-block d-md-none">
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profil', Auth::user()->email) }}">
+                            {{ (Auth::user()->prenom || Auth::user()->nom) ? Auth::user()->prenom." ".Auth::user()->nom : Auth::user()->email }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="btn btn-red" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                                Deconnexion
+                            </a>
+                        </form>
+                    </li>
+                </div>
             @endguest
         </ul>
     </div>

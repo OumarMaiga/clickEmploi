@@ -77,7 +77,12 @@
     padding: 2rem;
     margin-top: 3rem;
 }
-
+.dashboard-content-detail-offre{
+    left: 16%;
+    position: absolute;
+    width: 84%;
+    margin-top: 3.6rem;
+}
 .icon-edit:hover {
     color: #ffc107;
 }
@@ -208,12 +213,11 @@
         left: 14%;
         width: 86%;
     }
-        
-    .sidebar-title {
-        padding-left: 10px;
-    }
-    .sidebar-item {
-        padding: 15px 10px;
+    .dashboard-content-detail-offre {
+        left: 14%;
+        position: absolute;
+        width: 86%;
+        margin-top: 3rem;
     }
     .show-container {
         margin-left: 2px;
@@ -276,4 +280,13 @@
         padding-left: 0;
     }
 
+    .show-head-container {
+        margin-top: 3.6rem;
+
+    }
+    .dashboard-content-detail-offre {
+        left: 0;
+        width: 100%;
+        margin-top: 0;
+    }
 }
