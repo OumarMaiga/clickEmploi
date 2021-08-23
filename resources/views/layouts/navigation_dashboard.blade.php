@@ -1,4 +1,4 @@
-<nav class="row navbar navbar-expand-sm shadow-sm nav-dashboard" id="navigation">
+<nav class="navbar navbar-expand-sm shadow-sm nav-dashboard" id="navigation">
     <!-- Primary Navigation Menu -->
     <!-- Logo -->
     <a class="navbar-brand" href="{{ route('accueil') }}">

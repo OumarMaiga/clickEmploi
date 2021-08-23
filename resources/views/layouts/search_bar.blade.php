@@ -1,6 +1,6 @@
 <form action="{{ route('search') }}" method="get">
     <div class="search-bar">
-        <div class="row justify-content-md-center">
+        <div class="d-flex justify-content-md-center">
             <div class="col-lg-4 col-md-5">
                 <input type="text" name="title" class="form-control" id="title" placeholder="TITRE" value="{{ old('title') }}">
             </div>

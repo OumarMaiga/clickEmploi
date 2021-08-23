@@ -80,7 +80,7 @@
         @endif
         <div class="mt-6">
             <h4 class="dashboard-index-subtitle">Mes offres</h4>
-            <table class="table table-hover table-responsive">
+            <table class="table table-hover table-responsive-md">
                 <thead>
                     <th scope="col">#</th>
                     <th scope="col">Titre</th>

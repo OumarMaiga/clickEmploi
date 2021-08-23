@@ -26,18 +26,16 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="row">
-            <div class="col-lg-2">
+            <div class="d-flex">
                 @include('layouts.sidebar')
             </div>
-            <div class="col-lg-10">
+            <div class="d-flex">
                 @include('layouts.navigation_dashboard')  
                 <!-- Page Content -->
                 <main>
                     {{ $slot }}
                 </main>              
             </div>
-        </div>
         
 
         <!-- BOOTSTRAP JS -->

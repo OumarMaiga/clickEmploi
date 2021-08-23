@@ -66,10 +66,14 @@
   }
 .nav-dashboard {
     position: fixed;
+    left: 16%;
     width: 84%;
     z-index: 3;
 }
 .dashboard-content {
+    left: 16%;
+    position: absolute;
+    width: 84%;
     padding: 2rem;
     margin-top: 3rem;
 }
@@ -196,13 +200,20 @@
 @media (max-width: 991px) {
 
     .sidebar {
-        width: 12%;
+        width: 14%;
     }
     .dashboard-content {
         position: absolute;
         padding: 1rem;
-        left: 13%;
-        width: 87%;
+        left: 14%;
+        width: 86%;
+    }
+        
+    .sidebar-title {
+        padding-left: 10px;
+    }
+    .sidebar-item {
+        padding: 15px 10px;
     }
     .show-container {
         margin-left: 2px;
@@ -210,7 +221,7 @@
     }
 
     .nav-dashboard {
-        left: 13.9%;
+        left: 14%;
         width: 86%;
     }
 

@@ -130,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center" id="postuler">
+        <div class="d-flex justify-content-center" id="postuler">
             <div class="postuler-container col-lg-8 col-md-10">
                 <h2 class="form-title mb-4">POSTULER</h2>
                 @if (Auth::check())
