@@ -15,11 +15,11 @@
                 
                 <!-- Email Address -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <label for="libelle">Activité</label>
                         <input id="libelle" class="form-control" type="text" name="libelle" value="{{ $activite->libelle }}" placeholder="ACTIVITE" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <label for="secteur_id">Domaine</label>
                         <select name="secteur_id" class="form-control">
                             <option value="">-- SELECTIONNER ICI --</option>

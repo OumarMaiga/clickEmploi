@@ -14,10 +14,11 @@
                 @method('put')
                 <!-- Email Address -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
+                        <label for="title">Titre</label>
                         <input id="title" class="form-control" type="text" name="title" value="{{ $formation->title }}" placeholder="TITRE" required autofocus />
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <label for="niveau">Niveau</label>
                         <select name="niveau" class="form-control">
                             <option value="">-- SELECTIONNER ICI --</option>
@@ -29,8 +30,9 @@
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
+                        <label for="structure">Entreprise</label>
                         <select id="structure" class="form-control" name="entreprise_id">
                             <option value="">-- CHOISIR L'ENTREPRISE ICI --</option>
                             @foreach ($entreprises as $entreprise)
@@ -38,34 +40,39 @@
                             @endforeach
                         </select>
                     </div>    
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
+                        <label for="lieu">Adresse</label>
                         <input id="lieu" class="form-control" type="text" name="lieu" value="{{ $formation->lieu }}" placeholder="ADRESSE" />
                     </div>
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
                         <label for="echeance">Date d'echéance</label>
                         <input id="echeance" class="form-control" type="date" name="echeance" value="{{ $formation->echeance }}" placeholder="" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
+                        <label for="duree">Durée</label>
                         <input id="duree" class="form-control" type="text" name="duree" value="{{ $formation->duree }}" placeholder="DUREE" />
                     </div>
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
+                        <label for="montant">Montant</label>
                         <input id="montant" class="form-control" type="text" name="montant" value="{{ $formation->montant }}" placeholder="PRIX" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
+                        <label for="prerequis">Prerequis</label>
                         <input id="prerequis" class="form-control" type="text" name="prerequis" value="{{ $formation->prerequis }}" placeholder="PREREQUIS" />
                     </div>
                 </div>
     
-                <div class="row mt-4">
-                    <div class="col-md-12">
+                <div class="row">
+                    <div class="form-item col-md-12">
+                        <label for="content">Description</label>
                         <textarea id="content" class="form-control" name="content" value="" placeholder="DESCRIPTION ...">{{ $formation->content }}</textarea>
                     </div>
                 </div>

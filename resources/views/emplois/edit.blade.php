@@ -14,14 +14,14 @@
                 @method('put')
                 <!-- Email Address -->
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="form-item col-md-12">
                         <input id="title" class="form-control" type="text" name="title" value="{{ $emploi->title }}" placeholder="TITRE" required autofocus />
                     </div>
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
                         <select id="structure" class="form-control" name="entreprise_id">
                             <option value="">-- CHOISIR L'ENTREPRISE ICI --</option>
                             @foreach ($entreprises as $entreprise)
@@ -29,17 +29,17 @@
                             @endforeach
                         </select>
                     </div>    
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <input id="lieu" class="form-control" type="text" name="lieu" value="{{ $emploi->lieu }}" placeholder="ADRESSE"/>
                     </div>
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
                         <input id="duree" class="form-control" type="text" name="duree" value="{{ $emploi->duree }}" placeholder="DUREE" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <select class="form-control" id="exampleFormControlSelect1" name="type_contrat">
                             <option value="">-- TYPE DE CONTRAT --</option>
                             <option <?= ($emploi->type_contrat == "cdd") ? "selected=selected" : "" ?> value="cdd">CDD</option>
@@ -50,19 +50,19 @@
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
                         <label for="echeance">Date d'echéance</label>
                         <input id="echeance" class="form-control" type="date" name="echeance" value="{{ $emploi->echeance }}" placeholder="" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <input id="montant" class="form-control" type="text" name="montant" value="{{ $emploi->montant }}" placeholder="SALAIRE (250.000F - 375.000F)" />
                     </div>
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
                         <label for="annee_experience">Année d'experience</label>
                         <select name="annee_experience" class="form-control">
                             <option value="">-- SELECTIONNER ICI --</option>
@@ -74,7 +74,7 @@
                             <option <?= ($emploi->annee_experience == "5") ? "selected=selected" : "" ?> value="5">4 ans</option>
                         </select>
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <label for="niveau">Niveau</label>
                         <select name="niveau" class="form-control">
                             <option value="">-- SELECTIONNER ICI --</option>
@@ -85,14 +85,14 @@
                     </div>
                 </div>
     
-                <div class="row mt-4">    
-                    <div class="col-md-12">
+                <div class="row">    
+                    <div class="form-item col-md-12">
                         <textarea id="content" class="form-control" name="content" value="" placeholder="DESCRIPTION ...">{{ $emploi->content }}</textarea>
                     </div>
                 </div>
 
-                <div class="row mt-4">
-                    <div class="col-12">
+                <div class="row">
+                    <div class="form-item col-12">
                         Categorie
                     </div>
                     <div class="col-md-12">

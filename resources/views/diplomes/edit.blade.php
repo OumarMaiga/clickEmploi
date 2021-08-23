@@ -14,7 +14,7 @@
                 
                 <!-- Email Address -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <input id="libelle" class="form-control" type="text" name="libelle" value="{{ $diplome->libelle }}" placeholder="DIPLOME" required />
                     </div>
                 </div>

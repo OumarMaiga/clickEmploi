@@ -1,9 +1,9 @@
 <x-dashboard-layout>
     <div class="dashboard-content">
         <div class="container content">
-            <h3 class="mb-3 align-items-start content-title">
+            <h3 class="mb-3 d-flex align-items-center content-title">
                     LES FORMATIONS
-                    <a href="{{ route('formation.create') }}" class="float-right"><button class="btn-custom">AJOUTER</button></a>
+                    <a href="{{ route('formation.create') }}" class="ml-auto"><button class="btn-custom">AJOUTER</button></a>
                 </div>
             </h3>
 
