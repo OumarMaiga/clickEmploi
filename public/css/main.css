@@ -204,7 +204,10 @@ body {
 .btn-modif-profil {
     float: right;
 }
-
+.search-bar-content {
+    display: flex;
+    justify-content: center;   
+}
 /* FOOTER */
 footer {
     line-height: 2;
@@ -346,5 +349,8 @@ footer {
     .btn-modif-profil {
         float: left;
         margin-top: .5rem;
+    }
+    .search-bar-content {
+        display: block;
     }
 }
