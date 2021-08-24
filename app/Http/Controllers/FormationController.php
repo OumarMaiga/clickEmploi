@@ -51,6 +51,7 @@ class FormationController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
         ]);
 
@@ -62,10 +63,12 @@ class FormationController extends Controller
         else {
             $slug = Str::slug($request->get('title'));
         }
+        $echeance = $request->date_echeance."T".$request->time_echeance;
 
         $request->merge([
             'type' => 'formation',
             'slug' => $slug,
+            'echeance' => $echeance,
             'user_id' => Auth::user()->id,
         ]);
         
@@ -91,8 +94,15 @@ class FormationController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
         ]);
+        if ($request->has('date_echeance') || $request->has('time_echeance')) {
+            $echeance = $request->date_echeance."T".$request->time_echeance;
+            $request->merge([
+                'echeance' => $echeance,
+            ]);
+        }
         $this->opportuniteRepository->update($id, $request->all());
 
         return redirect('/dashboard/formation')->withStatus("Formation a bien été mise à jour");
@@ -102,9 +112,8 @@ class FormationController extends Controller
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
-        $secteurs = $opportunite->secteurs->pluck('libelle');
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
-        return view('formations.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs', 'niveau'));
+        return view('formations.show', compact('opportunite', 'entreprise', 'postulants', 'niveau'));
     }
 
     public function detail($slug) {

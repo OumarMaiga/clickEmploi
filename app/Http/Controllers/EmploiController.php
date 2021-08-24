@@ -51,6 +51,7 @@ class EmploiController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
             'annee_experience' => 'numeric|between:0,20',
         ]);
@@ -94,11 +95,17 @@ class EmploiController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
             'annee_experience' => 'numeric|between:0,20',
         ]);
+        if ($request->has('date_echeance') || $request->has('time_echeance')) {
+            $echeance = $request->date_echeance."T".$request->time_echeance;
+            $request->merge([
+                'echeance' => $echeance,
+            ]);
+        }
         $this->opportuniteRepository->update($id, $request->all());
-
         if ($request->has('activite')) {
             $opportunite = $this->opportuniteRepository->getById($id);
             $activites = $request->input('activite');

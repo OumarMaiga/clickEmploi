@@ -15,14 +15,25 @@
 
                 <!-- Email Address -->
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label for="title">Titre</label>
                         <input id="title" class="form-control" type="text" name="title" value="{{ $stage->title }}" placeholder="TITRE" required autofocus />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="niveau">Diplome</label>
+                        <select name="niveau" class="form-control">
+                            <option value="">-- SELECTIONNER ICI --</option>
+                            @foreach($diplomes as $diplome)
+                                <option <?= ($diplome->id == $stage->niveau) ? "selected=selected" : "" ?> value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
+                        <label for="structure">Entreprise</label>
                         <select id="structure" class="form-control" name="entreprise_id">
                             <option value="">-- CHOISIR L'ENTREPRISE ICI --</option>
                             @foreach ($entreprises as $entreprise)
@@ -31,6 +42,7 @@
                         </select>
                     </div>    
                     <div class="col-md-6">
+                        <label for="lieu">Adresse</label>
                         <input id="lieu" class="form-control" type="text" name="lieu" value="{{ $stage->lieu }}" placeholder="ADRESSE" />
                     </div>
                 </div>
@@ -38,18 +50,11 @@
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <label for="echeance">Date d'echéance</label>
-                        <input id="echeance" class="form-control" type="date" name="echeance" value="{{ $stage->echeance }}" placeholder="" />
+                        <label for="duree">Durée de stage</label>
+                        <input id="duree" class="form-control" type="text" name="duree" value="{{ $stage->duree }}" placeholder="DUREE" />
                     </div>
                     <div class="col-md-6">
-                        <input id="montant" class="form-control" type="text" name="montant" value="{{ $stage->montant }}" placeholder="SALAIRE (250.000F - 375.000F)" />
-                    </div>
-                </div>
-
-
-                <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                        <label for="contrat">Contrat</label>
                         <select class="form-control" id="exampleFormControlSelect1" name="type_contrat">
                             <option value="">-- TYPE DE CONTRAT --</option>
                             <option <?= ($stage->type_contrat == "cdd") ? "selected=selected" : "" ?> value="cdd">CDD</option>
@@ -57,23 +62,33 @@
                             <option <?= ($stage->type_contrat == "alternance") ? "selected=selected" : "" ?> value="alternance">Alternance</option>
                         </select>
                     </div>
-                    <div class="col-md-6">
-                        <input id="duree" class="form-control" type="text" name="duree" value="{{ $stage->duree }}" placeholder="DUREE" />
-                    </div>
                 </div>
-    
+
                 <!-- Email Address -->
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <label for="niveau">Niveau</label>
-                        <select name="niveau" class="form-control">
-                            <option value="">-- SELECTIONNER ICI --</option>
-                            @foreach($diplomes as $diplome)
-                                <option <?= ($diplome->id == $stage->niveau) ? "selected=selected" : "" ?> value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
-                            @endforeach
-                        </select>
+                        <label for="echeance">Date d'echéance</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <input id="date_echeance" class="form-control" type="date" value="{{ $stage->echeance->format('Y-m-d') }}" name="date_echeance" placeholder="" />
+                            </div>
+                            <div class="col-6">
+                                <input id="time_echeance" type="time" class="form-control" name="time_echeance" value="{{ $stage->echeance->format('H:i') }}">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
+                        <label for="montant">Salaire</label>
+                        <input id="montant" class="form-control" type="text" name="montant" value="{{ $stage->montant }}" placeholder="SALAIRE (250.000F - 375.000F)" />
+                    </div>
+                </div>
+
+
+    
+                <!-- Email Address -->
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <label for="content">Description</label>
                         <textarea id="content" class="form-control" name="content" value="{{ $stage->content }}" placeholder="DESCRIPTION ...">{{ $stage->content }}</textarea>
                     </div>
                 </div>

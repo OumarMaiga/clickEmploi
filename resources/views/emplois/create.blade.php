@@ -59,10 +59,10 @@
                     <div class="form-item col-md-6">
                         <label for="echeance">Date d'echéance</label>
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-6">
                                 <input id="date_echeance" class="form-control" type="date" value="{{ old('date_echeance') }}" name="date_echeance" placeholder="" />
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-6">
                                 <input id="time_echeance" type="time" class="form-control" name="time_echeance" value="00:00">
                             </div>
                         </div>

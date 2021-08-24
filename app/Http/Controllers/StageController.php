@@ -52,6 +52,7 @@ class StageController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
         ]);
 
@@ -63,10 +64,12 @@ class StageController extends Controller
         else {
             $slug = Str::slug($request->get('title'));
         }
+        $echeance = $request->date_echeance."T".$request->time_echeance;
 
         $request->merge([
             'type' => 'stage',
             'slug' => $slug,
+            'echeance' => $echeance,
             'user_id' => Auth::user()->id,
         ]);
         
@@ -94,8 +97,15 @@ class StageController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
         ]);
+        if ($request->has('date_echeance') || $request->has('time_echeance')) {
+            $echeance = $request->date_echeance."T".$request->time_echeance;
+            $request->merge([
+                'echeance' => $echeance,
+            ]);
+        }
         $this->opportuniteRepository->update($id, $request->all());
 
         if ($request->has('activite')) {

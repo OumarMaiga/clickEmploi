@@ -50,7 +50,14 @@
                 <div class="row">
                     <div class="form-item col-md-6">
                         <label for="echeance">Date d'echéance</label>
-                        <input id="echeance" class="form-control" type="date" name="echeance" value="{{ $formation->echeance }}" placeholder="" />
+                        <div class="row">
+                            <div class="col-6">
+                                <input id="date_echeance" class="form-control" type="date" value="{{ $formation->echeance->format('Y-m-d') }}" name="date_echeance" placeholder="" />
+                            </div>
+                            <div class="col-6">
+                                <input id="time_echeance" type="time" class="form-control" name="time_echeance" value="{{ $formation->echeance->format('H:i') }}">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-item col-md-6">
                         <label for="duree">Durée</label>

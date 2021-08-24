@@ -4,7 +4,7 @@
                 {{ $opportunite->title }}
             </div>
             <div class="show-subtitle">
-                {{ $entreprise->libelle }} &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite->lieu }}
+                <a href="{{ route('entreprise.detail', $entreprise->slug) }}">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> <a href="{{ route('opportunite.adresse', $opportunite->lieu) }}">{{ $opportunite->lieu }}</a>
             </div>
         </div>
 
@@ -97,15 +97,15 @@
                         {{ $opportunite->montant }}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-3 resume-title">
+                        Secteur d'activité:
+                    </div>
+                    <div class="col-md-9 description">
+                        {{ $activites->implode(', ') }}
+                    </div>
+                </div>
             @endif
-            <div class="row">
-                <div class="col-md-3 resume-title">
-                    Secteur d'activité:
-                </div>
-                <div class="col-md-9 description">
-                    {{ $activites->implode(', ') }}
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-12 resume-title">
                     <i>Publié {{ custom_date($opportunite->created_at) }}</i>
