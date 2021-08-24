@@ -237,6 +237,29 @@ footer {
 .form-item {
     margin-top: 1.5rem;
 }
+/* Liste offre */
+.offre-block-number {
+    font-size: 4rem;
+    margin: 1rem 0rem;
+    font-family: "Segoe UI";
+    box-shadow: 0px 0px 4px 2px #00000031;
+}
+.offre-block-number-up {
+    background-color: #F5FFFF;
+}
+.offre-block-number-word {
+    padding: 1rem 2rem;
+    font-weight: bold;
+}
+.offre-block-number-icon {
+    font-size: 5rem;
+    padding: 1rem 2rem;
+    background-color: #E1FFFE;
+}
+.offre-block-number-down {
+    padding: 1rem 2rem;
+    background-color: #FFF;
+}
 
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
@@ -352,5 +375,11 @@ footer {
     }
     .search-bar-content {
         display: block;
+    }
+    .profil-name {
+        display: flex;
+    }
+    .profil-email {
+        margin: auto;
     }
 }

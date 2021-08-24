@@ -73,7 +73,6 @@
                     </div>
                 </li>
                 <div class="d-block d-md-none">
-                    <div class="dropdown-divider"></div>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('profil', Auth::user()->email) }}">
                             {{ (Auth::user()->prenom || Auth::user()->nom) ? Auth::user()->prenom." ".Auth::user()->nom : Auth::user()->email }}
