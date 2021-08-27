@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container">
+    <div class="container auth-container">
         <div class="row justify-content-center">
         
 
@@ -14,7 +14,7 @@
                 <!-- Validation Errors -->
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
         
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" class="auth-form">
                     @csrf
         
                     <!-- Email Address -->
@@ -44,14 +44,13 @@
                         </label>
                     </div>
         
-                    <div class="mt-4 d-flex justify-content-between">
-            
-                            <button type="submit" class="btn btn-custom">
-                                {{ __('CONNEXION') }}
-                            </button>
-                            <a class="btn-link mt-auto" href="{{ route('register') }}">
-                                {{ __('Inscription') }}
-                            </a>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-custom">
+                            {{ __('CONNEXION') }}
+                        </button>
+                        <a class="btn-link" href="{{ route('register') }}" style="margin-left: 2rem;">
+                            {{ __('Inscription') }}
+                        </a>
                     </div>
                 </form>
             </div>

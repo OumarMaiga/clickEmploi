@@ -1,0 +1,35 @@
+.auth-container {
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+.register-left-container {
+    padding: 0 4rem;
+}
+.register-left-title {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Chaparral Pro';
+}
+.register-list-rule {
+    line-height: 3;
+    margin-left: 2rem;
+}
+.register-left-icon {
+    font-size: 1rem;
+    color: black;
+}
+.auth-title {
+    text-align: center;
+    font-size:xx-large;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #cb6b13;
+    color: #FFF;
+}
+.auth-form{
+    padding: 50px 40px;
+    background-color: #FFF;
+}
+.register-right-container {
+    padding: 0 4rem;
+}
