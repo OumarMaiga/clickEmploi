@@ -1,15 +1,15 @@
 <x-app-layout>
     <div class="head">
         <div class="head-word">
-            Trouver votre emploi préféré<br>
-            dans nos différents offres
+            Plus besoin de chercher les offres d'emploi <br>
+            Ce sont les offres qui viennent en vous grace a un systeme d'alerte matching
         </div>
         <div class="head-offre">
             <div class="head-offre-title">
                 ENVIRON
             </div>
             <div class="head-offre-nunber">
-                75 offres / semaine
+                127 offres / semaine
             </div> 
         </div>
     </div>
