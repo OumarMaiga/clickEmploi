@@ -29,11 +29,12 @@
             <div class="col-md-6 register-right-container">
                 <div class="auth-title">{{ __('INSCRIPTION') }}</div>
 
-                <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
                 <form method="POST" action="{{ route('register') }}" class="auth-form">
                     @csrf
+
+                    <!-- Validation Errors -->
+                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
                     <div class="form-group">
                         <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" placeholder="TELEPHONE" required autocomplete="telephone">

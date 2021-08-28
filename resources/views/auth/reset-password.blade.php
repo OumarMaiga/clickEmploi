@@ -6,11 +6,12 @@
                 <div class="auth-title">{{ __('CHANGER DE MOT DE PASSE') }}</div>
     
 
-                <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
                 <form method="POST" action="{{ route('password.update') }}" class="auth-form">
                     @csrf
+
+                    <!-- Validation Errors -->
+                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
                     <!-- Password Reset Token -->
                     <input type="hidden" name="token" value="{{ $request->route('token') }}">

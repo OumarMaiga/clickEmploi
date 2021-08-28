@@ -6,17 +6,18 @@
             <div class="col-md-4">
                 <div class="auth-title">{{ __('CONNEXION') }}</div>
     
-            <x-auth-access-denied class="mb-4" :denied="session('denied')" />
-            
-                <!-- Session Status -->
-                <x-auth-session-status class="mb-4" :status="session('status')" />
-        
-                <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
         
                 <form method="POST" action="{{ route('login') }}" class="auth-form">
                     @csrf
         
+                    <x-auth-access-denied class="mb-4" :denied="session('denied')" />
+                
+                    <!-- Session Status -->
+                    <x-auth-session-status class="mb-4" :status="session('status')" />
+            
+                    <!-- Validation Errors -->
+                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
                     <!-- Email Address -->
                     <div class="form-group">
                         <input id="login" class="form-control" type="text" name="login" value="{{ old('telephone') ?: old('email') }}" placeholder="EMAIL / TELEPHONE" required autofocus />
