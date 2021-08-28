@@ -1,14 +1,36 @@
+.register-container {
+    background-image: url('/image/register.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.register-container::before {
+    content: "";    
+    position: absolute;
+    top: 0;
+    right: 0px;
+    bottom: 10px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.25);
+}
 .auth-container {
-    margin-top: 70px;
-    margin-bottom: 40px;
+    padding-top: 70px;
+    padding-bottom: 40px;
 }
 .register-left-container {
     padding: 0 4rem;
+    color: #FFF;
+    font-weight: 600;
 }
 .register-left-title {
     font-size: 2rem;
     font-weight: bold;
     font-family: 'Chaparral Pro';
+}
+.register-left-container p {
+    margin: 3rem 0 1rem 0;
 }
 .register-list-rule {
     line-height: 3;
@@ -16,7 +38,7 @@
 }
 .register-left-icon {
     font-size: 1rem;
-    color: black;
+    color: #FFF;
 }
 .auth-title {
     text-align: center;
@@ -31,5 +53,41 @@
     background-color: #FFF;
 }
 .register-right-container {
-    padding: 0 4rem;
+    padding: 0 6rem;
+}
+
+/* View Tablette */
+@media (max-width: 991px) {
+    .register-left-container {
+        padding: 0 2rem;
+    }
+    .register-right-container {
+        padding: 0 2rem;
+    }
+    .register-left-title {
+        font-size: 1.6rem;
+    }
+    .register-list-rule {
+        line-height: 2;
+    }
+    .register-left-container p {
+        margin: 2rem 0 1rem 0;
+    }
+}
+/* View Phone */
+@media (max-width: 767px) {
+    .auth-container {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    .register-left-container {
+        padding: 0 1rem;
+    }
+    .register-right-container {
+        padding: 0 1rem;
+        margin-top: 1rem;
+    }
+    .register-list-rule {
+        margin-left: 1rem;
+    }
 }

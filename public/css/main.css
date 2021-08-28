@@ -3,6 +3,7 @@ body {
 }
 #navigation {
     background-color: #cb6b13;
+    z-index: 1;
 }
 .logo {
     width: 70px;

@@ -2,7 +2,7 @@
     <div class="container auth-container">
         <div class="row justify-content-center">
 
-            <div class="col-md-4">
+            <div class="col-md-6 col-lg-4">
                 <div class="auth-title">{{ __('CHANGER DE MOT DE PASSE') }}</div>
     
 

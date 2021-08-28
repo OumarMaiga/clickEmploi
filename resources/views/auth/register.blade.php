@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div class="container auth-container">
+    <div class="container-fluid auth-container register-container">
         <div class="row">
             <div class="col-md-6 register-left-container">
                 <div class="register-left-title">
-                    Recevez les offres qui corresponde à votre profil
+                    Recevez les offres qui correspondent à votre profil
                 </div>
-                <p style="margin: 3rem 0 1rem 0;">
+                <p>
                     Nous vous proposons tous les offres et surtout celles correspondants à votre profil:
                 </p>
                 <ul class="register-list-rule">
