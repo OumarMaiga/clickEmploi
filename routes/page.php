@@ -15,6 +15,8 @@ Route::get('/filtre', [HomeController::class, 'filtre'])->name('filtre');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 Route::get('/opportunite/adresse/{adresse}', [OpportuniteController::class, 'adresse'])->name('opportunite.adresse');
+Route::get('/opportunite/domaine/{domaine}', [OpportuniteController::class, 'domaine'])->name('opportunite.domaine');
+Route::get('/opportunite/poste/{poste}', [OpportuniteController::class, 'poste'])->name('opportunite.poste');
 
 Route::get('/emploi/{slug}', [EmploiController::class, 'detail'])->name('emploi.detail');
 Route::get('/emplois', [EmploiController::class, 'list'])->name('emploi.list');

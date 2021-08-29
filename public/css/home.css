@@ -283,6 +283,25 @@ hr {
 .color-star {
     color: #B34DF5;
 }
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #FFF;
+    background-color: #FF9000;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover {
+    text-decoration: none;
+}
+.tab-item {
+    background-color: #cb6b13;
+}
+.offre-filtre-container {
+    border: 1px solid #70707050;
+    border-radius: 0 0 10px 10px;
+}
+#myTabContent {
+    text-align: left;
+    padding: 1rem;
+}
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
 @media (max-width: 991px) { 
@@ -349,6 +368,7 @@ hr {
         padding: 1rem 1rem;
     }
  }
+
 
 /* View Phone -- Medium devices (tablets, 576px and up) */
 

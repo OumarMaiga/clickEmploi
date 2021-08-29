@@ -36,8 +36,10 @@ class HomeController extends Controller
     
     public function accueil()
     {
+        $activites = Activite::select('slug', 'libelle')->limit(9)->get();
+        $postes = Opportunite::select('title')->limit(9)->get();
         $adresses = Opportunite::distinct('adresse')->select('lieu')->limit(9)->get();
-        return view('pages/accueil', compact('adresses'));
+        return view('pages/accueil', compact('adresses', 'activites', 'postes'));
     }
  
     public function profil($email) {
