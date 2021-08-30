@@ -1,19 +1,10 @@
 .register-container {
-    background-image: url('/image/register.jpeg');
+    background-image: url('/image/register.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     width: 100%;
     height: 100%;
-}
-.register-container::before {
-    content: "";    
-    position: absolute;
-    top: 0;
-    right: 0px;
-    bottom: 10px;
-    left: 0px;
-    background-color: rgba(0,0,0,0.25);
 }
 .auth-container {
     padding-top: 70px;
@@ -52,8 +43,12 @@
     padding: 50px 40px;
     background-color: #FFF;
 }
+.register-form {
+    overflow: auto;
+    height: 25rem
+}
 .register-right-container {
-    padding: 0 6rem;
+    padding: 0 3rem;
 }
 
 /* View Tablette */
@@ -62,7 +57,7 @@
         padding: 0 2rem;
     }
     .register-right-container {
-        padding: 0 2rem;
+        padding: 0 1.5rem;
     }
     .register-left-title {
         font-size: 1.6rem;
@@ -73,9 +68,16 @@
     .register-left-container p {
         margin: 2rem 0 1rem 0;
     }
+    .register-container::before {
+        bottom: 0px;
+    }
 }
 /* View Phone */
 @media (max-width: 767px) {
+    
+    .register-container::before {
+        bottom: -50%;
+    }
     .auth-container {
         padding-top: 30px;
         padding-bottom: 20px;
