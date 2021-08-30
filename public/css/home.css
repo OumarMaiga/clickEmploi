@@ -250,6 +250,78 @@ hr {
 .entreprise-detail-offres-title {
     font-size: 1.6rem;
 }
+
+/* AVANTAGE */
+.avantage {
+    padding: 4rem 6rem;
+    background-color: #fff;
+}
+.avantage-title {
+    text-transform: uppercase;
+        font-family: 'Montserrat, Georgia, serif';
+    color: #cb6b13;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+.trait-container {
+    display: flex;
+    justify-content: center;
+}
+.trait {
+    width: 15%;
+    height: 2px;
+    background-color: #F3A202;
+    margin-top: 2rem;
+    margin-bottom: 1rem; 
+}
+.avantage-content {
+    margin-bottom: 2rem;
+}
+.avantage-icon {
+    background-color: #FFF;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    color: #F3A202;
+    border: 1px solid;
+}
+.avantage-item-title {
+    text-transform: uppercase;
+    color: #F3A202;
+    font-size: 1.6rem;
+    position: absolute;
+    margin-left: 20px;
+}
+.avantage-item-text {
+    color: #707070;
+    font-size: 1rem;
+    margin-left: 4.4rem;
+    margin-top: -0.4rem;
+}
+.comment {
+    padding: 4rem 6rem;
+    background-color: #8A4619;
+    color: #fff;
+}
+.comment-title {
+    text-transform: uppercase;
+        font-family: 'Montserrat, Georgia, serif';
+    color: #fff;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+.comment-image {
+    background-color: #FF9000;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    text-align: center;
+}
+.comment-text {
+    text-align: center;
+}
 .a-propos {
     padding: 1rem;
     border-radius: 7px;
@@ -314,6 +386,7 @@ hr {
     }
     .head-offre {
         font-size: 1.6rem;
+        margin-top: 2rem;
     }
     .entreprise {
         padding: .5rem 1rem;
@@ -327,6 +400,31 @@ hr {
     }
     .footer-haut {
         padding: .5rem 1rem;
+    }
+
+    .avantage {
+        padding: 2rem 2rem;
+    }
+    .avantage-title {
+        font-size: 1.6rem;
+    }
+    .avantage-item-title {
+        font-size: 1.4rem;
+        margin-left: 0px;
+    }
+    .avantage-content {
+        margin-bottom: 1rem;
+    }
+
+    .comment {
+        padding: 2rem 2rem;
+    }
+    .comment-title {
+        font-size: 1.6rem;
+    }
+    .comment-image {
+        height: 200px;
+        width: 200px;
     }
 
     /* Page home */
@@ -363,7 +461,6 @@ hr {
         padding-left: 5px;
         padding-right: 5px;
     }
-
     .postuler-container {
         padding: 1rem 1rem;
     }
@@ -378,17 +475,20 @@ hr {
     }
     .head-word {
         padding-top: 1.1rem;
-        font-size: 1rem;
-        padding: 1.5rem 0.5rem
+        font-size: .9rem;
+        padding: .5rem 0.5rem;
     }
     .head-offre {
-        margin-top: 0.5rem;
+        margin-top: 0rem;
         font-size: 1rem;
         padding: 5px;
     }
     .search-bar {
         padding: 10px 5px;
 
+    }
+    .nav-tabs .nav-link {
+        font-size: 1rem;
     }
     .offre-title {
         font-size: 1.2rem;
@@ -413,6 +513,8 @@ hr {
     .zone {
         text-align: left;
         font-size: 1rem;
+        margin: .2rem .5rem;
+        padding: .5rem;
     }
     .zone-title {
         font-size: 1.2rem;
@@ -422,6 +524,38 @@ hr {
         display: block;
     }
 
+    .avantage {
+        padding: 1rem;
+    }
+    .avantage-title {
+        font-size: 1.2rem;
+    }
+    .trait {
+        width: 25%;
+        background-color: #F3A202;
+        margin-top: 1rem;
+        margin-bottom: .5rem;
+    }
+    .avantage-icon {
+        font-size: 1rem;
+    }
+    .avantage-item-title {
+        font-size: 1rem;
+    }
+    .avantage-item-text{
+        margin-left: 0;
+        margin-top: 0;
+    }
+    .comment {
+        margin-bottom: 2rem;
+    }
+    .comment-title {
+        font-size: 1.2rem;
+    }
+    .comment-text {
+        margin-bottom: 2rem;
+        margin-top: .4rem;
+    }
     /* Page home */
     .image-offre {
         height: 200px;

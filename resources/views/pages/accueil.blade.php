@@ -38,17 +38,80 @@
             </div>
         </div>
     </div>
+    <div class="avantage">
+        <h1 class="avantage-title">
+            Les avantages du matching Click emploi
+        </h1>
+        <div class="trait-container">
+            <div class="trait"></div>
+        </div>
+        <div class="avantage-content">
+            <div class="avantage-item">
+                <i class="fas fa-search avantage-icon"></i>&nbsp;
+                <span class="avantage-item-title" style="margin-top: 0.2rem;">Une recherche d’emploi simplifiée</span>
+                <p class="avantage-item-text">Plus besoin de faire des recherches complexes, ce sont les offres qui viennent à vous ! Il vous suffit de créer votre profil en moins de 5 minutes.</p>
+            </div>
+        </div>
+        <div class="avantage-content">
+            <div class="avantage-item">
+                <i class="fas fa-sliders-h avantage-icon"></i>&nbsp;
+                <span class="avantage-item-title" style="margin-top: 0.5rem;">Des offres adaptées</span>
+            </div>
+            <p class="avantage-item-text">Le matching permet de vous présenter uniquement les offres qui ont une forte correspondance avec votre profil. </p>
+        </div>
+        <div class="avantage-content">
+            <div class="avantage-item">
+                <i class="fas fa-bolt avantage-icon"></i>&nbsp;
+                <span class="avantage-item-title">Des offres présentées dès leur publication</span>
+                <p class="avantage-item-text">Tous les jours l’algorithme de matching analyse toutes les nouvelles offres d’emploi publiées sur Meteojob et vous envoie celles qui vous correspondent par e-mail. Facile non ?</p>
+            </div>
+        </div>
+    </div>
+    <div class="comment">
+        <h1 class="comment-title">
+            Le matching dans l’emploi, comment ça marche ?
+        </h1>
+        <div class="trait-container">
+            <div class="trait"></div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-4">
+                <div class="d-flex justify-content-center">
+                    <img src="" alt="image-circle" class="comment-image"/>
+                </div>
+                <p class="comment-text">
+                    Votre profil et vos souhaits professionnels sont comparés à toutes les nouvelles offres d'emploi de Meteojob
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex justify-content-center">
+                    <img src="" alt="image-circle" class="comment-image"/>
+                </div>
+                <p class="comment-text">
+                    Votre profil et vos souhaits professionnels sont comparés à toutes les nouvelles offres d'emploi de Meteojob
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex justify-content-center">
+                    <img src="" alt="image-circle" class="comment-image"/>
+                </div>
+                <p class="comment-text">
+                    Votre profil et vos souhaits professionnels sont comparés à toutes les nouvelles offres d'emploi de Meteojob
+                </p>
+            </div>
+        </div>
+    </div>
     <div class="zone">
         <h2 class="zone-title">Les offres d'emploi filtré</h2>
-        <div class="row offre-filtre-container">
+        <div class="offre-filtre-container">
             <ul class="nav nav-tabs w-100" id="myTab" role="tablist">
-                <li class="nav-item col-sm-4 px-0 tab-item" role="presentation">
+                <li class="nav-item col-4 px-0 tab-item" role="presentation">
                     <a class="nav-link active" id="domaine-tab" data-toggle="tab" href="#domaine" role="tab" aria-controls="domaine" aria-selected="true">DOMAINE</a>
                 </li>
-                <li class="nav-item col-sm-4 px-0 tab-item" role="presentation">
+                <li class="nav-item col-4 px-0 tab-item" role="presentation">
                     <a class="nav-link" id="zone-tab" data-toggle="tab" href="#zone" role="tab" aria-controls="zone" aria-selected="false">ZONE</a>
                 </li>
-                <li class="nav-item col-sm-4 px-0 tab-item" role="presentation">
+                <li class="nav-item col-4 px-0 tab-item" role="presentation">
                     <a class="nav-link" id="poste-tab" data-toggle="tab" href="#poste" role="tab" aria-controls="poste" aria-selected="false">POSTE</a>
                 </li>
             </ul>
