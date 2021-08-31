@@ -272,11 +272,11 @@ hr {
     width: 15%;
     height: 2px;
     background-color: #F3A202;
-    margin-top: 2rem;
-    margin-bottom: 1rem; 
+    margin-top: 3rem;
+    margin-bottom: 2rem; 
 }
 .avantage-content {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 .avantage-icon {
     background-color: #FFF;
@@ -313,14 +313,13 @@ hr {
     font-weight: bold;
 }
 .comment-image {
-    background-color: #FF9000;
     height: 250px;
     width: 250px;
-    border-radius: 50%;
     text-align: center;
 }
 .comment-text {
     text-align: center;
+    margin-top: 1rem;
 }
 .a-propos {
     padding: 1rem;

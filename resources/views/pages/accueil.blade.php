@@ -77,26 +77,26 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-4">
                 <div class="d-flex justify-content-center">
-                    <img src="" alt="image-circle" class="comment-image"/>
+                    <img src="/image/comment-1.png" alt="image-circle" class="comment-image"/>
                 </div>
                 <p class="comment-text">
-                    Votre profil et vos souhaits professionnels sont comparés à toutes les nouvelles offres d'emploi de Meteojob
+                    Votre <b>profil</b> et vos souhaits professionnels sont comparés à toutes les nouvelles <b>offres d'emploi</b> de Click emploi
                 </p>
             </div>
             <div class="col-md-4">
                 <div class="d-flex justify-content-center">
-                    <img src="" alt="image-circle" class="comment-image"/>
+                    <img src="/image/comment-2.png" alt="image-circle" class="comment-image"/>
                 </div>
                 <p class="comment-text">
-                    Votre profil et vos souhaits professionnels sont comparés à toutes les nouvelles offres d'emploi de Meteojob
+                    Les offres sont triées par pertinence, de <b>0 à 5 étoiles</b>, en fonction de leur correspondance avec votre profil
                 </p>
             </div>
             <div class="col-md-4">
                 <div class="d-flex justify-content-center">
-                    <img src="" alt="image-circle" class="comment-image"/>
+                    <img src="/image/comment-3.png" alt="image-circle" class="comment-image"/>
                 </div>
                 <p class="comment-text">
-                    Votre profil et vos souhaits professionnels sont comparés à toutes les nouvelles offres d'emploi de Meteojob
+                    Les offres sont affichées sur votre page <b>Mes offres</b> d’emploi et envoyées par e-mail
                 </p>
             </div>
         </div>
