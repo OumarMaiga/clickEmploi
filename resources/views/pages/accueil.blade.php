@@ -12,6 +12,13 @@
                 127 offres / semaine
             </div> 
         </div>
+        <div class="head-btn-content">
+            @if (Auth::check())
+                <a href="{{ route('profil', Auth::user()->email) }}" class="btn btn-custom head-btn">Voir mon profil</a>
+            @else
+                <a href="{{ route('register') }}" class="btn btn-custom head-btn">Inscrivez-vous !!!</a>
+            @endif
+        </div>
     </div>
     @include('layouts.search_bar')
     <div class="entreprise">

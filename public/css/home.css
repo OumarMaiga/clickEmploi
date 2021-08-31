@@ -134,26 +134,36 @@ hr {
 }
 .head-word {
     position: relative;
+    top: 3rem;
     font-size: 2.4rem;
     text-align: right;
     font-family: 'Bell MT';
     line-height: 1.3;
     color: #000000;
-    padding-top: 6rem;
     padding-right: 4rem;
     text-transform: uppercase;
     font-weight: bold;
 }
 .head-offre {
-    margin-top: 9rem;
     position: absolute;
+    bottom: 1rem;
     text-align: center;
     background-color: #FFFFFF;
     font-family: 'Bw Modelica';
     padding: 20px 35px;
     font-size: 2.4rem;
 }
-
+.head-btn-content {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    justify-content: end;
+    right: 4rem;
+    width: 100%;
+}
+.head-btn {
+    font-size: 2rem !important;
+}
 .search-bar {
     padding: 20px 0px;
     background-color: #cb6b13;
@@ -383,6 +393,12 @@ hr {
         font-size: 1.8rem;
         padding-right: 3rem
     }
+    .head-btn-content {
+        right: 2rem;
+    }
+    .head-btn {
+        font-size: 1.4rem !important;
+    }
     .head-offre {
         font-size: 1.6rem;
         margin-top: 2rem;
@@ -476,11 +492,18 @@ hr {
         padding-top: 1.1rem;
         font-size: .9rem;
         padding: .5rem 0.5rem;
+        top: 1rem
     }
     .head-offre {
         margin-top: 0rem;
         font-size: 1rem;
         padding: 5px;
+    }
+    .head-btn-content {
+        right: .5rem;
+    }
+    .head-btn {
+        font-size: 1rem !important;
     }
     .search-bar {
         padding: 10px 5px;
