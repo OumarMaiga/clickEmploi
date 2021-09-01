@@ -29,9 +29,9 @@ Route::get('/formations', [FormationController::class, 'list'])->name('formation
 
 Route::post('/postule/store/{slug}', [PostuleController::class, 'store'])->middleware(['auth'])->name('postule.store');
 
-Route::get('/{email}', [HomeController::class, 'profil'])->middleware(['auth'])->name('profil');
-Route::get('/{email}/edit', [HomeController::class, 'edit_profil'])->middleware(['auth'])->name('edit_profil');
-Route::put('/{id}/update', [HomeController::class, 'update_profil'])->middleware(['auth'])->name('update_profil'); 
+Route::get('/profil/{email}', [HomeController::class, 'profil'])->middleware(['auth'])->name('profil');
+Route::get('/profil/{email}/edit', [HomeController::class, 'edit_profil'])->middleware(['auth'])->name('edit_profil');
+Route::put('/profil/{id}/update', [HomeController::class, 'update_profil'])->middleware(['auth'])->name('update_profil'); 
 
 Route::get('/entreprise/{slug}', [EntrepriseController::class, 'detail'])->middleware(['auth'])->name('entreprise.detail');
 

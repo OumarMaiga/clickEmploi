@@ -100,7 +100,7 @@ class HomeController extends Controller
             $activites = $request->input('activite');
             $relation = $user->activites()->sync($activites);
         }
-        return redirect("/$user->email")->withStatus('Profil mise à jour');
+        return redirect("/profil/$user->email")->withStatus('Profil mise à jour');
 
     }
 
