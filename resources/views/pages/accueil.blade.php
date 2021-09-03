@@ -126,7 +126,7 @@
                 <div class="tab-pane fade show active" id="domaine" role="tabpanel" aria-labelledby="domaine-tab">
                     <div class="row">
                         @foreach($activites as $activite)
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-3">
                                 <a href="{{ route('opportunite.domaine', $activite->slug) }}">{{ $activite->libelle }}</a>
                             </div>
                         @endforeach
