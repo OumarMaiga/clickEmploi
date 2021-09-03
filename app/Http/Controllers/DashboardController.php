@@ -9,6 +9,9 @@ use App\Models\User;
 use App\Models\Opportunite;
 use App\Models\Postule;
 use App\Models\Abonnee;
+use App\Models\Diplome;
+use App\Models\Secteur;
+use App\Models\Activite;
 
 class DashboardController extends Controller
 {
@@ -40,5 +43,12 @@ class DashboardController extends Controller
                 # code...
                 break;
         }
+    }
+
+    public function config() {
+        $nbre_diplome = Diplome::all()->count();
+        $nbre_secteur = Secteur::all()->count();
+        $nbre_activite = Activite::all()->count();
+        return view('dashboards.config', compact('nbre_diplome', 'nbre_secteur', 'nbre_activite'));
     }
 }

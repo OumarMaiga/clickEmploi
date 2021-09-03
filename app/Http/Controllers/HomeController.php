@@ -151,6 +151,10 @@ class HomeController extends Controller
         return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'offre_par_profil'));
     }
 
+    public function jobboard() {
+        return view('pages.jobboard');
+    }
+
     //Offre par profil
     public function offre_par_profil() {
         if(Auth::check()){
@@ -185,12 +189,5 @@ class HomeController extends Controller
                 $offre_par_profil = Opportunite::where('id', '0')->get();
             }
             return $offre_par_profil;
-        }
-
-        public function config() {
-            $nbre_diplome = Diplome::all()->count();
-            $nbre_secteur = Secteur::all()->count();
-            $nbre_activite = Activite::all()->count();
-            return view('dashboards.config', compact('nbre_diplome', 'nbre_secteur', 'nbre_activite'));
         }
 }

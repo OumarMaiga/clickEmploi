@@ -382,6 +382,57 @@ hr {
     text-align: left;
     padding: 1rem;
 }
+
+/* JOBBOARD */
+.jobboard-header {
+    background-color: #D5D5D5;
+    padding: 4rem 8rem;
+}
+.jobboard-header-title {
+    font-family: 'Bw Modelica';
+    font-weight: bolder;
+    font-size: 4rem;
+}
+.jobboard-header-text {
+    margin-top: 3rem;
+    margin-bottom: 2rem
+}
+.btn-jobboard {
+    font-size: 2rem;
+}
+.jobboard-chiffre {
+    padding: 4rem;
+    background-color: #fff;
+}
+.jobboard-chiffre-title {
+    font-family: 'Bw Modelica Hairline';
+    font-size: 2.6rem;
+}
+.chiffre-item-container {
+    margin-top: 6rem;
+}
+.jobboard-chiffre-item {
+    border-left: 3px solid #BEBEBE;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+}
+.jobboard-chiffre-chiffre {
+    font-family: 'Cambria';
+    font-weight: bold;
+    font-size: 2rem;
+}
+.jobboard-right-container {
+    margin: auto;
+    padding: 2rem 4rem;
+    text-align: center;
+    background-color: #199CCE;
+    color: #fff;
+    border-radius: 1rem;
+}
+.jobboard-right-container .source {
+    font-style: italic;
+}
+
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
 @media (max-width: 991px) { 

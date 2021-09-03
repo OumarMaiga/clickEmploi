@@ -13,6 +13,7 @@ Route::get('/', [HomeController::class, 'accueil'])->name('accueil');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/filtre', [HomeController::class, 'filtre'])->name('filtre');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/jobboard', [HomeController::class, 'jobboard'])->name('jobboard');
 
 Route::get('/opportunite/adresse/{adresse}', [OpportuniteController::class, 'adresse'])->name('opportunite.adresse');
 Route::get('/opportunite/domaine/{domaine}', [OpportuniteController::class, 'domaine'])->name('opportunite.domaine');

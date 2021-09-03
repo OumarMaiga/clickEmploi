@@ -14,6 +14,7 @@ use App\Http\Controllers\AbonneeController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard/config', [DashboardController::class, 'config'])->name('config')->middleware(['auth']);
 
 //Partenaire
 Route::resource('/dashboard/partenaire', PartenaireController::class)->middleware(['auth']);
@@ -52,4 +53,3 @@ Route::get('/dashboard/{email}/abonnee', [AbonneeController::class, 'show'])->mi
 
 Route::delete('/dashboard/destroy/{id}', [AbonneeController::class, 'destroy'])->middleware(['auth'])->name('abonnee.destroy');
 
-Route::get('/dashboard/config', [HomeController::class, 'config'])->name('config')->middleware(['auth']);

@@ -9,6 +9,9 @@
                     <div class="footer-item">
                         Offre par adresse
                     </div>
+                    <div class="footer-item">
+                        <a href="{{ route('jobboard') }}">Vous êtes une entreprise ?</a>
+                    </div>
                 </div>
                 <div class="d-block d-sm-none">
                     <hr>
