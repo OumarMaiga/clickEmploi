@@ -222,6 +222,9 @@ footer {
     padding: 0.5rem;
     text-align: center;
 }
+.oumar:hover {
+     color: #fff;
+}
 
 .img-social-media {
     width: 25px;

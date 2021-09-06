@@ -71,6 +71,6 @@
         </div>
     </div>
     <div class="footer-bas">
-        Copyright © 2021 Tout droit reservés | Ce site est fait avec <i class="fas fa-heart"></i>   par Oumar MAIGA 
+        Copyright © 2021 Tout droit reservés | Ce site est fait avec <i class="fas fa-heart"></i>   par <a target="_blank" class="oumar" href="https://www.oumarmaiga.com">Oumar MAIGA </a>
     </div>
 </footer>
