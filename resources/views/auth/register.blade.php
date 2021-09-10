@@ -34,7 +34,7 @@
                 <div class="auth-title">{{ __('Inscrivez-vous ici !!') }}</div>
 
 
-                <form method="POST" action="{{ route('register') }}" class="auth-form register-form">
+                <form method="POST" action="{{ route('register') }}" class="auth-form">
                     @csrf
 
                     <!-- Validation Errors -->
