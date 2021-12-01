@@ -58,7 +58,7 @@ body {
     box-shadow: 0 0 0 .2rem #f3a30246;
 }
 .btn-outline-custom {
-    background-color: #FFFFFF;
+    background-color: none;
     color: #FF9000;
     border: 1px solid #FF9000;
     padding: .375rem .75rem;

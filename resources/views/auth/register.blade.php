@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container-fluid auth-container register-container">
+    <div class="auth-container bg-container">
         <div class="row">
             <div class="col-md-6 register-left-container">
                 <div class="register-left-title">

@@ -6,21 +6,20 @@
 }
 
 .filtre-container {
-    position: sticky;
-    top: 0px;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .filtre-title {
-    font-family: 'Sylfaen';
+    font-family: 'MADE Evolve Sans';
     text-align: center;
-    font-size: 1.75rem;
+    font-size: 1.2rem;
 }
 
 
 .filtre-subtitle {
-    font-family: 'Sylfaen';
-    font-size: 1.25rem;
+    font-family: 'MADE Evolve Sans';
+    font-size: 1rem;
     margin-bottom: 5px;
 }
 
@@ -37,6 +36,74 @@
 
 .filtre-item {
     font-size: .85rem;
+}
+
+/* Home - Profil layout */
+.home-profil-container {
+    margin-top: 1rem;
+    margin-bottom: 10px;
+    padding: 3px;
+    border: 2px solid #FF9000;
+}
+.home-profil-img {
+    background-color: #CFCFCF;
+    width: 100%;
+    height: 120px;
+}
+.home-profil-title {
+    font-family: 'MADE Evolve Sans';
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: .6rem;
+    text-align: center;
+}
+.home-profil-offre_par_profil {
+    font-size: .8rem;
+    margin-bottom: .6rem;
+    text-align: center;
+}
+.home-profil-tag {
+    text-align: center;
+}
+.home-profil-tag-text {
+    font-size: .8rem;
+    color: #007bff;
+    text-decoration: underline;
+}
+/* PUB - alert */
+.home-pub-alert {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 20px 10px;
+    border: 4px solid #FF9000;
+}
+.home-pub-alert-title {
+    font-family: 'MADE Evolve Sans';
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: .6rem;
+    text-align: center;
+}
+
+/* PUB */
+.pub1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #CFCFCF;
+    height: 360px;
+    width: 100%;
+}
+.pub2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #CFCFCF;
+    height: 290px;
+    width: 100%;
+}
+.pub3 {
+    background-color: #CFCFCF;
+    height: 40px;
+    width: 100%;
 }
 
 .offre-item {
@@ -130,28 +197,33 @@ hr {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    background-color: #f5f5f536;
+    background-color: #00000030;
 }
 .head-word {
     position: relative;
-    top: 3rem;
-    font-size: 2.4rem;
-    text-align: right;
-    font-family: 'Bell MT';
-    line-height: 1.3;
-    color: #000000;
-    padding-right: 4rem;
+    top: 12rem;
+    font-size: 2rem;
+    text-align: center;
+    font-family: 'MADE Evolve Sans';
+    /*line-height: 1.3;*/
+    color: #fff;
     text-transform: uppercase;
     font-weight: bold;
+    padding-left: 11rem;
+    padding-right: 11rem;
 }
 .head-offre {
     position: absolute;
     bottom: 1rem;
-    text-align: center;
-    background-color: #FFFFFF;
-    font-family: 'Bw Modelica';
+    margin-left: 1rem;
+    background-color: #00000030;
     padding: 20px 35px;
     font-size: 2.4rem;
+}
+.head-offre-text {
+    text-align: center;
+    font-family: 'MADE Evolve Sans';
+    color: #ffffff;
 }
 .head-btn-content {
     position: absolute;
@@ -162,7 +234,7 @@ hr {
     width: 100%;
 }
 .head-btn {
-    font-size: 2rem !important;
+    font-size: 1.6rem !important;
 }
 .search-bar {
     padding: 20px 0px;
@@ -498,13 +570,15 @@ hr {
         margin-left: 1rem;
     }
     .filtre-title {
-        font-size: 1.4rem
+        font-size: 1.2rem;
+        font-weight: normal;
     }
     .filtre-content {
+        margin-top: 1rem;
         padding: 1rem .5rem;
     }
     .filtre-subtitle{
-        font-size: 1.1rem
+        font-size: 1rem
     }
     .filtre-item {
         font-size: .8rem;

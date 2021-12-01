@@ -4,20 +4,18 @@
             Plus besoin de chercher les offres d'emploi <br>
             Ce sont les offres qui viennent à vous grace a un systeme d'alerte matching
         </div>
-        <div class="head-offre">
-            <div class="head-offre-title">
-                ENVIRON
-            </div>
-            <div class="head-offre-nunber">
-                127 offres / semaine
-            </div> 
-        </div>
         <div class="head-btn-content">
             @if (Auth::check())
-                <a href="{{ route('profil', Auth::user()->email) }}" class="btn btn-custom head-btn">Voir mon profil</a>
+                <a href="{{ route('profil', Auth::user()->email) }}" class="btn btn-outline-custom head-btn">Voir mon profil</a>
             @else
-                <a href="{{ route('register') }}" class="btn btn-custom head-btn">Inscrivez-vous !!!</a>
+                <a href="{{ route('register') }}" class="btn btn-outline-custom head-btn">Créer votre compte !</a>
             @endif
+        </div>
+        <div class="head-offre">
+            <div class="head-offre-text">
+                Environ <br/>
+                127 offres / semaine
+            </div> 
         </div>
     </div>
     @include('layouts.search_bar')

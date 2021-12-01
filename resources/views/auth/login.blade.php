@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container auth-container">
+    <div class="auth-container bg-container">
         <div class="row justify-content-center">
         
 
