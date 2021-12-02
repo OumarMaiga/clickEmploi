@@ -121,7 +121,7 @@
 }
 
 .offre-title {
-    font-family: 'Rockwell';
+    font-family: 'MADE Evolve Sans';
     font-size: 1.8rem;
 }
 
@@ -130,7 +130,11 @@
     color: #333333;
     font-weight: lighter;
 }
-
+.offre-description {
+    margin: 10px 100px 10px 0px;
+    font-size: 1rem;
+    line-height: 1.2;
+}
 .offre-footer {
     position: absolute;
     bottom: 0;
@@ -458,16 +462,24 @@ hr {
 /* JOBBOARD */
 .jobboard-header {
     background-color: #D5D5D5;
-    padding: 4rem 8rem;
 }
 .jobboard-header-title {
+    position: relative;
     font-family: 'Bw Modelica';
     font-weight: bolder;
     font-size: 4rem;
+    color: #FFF;
+    width: 56%;
+    padding-top: 10rem;
+    padding-left: 8rem;
 }
 .jobboard-header-text {
+    position: relative;
     margin-top: 3rem;
-    margin-bottom: 2rem
+    margin-bottom: 2rem;
+    color: #FFF;
+    width: 56%;
+    padding-left: 8rem;
 }
 .btn-jobboard {
     font-size: 2rem;

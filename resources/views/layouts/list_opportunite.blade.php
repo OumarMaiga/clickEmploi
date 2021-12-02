@@ -66,6 +66,9 @@
                 <div class="offre-subtitle">
                     <a href="{{ route('entreprise.detail', $entreprise->slug) }}">{{ $entreprise->libelle }}</a>  | <span class="fas fa-map-marker-alt"></span> <a href="{{ route('opportunite.adresse', $opportunite->lieu) }}">{{ $opportunite->lieu }}</a>
                 </div>
+                <div class="offre-description">
+                    {{ substr($opportunite->content, 0, 140) }}...
+                </div>
                 <div class="row offre-footer d-flex align-items-end">
                         <div class="col-lg-8 col-md-9">
                             Publié <i class="offre-date">{{ custom_date($opportunite->created_at) }}</i>&nbsp;&nbsp;|&nbsp;&nbsp;Délais <i class="offre-date">{{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i>

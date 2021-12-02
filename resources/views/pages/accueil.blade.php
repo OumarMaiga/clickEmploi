@@ -1,22 +1,12 @@
 <x-app-layout>
     <div class="head">
-        <div class="head-word">
-            Plus besoin de chercher les offres d'emploi <br>
-            Ce sont les offres qui viennent à vous grace a un systeme d'alerte matching
-        </div>
-        <div class="head-btn-content">
-            @if (Auth::check())
-                <a href="{{ route('profil', Auth::user()->email) }}" class="btn btn-outline-custom head-btn">Voir mon profil</a>
-            @else
-                <a href="{{ route('register') }}" class="btn btn-outline-custom head-btn">Créer votre compte !</a>
-            @endif
-        </div>
-        <div class="head-offre">
-            <div class="head-offre-text">
-                Environ <br/>
-                127 offres / semaine
-            </div> 
-        </div>
+        <h1 class="jobboard-header-title">
+            Avec <span style="color: #FF9000; font-weight: bold;">Click emploi</span> c'est les offres qui viennent à vous
+        </h1>
+            <p class="jobboard-header-text">
+                Acteur leader de l’emploi en France depuis 2010, Meteojob vous permet de trouver vos futurs 
+                talents en un temps record grâce à des algorithmes ultra performants optimisés quotidiennement.
+            </p>
     </div>
     @include('layouts.search_bar')
     <div class="entreprise">
