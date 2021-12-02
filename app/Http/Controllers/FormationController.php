@@ -134,7 +134,11 @@ class FormationController extends Controller
     {
         $opportunites = $this->opportuniteRepository->getByType('formation');
         $offre_par_profil = $this->offre_par_profil();
-        $activite_par_profil = Auth::user()->activites()->get();
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
         return view('pages/opportunites/formations', compact('opportunites', 'offre_par_profil', 'activite_par_profil'));
     }
     public function offre_par_profil() {

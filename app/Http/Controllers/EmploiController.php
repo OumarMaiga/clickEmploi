@@ -184,7 +184,11 @@ class EmploiController extends Controller
     {
         $opportunites = $this->opportuniteRepository->getByType('emploi');
         $offre_par_profil = $this->offre_par_profil();
-        $activite_par_profil = Auth::user()->activites()->get();
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
         return view('pages/opportunites/emplois', compact('opportunites', 'offre_par_profil', 'activite_par_profil'));
     }
 
