@@ -84,6 +84,10 @@
     margin-bottom: .6rem;
     text-align: center;
 }
+.home-pub-alert .list {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
 
 /* PUB */
 .pub1 {
@@ -495,6 +499,12 @@ hr {
     font-style: italic;
 }
 
+/* DETAIL OFFRE */
+.show-container {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
 @media (max-width: 991px) { 
@@ -606,6 +616,12 @@ hr {
     .offre-description {
         font-size: .8rem;
         margin: 10px 70px 10px 0px;
+    }
+
+    /* DETAIL OFFRE */
+    .show-container {
+        margin-left: 25px;
+        margin-right: 25px;
     }
  }
 
@@ -744,5 +760,12 @@ hr {
         position: absolute;
         top: -12.2rem;
         right: .4rem;
+    }
+
+    
+    /* DETAIL OFFRE */
+    .show-container {
+        margin-left: 20px;
+        margin-right: 20px;
     }
  }
