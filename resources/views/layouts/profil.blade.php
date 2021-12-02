@@ -14,9 +14,11 @@
         {{ $name }}
     </h6>
     <div class="home-profil-tag">
-        <a href="#" class="home-profil-tag-text">Comptabilité</a>
-        <a href="#" class="home-profil-tag-text">Finance</a>
+        @foreach ($activite_par_profil as $activite)
+            <a href="#" class="home-profil-tag-text">{{ $activite->libelle }}</a>
+        @endforeach
+        <!--<a href="#" class="home-profil-tag-text">Finance</a>
         <a href="#" class="home-profil-tag-text">Marketing</a>
-        <a href="#" class="home-profil-tag-text">Communuty management</a>
+        <a href="#" class="home-profil-tag-text">Communuty management</a>-->
     </div>
 </div>

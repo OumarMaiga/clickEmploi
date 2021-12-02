@@ -47,10 +47,10 @@
             }
     ?>
             <div class="offre-item row mx-0">
-            <div class="col-lg-2 col-md-3 px-0">
+            <div class="col-lg-3 col-md-4 px-0">
                 <img src="{{ photo_entreprise($opportunite->entreprise_id) }}" alt="Image" class="image-offre">
             </div>
-            <div class="col-lg-10 col-md-9">
+            <div class="col-lg-9 col-md-8">
                 <h3 class="offre-title">
                     <span>{{ $opportunite->title }}</span>
                     <?php if (Auth::check()) { ?>

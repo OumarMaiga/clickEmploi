@@ -116,7 +116,7 @@
 
 .image-offre {
     width: 100%;
-    height: 120px;
+    height: 190px;
     background-color: #BCBCBC;
 }
 
@@ -131,7 +131,7 @@
     font-weight: lighter;
 }
 .offre-description {
-    margin: 10px 100px 10px 0px;
+    margin: 20px 100px 10px 0px;
     font-size: 1rem;
     line-height: 1.2;
 }
@@ -203,42 +203,20 @@ hr {
     left: 0px;
     background-color: #00000030;
 }
-.head-word {
-    position: relative;
-    top: 12rem;
-    font-size: 2rem;
-    text-align: center;
-    font-family: 'MADE Evolve Sans';
-    /*line-height: 1.3;*/
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding-left: 11rem;
-    padding-right: 11rem;
-}
-.head-offre {
-    position: absolute;
-    bottom: 1rem;
-    margin-left: 1rem;
-    background-color: #00000030;
-    padding: 20px 35px;
-    font-size: 2.4rem;
-}
 .head-offre-text {
     text-align: center;
     font-family: 'MADE Evolve Sans';
     color: #ffffff;
 }
 .head-btn-content {
-    position: absolute;
-    bottom: 1rem;
-    display: flex;
-    justify-content: end;
-    right: 4rem;
-    width: 100%;
+    position: relative;
+    padding-left: 8rem;
 }
 .head-btn {
     font-size: 1.6rem !important;
+}
+.head-btn:hover {
+    text-decoration: none;
 }
 .search-bar {
     padding: 20px 0px;
@@ -523,20 +501,30 @@ hr {
     .head {
         height: 40vh;
     }
-    .head-word {
-        font-size: 1.8rem;
-        padding-right: 3rem
-    }
-    .head-btn-content {
-        right: 2rem;
-    }
-    .head-btn {
-        font-size: 1.4rem !important;
-    }
     .head-offre {
         font-size: 1.6rem;
         margin-top: 2rem;
     }
+    /* ACCUEIL HEAD */
+    .jobboard-header-title {
+        padding-left: 2rem;
+        padding-top: 8rem;
+        font-size: 2.6rem;
+        width: 70%;
+    }
+    .jobboard-header-text {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        width: 70%;
+        padding-left: 2rem;
+    }
+    .head-btn-content {
+        padding-left: 2rem !important;
+    }
+    .head-btn {
+        font-size: 1.2rem !important;
+    }
+    
     .entreprise {
         padding: .5rem 1rem;
     }
@@ -615,6 +603,10 @@ hr {
     .postuler-container {
         padding: 1rem 1rem;
     }
+    .offre-description {
+        font-size: .8rem;
+        margin: 10px 70px 10px 0px;
+    }
  }
 
 
@@ -624,22 +616,28 @@ hr {
     .head {
         height: 30vh;
     }
-    .head-word {
-        padding-top: 1.1rem;
-        font-size: .9rem;
-        padding: .5rem 0.5rem;
-        top: 1rem
-    }
-    .head-offre {
-        margin-top: 0rem;
-        font-size: 1rem;
-        padding: 5px;
-    }
-    .head-btn-content {
-        right: .5rem;
-    }
     .head-btn {
         font-size: 1rem !important;
+    }
+
+    /* ACCUEIL HEAD */
+    .jobboard-header-title {
+        padding-left: 1rem;
+        padding-top: 1em;
+        font-size: 1.1rem;
+    }
+    .jobboard-header-text {
+        margin-top: .4rem;
+        margin-bottom: .4rem;
+        width: 80%;
+        padding-left: 1rem;
+        font-size: .8rem;
+    }
+    .head-btn-content {
+        padding-left: 1rem !important;
+    }
+    .head-btn {
+        font-size: .8rem !important;
     }
     .search-bar {
         padding: 10px 5px;

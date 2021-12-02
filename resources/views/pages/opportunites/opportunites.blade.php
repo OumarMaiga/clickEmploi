@@ -1,8 +1,12 @@
 <x-app-layout>
     <div class="home-container">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-2 px-0">
+                @if (Auth::check())
+                    @include('layouts.profil')
+                @endif
                 @include('layouts.filter')
+                @include('layouts.pub2')
             </div>
             <div class="col-sm-9 list">
                 <h3 class="entreprise-detail-offres-title">
@@ -101,6 +105,11 @@
                 @endforeach
         
                 @include('layouts.list_opportunite')
+            </div>
+            
+            <div class="col-sm-2 px-0">
+                @include('layouts.pub1')
+                @include('layouts.pub-alert')
             </div>
         </div>
     </div>

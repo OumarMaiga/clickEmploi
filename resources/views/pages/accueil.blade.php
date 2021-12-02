@@ -3,10 +3,18 @@
         <h1 class="jobboard-header-title">
             Avec <span style="color: #FF9000; font-weight: bold;">Click emploi</span> c'est les offres qui viennent à vous
         </h1>
-            <p class="jobboard-header-text">
-                Acteur leader de l’emploi en France depuis 2010, Meteojob vous permet de trouver vos futurs 
-                talents en un temps record grâce à des algorithmes ultra performants optimisés quotidiennement.
-            </p>
+        <p class="jobboard-header-text">
+            Créer votre profil en quelques cliques et laissé l'emploi venir à vous
+        </p>
+        @if(Auth::check())
+            <button class="head-btn-content">
+                <a href="{{ route('home') }}" class="btn-outline-custom head-btn">Acceder à mes offres</a>
+            </button>
+        @else
+            <button class="head-btn-content">
+                <a href="{{ route('register') }}" class="btn-outline-custom head-btn">Je crèe mon profil</a>
+            </button>
+        @endif
     </div>
     @include('layouts.search_bar')
     <div class="entreprise">
