@@ -9,7 +9,11 @@
     }
 ?>
 <div class="home-profil-container">
-    <img src="" alt="Profil de l'utisateur" class="home-profil-img"/>
+    @if (photo_profil(Auth::user()->email))
+        <img src="{{ photo_profil(Auth::user()->email) }}" alt="Profil de l'utisateur" class="home-profil-img">
+    @else
+        <img src='/storage/profil_pictures/default.jpg' alt="Profil de l'utisateur" class="home-profil-img"/>
+    @endif
     <h6 class="home-profil-title">
         {{ $name }}
     </h6>
@@ -17,8 +21,5 @@
         @foreach ($activite_par_profil as $activite)
             <a href="#" class="home-profil-tag-text">{{ $activite->libelle }}</a>
         @endforeach
-        <!--<a href="#" class="home-profil-tag-text">Finance</a>
-        <a href="#" class="home-profil-tag-text">Marketing</a>
-        <a href="#" class="home-profil-tag-text">Communuty management</a>-->
     </div>
 </div>

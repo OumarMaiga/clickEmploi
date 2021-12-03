@@ -70,6 +70,38 @@
     color: #007bff;
     text-decoration: underline;
 }
+
+/* SIDE BLOCK OFFRE DETAIL */
+.side-block-offre {
+    margin-top: 1rem;
+    margin-bottom: 10px;
+    padding: 3px;
+    border: 2px solid #FF9000;
+}
+.side-block-offre-image {
+    height: 60px;
+    background-color: #C4C4C4;
+    margin-top: .4rem
+}
+.side-block-offre-title {
+    font-family: 'MADE Evolve Sans';
+    font-size: .6rem;
+}
+.side-block-entreprise {
+    font-size: .8rem;
+    font-weight: bold;
+    color: #FF9000
+}
+.side-block-lieu {
+    font-size: .6rem;
+    color: #8F8F8F;
+}
+.side-block-btn-postule .btn-outline-custom {
+    font-size: .8rem;
+    border-width: 1px;
+}
+
+
 /* PUB - alert */
 .home-pub-alert {
     margin-top: 1rem;
@@ -217,10 +249,18 @@ hr {
     padding-left: 8rem;
 }
 .head-btn {
-    font-size: 1.6rem !important;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    font-size: 1.6rem;
+    padding: .375rem .75rem;
+    line-height: 1.5;
 }
 .head-btn:hover {
     text-decoration: none;
+    background-color: #FF9000;
+    color: #FFFFFF;
+    border-width: 1px;
 }
 .search-bar {
     padding: 20px 0px;

@@ -32,6 +32,10 @@
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->
+                <li class="nav-item">
+                    <a class="nav-btn" href="{{ route('login') }}">{{ __('Vous ètes une entreprise ?') }}</a>
+                </li>
+                &nbsp;&nbsp;
             @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>

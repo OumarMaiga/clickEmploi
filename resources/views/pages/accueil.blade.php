@@ -8,11 +8,11 @@
         </p>
         @if(Auth::check())
             <button class="head-btn-content">
-                <a href="{{ route('home') }}" class="btn-outline-custom head-btn">Acceder à mes offres</a>
+                <a href="{{ route('home') }}" class="head-btn">Acceder à mes offres</a>
             </button>
         @else
             <button class="head-btn-content">
-                <a href="{{ route('register') }}" class="btn-outline-custom head-btn">Je crèe mon profil</a>
+                <a href="{{ route('register') }}" class="head-btn">Je crèe mon profil</a>
             </button>
         @endif
     </div>

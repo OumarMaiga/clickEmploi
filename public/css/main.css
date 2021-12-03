@@ -5,7 +5,7 @@ body {
     background-color: #F5F5F5;
 }
 #navigation {
-    background-color: #cb6b13;
+    background-color: #E5E5E5;
     z-index: 1;
 }
 .logo {
@@ -14,12 +14,12 @@ body {
 
 .navbar-brand, .nav-link  {
     font-size: 1.2rem;
-    color: white;
+    color: #4D4D4D;
 }
 
 .navbar-brand:hover, .nav-link:hover {
     text-decoration: underline;
-    color: white;
+    color: #FF9000;
 }
 .photo_profil_nav {
     position:absolute;
@@ -32,6 +32,21 @@ body {
 }
 
 /* Form element */
+.nav-btn {
+    display: block;
+    background-color: transparent;
+    color: #FF9000;
+    border: 1px solid #FF9000;
+    font-size: 1rem;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+}
+.nav-btn:hover {
+    text-decoration: none;
+    background-color: #FF9000;
+    color: #FFFFFF;
+    border-width: 0px;
+}
 .btn-custom {
     background-color: #FF9000;
     color: #FFFFFF;

@@ -13,10 +13,10 @@
         </div>-->
         <div class="row">
             <div class="col-sm-2 px-0">
+                @include('layouts.detail_offre')
                 @if (Auth::check())
                     @include('layouts.profil')
                 @endif
-                @include('layouts.filter')
                 @include('layouts.pub2')
             </div>
             <div class="col-sm-8">
@@ -24,7 +24,7 @@
                     <div class="show-head-container">
                         <div class="row">
                             <div class="col-lg-3 col-md-4">
-                                <img src="" alt="Photo de l'entreprise" class="show-head-image">
+                                <img src="{{ photo_entreprise($opportunite->entreprise_id) }}" alt="Photo de l'entreprise" class="show-head-image">
                             </div>
                             <div class="col-lg-9 col-md-8">
                                 <div class="show-title">
@@ -136,8 +136,8 @@
                         </div>
                     </div>
                     
-                    <div class="d-flex justify-content-center" id="postuler">
-                        <div class="postuler-container col-lg-8 col-md-10">
+                    <div class="" id="postuler">
+                        <div class="postuler-container">
                             <h2 class="form-title mb-4">POSTULER</h2>
                             @if (Auth::check())
                                 
