@@ -171,8 +171,14 @@ class EmploiController extends Controller
         }else{
             $annee_experience = "";
         }
+
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau', 'annee_experience'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau', 'annee_experience', 'activite_par_profil'));
     }
 
     public function destroy($id) {

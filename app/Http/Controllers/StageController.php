@@ -157,8 +157,14 @@ class StageController extends Controller
         }else{
             $annee_experience = "";
         }
+        
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau', 'activite_par_profil'));
     }
 
     public function destroy($id) {

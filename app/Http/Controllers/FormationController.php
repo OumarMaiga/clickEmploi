@@ -122,7 +122,13 @@ class FormationController extends Controller
         $opportunite_similaires = Opportunite::where('title', $opportunite->title)->limit(4)->get();
         $secteurs = $opportunite->secteurs->pluck('libelle');
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs', 'niveau'));
+        
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs', 'niveau', 'activite_par_profil'));
     }
 
     public function destroy($id) {
