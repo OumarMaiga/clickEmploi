@@ -116,7 +116,7 @@
     margin-bottom: .6rem;
     text-align: center;
 }
-.home-pub-alert .list {
+.home-pub-alert .pub-alert-list {
     list-style-type: decimal;
     list-style-position: inside;
 }

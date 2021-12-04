@@ -113,8 +113,10 @@ class HomeController extends Controller
         $opportunites = new Opportunite;
         if($request->has('secteur')) {
             $activites_secteur = Activite::whereIn('secteur_id', $request->secteur)->pluck('id');
-            $opportunites = Opportunite::join('activite_opportunite', 'opportunites.id', '=', 'activite_opportunite.opportunite_id')
-                                        ->whereIn('activite_opportunite.activite_id', $activites_secteur);
+            $opportunites = Opportunite::join('activite_opportunite', function ($join) use ($activites_secteur) {
+                                            $join->on('opportunites.id', '=', 'activite_opportunite.opportunite_id')
+                                                ->whereIn('activite_opportunite.activite_id', $activites_secteur);
+                                            });
         }
         if($request->has('contrat')) {
             $opportunites = $opportunites->whereIn('type_contrat', $request->contrat);
@@ -133,9 +135,11 @@ class HomeController extends Controller
 
             }
         }
-        $opportunites = $opportunites->get();
+        $opportunites = $opportunites->get()->unique('id');
         $nbre_offres = $opportunites->count();
         $offre_par_profil = $this->offre_par_profil();
+        /*echo $opportunites;
+        die();*/
         return view('pages.filter', compact('opportunites', 'nbre_offres', 'offre_par_profil'));
         
     }
@@ -190,9 +194,9 @@ class HomeController extends Controller
                     "opportunites.created_at as created_at",
                 ]);
                         
-            }else{
-                $offre_par_profil = Opportunite::where('id', '0')->get();
-            }
-            return $offre_par_profil;
+        }else{
+            $offre_par_profil = Opportunite::where('id', '0')->get();
         }
+        return $offre_par_profil;
+    }
 }
