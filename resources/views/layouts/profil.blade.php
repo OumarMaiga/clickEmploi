@@ -17,6 +17,9 @@
     <h6 class="home-profil-title">
         {{ $name }}
     </h6>
+    <div class="home-profil-button">
+        <a href="{{ route('edit_profil', Auth::user()->email) }}" class="btn-outline-custom">Completez votre profil</a>
+    </div>
     <div class="home-profil-tag">
         @foreach ($activite_par_profil as $activite)
             <a href="#" class="home-profil-tag-text">{{ $activite->libelle }}</a>
