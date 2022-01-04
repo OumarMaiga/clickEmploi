@@ -5,7 +5,7 @@
             
             if (Auth::check()) {
                 $pts = 0;
-                //Les data de l'offre pour les points
+                //Les données de l'offre pour les points
                 $domaine_par_offre = $opportunite->activites()->distinct()->pluck('secteur_id')->toArray();
                 $activite_par_offre = $opportunite->activites()->pluck('id')->toArray();
                 $annee_experience_offre = $opportunite->annee_experience;
@@ -16,7 +16,7 @@
                     $annee_etude_offre = 0;
                 }
 
-                //Les data du user pour les points
+                //Les données de l'utilisateur user pour les points
                 $domaine_par_profil = Auth::user()->activites()->distinct()->pluck('secteur_id')->toArray();
                 $activite_par_profil = Auth::user()->activites()->pluck('id')->toArray();
                 $annee_experience_profil = Auth::user()->annee_experience;
@@ -31,6 +31,9 @@
                 if ($annee_etude_profil >= $annee_etude_offre) {
                     $pts = $pts + 2;
                 }
+                if ($annee_experience_profil >= $annee_experience_offre) {
+                    $pts = $pts + 1;
+                }
                 $activite_intersect = array_intersect($activite_par_offre, $activite_par_profil);
                 if(!empty($activite_intersect)){
                     $pts = $pts + 3;
@@ -40,9 +43,6 @@
                     $pts = $pts + 1;
                 } else {
                     $pts = 0;
-                }
-                if ($annee_experience_profil >= $annee_experience_offre) {
-                    $pts = $pts + 1;
                 }
             }
     ?>
