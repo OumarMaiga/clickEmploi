@@ -14,11 +14,11 @@
     
                 <!-- Email Address -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <label for="diplome">Libelle</label>
                         <input id="libelle" class="form-control" type="text" name="libelle" value="{{ old('libelle') }}" placeholder="DIPLOME" required />
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <label for="annnee">Année d'etude</label>
                         <select name="annee_etude" class="form-control">
                             <option value="">-- SELECTIONNER ICI --</option>

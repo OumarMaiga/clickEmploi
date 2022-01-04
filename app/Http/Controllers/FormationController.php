@@ -51,6 +51,7 @@ class FormationController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
         ]);
 
@@ -62,10 +63,12 @@ class FormationController extends Controller
         else {
             $slug = Str::slug($request->get('title'));
         }
+        $echeance = $request->date_echeance."T".$request->time_echeance;
 
         $request->merge([
             'type' => 'formation',
             'slug' => $slug,
+            'echeance' => $echeance,
             'user_id' => Auth::user()->id,
         ]);
         
@@ -91,8 +94,15 @@ class FormationController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
         ]);
+        if ($request->has('date_echeance') || $request->has('time_echeance')) {
+            $echeance = $request->date_echeance."T".$request->time_echeance;
+            $request->merge([
+                'echeance' => $echeance,
+            ]);
+        }
         $this->opportuniteRepository->update($id, $request->all());
 
         return redirect('/dashboard/formation')->withStatus("Formation a bien été mise à jour");
@@ -102,9 +112,8 @@ class FormationController extends Controller
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
-        $secteurs = $opportunite->secteurs->pluck('libelle');
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
-        return view('formations.show', compact('opportunite', 'entreprise', 'postulants', 'secteurs', 'niveau'));
+        return view('formations.show', compact('opportunite', 'entreprise', 'postulants', 'niveau'));
     }
 
     public function detail($slug) {
@@ -113,7 +122,13 @@ class FormationController extends Controller
         $opportunite_similaires = Opportunite::where('title', $opportunite->title)->limit(4)->get();
         $secteurs = $opportunite->secteurs->pluck('libelle');
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs', 'niveau'));
+        
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'secteurs', 'niveau', 'activite_par_profil'));
     }
 
     public function destroy($id) {
@@ -125,7 +140,12 @@ class FormationController extends Controller
     {
         $opportunites = $this->opportuniteRepository->getByType('formation');
         $offre_par_profil = $this->offre_par_profil();
-        return view('pages/opportunites/formations', compact('opportunites', 'offre_par_profil'));
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
+        return view('pages/opportunites/formations', compact('opportunites', 'offre_par_profil', 'activite_par_profil'));
     }
     public function offre_par_profil() {
         if (Auth::check()) {

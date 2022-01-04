@@ -28,10 +28,9 @@ class UserController extends Controller
 
     public function index() {
         $users = $this->userRepository->getByType('user');
-        $secteurs = Secteur::orderBy('libelle', 'asc')->get();
-        $diplomes = Diplome::orderBy('libelle', 'asc')->get();
+        $secteurs = Secteur::orderBy('libelle')->get();
+        $diplomes = Diplome::orderBy('annee_etude')->get();
         $annee_experience = Auth::user()->annee_experience;
-        
         return view('dashboards.users.index', compact('users', 'secteurs', 'diplomes'));
     }
 
@@ -39,7 +38,7 @@ class UserController extends Controller
         $user = $this->userRepository->getByEmail($email);
         $photo = photo_profil($user->email);
         $activites = $user->activites->pluck('libelle');
-        return view('dashboards.users.show', compact('user', 'photo', 'a$activites'));
+        return view('dashboards.users.show', compact('user', 'photo', 'activites'));
     }
 
     public function destroy($id) {
@@ -86,10 +85,10 @@ class UserController extends Controller
                 $users = $users->where('dernier_diplome', $diplome->id);
             }
         }
-        $users = $users->orderBy('nom', 'asc')->get();
+        $users = $users->orderBy('nom')->get();
         
-        $secteurs = Secteur::orderBy('libelle', 'asc')->get();
-        $diplomes = Diplome::orderBy('libelle', 'asc')->get();
+        $secteurs = Secteur::orderBy('libelle')->get();
+        $diplomes = Diplome::orderBy('annee_etude')->get();
 
         $request->session()->flash('filter_user', $users);
 

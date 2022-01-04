@@ -1,7 +1,7 @@
 <x-dashboard-layout>
     <div class="dashboard-content">
         <div class="container content">
-            <h3 class="mb-3 align-items-start content-title">
+            <h3 class="mb-3 d-flex align-items-center content-title">
                     LES UTILISATEURS
                 </div>
             </h3>
@@ -10,7 +10,7 @@
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
             <form method="GET" action="{{ route('user.filter') }}">
-                <div class="form-row justify-content-end mb-4">
+                <div class="container form-row justify-content-end mb-4">
                     <div class="col-lg-2 col-md-3">
                         <select name="secteur" id="secteur" class="custom-select">
                             <option value="">-- Domaine --</option>
@@ -35,11 +35,11 @@
                             @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-outline-custom">
+                    <button type="submit" id="filtre-btn" class="btn btn-outline-custom">
                         {{ __('FILTRER') }}
                     </button>
                 </div>
-                <table class="table table-hover">
+                <table class="table table-hover table-responsive-md">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -76,7 +76,7 @@
                             ?>
                             <tr>
                                 <th scope="row">{{ $n }}</th>
-                                <td>{{ $user->nom." ".$user->prenom }}</td>
+                                <td>{{ "$user->prenom $user->nom" }}</td>
                                 <td>{{ $activites->implode('libelle', ', ') }}</td>
                                 <td>{{ $diplome != null ? $diplome->libelle : "" }}</td>
                                 <td>{{ $annee_experience }}</td>
@@ -90,7 +90,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a class="btn btn-warning float-right"href="{{ route('export') }}">Exporter les données en Excel</a>
+                <a class="btn btn-custom"href="{{ route('export') }}">Exporter les données en Excel</a>
             </form>
         </div>
     </div>

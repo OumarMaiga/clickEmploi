@@ -25,15 +25,15 @@ class UsersExport implements WithHeadings, FromCollection
         if($this->data != null){
             $users = $this->data;
         } else {
-            $users = User::where('type', 'user')->get();
+            $users = User::where('type', 'user')->orderBy('nom')->get();
         } 
         return  $users->map(function($user){
             $secteur_ids = $user->activites()->distinct()->pluck('secteur_id')->toArray();
             $secteurs = Secteur::whereIn('id', $secteur_ids)->get();
             $diplome = $user->diplome()->associate($user->dernier_diplome)->diplome;
             return [
-                $user->nom,
                 $user->prenom,
+                $user->nom,
                 $user->email,
                 $diplome != null ? $diplome->libelle : "",
                 $secteurs->implode('libelle', ', '),
@@ -45,8 +45,8 @@ class UsersExport implements WithHeadings, FromCollection
     public function headings(): array
     {
         return [
-            'nom',
             'prenom',
+            'nom',
             'email',
             'Niveau d\'étude',
             'Domaine d\'activité'

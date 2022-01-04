@@ -8,7 +8,7 @@
             @method('put')
             <div class="row">
                 <div class="col-md-4">
-                    <img alt="profil" src="{{ $photo }}" class="profil-img" style="height:350px;"/>
+                    <img alt="profil" src="{{ $photo }}" class="profil-img"/>
                     <input type="file" placeholder="Selection une photo de profil" name="photo" class="form-control">
                 </div>
                 <div class="col-md-8">

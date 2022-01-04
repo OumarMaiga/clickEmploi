@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm shadow-sm nav-custom" id="navigation">
+<nav class="navbar navbar-expand-sm shadow-sm" id="navigation">
     <!-- Primary Navigation Menu -->
     <!-- Logo -->
     <a class="navbar-brand" href="{{ route('accueil') }}">
@@ -32,6 +32,10 @@
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->
+                <li class="nav-item">
+                    <a class="nav-btn" href="{{ route('login') }}">{{ __('Vous ètes une entreprise ?') }}</a>
+                </li>
+                &nbsp;&nbsp;
             @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>
@@ -42,7 +46,7 @@
                     </li>
                 @endif
             @else
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown d-none d-md-block">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         @if (photo_profil(Auth::user()->email))
                             <img src="{{ photo_profil(Auth::user()->email) }}" class="photo_profil_nav">
@@ -53,23 +57,47 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('profil', Auth::user()->email) }}">
+                            {{ (Auth::user()->prenom || Auth::user()->nom) ? Auth::user()->prenom." ".Auth::user()->nom : Auth::user()->email }}
+                        </a>
                         @if(Auth::user()->type == "admin" || Auth::user()->type == "partenaire")
                             <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                         @endif
-                        <a class="dropdown-item" href="{{ route('profil', Auth::user()->email) }}">Profil</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                                Deconnexion
+                            </a>
                         </form>
                         
 
                     </div>
                 </li>
+                <div class="d-block d-md-none">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profil', Auth::user()->email) }}">
+                            {{ (Auth::user()->prenom || Auth::user()->nom) ? Auth::user()->prenom." ".Auth::user()->nom : Auth::user()->email }}
+                        </a>
+                    </li>
+                    @if(Auth::user()->type == "admin" || Auth::user()->type == "partenaire")
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                    @endif
+                    <li class="nav-item">
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="btn btn-red" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                                Deconnexion
+                            </a>
+                        </form>
+                    </li>
+                </div>
             @endguest
         </ul>
     </div>

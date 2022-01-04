@@ -1,7 +1,7 @@
 <x-dashboard-layout>
     <div class="dashboard-content">
         <div class="container content">
-            <div class="ajout-title">{{ __('MODIFICATION DE PARTENAIRE') }}</div>
+            <div class="content-title">{{ __('MODIFICATION DE PARTENAIRE') }}</div>
     
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -14,7 +14,7 @@
                 
                 <!-- Email Address -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <input id="libelle" class="form-control" type="text" name="libelle" value="{{ $diplome->libelle }}" placeholder="DIPLOME" required />
                     </div>
                 </div>

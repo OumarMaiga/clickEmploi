@@ -1,8 +1,12 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
     background-color: #F5F5F5;
 }
 #navigation {
-    background-color: #cb6b13;
+    background-color: #E5E5E5;
+    z-index: 1;
 }
 .logo {
     width: 70px;
@@ -10,12 +14,12 @@ body {
 
 .navbar-brand, .nav-link  {
     font-size: 1.2rem;
-    color: white;
+    color: #4D4D4D;
 }
 
 .navbar-brand:hover, .nav-link:hover {
     text-decoration: underline;
-    color: white;
+    color: #FF9000;
 }
 .photo_profil_nav {
     position:absolute;
@@ -26,6 +30,81 @@ body {
 .caret {
     margin-left: 2rem;
 }
+
+/* Form element */
+.nav-btn {
+    display: block;
+    background-color: transparent;
+    color: #FF9000;
+    border: 1px solid #FF9000;
+    font-size: 1rem;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+}
+.nav-btn:hover {
+    text-decoration: none;
+    background-color: #FF9000;
+    color: #FFFFFF;
+    border-width: 0px;
+}
+.btn-custom {
+    background-color: #FF9000;
+    color: #FFFFFF;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+.btn-red {
+    background-color: #FFFFFF;
+    color: #ff0000;
+    padding: .375rem .75rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+.btn-custom:hover {
+    background-color: #F3A202;
+    border-color: #EE9F05;
+    color: #FFFFFF;
+}
+.btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 .2rem #f3a30246;
+}
+.btn-outline-custom {
+    background-color: none;
+    color: #FF9000;
+    border: 1px solid #FF9000;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+.btn-outline-custom:hover {
+    background-color: #FF9000;
+    border-color: #FF9000;
+    color: #FFFFFF;
+}
+.btn-outline-custom2 {
+    background-color: #FF9000;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+.btn-outline-custom2:hover {
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    color: #FF9000;
+}
+.form-control {
+    border: 0px;
+    border-bottom: 1px solid #707070;
+}
+
 .main-content {
     padding: 2rem
 }
@@ -39,7 +118,7 @@ body {
 .profil-img {
     width: 100%;
     border-radius: 50%;
-    height: 300px;
+    height: 350px;
     background-color: #D8D8D8;
 }
 
@@ -69,30 +148,62 @@ body {
 .subtitle {
     color: #5D5D5D;
 }
-
-.show-head-container {
-    padding: 25px;
-    background-image: url('/image/show-image.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 375px;
-    color: #FFFFFF;
-    text-align: center;
+.show-head-image {
+    height: 140px;
+    background-color: #C4C4C4;
+}
+.show-middle-container {
+    background-color: #fff;
+    padding: 1rem 1rem;
+    margin-top: 1rem;
 }
 
 .show-title {
-    font-family: 'Rockwell';
-    font-size: 3.4rem;
-    font-weight: bold;
+    font-family: 'MADE Evolve Sans';
+    font-size: 1.6rem;
 }
-.show-subtitle {
+.show-head-entreprise {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #FF9000
+}
+.show-head-lieu {
+    font-size: .8rem;
+    color: #8F8F8F;
+}
+
+.btn-postule {
+    font-size: 1.4rem
+}
+.show-btn-postule {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+}
+.show-btn-postule .btn-outline-custom {
+    font-size: 1.2rem;
+    border-width: 2px;
+}
+.show-resume {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+.show-resume .list {
+    list-style: none;
+}
+.show-resume .list .item {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #C4C4C4;
+}
+.show-resume .list .item .text {
     font-size: 1.2rem;
 }
-.btn-postule {
-    font-size: 1.8rem
+.show-resume .list .item .value {
+    font-size: 1.2rem;
+    color: #606060;
+    float: right;
 }
+
 .lil-title{
     font-weight: bold;
     font-size: 1.6rem;
@@ -103,11 +214,34 @@ body {
 .resume-title {
     color: #646464
 }
+.show-description-trait {
+    width: 7%;
+    background-color: #333333;
+    height: 4px;
+    margin-bottom: .8rem;
+}
 .description-content, .resume {
     line-height: 1.5;
     margin-top: 2rem
 }
+.show-end {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+.show-end .item {
+    margin-right: 1.4rem;
+}
+.show-end div .text {
+    font-size: 1.2rem;
+}
+.show-end div .value {
+    font-size: 1.2rem;
+    color: #606060;
+}
 
+/* Postuler */
 .postuler-container {
     padding: 35px;
     background-color: #ECECEC;
@@ -125,7 +259,21 @@ body {
   font-weight: bold;
   color: #cb6b13;
 }
-
+.identifier {
+    text-align: center
+}
+.identifier-word {
+    font-size: 1.4rem;
+    font-weight: 200;
+    margin-bottom: 1rem;
+}
+.btn-modif-profil {
+    float: right;
+}
+.search-bar-content {
+    display: flex;
+    justify-content: center;   
+}
 /* FOOTER */
 footer {
     line-height: 2;
@@ -143,6 +291,9 @@ footer {
     padding: 0.5rem;
     text-align: center;
 }
+.oumar:hover {
+     color: #fff;
+}
 
 .img-social-media {
     width: 25px;
@@ -151,6 +302,32 @@ footer {
 }
 .media-link {
     margin-left: .4rem;
+}
+.form-item {
+    margin-top: 1.5rem;
+}
+/* Liste offre */
+.offre-block-number {
+    font-size: 4rem;
+    margin: 1rem 0rem;
+    font-family: "Segoe UI";
+    box-shadow: 0px 0px 4px 2px #00000031;
+}
+.offre-block-number-up {
+    background-color: #F5FFFF;
+}
+.offre-block-number-word {
+    padding: 1rem 2rem;
+    font-weight: bold;
+}
+.offre-block-number-icon {
+    font-size: 5rem;
+    padding: 1rem 2rem;
+    background-color: #E1FFFE;
+}
+.offre-block-number-down {
+    padding: 1rem 2rem;
+    background-color: #FFF;
 }
 
 /* View Tablette -- Medium devices (tablets, 768px and up) */
@@ -164,10 +341,25 @@ footer {
 
     /* Detail Opportunite */
     .show-title {
-        font-size: 2.4rem
+        font-size: 1.2rem;
     }
-    .show-subtitle {
-        font-size: 1rem
+    .show-head-entreprise {
+        font-size: .8rem
+    }
+    .show-description-trait {
+        width: 12%;
+    }
+    .show-btn-postule .btn-outline-custom {
+        font-size: 1rem;
+    }
+    .show-resume .list .item .text, .show-resume .list .item .value {
+        font-size: 1rem;
+    }
+    .show-end {
+        margin-top: 1rem;
+    }
+    .show-end div .text, .show-end div .value {
+        font-size: 1rem;
     }
 
     /* Detail User */
@@ -180,8 +372,112 @@ footer {
     .profil-email {
         font-size: 1.1rem;
     }
-    
     .main-content {
         padding: 1rem
+    }
+    .content-title {
+        font-size: 1.6rem;
+    }
+    .offre-block-number {
+        font-size: 2rem;
+    }
+    .offre-block-number-icon {
+        font-size: 3rem;
+    }
+    .offre-block-number-word {
+        padding: .5rem .5rem;
+    }
+}
+
+@media (max-width: 567px) {
+    
+    .content-title {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    .btn-custom {
+        padding: .3rem .5rem;
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+    .show-middle-container {
+        padding: .6rem;
+        margin-top: .6rem;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+    .show-title {
+        font-size: 1.2rem;
+    }
+    .show-description-trait {
+        width: 18%;
+    }
+    .show-btn-postule .btn-outline-custom {
+        font-size: .8rem;
+    }
+    #diplome{
+        margin-top: 0.5rem;
+    }
+    #filtre-btn {
+        margin-top: 0.5rem;
+        margin-left: 5px;
+        margin-right: auto;
+    }
+    .form-item {
+        margin-top: .5rem;
+    }
+    .entreprise-detail-offres-title {
+        font-size: 1.2rem;
+    }
+    .offre-title {
+        font-size: 1.2rem;
+    }
+    .offre-block-number {
+        font-size: 2rem;
+    }
+    .offre-block-number-icon {
+        font-size: 3rem;
+        padding: .5rem 1rem;
+    }
+    .offre-block-number-word {
+        padding: .5rem .5rem;
+    }
+    .offre-block-number {
+        font-size: 1.4rem;
+    }
+    .offre-block-number-down {
+        padding: .5rem 1rem;
+    }
+    /* Detail opportunite */
+    .show-head-container {
+        height: 200px;
+    }
+    .show-title {
+        font-size: 1.4rem;
+    }
+    .lil-title {
+        font-size: 1.2rem;
+    }
+    .description-content, .resume {
+        margin-top: 1rem;
+    }
+    .postuler-container {
+        padding: 35px;
+    }
+    .profil-img {
+        width: 200px;
+    }
+    .btn-modif-profil {
+        float: left;
+        margin-top: .5rem;
+    }
+    .search-bar-content {
+        display: block;
+    }
+    .profil-name {
+        display: flex;
+    }
+    .profil-email {
+        margin: auto;
     }
 }

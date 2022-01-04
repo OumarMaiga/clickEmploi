@@ -6,21 +6,20 @@
 }
 
 .filtre-container {
-    position: sticky;
-    top: 0px;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .filtre-title {
-    font-family: 'Sylfaen';
+    font-family: 'MADE Evolve Sans';
     text-align: center;
-    font-size: 1.75rem;
+    font-size: 1.2rem;
 }
 
 
 .filtre-subtitle {
-    font-family: 'Sylfaen';
-    font-size: 1.25rem;
+    font-family: 'MADE Evolve Sans';
+    font-size: 1rem;
     margin-bottom: 5px;
 }
 
@@ -39,6 +38,122 @@
     font-size: .85rem;
 }
 
+/* Home - Profil layout */
+.home-profil-container {
+    margin-top: 1rem;
+    margin-bottom: 10px;
+    padding: 3px;
+    border: 2px solid #FF9000;
+}
+.home-profil-img {
+    background-color: #CFCFCF;
+    width: 100%;
+    height: 120px;
+}
+.home-profil-title {
+    font-family: 'MADE Evolve Sans';
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: .6rem;
+    text-align: center;
+}
+.home-profil-button {
+    font-family: 'MADE Evolve Sans';
+    margin-bottom: .6rem;
+    text-align: center;
+}
+.home-profil-offre_par_profil {
+    font-size: .8rem;
+    margin-bottom: .6rem;
+    text-align: center;
+}
+.home-profil-tag {
+    text-align: center;
+}
+.home-profil-tag-text {
+    font-size: .8rem;
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* SIDE BLOCK OFFRE DETAIL */
+.side-block-offre {
+    margin-top: 1rem;
+    margin-bottom: 10px;
+    padding: 3px;
+    border: 2px solid #FF9000;
+}
+.side-block-offre-image {
+    background-color: #C4C4C4;
+    margin-top: .4rem
+}
+.side-block-offre-title {
+    font-family: 'MADE Evolve Sans';
+    font-size: .8rem;
+    line-height: 1.2;
+    margin-top: .4rem
+}
+.side-block-offre-bottom-container {
+    margin-top: .8rem;
+    display: flex;
+    justify-content: space-between;
+}
+.side-block-entreprise {
+    font-size: .8rem;
+    font-weight: bold;
+}
+.side-block-lieu {
+    font-size: .8rem;
+    color: #8F8F8F;
+}
+.side-block-btn-postule .btn-outline-custom {
+    font-size: .8rem;
+    border-width: 1px;
+    font-size: .8rem !important;
+    padding: .25rem .50rem !important;
+}
+
+
+/* PUB - alert */
+.home-pub-alert {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 20px 10px;
+    border: 4px solid #FF9000;
+}
+.home-pub-alert-title {
+    font-family: 'MADE Evolve Sans';
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: .6rem;
+    text-align: center;
+}
+.home-pub-alert .pub-alert-list {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+/* PUB */
+.pub1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #CFCFCF;
+    height: 360px;
+    width: 100%;
+}
+.pub2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #CFCFCF;
+    height: 290px;
+    width: 100%;
+}
+.pub3 {
+    background-color: #CFCFCF;
+    height: 40px;
+    width: 100%;
+}
+
 .offre-item {
     padding: 5px;
     margin-bottom: 15px;
@@ -49,12 +164,12 @@
 
 .image-offre {
     width: 100%;
-    height: 120px;
+    height: 190px;
     background-color: #BCBCBC;
 }
 
 .offre-title {
-    font-family: 'Rockwell';
+    font-family: 'MADE Evolve Sans';
     font-size: 1.8rem;
 }
 
@@ -63,7 +178,11 @@
     color: #333333;
     font-weight: lighter;
 }
-
+.offre-description {
+    margin: 20px 100px 10px 0px;
+    font-size: 1rem;
+    line-height: 1.2;
+}
 .offre-footer {
     position: absolute;
     bottom: 0;
@@ -91,12 +210,9 @@ hr {
     background-color: #FFFFFF;
     border-radius: 5px;
     box-shadow: 0px 0px 1.7px 1px #00000018;
-    margin: 0px 15px;
+    margin: 5px 15px;
     position: relative;
     border: 0.5px solid #00000023;
-    flex: 0 0 20%;
-    flex-basis: 20%;
-    max-width: 20%;
 }
 .offre-card:hover {
     box-shadow: 0px 0px 1.7px 1.3px #00000025;
@@ -133,30 +249,31 @@ hr {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    background-color: #f5f5f536;
+    background-color: #00000030;
 }
-.head-word {
-    position: relative;
-    font-size: 2.4rem;
-    text-align: right;
-    font-family: 'Bell MT';
-    line-height: 1.3;
-    color: #000000;
-    padding-top: 6rem;
-    padding-right: 4rem;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-.head-offre {
-    margin-top: 9rem;
-    position: absolute;
+.head-offre-text {
     text-align: center;
-    background-color: #FFFFFF;
-    font-family: 'Bw Modelica';
-    padding: 20px 35px;
-    font-size: 2.4rem;
+    font-family: 'MADE Evolve Sans';
+    color: #ffffff;
 }
-
+.head-btn-content {
+    position: relative;
+    padding-left: 8rem;
+}
+.head-btn {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    font-size: 1.6rem;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+}
+.head-btn:hover {
+    text-decoration: none;
+    background-color: #FF9000;
+    color: #FFFFFF;
+    border-width: 1px;
+}
 .search-bar {
     padding: 20px 0px;
     background-color: #cb6b13;
@@ -219,7 +336,6 @@ hr {
     border-radius: 7px;
     font-family: 'cambria';
     font-size: 1.4rem;
-    line-height: 2.4;
     color: #676767;
 }
 .zone-title {
@@ -253,6 +369,77 @@ hr {
 .entreprise-detail-offres-title {
     font-size: 1.6rem;
 }
+
+/* AVANTAGE */
+.avantage {
+    padding: 4rem 6rem;
+    background-color: #fff;
+}
+.avantage-title {
+    text-transform: uppercase;
+        font-family: 'Montserrat, Georgia, serif';
+    color: #cb6b13;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+.trait-container {
+    display: flex;
+    justify-content: center;
+}
+.trait {
+    width: 15%;
+    height: 2px;
+    background-color: #F3A202;
+    margin-top: 3rem;
+    margin-bottom: 2rem; 
+}
+.avantage-content {
+    margin-bottom: 3rem;
+}
+.avantage-icon {
+    background-color: #FFF;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    color: #F3A202;
+    border: 1px solid;
+}
+.avantage-item-title {
+    text-transform: uppercase;
+    color: #F3A202;
+    font-size: 1.6rem;
+    position: absolute;
+    margin-left: 20px;
+}
+.avantage-item-text {
+    color: #707070;
+    font-size: 1rem;
+    margin-left: 4.4rem;
+    margin-top: -0.4rem;
+}
+.comment {
+    padding: 4rem 6rem;
+    background-color: #8A4619;
+    color: #fff;
+}
+.comment-title {
+    text-transform: uppercase;
+        font-family: 'Montserrat, Georgia, serif';
+    color: #fff;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+.comment-image {
+    height: 250px;
+    width: 250px;
+    text-align: center;
+}
+.comment-text {
+    text-align: center;
+    margin-top: 1rem;
+}
 .a-propos {
     padding: 1rem;
     border-radius: 7px;
@@ -276,29 +463,6 @@ hr {
     color: #8D8D8D;
 }
 
-/* Liste offre */
-.offre-block-number {
-    font-size: 4rem;
-    margin: 1rem 0rem;
-    font-family: "Segoe UI";
-    box-shadow: 0px 0px 4px 2px #00000031;
-}
-.offre-block-number-up {
-    background-color: #F5FFFF;
-}
-.offre-block-number-word {
-    padding: 1rem 2rem;
-    font-weight: bold;
-}
-.offre-block-number-icon {
-    font-size: 5rem;
-    padding: 1rem 2rem;
-    background-color: #E1FFFE;
-}
-.offre-block-number-down {
-    padding: 1rem 2rem;
-    background-color: #FFF;
-}
 .star {
     float: right;
     font-size: 1rem;
@@ -309,19 +473,120 @@ hr {
 .color-star {
     color: #B34DF5;
 }
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #FFF;
+    background-color: #FF9000;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover {
+    text-decoration: none;
+}
+.tab-item {
+    background-color: #cb6b13;
+}
+.offre-filtre-container {
+    border: 1px solid #70707050;
+    border-radius: 0 0 10px 10px;
+}
+#myTabContent {
+    text-align: left;
+    padding: 1rem;
+}
+
+/* JOBBOARD */
+.jobboard-header {
+    background-color: #D5D5D5;
+}
+.jobboard-header-title {
+    position: relative;
+    font-family: 'Bw Modelica';
+    font-weight: bolder;
+    font-size: 4rem;
+    color: #FFF;
+    width: 56%;
+    padding-top: 10rem;
+    padding-left: 8rem;
+}
+.jobboard-header-text {
+    position: relative;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    color: #FFF;
+    width: 56%;
+    padding-left: 8rem;
+}
+.btn-jobboard {
+    font-size: 2rem;
+}
+.jobboard-chiffre {
+    padding: 4rem;
+    background-color: #fff;
+}
+.jobboard-chiffre-title {
+    font-family: 'Bw Modelica Hairline';
+    font-size: 2.6rem;
+}
+.chiffre-item-container {
+    margin-top: 6rem;
+}
+.jobboard-chiffre-item {
+    border-left: 3px solid #BEBEBE;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+}
+.jobboard-chiffre-chiffre {
+    font-family: 'Cambria';
+    font-weight: bold;
+    font-size: 2rem;
+}
+.jobboard-right-container {
+    margin: auto;
+    padding: 2rem 4rem;
+    text-align: center;
+    background-color: #199CCE;
+    color: #fff;
+    border-radius: 1rem;
+}
+.jobboard-right-container .source {
+    font-style: italic;
+}
+
+/* DETAIL OFFRE */
+.show-container {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
 /* View Tablette -- Medium devices (tablets, 768px and up) */
 
-@media (max-width: 768px) { 
+@media (max-width: 991px) { 
     .head {
         height: 40vh;
     }
-    .head-word {
-        font-size: 1.8rem;
-        padding-right: 3rem
-    }
     .head-offre {
         font-size: 1.6rem;
+        margin-top: 2rem;
     }
+    /* ACCUEIL HEAD */
+    .jobboard-header-title {
+        padding-left: 2rem;
+        padding-top: 8rem;
+        font-size: 2.6rem;
+        width: 70%;
+    }
+    .jobboard-header-text {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        width: 70%;
+        padding-left: 2rem;
+    }
+    .head-btn-content {
+        padding-left: 2rem !important;
+    }
+    .head-btn {
+        font-size: 1.2rem !important;
+    }
+    
     .entreprise {
         padding: .5rem 1rem;
     }
@@ -336,19 +601,46 @@ hr {
         padding: .5rem 1rem;
     }
 
+    .avantage {
+        padding: 2rem 2rem;
+    }
+    .avantage-title {
+        font-size: 1.6rem;
+    }
+    .avantage-item-title {
+        font-size: 1.4rem;
+        margin-left: 0px;
+    }
+    .avantage-content {
+        margin-bottom: 1rem;
+    }
+
+    .comment {
+        padding: 2rem 2rem;
+    }
+    .comment-title {
+        font-size: 1.6rem;
+    }
+    .comment-image {
+        height: 200px;
+        width: 200px;
+    }
+
     /* Page home */
     .home-container {
         margin-right: 1rem;
         margin-left: 1rem;
     }
     .filtre-title {
-        font-size: 1.4rem
+        font-size: 1.2rem;
+        font-weight: normal;
     }
     .filtre-content {
+        margin-top: 1rem;
         padding: 1rem .5rem;
     }
     .filtre-subtitle{
-        font-size: 1.1rem
+        font-size: 1rem
     }
     .filtre-item {
         font-size: .8rem;
@@ -366,31 +658,65 @@ hr {
     .offre-footer {
         font-size: .85rem;
     }
-
+    .offre-card {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     .postuler-container {
         padding: 1rem 1rem;
     }
+    .offre-description {
+        font-size: .8rem;
+        margin: 10px 70px 10px 0px;
+    }
+
+    /* DETAIL OFFRE */
+    .show-container {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
  }
+
 
 /* View Phone -- Medium devices (tablets, 576px and up) */
 
-@media (max-width: 576px) { 
+@media (max-width: 767px) { 
     .head {
         height: 30vh;
     }
-    .head-word {
-        padding-top: 1.1rem;
-        font-size: 1rem;
-        padding: 1.5rem 0.5rem
+    .head-btn {
+        font-size: 1rem !important;
     }
-    .head-offre {
-        margin-top: 0.5rem;
-        font-size: 1rem;
-        padding: 5px;
+
+    /* ACCUEIL HEAD */
+    .jobboard-header-title {
+        padding-left: 1rem;
+        padding-top: 1em;
+        font-size: 1.1rem;
+    }
+    .jobboard-header-text {
+        margin-top: .4rem;
+        margin-bottom: .4rem;
+        width: 80%;
+        padding-left: 1rem;
+        font-size: .8rem;
+    }
+    .head-btn-content {
+        padding-left: 1rem !important;
+    }
+    .head-btn {
+        font-size: .8rem !important;
     }
     .search-bar {
         padding: 10px 5px;
 
+    }
+    .nav-tabs .nav-link {
+        font-size: 1rem;
+    }
+    .offre-title {
+        font-size: 1.2rem;
+        margin-top: .5rem;
     }
     .adresse-search {
         margin-top: .5rem;
@@ -411,16 +737,49 @@ hr {
     .zone {
         text-align: left;
         font-size: 1rem;
+        margin: .2rem .5rem;
+        padding: .5rem;
     }
     .zone-title {
         font-size: 1.2rem;
         margin-bottom: .5rem;
     }
-        
     .break{
         display: block;
     }
 
+    .avantage {
+        padding: 1rem;
+    }
+    .avantage-title {
+        font-size: 1.2rem;
+    }
+    .trait {
+        width: 25%;
+        background-color: #F3A202;
+        margin-top: 1rem;
+        margin-bottom: .5rem;
+    }
+    .avantage-icon {
+        font-size: 1rem;
+    }
+    .avantage-item-title {
+        font-size: 1rem;
+    }
+    .avantage-item-text{
+        margin-left: 0;
+        margin-top: 0;
+    }
+    .comment {
+        margin-bottom: 2rem;
+    }
+    .comment-title {
+        font-size: 1.2rem;
+    }
+    .comment-text {
+        margin-bottom: 2rem;
+        margin-top: .4rem;
+    }
     /* Page home */
     .image-offre {
         height: 200px;
@@ -438,24 +797,6 @@ hr {
         padding-right: 15px !important;
     }
 
-    /* Detail opportunite */
-    .show-head-container {
-        padding: 1.5rem .75rem;
-        height: 200px;
-    }
-    .show-title {
-        font-size: 1.4rem;
-    }
-    .lil-title {
-    font-size: 1.2rem;
-    }
-    .description-content, .resume {
-        margin-top: 1rem;
-    }
-    .postuler-container {
-        padding: 35px;
-    }
-
     /* Detail entreprise */
     .entreprise-detail-head {
         height:30vh;
@@ -466,5 +807,17 @@ hr {
     }
     .entreprise-detail-offres-container {
         margin: 1rem;
+    }
+    .star {
+        position: absolute;
+        top: -12.2rem;
+        right: .4rem;
+    }
+
+    
+    /* DETAIL OFFRE */
+    .show-container {
+        margin-left: 20px;
+        margin-right: 20px;
     }
  }

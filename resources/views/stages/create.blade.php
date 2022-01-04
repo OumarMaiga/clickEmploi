@@ -14,9 +14,18 @@
     
                 <!-- Email Address -->
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="title">Titre</label>
                         <input id="title" class="form-control" type="text" name="title" value="{{ old('title') }}" placeholder="TITRE" required autofocus />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="niveau">Diplome</label>
+                        <select name="niveau" class="form-control">
+                            <option value="">-- SELECTIONNER ICI --</option>
+                            @foreach($diplomes as $diplome)
+                                <option value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
@@ -59,7 +68,14 @@
                 <div class="row mt-4">
                     <div class="col-md-6">
                         <label for="echeance">Date d'echéance</label>
-                        <input id="echeance" class="form-control" type="date" name="echeance" value="{{ old('echeance') }}" placeholder="" />
+                        <div class="row">
+                            <div class="col-6">
+                                <input id="date_echeance" class="form-control" type="date" value="{{ old('date_echeance') }}" name="date_echeance" placeholder="" />
+                            </div>
+                            <div class="col-6">
+                                <input id="time_echeance" type="time" class="form-control" name="time_echeance" value="00:00">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <label for="montant">Salaire</label>
@@ -70,16 +86,7 @@
 
                 <!-- Email Address -->
                 <div class="row mt-4">
-                    <div class="col-md-6">
-                        <label for="niveau">Niveau</label>
-                        <select name="niveau" class="form-control">
-                            <option value="">-- SELECTIONNER ICI --</option>
-                            @foreach($diplomes as $diplome)
-                                <option value="{{ $diplome->id }}">{{ $diplome->libelle }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="content">Description</label>
                         <textarea id="content" class="form-control" name="content" value="" placeholder="DESCRIPTION ...">{{ old('content') }}</textarea>
                     </div>

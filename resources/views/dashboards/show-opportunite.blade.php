@@ -1,10 +1,10 @@
-    <div class="show-container">
+    <div class="dashboard-content-detail-offre">
         <div class="show-head-container">
             <div class="show-title">
                 {{ $opportunite->title }}
             </div>
             <div class="show-subtitle">
-                {{ $entreprise->libelle }} &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> {{ $opportunite->lieu }}
+                <a href="{{ route('entreprise.detail', $entreprise->slug) }}">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> <a href="{{ route('opportunite.adresse', $opportunite->lieu) }}">{{ $opportunite->lieu }}</a>
             </div>
         </div>
 
@@ -97,24 +97,29 @@
                         {{ $opportunite->montant }}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-3 resume-title">
+                        Secteur d'activité:
+                    </div>
+                    <div class="col-md-9 description">
+                        {{ $activites->implode(', ') }}
+                    </div>
+                </div>
             @endif
             <div class="row">
-                <div class="col-md-3 resume-title">
-                    Secteur d'activité:
-                </div>
-                <div class="col-md-9 description">
-                    {{ $activites->implode(', ') }}
+                <div class="col-md-12 resume-title">
+                    <i>Publié {{ custom_date($opportunite->created_at) }}</i>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 resume-title">
-                    <i>Publié le 12 Avr 2021</i>
+                    <i>Delais de depôt {{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i>
                 </div>
             </div>
         </div>
         <div class="container list-container">
             <div class="lil-title">LES POSTULANTS</div>
-            <table class="table table-hover">
+            <table class="table table-hover table-responsive-md">
                 <thead>
                     <tr>
                     <th scope="col">#</th>

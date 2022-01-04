@@ -52,6 +52,7 @@ class StageController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
         ]);
 
@@ -63,10 +64,12 @@ class StageController extends Controller
         else {
             $slug = Str::slug($request->get('title'));
         }
+        $echeance = $request->date_echeance."T".$request->time_echeance;
 
         $request->merge([
             'type' => 'stage',
             'slug' => $slug,
+            'echeance' => $echeance,
             'user_id' => Auth::user()->id,
         ]);
         
@@ -94,8 +97,15 @@ class StageController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
         ]);
+        if ($request->has('date_echeance') || $request->has('time_echeance')) {
+            $echeance = $request->date_echeance."T".$request->time_echeance;
+            $request->merge([
+                'echeance' => $echeance,
+            ]);
+        }
         $this->opportuniteRepository->update($id, $request->all());
 
         if ($request->has('activite')) {
@@ -147,8 +157,14 @@ class StageController extends Controller
         }else{
             $annee_experience = "";
         }
+        
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau', 'activite_par_profil'));
     }
 
     public function destroy($id) {
@@ -160,7 +176,12 @@ class StageController extends Controller
     {
         $opportunites = $this->opportuniteRepository->getByType('stage');
         $offre_par_profil = $this->offre_par_profil();
-        return view('pages/opportunites/stages', compact('opportunites', 'offre_par_profil'));
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
+        return view('pages/opportunites/stages', compact('opportunites', 'offre_par_profil', 'activite_par_profil'));
     }
     public function offre_par_profil() {
         if (Auth::check()) {

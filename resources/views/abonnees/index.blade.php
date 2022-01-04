@@ -1,7 +1,7 @@
 <x-dashboard-layout>
     <div class="dashboard-content">
         <div class="container content">
-            <h3 class="mb-3 align-items-start content-title">
+            <h3 class="mb-3 d-flex align-items-center content-title">
                     LES ABONNEES
                 </div>
             </h3>
@@ -9,7 +9,7 @@
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
-            <table class="table table-hover">
+            <table class="table table-hover table-responsive-md">
                 <thead>
                     <tr>
                     <th scope="col">#</th>

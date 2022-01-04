@@ -1,4 +1,4 @@
-<footer class="mt-2">
+<footer class="">
     <div class="footer-haut">
         <div class="row">
             <div class="col-lg-8 col-md-6">
@@ -8,6 +8,9 @@
                     </div>
                     <div class="footer-item">
                         Offre par adresse
+                    </div>
+                    <div class="footer-item">
+                        <a href="{{ route('jobboard') }}">Vous êtes une entreprise ?</a>
                     </div>
                 </div>
                 <div class="d-block d-sm-none">
@@ -68,6 +71,6 @@
         </div>
     </div>
     <div class="footer-bas">
-        Copyright © 2021 Tout droit reservés | Ce site est fait avec <i class="fas fa-heart"></i>   par Oumar MAIGA 
+        Copyright © 2021 Tout droit reservés | Ce site est fait avec <i class="fas fa-heart"></i>   par <a target="_blank" class="oumar" href="https://www.oumarmaiga.com">Oumar MAIGA </a>
     </div>
 </footer>

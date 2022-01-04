@@ -1,12 +1,16 @@
 <x-app-layout>
     <div class="home-container">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-2 px-0">
+                @if (Auth::check())
+                    @include('layouts.profil')
+                @endif
                 @include('layouts.filter')
+                @include('layouts.pub2')
             </div>
             <div class="col-sm-9 list">
                 <h3 class="entreprise-detail-offres-title">
-                    {!! "<b>".$nbre_offres. "</b>" !!} offre<?= ($nbre_offres > 1) ? "s " : "" ?> trouvés <?= isset($adresse) ? "à ".$adresse : "" ?>
+                    {!! "<b>".$nbre_offres. "</b>" !!} offre<?= ($nbre_offres > 1) ? "s " : "" ?> trouvés <?= isset($adresse) ? "à ".$adresse : "" ?> <?= isset($poste) ? "à ".$poste : "" ?> <?= isset($domaine) ? "à ".$domaine : "" ?>
                 </h3>
                 @foreach ($offre_par_profil as $opportunite )
                     <?php 
@@ -56,7 +60,7 @@
                         } 
                     ?>
                         <div class="offre-item row mx-0" style="background-color:#F5FFFF;">
-                        <div class="col-lg-2 col-md-3 px-0 add-padding">
+                        <div class="col-lg-2 col-md-3 px-0">
                             <img src="{{ photo_entreprise($opportunite->entreprise_id) }}" alt="Image" class="image-offre">
                         </div>
                         <div class="col-lg-10 col-md-9">
@@ -101,6 +105,11 @@
                 @endforeach
         
                 @include('layouts.list_opportunite')
+            </div>
+            
+            <div class="col-sm-2 px-0">
+                @include('layouts.pub1')
+                @include('layouts.pub-alert')
             </div>
         </div>
     </div>

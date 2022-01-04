@@ -51,6 +51,7 @@ class EmploiController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
             'annee_experience' => 'numeric|between:0,20',
         ]);
@@ -63,19 +64,20 @@ class EmploiController extends Controller
         else {
             $slug = Str::slug($request->get('title'));
         }
+        $echeance = $request->date_echeance."T".$request->time_echeance;
         $request->merge([
             'type' => 'emploi',
             'slug' => $slug,
             'user_id' => Auth::user()->id,
+            'echeance' => $echeance,
         ]);
-        
         $opportunite = $this->opportuniteRepository->store($request->all());
         
         if ($request->has('activite')) {
             $activites = $request->input('activite');
             $opportunite->activites()->sync($activites);
         }
-
+        
         return redirect('/dashboard/emploi')->withStatus("Nouveau emploi publié");
     }
 
@@ -93,11 +95,17 @@ class EmploiController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'lieu' => 'required',
             'entreprise_id' => 'required',
             'annee_experience' => 'numeric|between:0,20',
         ]);
+        if ($request->has('date_echeance') || $request->has('time_echeance')) {
+            $echeance = $request->date_echeance."T".$request->time_echeance;
+            $request->merge([
+                'echeance' => $echeance,
+            ]);
+        }
         $this->opportuniteRepository->update($id, $request->all());
-
         if ($request->has('activite')) {
             $opportunite = $this->opportuniteRepository->getById($id);
             $activites = $request->input('activite');
@@ -163,8 +171,14 @@ class EmploiController extends Controller
         }else{
             $annee_experience = "";
         }
+
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau', 'annee_experience'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau', 'annee_experience', 'activite_par_profil'));
     }
 
     public function destroy($id) {
@@ -176,8 +190,14 @@ class EmploiController extends Controller
     {
         $opportunites = $this->opportuniteRepository->getByType('emploi');
         $offre_par_profil = $this->offre_par_profil();
-        return view('pages/opportunites/emplois', compact('opportunites', 'offre_par_profil'));
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
+        return view('pages/opportunites/emplois', compact('opportunites', 'offre_par_profil', 'activite_par_profil'));
     }
+
     public function offre_par_profil() {
         if (Auth::check()) {
             $activite_par_profil = Auth::user()->activites()->pluck('id')->toArray();

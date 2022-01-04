@@ -31,13 +31,20 @@ class HomeController extends Controller
         //Tous les offres
         $opportunites = $this->opportuniteRepository->get();
         $offre_par_profil = $this->offre_par_profil();
-        return view('pages/home', compact('opportunites', 'offre_par_profil'));
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
+        return view('pages/home', compact('opportunites', 'offre_par_profil', 'activite_par_profil'));
     }
     
     public function accueil()
     {
+        $activites = Activite::select('slug', 'libelle')->limit(9)->get();
+        $postes = Opportunite::select('title')->limit(9)->get();
         $adresses = Opportunite::distinct('adresse')->select('lieu')->limit(9)->get();
-        return view('pages/accueil', compact('adresses'));
+        return view('pages/accueil', compact('adresses', 'activites', 'postes'));
     }
  
     public function profil($email) {
@@ -98,7 +105,7 @@ class HomeController extends Controller
             $activites = $request->input('activite');
             $relation = $user->activites()->sync($activites);
         }
-        return redirect("/$user->email")->withStatus('Profil mise à jour');
+        return redirect("/profil/$user->email")->withStatus('Profil mise à jour');
 
     }
 
@@ -106,8 +113,10 @@ class HomeController extends Controller
         $opportunites = new Opportunite;
         if($request->has('secteur')) {
             $activites_secteur = Activite::whereIn('secteur_id', $request->secteur)->pluck('id');
-            $opportunites = Opportunite::join('activite_opportunite', 'opportunites.id', '=', 'activite_opportunite.opportunite_id')
-                                        ->whereIn('activite_opportunite.activite_id', $activites_secteur);
+            $opportunites = Opportunite::join('activite_opportunite', function ($join) use ($activites_secteur) {
+                                            $join->on('opportunites.id', '=', 'activite_opportunite.opportunite_id')
+                                                ->whereIn('activite_opportunite.activite_id', $activites_secteur);
+                                            });
         }
         if($request->has('contrat')) {
             $opportunites = $opportunites->whereIn('type_contrat', $request->contrat);
@@ -126,9 +135,11 @@ class HomeController extends Controller
 
             }
         }
-        $opportunites = $opportunites->get();
+        $opportunites = $opportunites->get()->unique('id');
         $nbre_offres = $opportunites->count();
         $offre_par_profil = $this->offre_par_profil();
+        /*echo $opportunites;
+        die();*/
         return view('pages.filter', compact('opportunites', 'nbre_offres', 'offre_par_profil'));
         
     }
@@ -147,6 +158,10 @@ class HomeController extends Controller
         $nbre_offres = $opportunites->count();
         $offre_par_profil = collect();
         return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'offre_par_profil'));
+    }
+
+    public function jobboard() {
+        return view('pages.jobboard');
     }
 
     //Offre par profil
@@ -179,16 +194,9 @@ class HomeController extends Controller
                     "opportunites.created_at as created_at",
                 ]);
                         
-            }else{
-                $offre_par_profil = Opportunite::where('id', '0')->get();
-            }
-            return $offre_par_profil;
+        }else{
+            $offre_par_profil = Opportunite::where('id', '0')->get();
         }
-
-        public function config() {
-            $nbre_diplome = Diplome::all()->count();
-            $nbre_secteur = Secteur::all()->count();
-            $nbre_activite = Activite::all()->count();
-            return view('dashboards.config', compact('nbre_diplome', 'nbre_secteur', 'nbre_activite'));
-        }
+        return $offre_par_profil;
+    }
 }

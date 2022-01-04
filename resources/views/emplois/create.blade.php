@@ -14,15 +14,15 @@
     
                 <!-- Email Address -->
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="form-item col-md-12">
                         <label for="title">Titre</label>
                         <input id="title" class="form-control" type="text" name="title" value="{{ old('title') }}" placeholder="TITRE" required autofocus />
                     </div>
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
                         <label for="structure">Entreprise</label>
                         <select id="structure" class="form-control" name="entreprise_id">
                             <option value="">-- CHOISIR L'ENTREPRISE ICI --</option>
@@ -31,19 +31,19 @@
                             @endforeach
                         </select>
                     </div>    
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <label for="lieu">Adresse</label>
                         <input id="lieu" class="form-control" type="text" name="lieu" value="{{ old('lieu') }}" placeholder="ADRESSE">
                     </div>
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
                         <label for="duree">Durée de contrat</label>
                         <input id="duree" class="form-control" type="text" name="duree" value="{{ old('duree') }}" placeholder="DUREE" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <label for="title">Contrat</label>
                         <select class="form-control" id="exampleFormControlSelect1" name="type_contrat">
                             <option value="">-- TYPE DE CONTRAT --</option>
@@ -55,22 +55,29 @@
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
                         <label for="echeance">Date d'echéance</label>
-                        <input id="echeance" class="form-control" type="date" name="echeance" value="{{ old('echeance') }}" placeholder="" />
+                        <div class="row">
+                            <div class="col-6">
+                                <input id="date_echeance" class="form-control" type="date" value="{{ old('date_echeance') }}" name="date_echeance" placeholder="" />
+                            </div>
+                            <div class="col-6">
+                                <input id="time_echeance" type="time" class="form-control" name="time_echeance" value="00:00">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <label for="montant">Salaire</label>
                         <input id="montant" class="form-control" type="text" name="montant" value="{{ old('montant') }}" placeholder="SALAIRE (250.000F - 375.000F)" />
                     </div>
                 </div>
 
                 <!-- Email Address -->
-                <div class="row mt-4">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="form-item col-md-6">
                         <label for="annee_experience">Année d'experience</label>
-                        <select name="annee_experience" class="form-control">
+                        <select name="annee_experience" class="form-control" value="{{ old('annee_experience') }}">
                             <option value="">-- SELECTIONNER ICI --</option>
                             <option value="0.5">6 mois</option>
                             <option value="1">1 an</option>
@@ -80,7 +87,7 @@
                             <option value="5">5 ans</option>
                         </select>
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-item col-md-6">
                         <label for="niveau">Diplome</label>
                         <select name="niveau" class="form-control">
                             <option value="">-- SELECTIONNER ICI --</option>
@@ -91,15 +98,15 @@
                     </div>
                 </div>
 
-                <div class="row mt-4">
-                    <div class="col-md-12">
+                <div class="row">
+                    <div class="form-item col-md-12">
                         <label for="content">Description</label>
                         <textarea id="content" class="form-control" name="content" value="" placeholder="DESCRIPTION ...">{{ old('content') }}</textarea>
                     </div>
                 </div>
 
-                <div class="row mt-4">
-                    <div class="col-12">
+                <div class="row">
+                    <div class="form-item col-12">
                         Categorie
                     </div>
                     <div class="col-md-12">
