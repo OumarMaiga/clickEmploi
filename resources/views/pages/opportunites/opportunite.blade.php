@@ -78,9 +78,51 @@
                                     <span class="value">{{ $activites->implode(', ') }}</span>
                                 </li>
                             @endif
+                            @if ($opportunite->type == "emploi")
+                                @if ($annee_experience != "")
+                                    <li class="item">
+                                        <span class="text">
+                                            Experience: 
+                                        </span>
+                                        <span class="value">
+                                            {{ $annee_experience }}
+                                        </span>
+                                    </li>
+                                @endif
+                            @endif
+                            @if ($niveau->libelle != null)
+                                <li class="item">
+                                    <span class="text">
+                                        Niveau d'étude: 
+                                    </span>
+                                    <span class="value">
+                                        {{  $niveau->libelle }}
+                                    </span>
+                                </li>
+                            @endif
+                            @if ($opportunite->type == "formation")
+                                @if ($niveau->prerequis != "null")
+                                    <li class="item">
+                                        <span class="text">
+                                            Pre-réquis: 
+                                        </span>
+                                        <span class="value">
+                                            {{ $opportunite->prerequis }}
+                                        </span>
+                                    </li>
+                                @endif
+                            @endif
                             <li class="item">
                                 <span class="text">Date de publication</span>
                                 <span class="value">{{ custom_date($opportunite->echeance) }}</span>
+                            </li>
+                            <li class="item">
+                                <span class="text">
+                                    Delais de depôt: 
+                                </span>
+                                <span class="value">
+                                    {{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i>
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -90,50 +132,6 @@
                         <p>
                             {{ $opportunite->content }}
                         </p>
-                    </div>
-                    <div class="show-end">
-                        @if ($opportunite->type == "emploi")
-                            @if ($annee_experience != "")
-                                <div class="item">
-                                    <span class="text">
-                                        Experience: 
-                                    </span>
-                                    <span class="value">
-                                        {{ $annee_experience }}
-                                    </span>
-                                </div>
-                            @endif
-                        @endif
-                        @if ($niveau->libelle != null)
-                            <div class="item">
-                                <span class="text">
-                                    Niveau d'étude: 
-                                </span>
-                                <span class="value">
-                                    {{  $niveau->libelle }}
-                                </span>
-                            </div>
-                        @endif
-                        @if ($opportunite->type == "formation")
-                            @if ($niveau->prerequis != "null")
-                                <div class="item">
-                                    <span class="text">
-                                        Pre-réquis: 
-                                    </span>
-                                    <span class="value">
-                                        {{ $opportunite->prerequis }}
-                                    </span>
-                                </div>
-                            @endif
-                        @endif
-                        <div class="item">
-                            <span class="text">
-                                Delais de depôt: 
-                            </span>
-                            <span class="value">
-                                {{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i>
-                            </span>
-                        </div>
                     </div>
                     
                     <div class="" id="postuler">
