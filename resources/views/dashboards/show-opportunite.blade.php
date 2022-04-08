@@ -11,7 +11,7 @@
         <div class="container description description-content">
             <div class="lil-title">Description</div>
             <p>
-                {{ $opportunite->content }}
+                {!! $opportunite->content !!}
             </p>
         </div>
         <div class="container resume">

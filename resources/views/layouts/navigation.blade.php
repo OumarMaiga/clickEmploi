@@ -2,7 +2,7 @@
     <!-- Primary Navigation Menu -->
     <!-- Logo -->
     <a class="navbar-brand" href="{{ route('accueil') }}">
-        <img src="{{ url('/image/logo-white.jpeg')}}" alt="Logo" class="logo">
+        <img src="{{ url('/image/logoemploi.png')}}" alt="Logo" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="fas fa-bars" style="color: #FFFFFF"></span>
@@ -12,16 +12,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('home') }}">{{ __('Accueil') }}</a>
+                <a class="nav-link" href="{{ route('home') }}">{{ __('ACCUEIL ') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('emploi.list') }}">{{ __('Emploi') }}</a>
+                <a class="nav-link" href="{{ route('emploi.list') }}">{{ __('OFFRES D EMPLOI ') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('stage.list') }}">{{ __('Stage') }}</a>
+                <a class="nav-link" href="{{ route('stage.list') }}">{{ __('STAGES ') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('formation.list') }}">{{ __('Formation') }}</a>
+                <a class="nav-link" href="{{ route('formation.list') }}">{{ __('FORMATION ') }}</a>
             </li>
         </ul>
 

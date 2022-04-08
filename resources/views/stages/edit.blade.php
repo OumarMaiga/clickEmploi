@@ -89,7 +89,7 @@
                 <div class="row mt-4">
                     <div class="col-md-12">
                         <label for="content">Description</label>
-                        <textarea id="content" class="form-control" name="content" value="{{ $stage->content }}" placeholder="DESCRIPTION ...">{{ $stage->content }}</textarea>
+                        <textarea id="content" class="form-control tiny" name="content" value="{{ $stage->content }}" placeholder="DESCRIPTION ...">{{ $stage->content }}</textarea>
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -124,4 +124,12 @@
             </form>
         </div>
     </div>
+    
+    <script>
+    
+        tinymce.init({
+            selector: '.tiny',
+        });
+    
+    </script>
 </x-dashboard-layout>

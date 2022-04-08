@@ -24,6 +24,10 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        
+        <!-- Tiny -->
+        <script src="https://cdn.tiny.cloud/1/omdjpqfhd17dsn9me2xxarz1g3og7awzo2r3coi81zk6tn8j/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        
     </head>
     <body class="font-sans antialiased">
             <div class="d-flex">

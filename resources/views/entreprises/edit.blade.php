@@ -40,8 +40,8 @@
                 <!-- Email Address -->
                 <div class="row">
                     <div class="form-item col-md-6">
-                        <label for="description">Description</label>
-                        <textarea id="description" class="form-control" type="text" name="description" value="" placeholder="QUI SOMMES NOUS ?">{{ $entreprise->description }}</textarea>
+                        <label for="image">Date de création de l'entreprise</label>
+                        <input id="date_creation" class="form-control" type="date" name="date_creation" value="{{ $entreprise->date_creation }}" placeholder="DATE DE CREATION"/>
                     </div>
                     <div class="form-item col-md-6">
                         <label for="image">Image de l'entreprise</label>
@@ -52,8 +52,8 @@
                 <!-- Email Address -->
                 <div class="row">
                     <div class="form-item col-md-6">
-                        <label for="image">Date de création de l'entreprise</label>
-                        <input id="date_creation" class="form-control" type="date" name="date_creation" value="{{ $entreprise->date_creation }}" placeholder="DATE DE CREATION"/>
+                        <label for="description">Description</label>
+                        <textarea id="description" class="form-control tiny" type="text" name="description" value="" placeholder="QUI SOMMES NOUS ?">{{ $entreprise->description }}</textarea>
                     </div>
                     <div class="form-item col-md-6">
                         <label for="adresse">Adresse</label>
@@ -69,4 +69,12 @@
             </form>
         </div>
     </div>
+    
+    <script>
+    
+        tinymce.init({
+            selector: '.tiny',
+        });
+    
+    </script>
 </x-dashboard-layout>

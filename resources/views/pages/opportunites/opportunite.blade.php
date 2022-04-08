@@ -130,7 +130,7 @@
                         <div class="lil-title">Description</div>
                         <div class="show-description-trait"></div>
                         <p>
-                            {{ $opportunite->content }}
+                            {!! $opportunite->content !!}
                         </p>
                     </div>
                     
@@ -175,7 +175,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="motivation">Lettre de motivation</label>
-                                            <textarea id="motivation" class="form-control" type="text" name="motivation" value="" placeholder="Pourquoi devrons-nous vous engagé ?" >{{ old('motivation') }}</textarea>
+                                            <textarea id="motivation" class="form-control tiny" type="text" name="motivation" value="" placeholder="Pourquoi devrons-nous vous engagé ?" >{{ old('motivation') }}</textarea>
                                         </div>
                                     </div>
                                     @if ($opportunite->type != "formation")
@@ -259,4 +259,12 @@
         </div>
     </div>
     
+<script>
+
+    tinymce.init({
+        selector: '.tiny',
+    });
+
+</script>
+
 </x-app-layout>
