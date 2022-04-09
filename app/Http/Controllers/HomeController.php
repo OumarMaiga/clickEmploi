@@ -44,7 +44,21 @@ class HomeController extends Controller
         $activites = Activite::select('slug', 'libelle')->limit(9)->get();
         $postes = Opportunite::select('title')->limit(9)->get();
         $adresses = Opportunite::distinct('adresse')->select('lieu')->limit(9)->get();
-        return view('pages/accueil', compact('adresses', 'activites', 'postes'));
+        //Recuperation des entreprises qui ont posté le plus d'offre
+        $entreprises = Opportunite::selectRaw('count(opportunites.entreprise_id) as opportunite_count, opportunites.entreprise_id, entreprises.libelle, entreprises.slug, files.file_path')
+                                    ->rightJoin('entreprises', 'opportunites.entreprise_id', '=', 'entreprises.id')
+                                    ->rightJoin('files', 'opportunites.entreprise_id', '=', 'files.entreprise_id')
+                                    ->where('files.type', '=', 'photo_entreprise')
+                                    ->groupBy('opportunites.entreprise_id', 'entreprises.libelle', 'entreprises.slug', 'files.file_path')
+                                    ->orderByDesc('opportunite_count')
+                                    ->limit(3)
+                                    ->get()
+                                    ->toArray();
+        // Recuperation par ordre
+        $first_entreprise = $entreprises[0];
+        $second_entreprise = $entreprises[1];
+        $third_entreprise = $entreprises[2];
+        return view('pages/accueil', compact('adresses', 'activites', 'postes', 'first_entreprise', 'second_entreprise', 'third_entreprise'));
     }
  
     public function profil($email) {

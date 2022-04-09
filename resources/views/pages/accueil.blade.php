@@ -21,21 +21,21 @@
         <h2 class="entreprise-title">Les entreprises qui recrutent le plus</h2>
         <div class="row">
             <div class="col-md-6">
-                <a href="#" class="entreprise-link">
-                    <div class="orange entreprise-item">
-                        <span class="entreprise-offre">23 offres</span>
+                <a href="{{ route('entreprise.detail', $first_entreprise['slug']) }}" class="entreprise-link">
+                    <div class="entreprise-item" style="background-image: url('{{ $first_entreprise['file_path'] }}'); height: 550px; object-fit: cover;">
+                        <span class="entreprise-offre">{{ $first_entreprise['libelle']." (".$first_entreprise['opportunite_count']." offres) " }}</span>
                     </div>
                 </a>
             </div>
             <div class="col-md-6">
-                <a href="#" class="entreprise-link">
-                    <div class="huawei entreprise-item">
-                        <span class="entreprise-offre">17 offres</span>
+                <a href="{{ route('entreprise.detail', $second_entreprise['slug']) }}" class="entreprise-link">
+                    <div class="entreprise-item" style="background-image: url('{{ $second_entreprise['file_path'] }}'); margin-bottom: 10px; height: 270px; object-fit: cover;">
+                        <span class="entreprise-offre">{{ $second_entreprise['libelle']." (".$second_entreprise['opportunite_count']." offres) " }}</span>
                     </div>
                 </a>
-                <a href="#" class="entreprise-link">
-                    <div class="azalai entreprise-item">
-                        <span class="entreprise-offre">12 offres</span>
+                <a href="{{ route('entreprise.detail', $third_entreprise['slug']) }}" class="entreprise-link">
+                    <div class="entreprise-item" style="background-image: url('{{ $third_entreprise['file_path'] }}'); margin-top: 10px; height: 270px; object-fit: cover;">
+                        <span class="entreprise-offre">{{ $third_entreprise['libelle']." (".$third_entreprise['opportunite_count']." offres) " }}</span>
                     </div>
                 </a>
             </div>
