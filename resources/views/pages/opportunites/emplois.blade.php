@@ -66,7 +66,7 @@
                                 }
                             } 
                         ?>
-                            <div class="offre-item row mx-0" style="background-color:#F5FFFF;">
+                        <div class="offre-item row mx-0" style="background-color:#F5FFFF;">
                             <div class="col-lg-2 col-md-3 px-0 add-padding">
                                 <img src="{{ photo_entreprise($opportunite->entreprise_id) }}" alt="Image" class="image-offre">
                             </div>

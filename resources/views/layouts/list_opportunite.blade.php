@@ -46,7 +46,7 @@
                 }
             }
     ?>
-            <div class="offre-item row mx-0">
+        <div class="offre-item row mx-0">
             <div class="col-lg-3 col-md-4 px-0">
                 <img src="{{ photo_entreprise($opportunite->entreprise_id) }}" alt="Image" class="image-offre">
             </div>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="row offre-footer d-flex align-items-end">
                         <div class="col-lg-8 col-md-9">
-                            Publié <i class="offre-date">{{ custom_date($opportunite->created_at) }}</i>&nbsp;&nbsp;|&nbsp;&nbsp;Délais <i class="offre-date">{{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i>
+                            Publiée <i class="offre-date">{{ custom_date($opportunite->created_at) }}</i>&nbsp;&nbsp;|&nbsp;&nbsp;Délais <i class="offre-date">{{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i>
                         </div>
                         
                         <div class="col-lg-4 col-md-3 px-0 add-padding">
@@ -89,7 +89,6 @@
                             @endswitch
                     </div>
                 </div>
-
             </div>
         </div>
         <?php } ?>
