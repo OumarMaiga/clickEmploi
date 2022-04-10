@@ -174,7 +174,8 @@ class StageController extends Controller
     
     public function list()
     {
-        $opportunites = $this->opportuniteRepository->getByType('stage');
+        $opportunites = Opportunite::where('type', '=', 'stage')->simplePaginate(7);
+        //$opportunites = $this->opportuniteRepository->getByType('stage');
         $offre_par_profil = $this->offre_par_profil();
         if(Auth::check()) {
             $activite_par_profil = Auth::user()->activites()->get();

@@ -138,7 +138,8 @@ class FormationController extends Controller
 
     public function list()
     {
-        $opportunites = $this->opportuniteRepository->getByType('formation');
+        //$opportunites = $this->opportuniteRepository->getByType('formation');
+        $opportunites = Opportunite::where('type', '=', 'formation')->simplePaginate(7);
         $offre_par_profil = $this->offre_par_profil();
         if(Auth::check()) {
             $activite_par_profil = Auth::user()->activites()->get();

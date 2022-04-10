@@ -29,7 +29,8 @@ class HomeController extends Controller
     public function index()
     {
         //Tous les offres
-        $opportunites = $this->opportuniteRepository->get();
+        //$opportunites = $this->opportuniteRepository->get();
+        $opportunites = Opportunite::simplePaginate(3);
         $offre_par_profil = $this->offre_par_profil();
         if(Auth::check()) {
             $activite_par_profil = Auth::user()->activites()->get();

@@ -111,6 +111,7 @@
                     @endforeach
                 @endif
                 @include('layouts.list_opportunite')
+                {{ $opportunites->links() }}
             </div>
             <div class="col-sm-2 px-0">
                 @include('layouts.pub1')
