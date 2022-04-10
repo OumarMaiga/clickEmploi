@@ -22,7 +22,7 @@
     </div>
     <div class="home-profil-tag">
         @foreach ($activite_par_profil as $activite)
-            <a href="#" class="home-profil-tag-text">{{ $activite->libelle }}</a>
+            <a href="{{ route('opportunite.domaine', $activite->libelle) }}" class="home-profil-tag-text">{{ $activite->libelle }}</a>
         @endforeach
     </div>
 </div>

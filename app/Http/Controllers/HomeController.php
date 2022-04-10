@@ -158,7 +158,7 @@ class HomeController extends Controller
         
     }
 
-        public function search(Request $request) {
+    public function search(Request $request) {
         $title = $request->title;
         $adresse = $request->adresse;
         $opportunites = new Opportunite;
@@ -168,10 +168,15 @@ class HomeController extends Controller
         if($adresse != null) {
             $opportunites = $opportunites->where('lieu', 'like', "%$adresse%");
         } 
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
         $opportunites = $opportunites->get();
         $nbre_offres = $opportunites->count();
         $offre_par_profil = collect();
-        return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'offre_par_profil'));
+        return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'offre_par_profil', 'activite_par_profil'));
     }
 
     public function jobboard() {

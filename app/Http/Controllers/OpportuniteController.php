@@ -19,6 +19,7 @@ class OpportuniteController extends Controller
     public function adresse($adresse) {
         $opportunites = Opportunite::where('lieu', 'like', "%$adresse%")->get();
         $nbre_offres = $opportunites->count();
+        
         if (Auth::check()) {
             $activite_par_profil = Auth::user()->activites()->pluck('id')->toArray();
 
@@ -46,7 +47,13 @@ class OpportuniteController extends Controller
         }else{
             $offre_par_profil = Opportunite::where('id', '0')->get();
         }
-        return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'adresse', 'offre_par_profil'));
+
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
+        return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'adresse', 'offre_par_profil', 'activite_par_profil'));
     }
 
     public function domaine($domaine) {
@@ -81,7 +88,12 @@ class OpportuniteController extends Controller
         }else{
             $offre_par_profil = Opportunite::where('id', '0')->get();
         }
-        return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'domaine', 'offre_par_profil'));
+        if(Auth::check()) {
+            $activite_par_profil = Auth::user()->activites()->get();
+        } else {
+            $activite_par_profil = null;
+        }
+        return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'domaine', 'offre_par_profil', 'activite_par_profil'));
     }
 
     public function poste($poste) {

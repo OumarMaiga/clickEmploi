@@ -8,7 +8,7 @@
                 @include('layouts.filter')
                 @include('layouts.pub2')
             </div>
-            <div class="col-sm-9 list">
+            <div class="col-sm-8 list">
                 <h3 class="entreprise-detail-offres-title">
                     {!! "<b>".$nbre_offres. "</b>" !!} offre<?= ($nbre_offres > 1) ? "s " : "" ?> trouvés <?= isset($adresse) ? "à ".$adresse : "" ?> <?= isset($poste) ? "à ".$poste : "" ?> <?= isset($domaine) ? "à ".$domaine : "" ?>
                 </h3>
