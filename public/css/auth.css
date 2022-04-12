@@ -46,6 +46,11 @@
 .register-right-container {
     padding: 0 3rem;
 }
+.cgu {
+    font-size: 10px;
+    text-align: center;
+    color: #4e4e4e;
+}
 
 /* View Tablette */
 @media (max-width: 991px) {

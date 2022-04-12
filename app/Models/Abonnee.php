@@ -10,6 +10,13 @@ class Abonnee extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'type',
+        'user_id',
+        'etat',
+        'date_fin',
+    ];
+
     public function user () {
         return $this->belongsTo('App\Models\User');
     }

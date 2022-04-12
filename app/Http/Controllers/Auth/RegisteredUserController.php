@@ -13,6 +13,7 @@ use Illuminate\Validation\Rules;
 use App\Repositories\DiplomeRepository;
 use App\Models\User;
 use App\Models\Secteur;
+use App\Models\Abonnee;
 
 class RegisteredUserController extends Controller
 {    
@@ -47,8 +48,9 @@ class RegisteredUserController extends Controller
             'telephone' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::min(8)],
-            'annee_experience' => 'sometimes|numeric|between:0,20',
+            'annee_experience' => 'sometimes|numeric|between:0,20'
         ]);
+
 
         $request->merge([
             'password' => Hash::make($request->password),
@@ -64,6 +66,17 @@ class RegisteredUserController extends Controller
             $relation = $user->activites()->sync($activites);
         }
 
+        //Enregistrer user comme abonné
+        if ($request->alert_sms) {
+            // Calcul de 1 mois apres aujourd'hui
+            $date = date('Y-m-d', strtotime("+ 1 month"));
+            Abonnee::create([
+                'type' => 'mois',
+                'user_id' => $user->id,
+                'etat' => 'encours',
+                'date_fin' => $date,
+            ]);
+        }
         
         event(new Registered($user));
 

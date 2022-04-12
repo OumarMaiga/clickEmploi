@@ -166,6 +166,21 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="alert-sms" name="alert_sms" checked>
+                                <label class="form-check-label" for="alert-sms" style="font-style: italic">Souscrivez à l'alert SMS à (1.500f/mois)</label>
+                            </div>
+
+                            @error('alert-sms')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <div class="col-md-12 mt-4">
                             <button type="submit" class="btn btn-custom">
@@ -176,6 +191,9 @@
                                 {{ __('Connexion') }}
                             </a>
                         </div>
+                    </div>
+                    <div class="cgu">
+                        En cliquant sur « Valider » , vous acceptez les CGU ainsi que notre <a href="#" style="color: #0056b3; text-decoration: underline;">politique de confidentialité</a> décrivant la finalité des traitements de vos données personnelles.
                     </div>
                 </form>
             </div>
