@@ -8,7 +8,7 @@
                 @include('layouts.filter')
                 @include('layouts.pub2')
             </div>
-            <div class="col-sm-8 list">
+            <div class="col-sm-8 list mb-4">
                 @if(Auth::check())
                     <div class="offre-block-number">
                         <div class="offre-block-number-up">

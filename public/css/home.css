@@ -43,7 +43,9 @@
     margin-top: 1rem;
     margin-bottom: 10px;
     padding: 3px;
-    border: 2px solid #FF9000;
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 2px 2px #00000031;
+    background-color: #FFFFFF;
 }
 .home-profil-img {
     background-color: #CFCFCF;
@@ -52,15 +54,22 @@
 }
 .home-profil-title {
     font-family: 'MADE Evolve Sans';
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: bold;
     margin-bottom: .6rem;
     text-align: center;
+}
+.home-profil-trait {
+    margin: -6px auto 1rem auto;
+    width: 23%;
+    background-color: #333333;
+    height: 3px;
 }
 .home-profil-button {
     font-family: 'MADE Evolve Sans';
     margin-bottom: .6rem;
     text-align: center;
+    font-size: 12px;
 }
 .home-profil-offre_par_profil {
     font-size: .8rem;
@@ -68,12 +77,14 @@
     text-align: center;
 }
 .home-profil-tag {
-    text-align: center;
+    /* text-align: center; */
 }
 .home-profil-tag-text {
     font-size: .8rem;
-    color: #007bff;
-    text-decoration: underline;
+    background-color: #E5E5E5;
+    color: #4D4D4D;
+    border-radius: 3px;
+    padding: 2px 4px
 }
 
 /* SIDE BLOCK OFFRE DETAIL */
@@ -119,7 +130,9 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 20px 10px;
-    border: 4px solid #FF9000;
+    background-color: #fff;
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 2px 2px #00000031;
 }
 .home-pub-alert-title {
     font-family: 'MADE Evolve Sans';
@@ -156,10 +169,8 @@
 
 .offre-item {
     padding: 5px;
-    margin-bottom: 15px;
-    background-color: #FFFFFF;
-    border: 1px solid #70707079;
-    border-radius: 7px;
+    border-bottom: 1px solid #C4C4C4;
+    background-color: #fff;
 }
 
 .image-offre {

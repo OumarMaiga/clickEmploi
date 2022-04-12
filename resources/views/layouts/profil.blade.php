@@ -17,6 +17,7 @@
     <h6 class="home-profil-title">
         {{ $name }}
     </h6>
+    <div class="home-profil-trait"></div>
     <div class="home-profil-button">
         <a href="{{ route('edit_profil', Auth::user()->email) }}" class="btn-outline-custom">Completez votre profil</a>
     </div>
