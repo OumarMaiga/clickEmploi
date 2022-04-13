@@ -37,7 +37,7 @@ body {
     background-color: transparent;
     color: #FF9000;
     border: 1px solid #FF9000;
-    font-size: 1rem;
+    /*font-size: 1rem;*/
     padding: .375rem .75rem;
     line-height: 1.5;
 }
@@ -51,7 +51,7 @@ body {
     background-color: #FF9000;
     color: #FFFFFF;
     padding: .375rem .75rem;
-    font-size: 1rem;
+    /*font-size: 1rem;*/
     line-height: 1.5;
     border-radius: .25rem;
 }
@@ -113,18 +113,20 @@ body {
     font-size: 2rem;
     margin-bottom: 20px;
 }
-
+.profil-head {
+    padding: 4rem 8rem;
+    background-color: #F5F5F5;
+}
 
 .profil-img {
-    width: 100%;
-    border-radius: 50%;
-    height: 350px;
+    width: 320px;
+    height: 180px;
     background-color: #D8D8D8;
 }
 
 .profil-name {
-    font-family: 'Rockwell';
-    font-size: 2.4rem;
+    font-family: 'Roboto';
+    font-size: 2.1rem;
     font-weight: 600
 }
 
@@ -136,6 +138,13 @@ body {
     margin-bottom: 20px
 }
 
+.profil-body {
+    padding: 4rem 6rem;
+    background-color: #FFFFFF;
+}
+.profil-body div .item {
+    margin-bottom: 1rem;
+}
 .profil-description {
     font-size: 1rem;
     color: #5D5D5D
