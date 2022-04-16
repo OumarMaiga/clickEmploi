@@ -119,4 +119,5 @@
             </div>
         </div>
     </div>
+    @include('layouts.souscription-alert-sms')
 </x-app-layout>

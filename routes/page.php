@@ -9,6 +9,8 @@ use App\Http\Controllers\FormationController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\OpportuniteController;
 
+Route::post('/abonnee', [AbonneeController::class, 'store'])->middleware(['auth'])->name('abonnee.store');
+
 Route::get('/', [HomeController::class, 'accueil'])->name('accueil');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/filtre', [HomeController::class, 'filtre'])->name('filtre');

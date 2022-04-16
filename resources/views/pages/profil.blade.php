@@ -61,6 +61,14 @@
             </div> 
         </div>
         <div class="row mb-4">
+            <div class="col-sm-3">
+                Date de creation de compte
+            </div> 
+            <div class="col-sm-9 profil-description">
+                {{ custom_date($user->created_at) }}
+            </div> 
+        </div>
+        <div class="row mb-4">
             <div class="col-sm-12">
                 @if (voir_cv_profil($user->id) == false)
                     Pas de CV

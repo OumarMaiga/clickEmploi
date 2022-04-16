@@ -244,6 +244,17 @@ hr {
     bottom: 3px;
 }
 
+/* SOUSCRIPTION */
+.souscription-header {
+    border-bottom: none !important;
+}
+.souscription-title {
+    font-size: 1.8rem;
+}
+.souscription-footer {
+    justify-content: flex-start !important;
+}
+
 /* PAGE ACCUEIL */
 .head {
     height: 90vh;    
