@@ -4,6 +4,7 @@ use App\Models\Entreprise;
 use App\Models\File;
 use App\Models\User;
 use App\Models\Postule;
+use App\Models\Abonnee;
 
     function photo_entreprise($id) {
 
@@ -108,4 +109,12 @@ use App\Models\Postule;
         }
 
         return $file;
+    }
+
+    // Verification de l'abonnement de l'utilisateur
+    function is_abonnee($id) 
+    {
+        $abonnee = new Abonnee;
+        $abonnee = $abonnee->where('user_id', $id)->where('etat', 'encours')->get();
+        return (($abonnee->count() > 0) ? true : false);
     }

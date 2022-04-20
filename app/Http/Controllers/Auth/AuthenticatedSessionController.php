@@ -34,7 +34,12 @@ class AuthenticatedSessionController extends Controller
         if(Auth::user()->type === "admin" || Auth::user()->type === "partenaire") {
             return redirect('/dashboard')->withWelcome("Bienvenue <strong>".Auth::user()->prenom." ".Auth::user()->nom."</strong>");
         } else {
-            return redirect()->intended(RouteServiceProvider::HOME)->withWelcome("");
+            // On verifie si le user n'a pas un abonnement actif on retourne une session flash  
+            if(is_abonnee(Auth::user()->id)){
+                return redirect()->intended(RouteServiceProvider::HOME);
+            } else {
+                return redirect()->intended(RouteServiceProvider::HOME)->withAbonnement("");
+            }
         }
 
     }

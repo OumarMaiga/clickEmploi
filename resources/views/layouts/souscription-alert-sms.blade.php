@@ -47,7 +47,7 @@
     </div>
   </div>
   
-    @if (Session::has('welcome'))
+    @if (Session::has('abonnement'))
         <script>
             addEventListener('load', function(){
                 $('#staticBackdrop').modal('show');
