@@ -12,7 +12,7 @@
             <form method="POST" action="{{ route('abonnee.store') }}" class="">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <div class="col-lg-12">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" id="jour"  name="type" value="jour">
@@ -27,12 +27,12 @@
                                 <label class="form-check-label" for="semaine">Abonnement hebdomendaire (500f / semaine) </label>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <div class="col-lg-12">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" id="mois"  name="type" value="mois">
-                                <label class="form-check-label" for="mois">Abonnement mensuelle (1 500f / mois) </label>
+                                <label class="form-check-label" for="mois">Abonnement mensuelle (500f / mois) </label>
                             </div>
                         </div>
                     </div>

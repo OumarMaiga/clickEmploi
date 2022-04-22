@@ -170,7 +170,7 @@
                         <div class="col-lg-12">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="alert-sms" name="alert_sms" checked>
-                                <label class="form-check-label" for="alert-sms" style="font-style: italic">Souscrivez à l'alert SMS à (1.500f/mois)</label>
+                                <label class="form-check-label" for="alert-sms" style="font-style: italic">Souscrivez à l'alert SMS à (500f/mois)</label>
                             </div>
 
                             @error('alert-sms')

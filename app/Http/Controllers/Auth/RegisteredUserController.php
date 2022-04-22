@@ -82,6 +82,11 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        // On verifie si le user n'a pas un abonnement actif on retourne une session flash  
+        if(is_abonnee(Auth::user()->id)){
+            return redirect()->intended(RouteServiceProvider::HOME);
+        } else {
+            return redirect()->intended(RouteServiceProvider::HOME)->withAbonnement("");
+        }
     }
 }
