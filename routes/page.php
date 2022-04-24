@@ -37,5 +37,5 @@ Route::get('/profil/{email}', [HomeController::class, 'profil'])->middleware(['a
 Route::get('/profil/{email}/edit', [HomeController::class, 'edit_profil'])->middleware(['auth'])->name('edit_profil');
 Route::put('/profil/{id}/update', [HomeController::class, 'update_profil'])->middleware(['auth'])->name('update_profil'); 
 
-Route::get('/entreprise/{slug}', [EntrepriseController::class, 'detail'])->middleware(['auth'])->name('entreprise.detail');
+Route::get('/entreprise/{slug}', [EntrepriseController::class, 'detail'])->name('entreprise.detail');
 

@@ -120,7 +120,7 @@ class FormationController extends Controller
         $opportunite = $this->opportuniteRepository->getBySlug($slug);
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $opportunite_similaires = Opportunite::where('title', $opportunite->title)->limit(4)->get();
-        $activites = $opportunite->activites->pluck('libelle');
+        $domaines = $opportunite->secteurs->pluck('libelle');
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
         
         if(Auth::check()) {
@@ -128,7 +128,7 @@ class FormationController extends Controller
         } else {
             $activite_par_profil = null;
         }
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau', 'activite_par_profil'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'activite_par_profil'));
     }
 
     public function destroy($id) {

@@ -65,17 +65,17 @@ class HomeController extends Controller
     public function profil($email) {
         $user = $this->userRepository->getByEmail($email);
         $photo = photo_profil($user->email);
-        $activites = $user->activites->pluck('libelle');
+        $secteurs = $user->secteurs->pluck('libelle');
         
-        return view('pages.profil', compact('user', 'photo', 'activites'));
+        return view('pages.profil', compact('user', 'photo', 'secteurs'));
     }
 
     public function edit_profil() {
         $user = Auth::user();
         $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
         $photo = photo_profil($user->email);
-        $activite_checked = $user->activites()->get();
-        return view('pages.edit_profil', compact('user', 'photo', 'domaines', 'activite_checked'));
+        $secteur_checked = $user->secteurs()->get();
+        return view('pages.edit_profil', compact('user', 'photo', 'domaines', 'secteur_checked'));
     }
 
     public function update_profil($id, Request $request) {
@@ -116,9 +116,9 @@ class HomeController extends Controller
             $CvModel->save();
         }
 
-        if ($request->has('activite')) {
-            $activites = $request->input('activite');
-            $relation = $user->activites()->sync($activites);
+        if ($request->has('secteur')) {
+            $secteurs = $request->input('secteur');
+            $relation = $user->secteurs()->sync($secteurs);
         }
         return redirect("/profil/$user->email")->withStatus('Profil mise à jour');
 

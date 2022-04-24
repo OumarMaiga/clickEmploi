@@ -51,7 +51,6 @@ class RegisteredUserController extends Controller
             'annee_experience' => 'sometimes|numeric|between:0,20'
         ]);
 
-
         $request->merge([
             'password' => Hash::make($request->password),
             'type' => 'user',
@@ -61,9 +60,9 @@ class RegisteredUserController extends Controller
 
         $user = User::create($inputs);
 
-        if ($request->has('activite')) {
-            $activites = $request->input('activite');
-            $relation = $user->activites()->sync($activites);
+        if ($request->has('secteur')) {
+            $secteurs = $request->input('secteur');
+            $relation = $user->secteurs()->sync($secteurs);
         }
 
         //Enregistrer user comme abonné
@@ -82,7 +81,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        // On verifie si le user n'a pas un abonnement actif on retourne une session flash  
+        // On verifie si le user n'a  pas un abonnement actif on retourne une session flash  
         if(is_abonnee(Auth::user()->id)){
             return redirect()->intended(RouteServiceProvider::HOME);
         } else {

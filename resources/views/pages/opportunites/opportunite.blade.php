@@ -12,7 +12,7 @@
             </div>
         </div>-->
         <div class="row">
-            <div class="col-sm-2 px-0">
+            <div class="col-sm-2 px-0 d-none d-md-block">
                 @include('layouts.detail_offre')
                 @if (Auth::check())
                     @include('layouts.profil')
@@ -75,7 +75,7 @@
                             @if ($opportunite->type == "emploi" || $opportunite->type == "stage")
                                 <li class="item">
                                     <span class="text">Secteur d'activité</span>
-                                    <span class="value">{{ $activites->implode(', ') }}</span>
+                                    <span class="value">{{ $domaines->implode(', ') }}</span>
                                 </li>
                             @endif
                             @if ($opportunite->type == "emploi")
@@ -252,7 +252,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2 px-0">
+            <div class="col-sm-2 px-0 d-none d-md-block">
                 @include('layouts.pub1')
                 @include('layouts.pub-alert')
             </div>

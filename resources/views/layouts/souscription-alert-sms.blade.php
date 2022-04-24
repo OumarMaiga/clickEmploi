@@ -19,7 +19,7 @@
                                 <label class="form-check-label" for="jour">Abonnement journalière (100f / jour) </label>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                     <div class="form-group">
                         <div class="col-lg-12">
                             <div class="form-check form-check-inline">

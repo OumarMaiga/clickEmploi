@@ -49,8 +49,10 @@
 }
 .home-profil-img {
     background-color: #CFCFCF;
-    width: 100%;
-    height: 120px;
+    width: 50%;
+    height: 90px;
+    margin: 1rem auto;
+    border-radius: 50%;
 }
 .home-profil-title {
     font-family: 'MADE Evolve Sans';
@@ -62,7 +64,7 @@
 .home-profil-trait {
     margin: -6px auto 1rem auto;
     width: 23%;
-    background-color: #333333;
+    background-color: #FF9000;
     height: 3px;
 }
 .home-profil-button {
@@ -433,7 +435,7 @@ hr {
     text-transform: uppercase;
     color: #F3A202;
     font-size: 1.6rem;
-    position: absolute;
+    position: relative;
     margin-left: 20px;
 }
 .avantage-item-text {
@@ -699,7 +701,7 @@ hr {
         margin-left: 25px;
         margin-right: 25px;
     }
- }
+}
 
 
 /* View Phone -- Medium devices (tablets, 576px and up) */
@@ -791,7 +793,7 @@ hr {
         font-size: 1rem;
     }
     .avantage-item-text{
-        margin-left: 0;
+        margin-left: 2rem;
         margin-top: 0;
     }
     .comment {
@@ -836,6 +838,10 @@ hr {
         position: absolute;
         top: -12.2rem;
         right: .4rem;
+    }
+    /* LAYOUT PROFIL */
+    .home-profil-img {
+        width: 40%;
     }
 
     

@@ -75,9 +75,9 @@ class StageController extends Controller
         
         $opportunite = $this->opportuniteRepository->store($request->all());
         
-        if ($request->has('activite')) {
-            $activites = $request->input('activite');
-            $relation = $opportunite->activites()->sync($activites);
+        if ($request->has('secteur')) {
+            $secteurs = $request->input('secteur');
+            $opportunite->secteurs()->sync($secteurs);
         }
 
         return redirect('/dashboard/stage')->withStatus("Nouveau stage publié");
@@ -88,9 +88,9 @@ class StageController extends Controller
         $user = Auth::user();
         $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        $activite_checked = $stage->activites()->get();
+        $secteur_checked = $stage->secteurs()->get();
         $diplomes = Diplome::get();
-        return view('stages.edit', compact('stage', 'entreprises', 'diplomes', 'domaines', 'activite_checked'));
+        return view('stages.edit', compact('stage', 'entreprises', 'diplomes', 'domaines', 'secteur_checked'));
     }
 
     public function update(Request $request, $id) {
@@ -108,10 +108,10 @@ class StageController extends Controller
         }
         $this->opportuniteRepository->update($id, $request->all());
 
-        if ($request->has('activite')) {
+        if ($request->has('secteur')) {
             $opportunite = $this->opportuniteRepository->getById($id);
-            $activites = $request->input('activite');
-            $opportunite->activites()->sync($activites);
+            $secteurs = $request->input('secteur');
+            $opportunite->secteurs()->sync($secteurs);
         }
         return redirect('/dashboard/stage')->withStatus("Stage a bien été mise à jour");
     }
@@ -137,7 +137,7 @@ class StageController extends Controller
             $q->whereIn('activites.id', $activites_secteur);
         })->limit(4)->get();
 
-        $activites = $opportunite->activites->pluck('libelle');
+        $domaines = $opportunite->secteurs->pluck('libelle');
 
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
 
@@ -164,7 +164,7 @@ class StageController extends Controller
             $activite_par_profil = null;
         }
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau', 'activite_par_profil'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'activite_par_profil'));
     }
 
     public function destroy($id) {

@@ -67,7 +67,7 @@
                     <a href="{{ route('entreprise.detail', $entreprise->slug) }}">{{ $entreprise->libelle }}</a>  | <span class="fas fa-map-marker-alt"></span> <a href="{{ route('opportunite.adresse', $opportunite->lieu) }}">{{ $opportunite->lieu }}</a>
                 </div>
                 <div class="offre-description">
-                    {!! substr($opportunite->content, 0, 140) !!}...
+                    {!! strip_tags(substr($opportunite->content, 0, 140)) !!}...
                 </div>
                 <div class="row offre-footer d-flex align-items-end">
                         <div class="col-lg-8 col-md-9">

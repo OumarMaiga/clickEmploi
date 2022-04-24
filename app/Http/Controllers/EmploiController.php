@@ -73,9 +73,9 @@ class EmploiController extends Controller
         ]);
         $opportunite = $this->opportuniteRepository->store($request->all());
         
-        if ($request->has('activite')) {
-            $activites = $request->input('activite');
-            $opportunite->activites()->sync($activites);
+        if ($request->has('secteur')) {
+            $secteurs = $request->input('secteur');
+            $opportunite->secteurs()->sync($secteurs);
         }
         
         return redirect('/dashboard/emploi')->withStatus("Nouveau emploi publié");
@@ -87,8 +87,8 @@ class EmploiController extends Controller
         $user = Auth::user();
         $diplomes = Diplome::get();
         $entreprises = $this->entrepriseRepository->getByForeignId('user_id', $user->id);
-        $activite_checked = $emploi->activites()->get();
-        return view('emplois.edit', compact('emploi', 'entreprises', 'diplomes', 'domaines', 'activite_checked'));
+        $secteur_checked = $emploi->secteurs()->get();
+        return view('emplois.edit', compact('emploi', 'entreprises', 'diplomes', 'domaines', 'secteur_checked'));
     }
 
     public function update(Request $request, $id) {
@@ -106,10 +106,10 @@ class EmploiController extends Controller
             ]);
         }
         $this->opportuniteRepository->update($id, $request->all());
-        if ($request->has('activite')) {
+        if ($request->has('secteur')) {
             $opportunite = $this->opportuniteRepository->getById($id);
-            $activites = $request->input('activite');
-            $opportunite->activites()->sync($activites);
+            $secteurs = $request->input('secteur');
+            $opportunite->secteurs()->sync($secteurs);
         }
         return redirect('/dashboard/emploi')->withStatus("Emploi a bien été mise à jour");
     }
@@ -151,7 +151,7 @@ class EmploiController extends Controller
             $q->whereIn('activites.id', $activites_secteur);
         })->limit(4)->get();
 
-        $activites = $opportunite->activites->pluck('libelle');
+        $domaines = $opportunite->secteurs->pluck('libelle');
 
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
         $annee_experience = $opportunite->annee_experience;
@@ -178,7 +178,7 @@ class EmploiController extends Controller
             $activite_par_profil = null;
         }
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'activites', 'niveau', 'annee_experience', 'activite_par_profil'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'annee_experience', 'activite_par_profil'));
     }
 
     public function destroy($id) {

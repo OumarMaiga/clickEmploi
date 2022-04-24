@@ -62,6 +62,42 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6">
+                            <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" placeholder="TELEPHONE" required autocomplete="telephone">
+
+                            @error('telephone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col-lg-6">                            
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-MAIL" required autocomplete="email">
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="MOT DE PASSE" required autocomplete="new-password">
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    
+                        <div class="form-group col-lg-6">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="CONFIRMATION MOT DE PASSE" required autocomplete="new-password">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
                             <label for="date_naissance">Date de naissance</label>
                             <input id="date_naissance" type="date" class="form-control @error('date_naissance') is-invalid @enderror" name="date_naissance" value="{{ old('date_naissance') }}" placeholder="DATE DE NAISSANCE" required autocomplete="">
 
@@ -105,44 +141,8 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-lg-6">
-                            <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" placeholder="TELEPHONE" required autocomplete="telephone">
 
-                            @error('telephone')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group col-lg-6">                            
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="E-MAIL" required autocomplete="email">
-
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-lg-6">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="MOT DE PASSE" required autocomplete="new-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    
-                        <div class="form-group col-lg-6">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="CONFIRMATION MOT DE PASSE" required autocomplete="new-password">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <div class="col-12">
                             Categorie
                         </div>
@@ -164,11 +164,29 @@
                                 @endforeach
                             </div>
                         </div>
+                    </div>-->
+                    
+                    <div class="form-group">
+                        <div class="col-12">
+                            Domaines
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                @foreach ($domaines as $domaine)
+                                    <div class="col-md-4 mt-2">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="{{ $domaine->slug }}" name="secteur[]" value="{{ $domaine->id }}">
+                                            <label class="form-check-label" for="{{ $domaine->slug }}">{{ $domaine->libelle }}</label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline"> 
                                 <input class="form-check-input" type="checkbox" id="alert-sms" name="alert_sms" checked>
                                 <label class="form-check-label" for="alert-sms" style="font-style: italic">Souscrivez à l'alert SMS à (500f/mois)</label>
                             </div>

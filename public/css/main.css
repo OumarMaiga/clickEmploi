@@ -129,6 +129,11 @@ body {
     font-size: 2.1rem;
     font-weight: 600
 }
+.profil-btn-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 
 .profil-email {
     font-family: 'Sylfaen';
@@ -396,6 +401,14 @@ footer {
     .offre-block-number-word {
         padding: .5rem .5rem;
     }
+
+    /* PROFIL */
+    .profil-head {
+        padding: 2rem 4rem
+    }
+    .profil-body {
+        padding: 2rem 4rem
+    }
 }
 
 @media (max-width: 567px) {
@@ -408,6 +421,9 @@ footer {
         padding: .3rem .5rem;
         font-size: 1rem;
         line-height: 1.2;
+    }
+    .show-head-image {
+        height: 90px
     }
     .show-middle-container {
         padding: .6rem;
@@ -470,11 +486,15 @@ footer {
     .description-content, .resume {
         margin-top: 1rem;
     }
+    /* PROFIL */
     .postuler-container {
         padding: 35px;
     }
+    .profil-btn-container {
+        position: relative;
+    }
     .profil-img {
-        width: 200px;
+        width: 100%;
     }
     .btn-modif-profil {
         float: left;
@@ -488,5 +508,14 @@ footer {
     }
     .profil-email {
         margin: auto;
+    }
+    .profil-head {
+        padding: 1rem 1rem
+    }
+    .profil-body {
+        padding: 1rem 1rem
+    }
+    .profil-name {
+        font-size: 1.2rem
     }
 }

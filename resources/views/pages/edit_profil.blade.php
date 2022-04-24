@@ -66,22 +66,16 @@
                     
                     <div class="form-row">
                         <div class="col-12">
-                            Categorie
+                            Domaines
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 @foreach ($domaines as $domaine)
-                                    <div class="col-md-4 mt-2">
-                                        <div class="domaine-title">
-                                            {{ $domaine->libelle }}
+                                    <div class="col-md-3 mt-2">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="{{ $domaine->slug }}" name="secteur[]" value="{{ $domaine->id }}"  <?= ($secteur_checked->contains('slug', $domaine->slug)) ? "checked" : "" ?>>
+                                            <label class="form-check-label" for="{{ $domaine->slug }}">{{ $domaine->libelle }}</label>
                                         </div>
-                                        <?php $activites = App\Models\Activite::where('secteur_id', $domaine->id)->get() ?>
-                                        @foreach ($activites as $activite)
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="{{ $activite->slug }}" name="activite[]" value="{{ $activite->id }}">
-                                                <label class="form-check-label" for="{{ $activite->slug }}">{{ $activite->libelle }}</label>
-                                            </div>
-                                        @endforeach
                                     </div>
                                 @endforeach
                             </div>
@@ -89,7 +83,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-outline-warning">
+                        <button type="submit" class="btn btn-outline-custom">
                             MODIFIER
                         </button>
                     </div>
