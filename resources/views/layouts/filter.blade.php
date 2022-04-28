@@ -1,7 +1,7 @@
 <?php
     $secteurs = App\Models\Secteur::select('id', 'slug', 'libelle')->limit(5)->get();
 ?>
-<div class="filtre-container">
+<div class="filtre-container d-none d-md-block">
     <div class="filtre-content">
     <h3 class="filtre-title">Filtré les offres par</h3>
     <hr/>

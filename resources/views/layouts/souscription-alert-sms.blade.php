@@ -9,6 +9,18 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        
+        <!-- DISPLAY ERRORS -->
+        @if ($errors->any())
+            <div class="ml-3">
+                <ul class="text-sm text-red-600">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
             <form method="POST" action="{{ route('abonnee.store') }}" class="">
                 @csrf
                 <div class="modal-body">

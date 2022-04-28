@@ -285,18 +285,18 @@ hr {
     padding-left: 8rem;
 }
 .head-btn {
-    background-color: transparent;
-    color: #fff;
-    border: 2px solid #fff;
+    background-color: #FF9000;
+    color: #FFFFFF;
+    border-width: 1px;
     font-size: 1.6rem;
     padding: .375rem .75rem;
     line-height: 1.5;
 }
 .head-btn:hover {
     text-decoration: none;
-    background-color: #FF9000;
-    color: #FFFFFF;
-    border-width: 1px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
 }
 .search-bar {
     padding: 20px 0px;

@@ -8,7 +8,7 @@
         $name = $user->email;
     }
 ?>
-<div class="home-profil-container">
+<div class="home-profil-container d-none d-md-block">
     @if (photo_profil(Auth::user()->email))
         <img src="{{ photo_profil(Auth::user()->email) }}" alt="Profil de l'utisateur" class="home-profil-img">
     @else

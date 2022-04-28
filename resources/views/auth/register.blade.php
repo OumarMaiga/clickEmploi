@@ -109,6 +109,29 @@
                         </div>
                         
                         <div class="form-group col-lg-6">
+                            <div class="">
+                                Sexe
+                            </div>
+                            <div class="align-self-end">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="homme" name="sexe" value="h">
+                                    <label class="form-check-label" for="homme">Homme</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="femme" name="sexe" value="f">
+                                    <label class="form-check-label" for="femme">Femme</label>
+                                </div>
+                            </div>
+
+                            @error('sexe')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
                             <label for="diplome">Dernier diplôme</label>
                             <select name="dernier_diplome" class="form-control">
                                 <option value="">-- SELECTIONNER ICI --</option>
@@ -117,29 +140,30 @@
                                 @endforeach
                             </select>
 
-                            @error('date_naissance')
+                            @error('dernier_diplome')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="annee_experience">Année d'experience</label>
-                        <select name="annee_experience" class="form-control">
-                            <option value="0">-- SELECTIONNER ICI --</option>
-                            <option value="0.5">6 mois</option>
-                            <option value="1">1 an</option>
-                            <option value="2">2 ans</option>
-                            <option value="3">3 ans</option>
-                            <option value="4">4 ans</option>
-                            <option value="5">5 ans</option>
-                        </select>
-                        @error('annee_experience')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+
+                        <div class="form-group col-lg-6">
+                            <label for="annee_experience">Année d'experience</label>
+                            <select name="annee_experience" class="form-control">
+                                <option value="0">-- SELECTIONNER ICI --</option>
+                                <option value="0.5">6 mois</option>
+                                <option value="1">1 an</option>
+                                <option value="2">2 ans</option>
+                                <option value="3">3 ans</option>
+                                <option value="4">4 ans</option>
+                                <option value="5">5 ans</option>
+                            </select>
+                            @error('annee_experience')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
 
                     <!--<div class="form-group">

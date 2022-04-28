@@ -25,6 +25,7 @@ class User extends Authenticatable
         'nom', 
         'prenom', 
         'date_naissance',
+        'sexe',
         'type',
         'etat',
         'dernier_diplome',

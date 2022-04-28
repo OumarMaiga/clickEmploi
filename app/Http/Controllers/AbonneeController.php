@@ -24,9 +24,9 @@ class AbonneeController extends Controller
 
     public function store(Request $request) {
 
-        $request->validate([
-            'type' => 'required'
-        ]);
+        if ($request->type == null) {
+            return redirect()->back()->withErrors('Vous devez cochez le type d\'abonnement')->withAbonnement("");
+        }
         
         if ($request->type === "jour") 
         {
@@ -49,9 +49,7 @@ class AbonneeController extends Controller
             'etat' => 'encours',
             'date_fin' => $date,
         ]);
-
         $abonnee = $this->abonneeRepository->store($request->all());
-
         return redirect()->back()->withStatus("Abonnement effectué avec succès");
     
     }
