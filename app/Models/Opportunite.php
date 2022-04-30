@@ -25,6 +25,8 @@ class Opportunite extends Model
         'niveau',
         'montant',
         'type_contrat',
+        'email',
+        'telephone',
         'echeance',
         'annee_experience',
         'prerequis',

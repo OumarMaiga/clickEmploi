@@ -97,6 +97,18 @@
                         </select>
                     </div>
                 </div>
+                
+                <!-- Email Address -->
+                <div class="row">
+                    <div class="form-item col-md-6">
+                        <label for="annee_experience">Telephone</label>
+                        <input id="telephone" class="form-control" type="text" name="telephone" value="{{ old('telephone') }}" placeholder="" />
+                    </div>
+                    <div class="form-item col-md-6">
+                        <label for="email">Email</label>
+                        <input id="email" class="form-control" type="text" name="email" value="{{ old('email') }}" placeholder="" />
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="form-item col-md-12">
@@ -122,7 +134,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="mt-4">
                     <button type="submit" class="btn btn-custom">
                         {{ __('AJOUTER') }}

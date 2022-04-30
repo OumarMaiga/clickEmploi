@@ -34,21 +34,39 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="adresse">Adresse</label>
-                            <textarea id="adresse" class="form-control" type="text" name="adresse" placeholder="ADRESSE">{{ $user->adresse }}</textarea>
+                        <div class="form-group col-lg-6">
+                            <label for="diplome">Dernier diplôme</label>
+                            <select name="dernier_diplome" class="form-control">
+                                <option value="">-- SELECTIONNER ICI --</option>
+                                @foreach($diplomes as $diplome)
+                                    <option value="{{ $diplome->id }}" <?= ($user->dernier_diplome == $diplome->id) ? "selected=true" : "" ?>>{{ $diplome->libelle }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('dernier_diplome')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+
                         <div class="form-group col-md-6">
                             <label for="diplome">Année d'experience</label>
                             <select name="annee_experience" class="form-control">
                                 <option value="0">-- SELECTIONNER ICI --</option>
-                                <option value="0.5">6 mois</option>
-                                <option value="1">1 an</option>
-                                <option value="2">2 ans</option>
-                                <option value="3">3 ans</option>
-                                <option value="4">4 ans</option>
-                                <option value="5">5 ans</option>
+                                <option value="0.5" <?= ($user->annee_experience == 0.5) ? "selected=true" : "" ?>>6 mois</option>
+                                <option value="1" <?= ($user->annee_experience == 1) ? "selected=true" : "" ?>>1 an</option>
+                                <option value="2" <?= ($user->annee_experience == 2) ? "selected=true" : "" ?>>2 ans</option>
+                                <option value="3" <?= ($user->annee_experience == 3) ? "selected=true" : "" ?>>3 ans</option>
+                                <option value="4" <?= ($user->annee_experience == 4) ? "selected=true" : "" ?>>4 ans</option>
+                                <option value="5" <?= ($user->annee_experience == 5) ? "selected=true" : "" ?>>5 ans</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="adresse">Adresse</label>
+                            <textarea id="adresse" class="form-control" type="text" name="adresse" placeholder="ADRESSE">{{ $user->adresse }}</textarea>
                         </div>
                     </div>
                     <div class="row">

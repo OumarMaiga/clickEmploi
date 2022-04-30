@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Repositories\OpportuniteRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\DiplomeRepository;
 
 use App\Models\File;
 use App\Models\Opportunite;
@@ -21,9 +22,10 @@ class HomeController extends Controller
     protected $opportuniteRepository;
     protected $userRepository;
 
-    public function __construct(OpportuniteRepository $opportuniteRepository, UserRepository $userRepository) {
+    public function __construct(OpportuniteRepository $opportuniteRepository, UserRepository $userRepository, DiplomeRepository $diplomeRepository) {
         $this->opportuniteRepository = $opportuniteRepository;
         $this->userRepository = $userRepository;
+        $this->diplomeRepository = $diplomeRepository;
     }
     
     public function index()
@@ -33,11 +35,11 @@ class HomeController extends Controller
         $opportunites = Opportunite::simplePaginate(7);
         $offre_par_profil = $this->offre_par_profil();
         if(Auth::check()) {
-            $activite_par_profil = Auth::user()->activites()->get();
+            $domaine_par_profil = Auth::user()->secteurs()->get();
         } else {
-            $activite_par_profil = null;
+            $domaine_par_profil = null;
         }
-        return view('pages/home', compact('opportunites', 'offre_par_profil', 'activite_par_profil'));
+        return view('pages/home', compact('opportunites', 'offre_par_profil', 'domaine_par_profil'));
     }
     
     public function accueil()
@@ -75,7 +77,8 @@ class HomeController extends Controller
         $domaines = Secteur::select('id', 'libelle', 'slug')->distinct()->get();
         $photo = photo_profil($user->email);
         $secteur_checked = $user->secteurs()->get();
-        return view('pages.edit_profil', compact('user', 'photo', 'domaines', 'secteur_checked'));
+        $diplomes = $this->diplomeRepository->get();
+        return view('pages.edit_profil', compact('user', 'photo', 'domaines', 'secteur_checked', 'diplomes'));
     }
 
     public function update_profil($id, Request $request) {
@@ -127,10 +130,15 @@ class HomeController extends Controller
     public function filtre(Request $request) {
         $opportunites = new Opportunite;
         if($request->has('secteur')) {
-            $activites_secteur = Activite::whereIn('secteur_id', $request->secteur)->pluck('id');
+            /*$activites_secteur = Activite::whereIn('secteur_id', $request->secteur)->pluck('id');
             $opportunites = Opportunite::join('activite_opportunite', function ($join) use ($activites_secteur) {
                                             $join->on('opportunites.id', '=', 'activite_opportunite.opportunite_id')
                                                 ->whereIn('activite_opportunite.activite_id', $activites_secteur);
+                                            });*/
+            $secteurs = Secteur::whereIn('id', $request->secteur)->pluck('id');
+            $opportunites = Opportunite::join('opportunite_secteur', function ($join) use ($secteurs) {
+                                            $join->on('opportunites.id', '=', 'opportunite_secteur.opportunite_id')
+                                                ->whereIn('opportunite_secteur.secteur_id', $secteurs);
                                             });
         }
         if($request->has('contrat')) {
@@ -153,8 +161,6 @@ class HomeController extends Controller
         $opportunites = $opportunites->get()->unique('id');
         $nbre_offres = $opportunites->count();
         $offre_par_profil = $this->offre_par_profil();
-        /*echo $opportunites;
-        die();*/
         return view('pages.filter', compact('opportunites', 'nbre_offres', 'offre_par_profil'));
         
     }
@@ -170,14 +176,14 @@ class HomeController extends Controller
             $opportunites = $opportunites->where('lieu', 'like', "%$adresse%");
         } 
         if(Auth::check()) {
-            $activite_par_profil = Auth::user()->activites()->get();
+            $domaine_par_profil = Auth::user()->secteurs()->get();
         } else {
-            $activite_par_profil = null;
+            $domaine_par_profil = null;
         }
         $opportunites = $opportunites->get();
         $nbre_offres = $opportunites->count();
         $offre_par_profil = collect();
-        return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'offre_par_profil', 'activite_par_profil'));
+        return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'offre_par_profil', 'domaine_par_profil'));
     }
 
     public function jobboard() {
@@ -187,8 +193,7 @@ class HomeController extends Controller
     //Offre par profil
     public function offre_par_profil() {
         if(Auth::check()){
-            $activite_par_profil = Auth::user()->activites()->pluck('id')->toArray();
-
+            $domaine_par_profil = Auth::user()->secteurs()->pluck('id')->toArray();
             $dernier_diplome_user = Auth::user()->diplome()->associate(Auth::user()->dernier_diplome)->diplome;
 
             //Verifier si le diplome existe
@@ -198,21 +203,21 @@ class HomeController extends Controller
                 $annee_etude_user = 0;
             }
 
-            $offre_par_profil = Opportunite::whereHas('activites', function($q) use ($activite_par_profil) {
-                $q->whereIn('activites.id', $activite_par_profil);
+            $offre_par_profil = Opportunite::whereHas('secteurs', function($q) use ($domaine_par_profil) {
+                $q->whereIn('secteurs.id', $domaine_par_profil);
             })->join('diplomes', 'opportunites.niveau', 'diplomes.id')
-                ->where('annee_etude', '<=', $annee_etude_user)
-                ->get([
-                    'opportunites.id as id',
-                    'title',
-                    'echeance',
-                    'entreprise_id',
-                    'lieu',
-                    'type',
-                    "opportunites.slug as slug",
-                    "opportunites.annee_experience as annee_experience",
-                    "opportunites.created_at as created_at",
-                ]);
+            ->where('annee_etude', '<=', $annee_etude_user)
+            ->get([
+                'opportunites.id as id',
+                'title',
+                'echeance',
+                'entreprise_id',
+                'lieu',
+                'type',
+                "opportunites.slug as slug",
+                "opportunites.annee_experience as annee_experience",
+                "opportunites.created_at as created_at",
+            ]);
                         
         }else{
             $offre_par_profil = Opportunite::where('id', '0')->get();

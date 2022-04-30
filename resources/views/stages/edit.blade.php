@@ -82,8 +82,18 @@
                         <input id="montant" class="form-control" type="text" name="montant" value="{{ $stage->montant }}" placeholder="SALAIRE (250.000F - 375.000F)" />
                     </div>
                 </div>
-
-
+                
+                <!-- Email Address -->
+                <div class="row">
+                    <div class="form-item col-md-6">
+                        <label for="annee_experience">Telephone</label>
+                        <input id="telephone" class="form-control" type="text" name="telephone" value="{{ $stage->telephone }}" placeholder="" />
+                    </div>
+                    <div class="form-item col-md-6">
+                        <label for="email">Email</label>
+                        <input id="email" class="form-control" type="text" name="email" value="{{ $stage->email }}" placeholder="" />
+                    </div>
+                </div>
     
                 <!-- Email Address -->
                 <div class="row mt-4">

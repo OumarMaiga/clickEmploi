@@ -22,8 +22,8 @@
         <a href="{{ route('edit_profil', Auth::user()->email) }}" class="btn-outline-custom">Completez votre profil</a>
     </div>
     <div class="home-profil-tag">
-        @foreach ($activite_par_profil as $activite)
-            <a href="{{ route('opportunite.domaine', $activite->libelle) }}" class="home-profil-tag-text">{{ $activite->libelle }}</a>
+        @foreach ($domaine_par_profil as $domaine)
+            <a href="{{ route('opportunite.domaine', $domaine->libelle) }}" class="home-profil-tag-text">{{ $domaine->libelle }}</a>
         @endforeach
     </div>
 </div>

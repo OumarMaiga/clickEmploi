@@ -173,12 +173,12 @@ class EmploiController extends Controller
         }
 
         if(Auth::check()) {
-            $activite_par_profil = Auth::user()->activites()->get();
+            $domaine_par_profil = Auth::user()->secteurs()->get();
         } else {
-            $activite_par_profil = null;
+            $domaine_par_profil = null;
         }
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'annee_experience', 'activite_par_profil'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'annee_experience', 'domaine_par_profil'));
     }
 
     public function destroy($id) {
@@ -192,11 +192,11 @@ class EmploiController extends Controller
         $opportunites = Opportunite::where('type', '=', 'emploi')->simplePaginate(7);
         $offre_par_profil = $this->offre_par_profil();
         if(Auth::check()) {
-            $activite_par_profil = Auth::user()->activites()->get();
+            $domaine_par_profil = Auth::user()->secteurs()->get();
         } else {
-            $activite_par_profil = null;
+            $domaine_par_profil = null;
         }
-        return view('pages/opportunites/emplois', compact('opportunites', 'offre_par_profil', 'activite_par_profil'));
+        return view('pages/opportunites/emplois', compact('opportunites', 'offre_par_profil', 'domaine_par_profil'));
     }
 
     public function offre_par_profil() {

@@ -159,12 +159,12 @@ class StageController extends Controller
         }
         
         if(Auth::check()) {
-            $activite_par_profil = Auth::user()->activites()->get();
+            $domaine_par_profil = Auth::user()->secteurs()->get();
         } else {
-            $activite_par_profil = null;
+            $domaine_par_profil = null;
         }
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'activite_par_profil'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'domaine_par_profil'));
     }
 
     public function destroy($id) {
@@ -178,11 +178,11 @@ class StageController extends Controller
         //$opportunites = $this->opportuniteRepository->getByType('stage');
         $offre_par_profil = $this->offre_par_profil();
         if(Auth::check()) {
-            $activite_par_profil = Auth::user()->activites()->get();
+            $domaine_par_profil = Auth::user()->secteurs()->get();
         } else {
-            $activite_par_profil = null;
+            $domaine_par_profil = null;
         }
-        return view('pages/opportunites/stages', compact('opportunites', 'offre_par_profil', 'activite_par_profil'));
+        return view('pages/opportunites/stages', compact('opportunites', 'offre_par_profil', 'domaine_par_profil'));
     }
     public function offre_par_profil() {
         if (Auth::check()) {
