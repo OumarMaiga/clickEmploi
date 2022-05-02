@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Postule;
 use App\Models\Abonnee;
 
+
     function photo_entreprise($id) {
 
         $entreprise = Entreprise::findOrFail($id);
@@ -117,4 +118,17 @@ use App\Models\Abonnee;
         $abonnee = new Abonnee;
         $abonnee = $abonnee->where('user_id', $id)->where('etat', 'encours')->get();
         return (($abonnee->count() > 0) ? true : false);
+    }
+
+    function automatic_mail_to_entreprise($data) {
+        
+        Mail::send('mail', $data, function($message) use ($data) {
+            $data = (object) $data;
+            $message->to('oumarm611@gmail.com', '')->subject
+            ('Un interessé vient de postuler à votre offre à travers Click emploi');
+            if ($data->file_path != null && !empty($data->file_path)) {
+                $message->attach($data->file_path);
+            }
+            $message->from('contact@clickemploi.com','Click emploi');
+        });
     }

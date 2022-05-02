@@ -16,6 +16,7 @@ use App\Models\Secteur;
 use App\Models\Diplome;
 use App\Models\Activite;
 
+use Mail;
 
 class HomeController extends Controller
 {

@@ -174,11 +174,16 @@ class EmploiController extends Controller
 
         if(Auth::check()) {
             $domaine_par_profil = Auth::user()->secteurs()->get();
+            // Texte de la lettre de motivation
+            $motivation_texte = "C'est avec un réel plaisir que moi #name# je postule à cette offre ...";
+            $name = Auth::user()->prenom." ".Auth::user()->nom;
         } else {
             $domaine_par_profil = null;
+            $motivation_texte = "";
+            $name = "";
         }
-                
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'annee_experience', 'domaine_par_profil'));
+        
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'annee_experience', 'domaine_par_profil', 'motivation_texte', 'name'));
     }
 
     public function destroy($id) {

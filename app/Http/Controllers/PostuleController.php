@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\PostuleRepository;
 use App\Repositories\OpportuniteRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\File;
 
 class PostuleController extends Controller
@@ -19,20 +20,30 @@ class PostuleController extends Controller
     }
 
     public function store(Request $request, $slug) {
-        $opportunite = $this->opportuniteRepository->getBySlug($slug);
+        $opportunite = DB::table('opportunites')
+                            ->select('opportunites.id as id', 'opportunites.title as title', 'opportunites.title as title', 
+                            'opportunites.slug as slug', 'opportunites.type as type', 'opportunites.email as email', 
+                            'opportunites.content as content', 
+                            'entreprises.libelle as entreprise_name')
+                            ->join('entreprises', 'opportunites.entreprise_id', '=', 'entreprises.id')
+                            ->where('opportunites.slug', $slug)
+                            ->get();
+                            
         $request->validate([
             'cv' => 'file|mimes:csv,txt,doc,docx,xls,pdf|max:2048',
         ]);
-
+        
         if(Auth::check()){
             $request->merge([
                 'user_id' => Auth::user()->id,
-                'opportunite_id' => $opportunite->id,
+                'opportunite_id' => $opportunite[0]->id,
             ]);
         }
         //Enregistrement de la postulation
         $postule = $this->postuleRepository->store($request->all());
         
+        $filePath = "";
+
         $fileModel1 = new File;
 
         if ($request->has('cv_profil')) {
@@ -44,6 +55,8 @@ class PostuleController extends Controller
             $fileModel1->type = 'cv_opportunite';
             $fileModel1->postule_id = $postule->id;
             $fileModel1->save();
+
+            $filePath = str_replace("/storage/", "", $cv->file_path);
         }
 
         $fileModel = new File;
@@ -51,7 +64,7 @@ class PostuleController extends Controller
         if($request->hasFile('cv')) {
             
             $fileName = time().'_'.$request->file('cv')->getClientOriginalName();
-            $filePath = $request->file('cv')->storeAs("uploads/cv/opportunite/$opportunite->id", $fileName, 'public');
+            $filePath = $request->file('cv')->storeAs("uploads/cv/opportunite/".$opportunite[0]->id, $fileName, 'public');
             $fileModel->libelle = $fileName;
             $fileModel->file_path = '/storage/' . $filePath;
 
@@ -62,9 +75,24 @@ class PostuleController extends Controller
             $fileModel->type = 'cv_opportunite';
             $fileModel->postule_id = $postule->id;
             $fileModel->save();
-        }
+        } 
+        $url  = env('APP_URL')."/".$opportunite[0]->type."/".$opportunite[0]->slug;
+        $data = array (
+            'title' => $opportunite[0]->title,
+            'slug' => $opportunite[0]->slug,
+            'url' => $url,
+            'email' => $opportunite[0]->email,
+            'content' => $opportunite[0]->content,
+            'file_path' => $filePath != "" ? 'storage/'.$filePath : "",
+            'user_name' => $request->prenom." ".$request->nom,
+            'user_email' => $request->email,
+            'user_telephone' => $request->telephone,
+            'user_motivation' => $request->motivation,
+            'entreprise_name' => $opportunite[0]->entreprise_name,
+        );
+        automatic_mail_to_entreprise($data);
 
-        return redirect("/$opportunite->type/$opportunite->slug#postuler")->withStatus("Postulation effectuée avec succès");
+        return redirect("/".$opportunite[0]->type."/".$opportunite[0]->slug."#postuler")->withStatus("Postulation effectuée avec succès");
 
     }
 

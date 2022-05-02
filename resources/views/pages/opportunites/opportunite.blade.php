@@ -175,7 +175,9 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="motivation">Lettre de motivation</label>
-                                            <textarea id="motivation" class="form-control tiny" type="text" name="motivation" value="" placeholder="Pourquoi devrons-nous vous engagé ?" >{{ old('motivation') }}</textarea>
+                                            <textarea id="motivation" class="form-control tiny" type="text" name="motivation" value="" placeholder="Pourquoi devrons-nous vous engagé ?" >
+                                                {{ $motivation_texte }}
+                                            </textarea>
                                         </div>
                                     </div>
                                     @if ($opportunite->type != "formation")
@@ -263,6 +265,13 @@
 
     tinymce.init({
         selector: '.tiny',
+    });
+
+    // Remplacer la lettre de motivation par les informations du user
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var motivation = document.getElementById('motivation').value;
+        motivation = motivation.replace('#name#', "<?php echo $name; ?>");
+        document.getElementById('motivation').value = motivation;
     });
 
 </script>
