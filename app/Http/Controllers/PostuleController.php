@@ -92,7 +92,7 @@ class PostuleController extends Controller
         );
         automatic_mail_to_entreprise($data);
 
-        return redirect("/".$opportunite[0]->type."/".$opportunite[0]->slug."#postuler")->withStatus("Postulation effectuée avec succès");
+        return redirect("/".$opportunite[0]->type."/".$opportunite[0]->slug."#postuler")->withStatus("Votre candidature a bien été envoyée");
 
     }
 
