@@ -271,6 +271,7 @@
     document.addEventListener("DOMContentLoaded", function(event) {
         var motivation = document.getElementById('motivation').value;
         motivation = motivation.replace('#name#', "<?php echo $name; ?>");
+        motivation = motivation.replace('#poste#', "<?php echo $poste; ?>");
         document.getElementById('motivation').value = motivation;
     });
 

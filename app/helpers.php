@@ -124,11 +124,12 @@ use App\Models\Abonnee;
         
         Mail::send('mail', $data, function($message) use ($data) {
             $data = (object) $data;
-            $message->to('oumarm611@gmail.com', '')->subject
-            ('Un interessé vient de postuler à votre offre à travers Click emploi');
+            $message->to('oumarm611@gmail.com', '')->cc('coulmohamed2002@yahoo.fr')
+            ->subject('Un interessé vient de postuler à votre offre à travers Click emploi');
             if ($data->file_path != null && !empty($data->file_path)) {
                 $message->attach($data->file_path);
             }
             $message->from('contact@clickemploi.com','Click emploi');
         });
     }
+    

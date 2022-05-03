@@ -175,15 +175,19 @@ class EmploiController extends Controller
         if(Auth::check()) {
             $domaine_par_profil = Auth::user()->secteurs()->get();
             // Texte de la lettre de motivation
-            $motivation_texte = "C'est avec un réel plaisir que moi #name# je postule à cette offre ...";
+            $motivation_texte = "Bonjour, <br/>
+            Nous clickemploi.com venons par la présente  vous proposer la candidature de #name# pour le poste de #poste# qui a retenu toute notre attention. Vous trouverez les coordonnées et le CV en pièce jointe. Nous nous tenons à votre disposition pour toutes informations complémentaires. <br/>
+            Bien cordialement";
             $name = Auth::user()->prenom." ".Auth::user()->nom;
+            $poste = $opportunite->title;
         } else {
             $domaine_par_profil = null;
             $motivation_texte = "";
             $name = "";
+            $poste = "";
         }
         
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'annee_experience', 'domaine_par_profil', 'motivation_texte', 'name'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'annee_experience', 'domaine_par_profil', 'motivation_texte', 'name', 'poste'));
     }
 
     public function destroy($id) {
