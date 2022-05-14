@@ -61,6 +61,6 @@ class DiplomeController extends Controller
 
     public function destroy($id) {
 		$this->diplomeRepository->destroy($id);
-        return redirect()->back()->withError("Diplome a bien été supprimer");;
+        return redirect()->back()->withError("Diplome a bien été supprimer");
     } 
 }

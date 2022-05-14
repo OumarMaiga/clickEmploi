@@ -27,7 +27,7 @@ class PostuleController extends Controller
                             'entreprises.libelle as entreprise_name')
                             ->join('entreprises', 'opportunites.entreprise_id', '=', 'entreprises.id')
                             ->where('opportunites.slug', $slug)
-                            ->get();
+                            ->get()[0];
                             
         $request->validate([
             'cv' => 'file|mimes:csv,txt,doc,docx,xls,pdf|max:2048',
@@ -36,7 +36,7 @@ class PostuleController extends Controller
         if(Auth::check()){
             $request->merge([
                 'user_id' => Auth::user()->id,
-                'opportunite_id' => $opportunite[0]->id,
+                'opportunite_id' => $opportunite->id,
             ]);
         }
         //Enregistrement de la postulation
@@ -64,7 +64,7 @@ class PostuleController extends Controller
         if($request->hasFile('cv')) {
             
             $fileName = time().'_'.$request->file('cv')->getClientOriginalName();
-            $filePath = $request->file('cv')->storeAs("uploads/cv/opportunite/".$opportunite[0]->id, $fileName, 'public');
+            $filePath = $request->file('cv')->storeAs("uploads/cv/opportunite/".$opportunite->id, $fileName, 'public');
             $fileModel->libelle = $fileName;
             $fileModel->file_path = '/storage/' . $filePath;
 
@@ -76,23 +76,23 @@ class PostuleController extends Controller
             $fileModel->postule_id = $postule->id;
             $fileModel->save();
         } 
-        $url  = env('APP_URL')."/".$opportunite[0]->type."/".$opportunite[0]->slug;
+        $url  = env('APP_URL')."/".$opportunite->type."/".$opportunite->slug;
         $data = array (
-            'title' => $opportunite[0]->title,
-            'slug' => $opportunite[0]->slug,
+            'title' => $opportunite->title,
+            'slug' => $opportunite->slug,
             'url' => $url,
-            'email' => $opportunite[0]->email,
-            'content' => $opportunite[0]->content,
+            'email' => $opportunite->email,
+            'content' => $opportunite->content,
             'file_path' => $filePath != "" ? 'storage/'.$filePath : "",
             'user_name' => $request->prenom." ".$request->nom,
             'user_email' => $request->email,
             'user_telephone' => $request->telephone,
             'user_motivation' => $request->motivation,
-            'entreprise_name' => $opportunite[0]->entreprise_name,
+            'entreprise_name' => $opportunite->entreprise_name,
         );
         automatic_mail_to_entreprise($data);
 
-        return redirect("/".$opportunite[0]->type."/".$opportunite[0]->slug."#postuler")->withStatus("Votre candidature a bien été envoyée");
+        return redirect("/".$opportunite->type."/".$opportunite->slug."#postuler")->withStatus("Votre candidature a bien été envoyée");
 
     }
 

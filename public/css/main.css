@@ -9,7 +9,7 @@ body {
     z-index: 1;
 }
 .logo {
-    width: 150px;
+    width: 125px;
 }
 
 .navbar-brand, .nav-link  {
@@ -174,7 +174,7 @@ body {
 
 .show-title {
     font-family: 'MADE Evolve Sans';
-    font-size: 1.6rem;
+    font-size: 3rem;
 }
 .show-head-entreprise {
     font-size: 1rem;
@@ -236,7 +236,7 @@ body {
 }
 .description-content, .resume {
     line-height: 1.5;
-    margin-top: 2rem
+    /*margin-top: 2rem*/
 }
 .show-end {
     display: flex;
@@ -350,7 +350,7 @@ footer {
 
     /* Navigation */
     .logo {
-        width: 70px;
+        width: 90px;
     }
 
     /* Detail Opportunite */
@@ -375,6 +375,9 @@ footer {
     .show-end div .text, .show-end div .value {
         font-size: 1rem;
     }
+    .lil-title {
+        font-size: 1.2rem;
+      }
 
     /* Detail User */
     .profil-img {
@@ -475,7 +478,7 @@ footer {
     }
     /* Detail opportunite */
     .show-head-container {
-        height: 200px;
+        /*height: 200px;*/
     }
     .show-title {
         font-size: 1.4rem;

@@ -81,7 +81,7 @@
     left: 16%;
     position: absolute;
     width: 84%;
-    margin-top: 3.6rem;
+    margin-top: 6rem;
 }
 .icon-edit:hover {
     color: #ffc107;
@@ -217,7 +217,7 @@
         left: 14%;
         position: absolute;
         width: 86%;
-        margin-top: 3rem;
+        margin-top: 4rem;
     }
     .show-container {
         margin-left: 2px;
@@ -281,7 +281,7 @@
     }
 
     .show-head-container {
-        margin-top: 3.6rem;
+        margin-top: 5rem;
 
     }
     .dashboard-content-detail-offre {

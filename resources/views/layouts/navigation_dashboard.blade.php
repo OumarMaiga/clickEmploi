@@ -2,7 +2,7 @@
     <!-- Primary Navigation Menu -->
     <!-- Logo -->
     <a class="navbar-brand" href="{{ route('accueil') }}">
-        <img src="{{ url('/image/logo-white.jpeg')}}" alt="Logo" class="logo">
+        <img src="{{ url('/image/logoemploi.png')}}" alt="Logo" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="fas fa-bars" style="color: #FFFFFF"></span>

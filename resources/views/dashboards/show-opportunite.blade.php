@@ -1,4 +1,4 @@
-    <div class="dashboard-content-detail-offre">
+    <div class="container dashboard-content-detail-offre">
         <div class="show-head-container">
             <div class="show-title">
                 {{ $opportunite->title }}
@@ -8,13 +8,13 @@
             </div>
         </div>
 
-        <div class="container description description-content">
+        <div class="description description-content">
             <div class="lil-title">Description</div>
             <p>
                 {!! $opportunite->content !!}
             </p>
         </div>
-        <div class="container resume">
+        <div class="resume">
             <div class="lil-title">Resumé ...</div>
             @if ($opportunite->type == "emploi" || $opportunite->type == "stage")
                 <div class="row ">
@@ -117,7 +117,7 @@
                 </div>
             </div>
         </div>
-        <div class="container list-container">
+        <div class="list-container">
             <div class="lil-title">LES POSTULANTS</div>
             <table class="table table-hover table-responsive-md">
                 <thead>
