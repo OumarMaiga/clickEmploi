@@ -80,12 +80,12 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
+        
         // On verifie si le user n'a  pas un abonnement actif on retourne une session flash  
         if(is_abonnee(Auth::user()->id)){
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect('/home');
         } else {
-            return redirect()->intended(RouteServiceProvider::HOME)->withAbonnement("");
+            return redirect('/home')->withAbonnement("");
         }
     }
 }
