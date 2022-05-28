@@ -17,7 +17,7 @@ class OpportuniteController extends Controller
     }
 
     public function adresse($adresse) {
-        $opportunites = Opportunite::where('lieu', 'like', "%$adresse%")->get();
+        $opportunites = Opportunite::where('lieu', 'like', "%$adresse%")->get()->sortByDesc('created_at');
         $nbre_offres = $opportunites->count();
         
         if (Auth::check()) {
@@ -33,6 +33,7 @@ class OpportuniteController extends Controller
                 $q->whereIn('secteurs.id', $domaine_par_profil);
             })->join('diplomes', 'opportunites.niveau', 'diplomes.id')
                 ->where('annee_etude', '<=', $annee_etude)
+                
                 ->get([
                     'opportunites.id as id',
                     'title',
@@ -43,7 +44,7 @@ class OpportuniteController extends Controller
                     "opportunites.slug as slug",
                     "opportunites.annee_experience as annee_experience",
                     "opportunites.created_at as created_at",
-                ]);
+                ])->sortByDesc('created_at');
         }else{
             $offre_par_profil = Opportunite::where('id', '0')->get();
         }
@@ -59,7 +60,7 @@ class OpportuniteController extends Controller
     public function domaine($domaine) {
         $opportunites = Opportunite::whereHas('secteurs', function($q) use ($domaine) {
             $q->where('libelle', 'like', "%$domaine%");
-        })->get();
+        })->get()->sortByDesc('created_at');
         $nbre_offres = $opportunites->count();
         if (Auth::check()) {
             $domaine_par_profil = Auth::user()->secteurs()->pluck('id')->toArray();
@@ -84,7 +85,7 @@ class OpportuniteController extends Controller
                     "opportunites.slug as slug",
                     "opportunites.annee_experience as annee_experience",
                     "opportunites.created_at as created_at",
-                ]);
+                ])->sortByDesc('created_at');
         }else{
             $offre_par_profil = Opportunite::where('id', '0')->get();
         }
@@ -97,7 +98,7 @@ class OpportuniteController extends Controller
     }
 
     public function poste($poste) {
-        $opportunites = Opportunite::where('title', 'like', "%$poste%")->get();
+        $opportunites = Opportunite::where('title', 'like', "%$poste%")->get()->sortByDesc('created_at');
         $nbre_offres = $opportunites->count();
         if (Auth::check()) {
             $domaine_par_profil = Auth::user()->secteurs()->pluck('id')->toArray();
@@ -122,9 +123,15 @@ class OpportuniteController extends Controller
                     "opportunites.slug as slug",
                     "opportunites.annee_experience as annee_experience",
                     "opportunites.created_at as created_at",
-                ]);
+                ])->sortByDesc('created_at');
         }else{
             $offre_par_profil = Opportunite::where('id', '0')->get();
+        }
+        
+        if(Auth::check()) {
+            $domaine_par_profil = Auth::user()->secteurs()->get();
+        } else {
+            $domaine_par_profil = null;
         }
         return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'poste', 'offre_par_profil', 'domaine_par_profil'));
     }

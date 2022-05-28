@@ -198,7 +198,7 @@ class EmploiController extends Controller
     public function list()
     {
         //$opportunites = $this->opportuniteRepository->getByType('emploi');
-        $opportunites = Opportunite::where('type', '=', 'emploi')->simplePaginate(7);
+        $opportunites = Opportunite::where('type', '=', 'emploi')->orderBy('created_at', 'desc')->simplePaginate(15);
         $offre_par_profil = $this->offre_par_profil();
         if(Auth::check()) {
             $domaine_par_profil = Auth::user()->secteurs()->get();

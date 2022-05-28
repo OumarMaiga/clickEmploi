@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
         //Tous les offres
         //$opportunites = $this->opportuniteRepository->get();
-        $opportunites = Opportunite::simplePaginate(7);
+        $opportunites = Opportunite::orderBy('created_at', 'desc')->simplePaginate(15);
         $offre_par_profil = $this->offre_par_profil();
         if(Auth::check()) {
             $domaine_par_profil = Auth::user()->secteurs()->get();
@@ -159,7 +159,7 @@ class HomeController extends Controller
 
             }
         }
-        $opportunites = $opportunites->get()->unique('id');
+        $opportunites = $opportunites->orderBy('created_at', 'desc')->get()->unique('id');
         $nbre_offres = $opportunites->count();
         $offre_par_profil = $this->offre_par_profil();
         return view('pages.filter', compact('opportunites', 'nbre_offres', 'offre_par_profil'));
@@ -181,7 +181,7 @@ class HomeController extends Controller
         } else {
             $domaine_par_profil = null;
         }
-        $opportunites = $opportunites->get();
+        $opportunites = $opportunites->orderBy('created_at', 'desc')->get();
         $nbre_offres = $opportunites->count();
         $offre_par_profil = collect();
         return view('pages.opportunites.opportunites', compact('opportunites', 'nbre_offres', 'offre_par_profil', 'domaine_par_profil'));
@@ -218,7 +218,7 @@ class HomeController extends Controller
                 "opportunites.slug as slug",
                 "opportunites.annee_experience as annee_experience",
                 "opportunites.created_at as created_at",
-            ]);
+            ])->sortByDesc('created_at');
                         
         }else{
             $offre_par_profil = Opportunite::where('id', '0')->get();
