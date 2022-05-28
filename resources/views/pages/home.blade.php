@@ -88,8 +88,17 @@
                                     <a href="{{ route('entreprise.detail', $entreprise->slug) }}">{{ $entreprise->libelle }}</a>  | <span class="fas fa-map-marker-alt"></span> <a href="{{ route('opportunite.adresse', $opportunite->lieu) }}">{{ $opportunite->lieu }}</a>
                                 </div>
                                 <div class="row offre-footer d-flex align-items-end">
-                                        <div class="col-lg-8 col-md-9">
-                                            Publié <i class="offre-date">{{ custom_date($opportunite->created_at) }}</i>&nbsp;&nbsp;|&nbsp;&nbsp;Délais <i class="offre-date">{{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i>
+                                    <?php
+                                        $color = "";
+                                        $expired = "";
+                                        $now = date("Y-m-d H:i");  
+                                        if ($now >= $opportunite->echeance) {
+                                            $color =  "style='color:rgb(220 38 38) !important;'";
+                                            $expired = "<span class='text-red-600'>(expirée)</span>";
+                                        }
+                                    ?>
+                                        <div class="col-lg-8 col-md-9" <?= $color ?>>
+                                            Délais <i class="offre-date" <?= $color ?>>{{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i> <?= $expired ?>
                                         </div>
                                         
                                         <div class="col-lg-4 col-md-3 px-0 add-padding">
