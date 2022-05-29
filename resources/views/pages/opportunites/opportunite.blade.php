@@ -224,11 +224,13 @@
                     </div>
                     
                     <div class="container offre-simulaire">
+                        <div class="lil-title">Offres similaires</div>
+                        <div class="show-description-trait"></div>
                         <div class="row justify-content-center">
                             @foreach($opportunite_similaires as $opportunite_similaire)
                                 @if ($opportunite->id != $opportunite_similaire->id)
                                     <?php $entreprise = $opportunite_similaire->entreprise()->associate($opportunite_similaire->entreprise_id)->entreprise ?>
-                                        <div class=" col-sm-6 col-md-4 offre-card">
+                                        <div class=" col-sm-4 col-md-3 offre-card">
                                             <div class="offre-simulaire-title">
                                                 @switch($opportunite_similaire->type)
                                                     @case('emploi')
