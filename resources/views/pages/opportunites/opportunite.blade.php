@@ -224,8 +224,10 @@
                     </div>
                     
                     <div class="container offre-simulaire">
-                        <div class="lil-title">Offres similaires</div>
-                        <div class="show-description-trait"></div>
+                        @if (count($opportunite_similaires) > 0)
+                            <div class="lil-title">Offres similaires</div>
+                            <div class="show-description-trait"></div>
+                        @endif
                         <div class="row justify-content-center">
                             @foreach($opportunite_similaires as $opportunite_similaire)
                                 @if ($opportunite->id != $opportunite_similaire->id)
