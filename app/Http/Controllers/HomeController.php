@@ -59,10 +59,12 @@ class HomeController extends Controller
                                     ->get()
                                     ->toArray();
         // Recuperation par ordre
-        $first_entreprise = $entreprises[0];
-        $second_entreprise = $entreprises[1];
-        $third_entreprise = $entreprises[2];
-        return view('pages/accueil', compact('adresses', 'activites', 'postes', 'first_entreprise', 'second_entreprise', 'third_entreprise'));
+        $first_entreprise = count($entreprises) > 0 ? $entreprises[0] : false;
+        $second_entreprise = count($entreprises) > 1 ? $entreprises[1] : false;
+        $third_entreprise = count($entreprises) > 2 ? $entreprises[2] : false;
+        $forth_entreprise = count($entreprises) > 3 ? $entreprises[3] : false;
+        $fith_entreprise = count($entreprises) > 4 ? $entreprises[4] : "";
+        return view('pages/accueil', compact('adresses', 'activites', 'postes', 'first_entreprise', 'second_entreprise', 'third_entreprise', 'forth_entreprise', 'fith_entreprise'));
     }
  
     public function profil($email) {

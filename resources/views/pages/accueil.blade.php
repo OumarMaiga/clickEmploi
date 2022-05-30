@@ -21,23 +21,49 @@
         <h2 class="entreprise-title">Les entreprises qui recrutent le plus</h2>
         <div class="row">
             <div class="col-md-6">
+                @if ($first_entreprise)
                 <a href="{{ route('entreprise.detail', $first_entreprise['slug']) }}" class="entreprise-link">
                     <div class="entreprise-item" style="background-image: url('{{ $first_entreprise['file_path'] }}'); height: 550px; object-fit: cover;">
                         <span class="entreprise-offre">{{ $first_entreprise['libelle']." (".$first_entreprise['opportunite_count']." offres) " }}</span>
                     </div>
                 </a>
+                @endif
             </div>
             <div class="col-md-6">
-                <a href="{{ route('entreprise.detail', $second_entreprise['slug']) }}" class="entreprise-link">
-                    <div class="entreprise-item" style="background-image: url('{{ $second_entreprise['file_path'] }}'); margin-bottom: 10px; height: 270px; object-fit: cover;">
-                        <span class="entreprise-offre">{{ $second_entreprise['libelle']." (".$second_entreprise['opportunite_count']." offres) " }}</span>
+                <div class="row">
+                    <div class="col-md-6">
+                        @if ($second_entreprise)
+                        <a href="{{ route('entreprise.detail', $second_entreprise['slug']) }}" class="entreprise-link">
+                            <div class="entreprise-item" style="background-image: url('{{ $second_entreprise['file_path'] }}'); margin-bottom: 10px; height: 270px; object-fit: cover;">
+                                <span class="entreprise-offre">{{ $second_entreprise['libelle']." (".$second_entreprise['opportunite_count']." offres) " }}</span>
+                            </div>
+                        </a>
+                        @endif
+                        @if ($third_entreprise)
+                        <a href="{{ route('entreprise.detail', $third_entreprise['slug']) }}" class="entreprise-link">
+                            <div class="entreprise-item" style="background-image: url('{{ $third_entreprise['file_path'] }}'); margin-top: 10px; height: 270px; object-fit: cover;">
+                                <span class="entreprise-offre">{{ $third_entreprise['libelle']." (".$third_entreprise['opportunite_count']." offres) " }}</span>
+                            </div>
+                        </a>
+                        @endif
                     </div>
-                </a>
-                <a href="{{ route('entreprise.detail', $third_entreprise['slug']) }}" class="entreprise-link">
-                    <div class="entreprise-item" style="background-image: url('{{ $third_entreprise['file_path'] }}'); margin-top: 10px; height: 270px; object-fit: cover;">
-                        <span class="entreprise-offre">{{ $third_entreprise['libelle']." (".$third_entreprise['opportunite_count']." offres) " }}</span>
+                    <div class="col-md-6">
+                        @if ($forth_entreprise)
+                        <a href="{{ route('entreprise.detail', $forth_entreprise['slug']) }}" class="entreprise-link">
+                            <div class="entreprise-item" style="background-image: url('{{ $forth_entreprise['file_path'] }}'); margin-bottom: 10px; height: 270px; object-fit: cover;">
+                                <span class="entreprise-offre">{{ $forth_entreprise['libelle']." (".$forth_entreprise['opportunite_count']." offres) " }}</span>
+                            </div>
+                        </a>
+                        @endif
+                        @if ($fith_entreprise)
+                        <a href="{{ route('entreprise.detail', $fith_entreprise['slug']) }}" class="entreprise-link">
+                            <div class="entreprise-item" style="background-image: url('{{ $fith_entreprise['file_path'] }}'); margin-top: 10px; height: 270px; object-fit: cover;">
+                                <span class="entreprise-offre">{{ $fith_entreprise['libelle']." (".$fith_entreprise['opportunite_count']." offres) " }}</span>
+                            </div>
+                        </a>
+                        @endif
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </div>
