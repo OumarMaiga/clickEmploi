@@ -48,7 +48,7 @@
                             @if ($opportunite->type == "emploi" || $opportunite->type == "stage")
                                 <li class="item">
                                     <span class="text">Poste</span>
-                                    <span class="value">{{ $opportunite->poste }}</span>
+                                    <span class="value">{{ $opportunite->title }}</span>
                                 </li>
                                 <li class="item">
                                     <span class="text">Type de contrat</span>
@@ -69,7 +69,7 @@
                                 <span class="value">{{ $entreprise->libelle }}</span>
                             </li>
                             <li class="item">
-                                <span class="text">Adresse</span>
+                                <span class="text">Localité</span>
                                 <span class="value">{{ $opportunite->lieu }}</span>
                             </li>
                             @if ($opportunite->type == "emploi" || $opportunite->type == "stage")

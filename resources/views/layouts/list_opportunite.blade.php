@@ -82,7 +82,7 @@
                         }
                     ?>
                         <div class="col-lg-8 col-md-9" <?= $color ?>>
-                            Délais <i class="offre-date" <?= $color ?>>{{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i> <?= $expired ?>
+                            Date limite <i class="offre-date" <?= $color ?>>{{ custom_date($opportunite->echeance) }}  {{ ($opportunite->echeance->format('d-m-Y') != date('d-m-Y')) ? $opportunite->echeance->format('H:i') : "" }}</i> <?= $expired ?>
                         </div>
                         
                         <div class="col-lg-4 col-md-3 px-0 add-padding">

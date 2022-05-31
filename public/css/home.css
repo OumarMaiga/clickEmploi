@@ -708,7 +708,7 @@ hr {
 
 @media (max-width: 767px) { 
     .head {
-        height: 30vh;
+        height: 45vh;
     }
     .head-btn {
         font-size: 1rem !important;
@@ -717,8 +717,7 @@ hr {
     /* ACCUEIL HEAD */
     .jobboard-header-title {
         padding-left: 1rem;
-        padding-top: 1em;
-        font-size: 1.1rem;
+        font-size: 1.8rem;
     }
     .jobboard-header-text {
         margin-top: .4rem;
