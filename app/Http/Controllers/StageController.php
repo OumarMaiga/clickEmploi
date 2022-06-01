@@ -123,7 +123,11 @@ class StageController extends Controller
         $activites = $opportunite->activites->pluck('libelle');
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
                 
-        return view('stages.show', compact('opportunite', 'entreprise', 'postulants', 'activites', 'niveau'));
+        $app_url = env('APP_URL');
+        // passe l'url de la page
+        $site_url = $app_url."/".$opportunite->type."/".$opportunite->slug;
+
+        return view('stages.show', compact('opportunite', 'entreprise', 'postulants', 'activites', 'niveau', 'site_url'));
     }
 
     public function detail($slug) {
@@ -172,8 +176,11 @@ class StageController extends Controller
             $name = "";
             $poste = "";
         }
+        $app_url = env('APP_URL');
+        // passe l'url de la page
+        $site_url = $app_url."/".$opportunite->type."/".$opportunite->slug;
                 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'domaine_par_profil', 'motivation_texte', 'name', 'poste'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'domaine_par_profil', 'motivation_texte', 'name', 'poste', 'site_url'));
     }
 
     public function destroy($id) {

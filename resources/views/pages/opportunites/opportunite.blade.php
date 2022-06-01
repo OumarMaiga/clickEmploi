@@ -42,6 +42,26 @@
                             </div>
                         </div>
                     </div>
+                        
+                        <div class="button_share">
+                            Partagez
+                            <!-- Email Social Media -->
+                            <a href="mailto:?Subject=<?= $opportunite->title; ?>&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 <?= $site_url; ?>">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <!-- Facebook Social Media -->
+                            <a href="http://www.facebook.com/sharer.php?u=<?= $site_url; ?>" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <!-- LinkedIn Social Media -->
+                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?= $site_url; ?>" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <!-- Twitter Social Media -->
+                            <a href="https://twitter.com/share?url=<?= $site_url; ?>&amp;text=<?= $opportunite->title; ?>&amp;hashtags=clickemploi" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
 
                     <div class="show-resume">
                         <ul class="list">

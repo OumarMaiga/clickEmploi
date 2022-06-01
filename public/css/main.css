@@ -217,6 +217,17 @@ body {
     color: #606060;
     float: right;
 }
+.button_share {
+    float: right;
+    margin-top: 1rem;
+    font-size: 1.4rem;
+}
+.button_share a {
+    margin-left: 10px;
+}
+.button_share a i {
+    font-size: 1.4rem;
+}
 
 .lil-title{
     font-weight: bold;

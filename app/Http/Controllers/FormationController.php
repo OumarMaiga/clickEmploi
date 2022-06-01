@@ -113,7 +113,12 @@ class FormationController extends Controller
         $entreprise = $this->entrepriseRepository->getById($opportunite->entreprise_id);
         $postulants = $this->postuleRepository->getByForeignId('opportunite_id', $opportunite->id);
         $niveau = $opportunite->diplome()->associate($opportunite->niveau)->diplome;
-        return view('formations.show', compact('opportunite', 'entreprise', 'postulants', 'niveau'));
+
+        $app_url = env('APP_URL');
+        // passe l'url de la page
+        $site_url = $app_url."/".$opportunite->type."/".$opportunite->slug;
+
+        return view('formations.show', compact('opportunite', 'entreprise', 'postulants', 'niveau', 'site_url'));
     }
 
     public function detail($slug) {
@@ -135,8 +140,11 @@ class FormationController extends Controller
             $name = "";
             $poste = "";
         }
+        $app_url = env('APP_URL');
+        // passe l'url de la page
+        $site_url = $app_url."/".$opportunite->type."/".$opportunite->slug;
 
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'domaine_par_profil', 'motivation_texte', 'name', 'poste'));
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'domaine_par_profil', 'motivation_texte', 'name', 'poste', 'site_url'));
     }
 
     public function destroy($id) {

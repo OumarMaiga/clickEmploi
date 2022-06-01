@@ -136,8 +136,11 @@ class EmploiController extends Controller
         }else{
             $annee_experience = "";
         }
+        $app_url = env('APP_URL');
+        // passe l'url de la page
+        $site_url = $app_url."/".$opportunite->type."/".$opportunite->slug;
                 
-        return view('emplois.show', compact('opportunite', 'entreprise', 'postulants', 'activites', 'niveau', 'annee_experience'));
+        return view('emplois.show', compact('opportunite', 'entreprise', 'postulants', 'activites', 'niveau', 'annee_experience', 'site_url'));
     }
     
     public function detail($slug) {
@@ -187,7 +190,11 @@ class EmploiController extends Controller
             $poste = "";
         }
         
-        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'annee_experience', 'domaine_par_profil', 'motivation_texte', 'name', 'poste'));
+        $app_url = env('APP_URL');
+        // passe l'url de la page
+        $site_url = $app_url."/".$opportunite->type."/".$opportunite->slug;
+        
+        return view('pages.opportunites.opportunite', compact('opportunite', 'entreprise', 'opportunite_similaires', 'domaines', 'niveau', 'annee_experience', 'domaine_par_profil', 'motivation_texte', 'name', 'poste', 'site_url'));
     }
 
     public function destroy($id) {

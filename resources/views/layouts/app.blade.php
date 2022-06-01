@@ -4,6 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta property="og:title" content="boutons de partage de réseaux sociaux clickemploi.com"/> 
+        <meta property="og:image" content="lien de l'image de votre site"/> 
+        <meta property="og:url " content="clickemploi.com"/> 
+        <meta property="og:description" content="boutons de partage des réseaux sociaux php"/>
 
         <title>{{ config('app.name', 'Click emploi') }}</title>
         <!-- Fonts Awesome -->
