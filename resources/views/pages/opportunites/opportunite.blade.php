@@ -110,7 +110,7 @@
                                     </li>
                                 @endif
                             @endif
-                            @if ($niveau->libelle != null)
+                            @if ($niveau != null)
                                 <li class="item">
                                     <span class="text">
                                         Niveau d'étude: 
@@ -268,9 +268,13 @@
                                                     
                                                 @endswitch
                                             </div>
-                                            <div class="offre-simulaire-footer">
-                                                <a href="{{ route('entreprise.detail', $entreprise->slug) }}" class="offre-simulaire-link">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> <a href="{{ route('opportunite.adresse', $opportunite_similaire->lieu) }}">{{ $opportunite_similaire->lieu }}</a>
-                                            </div>
+                                            <?php 
+                                            if ($entreprise) {
+                                            ?>
+                                                <div class="offre-simulaire-footer">
+                                                    <a href="{{ route('entreprise.detail', $entreprise->slug) }}" class="offre-simulaire-link">{{ $entreprise->libelle }}</a> &nbsp; | &nbsp; <span class="fas fa-map-marker-alt"></span> <a href="{{ route('opportunite.adresse', $opportunite_similaire->lieu) }}">{{ $opportunite_similaire->lieu }}</a>
+                                                </div>
+                                            <?php }?>
                                         </div>
                                 @endif
                             @endforeach
